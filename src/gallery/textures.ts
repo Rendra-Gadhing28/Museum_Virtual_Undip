@@ -40,7 +40,7 @@ function fitFont(
 export function createFloorTexture(): THREE.CanvasTexture {
   return assetCache.getTexture('floor-texture', () => {
     const [canvas, ctx] = makeCanvas(1024, 1024)
-    
+
     // Base warm marble tone
     ctx.fillStyle = '#f2ede4'
     ctx.fillRect(0, 0, 1024, 1024)
@@ -371,6 +371,164 @@ export function createHistoryPanelCanvas(exhibit: HistoryExhibit): HTMLCanvasEle
     ctx.fillText('SEGEL RESMI', 630, 506)
     ctx.fillText('REPUBLIK INDONESIA', 630, 520)
 
+  } else if (exhibit.id === 'artwork-diponegoro-center') {
+    // Monumental Painting: Pangeran Diponegoro on White Horse
+    const skyGrad = ctx.createLinearGradient(60, 190, 60, 610)
+    skyGrad.addColorStop(0, '#1c2840')
+    skyGrad.addColorStop(0.5, '#9e5a32')
+    skyGrad.addColorStop(1, '#e39d48')
+    ctx.fillStyle = skyGrad
+    ctx.fillRect(65, 195, 670, 410)
+
+    // Rising golden sun
+    ctx.fillStyle = '#fff4bd'
+    ctx.beginPath()
+    ctx.arc(400, 390, 85, 0, Math.PI * 2)
+    ctx.fill()
+
+    // Heroic White Horse (Kuda Putih) silhouette & hero
+    ctx.fillStyle = '#f8fafc'
+    // Horse body
+    ctx.beginPath()
+    ctx.ellipse(380, 420, 105, 65, -0.3, 0, Math.PI * 2)
+    ctx.fill()
+    // Horse rearing neck & head
+    ctx.beginPath()
+    ctx.moveTo(330, 410)
+    ctx.lineTo(290, 310)
+    ctx.lineTo(270, 305)
+    ctx.lineTo(260, 325)
+    ctx.lineTo(310, 430)
+    ctx.closePath()
+    ctx.fill()
+    // Flowing white mane
+    ctx.fillStyle = '#ffffff'
+    ctx.beginPath()
+    ctx.moveTo(290, 310)
+    ctx.quadraticCurveTo(320, 330, 335, 390)
+    ctx.quadraticCurveTo(315, 360, 290, 310)
+    ctx.fill()
+
+    // Pangeran Diponegoro with White Robe & White Sorban
+    ctx.fillStyle = '#f1efe8'
+    ctx.beginPath()
+    ctx.arc(365, 315, 26, 0, Math.PI * 2) // Sorban
+    ctx.fill()
+    ctx.fillRect(350, 335, 45, 65) // Robe body
+
+    // Golden Keris Pusaka raised high
+    ctx.strokeStyle = '#ffd700'
+    ctx.lineWidth = 5
+    ctx.beginPath()
+    ctx.moveTo(385, 330)
+    ctx.lineTo(440, 260)
+    ctx.stroke()
+    // Keris flame aura
+    ctx.fillStyle = '#ffcc00'
+    ctx.beginPath()
+    ctx.arc(445, 255, 10, 0, Math.PI * 2)
+    ctx.fill()
+
+    // Painting Plaque
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.75)'
+    ctx.fillRect(65, 565, 670, 40)
+    ctx.fillStyle = '#ffd700'
+    ctx.font = 'bold 15px Georgia, serif'
+    ctx.textAlign = 'center'
+    ctx.fillText('LUKISAN INDUK SEJARAH • API PERJUANGAN PANGERAN DIPONEGORO', 400, 590)
+
+  } else if (exhibit.id === 'history-muladi-dome') {
+    // Gedung Muladi Dome Architectural Illustration
+    const sky = ctx.createLinearGradient(60, 190, 60, 610)
+    sky.addColorStop(0, '#10294d')
+    sky.addColorStop(1, '#2c5d96')
+    ctx.fillStyle = sky
+    ctx.fillRect(65, 195, 670, 410)
+
+    // Rotunda Lower Glass Cylinder
+    ctx.fillStyle = 'rgba(180, 215, 245, 0.75)'
+    ctx.fillRect(160, 380, 480, 150)
+    ctx.strokeStyle = '#d4af37'
+    ctx.lineWidth = 3
+    ctx.strokeRect(160, 380, 480, 150)
+
+    // Colonnade Fins
+    ctx.fillStyle = '#ffffff'
+    for (let x = 180; x <= 620; x += 40) {
+      ctx.fillRect(x, 380, 10, 150)
+    }
+
+    // Monumental Champagne Gold Dome
+    const domeGrad = ctx.createRadialGradient(400, 310, 20, 400, 350, 190)
+    domeGrad.addColorStop(0, '#fff2c6')
+    domeGrad.addColorStop(0.5, '#d4af37')
+    domeGrad.addColorStop(1, '#8f6e1b')
+    ctx.fillStyle = domeGrad
+    ctx.beginPath()
+    ctx.arc(400, 380, 185, Math.PI, 0)
+    ctx.fill()
+    ctx.strokeStyle = '#ffeaa7'
+    ctx.lineWidth = 4
+    ctx.stroke()
+
+    // Oculus Lantern
+    ctx.fillStyle = '#ffeaa7'
+    ctx.fillRect(375, 180, 50, 25)
+    ctx.beginPath()
+    ctx.arc(400, 180, 25, Math.PI, 0)
+    ctx.fill()
+
+    // Title banner
+    ctx.fillStyle = 'rgba(11, 29, 58, 0.9)'
+    ctx.fillRect(65, 565, 670, 40)
+    ctx.fillStyle = '#ffd700'
+    ctx.font = 'bold 16px Georgia, serif'
+    ctx.textAlign = 'center'
+    ctx.fillText('GEDUNG MULADI DOME • CONVENTION & EXPO HALL TERBESAR UNDIP', 400, 590)
+
+  } else if (exhibit.id === 'history-widya-puraya') {
+    // Widya Puraya Menara & Rektorat
+    const bg = ctx.createLinearGradient(60, 190, 60, 610)
+    bg.addColorStop(0, '#2d3748')
+    bg.addColorStop(1, '#4a5568')
+    ctx.fillStyle = bg
+    ctx.fillRect(65, 195, 670, 410)
+
+    // Central Tower
+    ctx.fillStyle = '#e2e8f0'
+    ctx.fillRect(350, 240, 100, 300)
+    // Tower Clock
+    ctx.fillStyle = '#ffffff'
+    ctx.beginPath()
+    ctx.arc(400, 290, 28, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.strokeStyle = '#d4af37'
+    ctx.lineWidth = 3
+    ctx.stroke()
+    // Golden Pyramid Roof
+    ctx.fillStyle = '#d4af37'
+    ctx.beginPath()
+    ctx.moveTo(330, 240)
+    ctx.lineTo(400, 180)
+    ctx.lineTo(470, 240)
+    ctx.closePath()
+    ctx.fill()
+
+    // Flanking Administrative Wings
+    ctx.fillStyle = '#cbd5e1'
+    ctx.fillRect(180, 360, 440, 180)
+    ctx.fillStyle = '#94a3b8'
+    for (let r = 200; r < 600; r += 32) {
+      ctx.fillRect(r, 380, 18, 140)
+    }
+
+    ctx.fillStyle = 'rgba(11, 29, 58, 0.9)'
+    ctx.fillRect(65, 565, 670, 40)
+    ctx.fillStyle = '#ffd700'
+    ctx.font = 'bold 15px Georgia, serif'
+    ctx.textAlign = 'center'
+    ctx.fillText('GEDUNG WIDYA PURAYA • PUSAT ADMINISTRASI & SEREMONIAL TEMBALANG', 400, 590)
+
   } else {
     // Vintage Campus Photo Layout
     const photoGrad = ctx.createLinearGradient(60, 190, 740, 610)
@@ -403,7 +561,7 @@ export function createHistoryPanelCanvas(exhibit: HistoryExhibit): HTMLCanvasEle
     ctx.fillStyle = '#f5eedb'
     ctx.font = 'italic 16px Georgia, serif'
     ctx.textAlign = 'center'
-    ctx.fillText('Dokumentasi Sejarah Kampus Pleburan & Bodjong Semarang (Koleksi Arsip)', 400, 590)
+    ctx.fillText(exhibit.title, 400, 590)
   }
 
   // Summary Text Section below the document box
@@ -566,22 +724,67 @@ export function createCampusMiniatureTexture(): THREE.CanvasTexture {
     ctx.stroke()
     ctx.setLineDash([])
 
-    // Iconic Central Landmark: Widya Puraya Quadrangle
-    ctx.fillStyle = '#9e8971'
-    ctx.fillRect(440, 440, 144, 144)
+    // Central Landmark: GEDUNG MULADI DOME (Primary Campus Centerpiece)
+    ctx.fillStyle = '#223d63'
+    ctx.beginPath()
+    ctx.arc(512, 530, 95, 0, Math.PI * 2)
+    ctx.fill()
     ctx.strokeStyle = '#d4af37'
-    ctx.lineWidth = 4
-    ctx.strokeRect(440, 440, 144, 144)
+    ctx.lineWidth = 5
+    ctx.stroke()
+
+    // Inner concentric ring of Muladi Dome rotunda
+    ctx.fillStyle = '#c59f48'
+    ctx.beginPath()
+    ctx.arc(512, 530, 68, 0, Math.PI * 2)
+    ctx.fill()
+
+    // Center Dome skylight
+    ctx.fillStyle = '#f8f4eb'
+    ctx.beginPath()
+    ctx.arc(512, 530, 24, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.strokeStyle = '#1b3b5a'
+    ctx.lineWidth = 2
+    ctx.stroke()
+
+    // Radial structural ribs
+    for (let a = 0; a < Math.PI * 2; a += Math.PI / 4) {
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.65)'
+      ctx.lineWidth = 2
+      ctx.beginPath()
+      ctx.moveTo(512 + Math.cos(a) * 24, 530 + Math.sin(a) * 24)
+      ctx.lineTo(512 + Math.cos(a) * 68, 530 + Math.sin(a) * 68)
+      ctx.stroke()
+    }
+
+    // Label for Muladi Dome
+    ctx.fillStyle = '#ffffff'
+    ctx.font = 'bold 16px Georgia, serif'
+    ctx.textAlign = 'center'
+    ctx.fillText('MULADI DOME', 512, 650)
+
+    // Widya Puraya Quadrangle (North of Muladi Dome)
+    ctx.fillStyle = '#9e8971'
+    ctx.fillRect(452, 310, 120, 110)
+    ctx.strokeStyle = '#d4af37'
+    ctx.lineWidth = 3
+    ctx.strokeRect(452, 310, 120, 110)
+    ctx.fillStyle = '#ffffff'
+    ctx.font = 'bold 13px Georgia, serif'
+    ctx.fillText('WIDYA PURAYA', 512, 370)
 
     // Miniature Building Plots (Faculties)
     const faculties = [
-      { name: 'Teknik', x: 200, y: 220, w: 120, h: 90, color: '#0d2d52' },
-      { name: 'Hukum', x: 700, y: 220, w: 110, h: 80, color: '#4a151b' },
-      { name: 'FEB', x: 220, y: 720, w: 110, h: 80, color: '#3d311d' },
-      { name: 'Kedokteran', x: 680, y: 700, w: 130, h: 90, color: '#164d36' },
-      { name: 'FSM', x: 150, y: 460, w: 90, h: 70, color: '#1b3b5a' },
-      { name: 'FISIP', x: 770, y: 460, w: 90, h: 70, color: '#542918' },
-      { name: 'Stadium', x: 512, y: 790, w: 160, h: 80, color: '#526649' },
+      { name: 'Teknik', x: 180, y: 220, w: 120, h: 90, color: '#133966' },
+      { name: 'Hukum', x: 720, y: 220, w: 110, h: 80, color: '#591820' },
+      { name: 'FEB', x: 200, y: 720, w: 110, h: 80, color: '#4a3b22' },
+      { name: 'Kedokteran / RSND', x: 670, y: 700, w: 150, h: 90, color: '#18593e' },
+      { name: 'FSM', x: 140, y: 460, w: 90, h: 70, color: '#1f466d' },
+      { name: 'FISIP', x: 790, y: 460, w: 90, h: 70, color: '#63311c' },
+      { name: 'FPIK / FPP', x: 170, y: 340, w: 100, h: 75, color: '#25523b' },
+      { name: 'FIB / Psikologi', x: 750, y: 330, w: 105, h: 75, color: '#4e284a' },
+      { name: 'Stadium Undip', x: 490, y: 790, w: 150, h: 80, color: '#526649' },
     ]
 
     faculties.forEach((f) => {
@@ -924,4 +1127,603 @@ export function createLabelTexture(portrait: { name: string; years: string }): T
   fitFont(ctx, portrait.years, 'Georgia, serif', 'normal', 'italic', 560, 32, 20)
   ctx.fillText(portrait.years, 320, 158)
   return toTexture(canvas)
+}
+
+/** Official Prasasti Pendirian & Peresmian Universitas Diponegoro (Polished Black Marble & Gilded Gold) */
+export function createPrasastiTexture(): THREE.CanvasTexture {
+  return assetCache.getTexture('undip-prasasti-texture', () => {
+    const [canvas, ctx] = makeCanvas(1024, 1360)
+
+    // 1. Polished Nero Marquina / Black Obsidian Granite Slab
+    const grad = ctx.createLinearGradient(0, 0, 1024, 1360)
+    grad.addColorStop(0, '#101318')
+    grad.addColorStop(0.5, '#161a22')
+    grad.addColorStop(1, '#0e1116')
+    ctx.fillStyle = grad
+    ctx.fillRect(0, 0, 1024, 1360)
+
+    // Subtle dark marble crystalline flecks
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.04)'
+    for (let i = 0; i < 400; i++) {
+      const rx = (i * 97) % 1024
+      const ry = (i * 131) % 1360
+      ctx.fillRect(rx, ry, 2, 2)
+    }
+
+    // 2. Ornate Gilded Gold Outer & Inner Frame
+    ctx.strokeStyle = '#d4af37'
+    ctx.lineWidth = 8
+    ctx.strokeRect(36, 36, 952, 1288)
+
+    ctx.strokeStyle = 'rgba(245, 218, 119, 0.6)'
+    ctx.lineWidth = 2.5
+    ctx.strokeRect(52, 52, 920, 1256)
+
+    // Corner rosettes
+    const corners = [
+      [52, 52],
+      [972, 52],
+      [52, 1308],
+      [972, 1308],
+    ]
+    corners.forEach(([cx, cy]) => {
+      ctx.fillStyle = '#f5da77'
+      ctx.beginPath()
+      ctx.arc(cx, cy, 10, 0, Math.PI * 2)
+      ctx.fill()
+      ctx.strokeStyle = '#d4af37'
+      ctx.lineWidth = 3
+      ctx.stroke()
+    })
+
+    // 3. Top Header: Golden Emblem & Inscription
+    ctx.textAlign = 'center'
+
+    ctx.fillStyle = '#d4af37'
+    ctx.beginPath()
+    ctx.arc(512, 160, 48, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.fillStyle = '#122644'
+    ctx.beginPath()
+    ctx.arc(512, 160, 42, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.fillStyle = '#ffd966'
+    ctx.font = 'bold 36px Georgia, serif'
+    ctx.fillText('🏛️', 512, 172)
+
+    // Sub-heading
+    ctx.fillStyle = '#d4af37'
+    ctx.font = 'bold 24px Georgia, serif'
+    ctx.letterSpacing = '0.08em'
+    ctx.fillText('PRASASTI PENDIRIAN & PERESMIAN', 512, 255)
+
+    // Main University Title
+    ctx.fillStyle = '#ffffff'
+    ctx.font = 'bold 44px "Times New Roman", Georgia, serif'
+    ctx.fillText('UNIVERSITAS DIPONEGORO', 512, 315)
+
+    ctx.fillStyle = '#ffd966'
+    ctx.font = 'italic 20px Georgia, serif'
+    ctx.fillText('Semarang, Jawa Tengah • Berdiri 9 Januari 1957', 512, 355)
+
+    // Decorative Gold Horizontal Inlay Divider
+    ctx.strokeStyle = '#d4af37'
+    ctx.lineWidth = 3
+    ctx.beginPath()
+    ctx.moveTo(180, 390)
+    ctx.lineTo(844, 390)
+    ctx.stroke()
+    ctx.fillStyle = '#f5da77'
+    ctx.beginPath()
+    ctx.arc(512, 390, 8, 0, Math.PI * 2)
+    ctx.fill()
+
+    // 4. Inscription Body Text (Gilded Serif Engraved Script)
+    const textLines = [
+      'DENGAN RAHMAT TUHAN YANG MAHA ESA',
+      '',
+      'Universitas Diponegoro dirintis pada tanggal 9 Januari 1957',
+      'oleh para tokoh pejuang dan cendekiawan Jawa Tengah',
+      'sebagai wujud tekad mencerdaskan kehidupan bangsa.',
+      '',
+      'Pada tanggal 9 Januari 1960, Presiden Republik Indonesia Pertama,',
+      'Ir. SOEKARNO, secara resmi menganugerahkan nama luhur',
+      '"UNIVERSITAS DIPONEGORO"',
+      'sebagai perlambang keberanian, kejujuran, dan jiwa patriotik.',
+      '',
+      'Ditegaskan sebagai Perguruan Tinggi Negeri melalui',
+      'Peraturan Pemerintah Republik Indonesia No. 7 Tahun 1961,',
+      'bermartabat sebagai pusat keunggulan riset, kebudayaan luhur,',
+      'serta pengabdian bagi kemandirian dan martabat bangsa.',
+    ]
+
+    let curY = 445
+    ctx.fillStyle = '#f3eedd'
+    textLines.forEach((line) => {
+      if (line === '') {
+        curY += 18
+      } else if (line.startsWith('"UNIVERSITAS') || line === 'DENGAN RAHMAT TUHAN YANG MAHA ESA') {
+        ctx.fillStyle = '#ffd966'
+        ctx.font = 'bold 23px "Times New Roman", Georgia, serif'
+        ctx.fillText(line, 512, curY)
+        curY += 34
+      } else {
+        ctx.fillStyle = '#ede3ce'
+        ctx.font = '20px Georgia, serif'
+        ctx.fillText(line, 512, curY)
+        curY += 32
+      }
+    })
+
+    // Motto Section
+    curY += 24
+    ctx.fillStyle = '#223d6a'
+    ctx.fillRect(220, curY, 584, 62)
+    ctx.strokeStyle = '#d4af37'
+    ctx.lineWidth = 2.5
+    ctx.strokeRect(220, curY, 584, 62)
+
+    ctx.fillStyle = '#ffd700'
+    ctx.font = 'bold italic 27px Georgia, serif'
+    ctx.fillText('"Pernah Jaya, Tetap Jaya, Makin Jaya"', 512, curY + 41)
+
+    // Signatures / Presidium Footer
+    curY += 125
+    ctx.fillStyle = '#f5da77'
+    ctx.font = 'bold 18px Georgia, serif'
+    ctx.fillText('DEWAN PRESIDIUM PENDIRI & PIMPINAN UNIVERSITAS', 512, curY)
+
+    curY += 35
+    ctx.fillStyle = '#ffffff'
+    ctx.font = '17px Georgia, serif'
+    ctx.fillText('Mr. Soedarto  •  Mr. Imam Bardjo  •  Mr. Dan Sulaiman', 512, curY)
+
+    curY += 30
+    ctx.fillStyle = '#d4af37'
+    ctx.font = 'italic 16px Georgia, serif'
+    ctx.fillText('Dies Natalis Diperingati Setiap Tanggal 15 Oktober', 512, curY)
+
+    return toTexture(canvas)
+  })
+}
+
+/** Official Undip Emblem with High Contrast Gilded Medallion & Laurel Wreath for Back Wall */
+export function createUndipEmblemFullTexture(): THREE.CanvasTexture {
+  return assetCache.getTexture('undip-emblem-full', () => {
+    const [canvas, ctx] = makeCanvas(1024, 1024)
+
+    // Transparent clear background
+    ctx.clearRect(0, 0, 1024, 1024)
+
+    // Radiant Golden Sunburst back-glow
+    const sunGrad = ctx.createRadialGradient(512, 512, 200, 512, 512, 500)
+    sunGrad.addColorStop(0, 'rgba(255, 220, 100, 0.45)')
+    sunGrad.addColorStop(0.7, 'rgba(212, 175, 55, 0.25)')
+    sunGrad.addColorStop(1, 'rgba(212, 175, 55, 0)')
+    ctx.fillStyle = sunGrad
+    ctx.fillRect(0, 0, 1024, 1024)
+
+    // Outer Gilded Lotus Rim
+    ctx.fillStyle = '#d4af37'
+    ctx.beginPath()
+    ctx.arc(512, 512, 470, 0, Math.PI * 2)
+    ctx.fill()
+
+    // Outer Gold Step Bevel
+    ctx.strokeStyle = '#fff0a6'
+    ctx.lineWidth = 10
+    ctx.stroke()
+
+    // Royal Blue Deep Enamel Core
+    ctx.fillStyle = '#122f5d'
+    ctx.beginPath()
+    ctx.arc(512, 512, 420, 0, Math.PI * 2)
+    ctx.fill()
+
+    // Inner Gold Accent Ring
+    ctx.strokeStyle = '#d4af37'
+    ctx.lineWidth = 8
+    ctx.beginPath()
+    ctx.arc(512, 512, 380, 0, Math.PI * 2)
+    ctx.stroke()
+
+    // Laurel Wreath Leaves (Left & Right)
+    ctx.fillStyle = '#f5da77'
+    for (let angle = 0.5; angle < 2.65; angle += 0.2) {
+      const lx = 512 - Math.sin(angle) * 330
+      const ly = 512 + Math.cos(angle) * 330
+      ctx.beginPath()
+      ctx.ellipse(lx, ly, 22, 11, -angle, 0, Math.PI * 2)
+      ctx.fill()
+
+      const rx = 512 + Math.sin(angle) * 330
+      const ry = 512 + Math.cos(angle) * 330
+      ctx.beginPath()
+      ctx.ellipse(rx, ry, 22, 11, angle, 0, Math.PI * 2)
+      ctx.fill()
+    }
+
+    // Diponegoro Heroic Steed & Rider Golden Silhouette (Center Crest)
+    ctx.fillStyle = '#ffd966'
+    ctx.beginPath()
+    ctx.arc(512, 490, 120, 0, Math.PI * 2)
+    ctx.fill()
+
+    // Gilded Undip Pentagonal Star
+    ctx.fillStyle = '#ffffff'
+    ctx.beginPath()
+    ctx.arc(512, 340, 28, 0, Math.PI * 2)
+    ctx.fill()
+
+    // Circular Typography around Upper Rim
+    ctx.fillStyle = '#ffffff'
+    ctx.textAlign = 'center'
+    ctx.font = 'bold 36px "Times New Roman", Georgia, serif'
+    ctx.fillText('UNIVERSITAS DIPONEGORO', 512, 200)
+
+    ctx.fillStyle = '#ffd966'
+    ctx.font = 'bold 26px "Times New Roman", Georgia, serif'
+    ctx.fillText('SEMARANG • 1957', 512, 750)
+
+    // Motto Banner
+    ctx.fillStyle = '#10223d'
+    ctx.fillRect(280, 790, 464, 52)
+    ctx.strokeStyle = '#d4af37'
+    ctx.lineWidth = 3
+    ctx.strokeRect(280, 790, 464, 52)
+
+    ctx.fillStyle = '#ffd700'
+    ctx.font = 'bold italic 22px Georgia, serif'
+    ctx.fillText('TETAP JAYA, MAKIN JAYA', 512, 825)
+
+    return toTexture(canvas)
+  })
+}
+
+/** Data URL generator for Prasasti preview in the information panel */
+export function createPrasastiDataURL(): string {
+  const [canvas, ctx] = makeCanvas(800, 1060)
+
+  const grad = ctx.createLinearGradient(0, 0, 800, 1060)
+  grad.addColorStop(0, '#101318')
+  grad.addColorStop(0.5, '#161a22')
+  grad.addColorStop(1, '#0e1116')
+  ctx.fillStyle = grad
+  ctx.fillRect(0, 0, 800, 1060)
+
+  ctx.strokeStyle = '#d4af37'
+  ctx.lineWidth = 6
+  ctx.strokeRect(28, 28, 744, 1004)
+
+  ctx.strokeStyle = 'rgba(245, 218, 119, 0.6)'
+  ctx.lineWidth = 2
+  ctx.strokeRect(40, 40, 720, 980)
+
+  ctx.textAlign = 'center'
+  ctx.fillStyle = '#d4af37'
+  ctx.font = 'bold 20px Georgia, serif'
+  ctx.fillText('PRASASTI PENDIRIAN & PERESMIAN', 400, 140)
+
+  ctx.fillStyle = '#ffffff'
+  ctx.font = 'bold 34px "Times New Roman", Georgia, serif'
+  ctx.fillText('UNIVERSITAS DIPONEGORO', 400, 190)
+
+  ctx.fillStyle = '#ffd966'
+  ctx.font = 'italic 16px Georgia, serif'
+  ctx.fillText('Semarang, Jawa Tengah • 9 Januari 1957', 400, 225)
+
+  ctx.strokeStyle = '#d4af37'
+  ctx.lineWidth = 2.5
+  ctx.beginPath()
+  ctx.moveTo(120, 255)
+  ctx.lineTo(680, 255)
+  ctx.stroke()
+
+  const lines = [
+    'DENGAN RAHMAT TUHAN YANG MAHA ESA',
+    '',
+    'Pada tanggal 9 Januari 1957 diresmikan berdirinya Universitas Semarang,',
+    'yang kemudian dianugerahi nama kehormatan',
+    '"UNIVERSITAS DIPONEGORO"',
+    'oleh Presiden Republik Indonesia Pertama, Ir. SOEKARNO.',
+    '',
+    'Ditegaskan sebagai Perguruan Tinggi Negeri',
+    'berdasarkan Peraturan Pemerintah No. 7 Tahun 1961.',
+  ]
+
+  let curY = 320
+  lines.forEach((line) => {
+    if (line === '') curY += 16
+    else if (line.startsWith('"UNIVERSITAS') || line === 'DENGAN RAHMAT TUHAN YANG MAHA ESA') {
+      ctx.fillStyle = '#ffd966'
+      ctx.font = 'bold 18px "Times New Roman", Georgia, serif'
+      ctx.fillText(line, 400, curY)
+      curY += 32
+    } else {
+      ctx.fillStyle = '#f3eedd'
+      ctx.font = '16px Georgia, serif'
+      ctx.fillText(line, 400, curY)
+      curY += 28
+    }
+  })
+
+  curY += 35
+  ctx.fillStyle = '#1e3860'
+  ctx.fillRect(160, curY, 480, 56)
+  ctx.strokeStyle = '#d4af37'
+  ctx.lineWidth = 2
+  ctx.strokeRect(160, curY, 480, 56)
+
+  ctx.fillStyle = '#ffd700'
+  ctx.font = 'bold italic 22px Georgia, serif'
+  ctx.fillText('"Pernah Jaya, Tetap Jaya, Makin Jaya"', 400, curY + 36)
+
+  curY += 120
+  ctx.fillStyle = '#d4af37'
+  ctx.font = 'bold 15px Georgia, serif'
+  ctx.fillText('DEWAN PRESIDIUM PENDIRI', 400, curY)
+  curY += 28
+  ctx.fillStyle = '#ffffff'
+  ctx.font = '14px Georgia, serif'
+  ctx.fillText('Mr. Soedarto  •  Mr. Imam Bardjo  •  Mr. Dan Sulaiman', 400, curY)
+
+  return canvas.toDataURL('image/jpeg', 0.9)
+}
+
+/** Data URL generator for Monumen Kuda Putih Diponegoro preview */
+export function createStatueDataURL(): string {
+  const [canvas, ctx] = makeCanvas(800, 1000)
+
+  const grad = ctx.createLinearGradient(0, 0, 800, 1000)
+  grad.addColorStop(0, '#10284c')
+  grad.addColorStop(0.5, '#163868')
+  grad.addColorStop(1, '#0e2240')
+  ctx.fillStyle = grad
+  ctx.fillRect(0, 0, 800, 1000)
+
+  ctx.strokeStyle = '#d4af37'
+  ctx.lineWidth = 6
+  ctx.strokeRect(30, 30, 740, 940)
+
+  ctx.textAlign = 'center'
+  ctx.fillStyle = '#ffd966'
+  ctx.font = 'bold 18px Georgia, serif'
+  ctx.fillText('MONUMEN BERSEJARAH', 400, 110)
+
+  ctx.fillStyle = '#ffffff'
+  ctx.font = 'bold 32px "Times New Roman", Georgia, serif'
+  ctx.fillText('PANGERAN DIPONEGORO', 400, 160)
+
+  ctx.fillStyle = '#ffd700'
+  ctx.font = 'italic 22px Georgia, serif'
+  ctx.fillText('Sang Ksatria Kuda Putih (Kyai Gitayu)', 400, 200)
+
+  ctx.fillStyle = '#1c447a'
+  ctx.beginPath()
+  ctx.arc(400, 420, 160, 0, Math.PI * 2)
+  ctx.fill()
+  ctx.strokeStyle = '#d4af37'
+  ctx.lineWidth = 4
+  ctx.stroke()
+
+  ctx.fillStyle = '#ffffff'
+  ctx.font = '72px sans-serif'
+  ctx.fillText('🐎', 400, 445)
+
+  ctx.fillStyle = '#f3f4f6'
+  ctx.font = '16px Georgia, serif'
+  ctx.fillText('Patung Pangeran Diponegoro menunggangi kuda putih perkasa', 400, 660)
+  ctx.fillText('dengan jubah dan sorban putih serta keris pusaka terhunus.', 400, 695)
+  ctx.fillText('Simbol keberanian membela kebenaran dan kejujuran ilmiah.', 400, 730)
+
+  ctx.fillStyle = '#ffd966'
+  ctx.font = 'bold italic 20px Georgia, serif'
+  ctx.fillText('"Tetap Jaya, Makin Jaya"', 400, 820)
+
+  ctx.fillStyle = '#94a3b8'
+  ctx.font = '13px sans-serif'
+  ctx.fillText('Sudut Monumen Kehormatan • Universitas Diponegoro', 400, 890)
+
+  return canvas.toDataURL('image/jpeg', 0.9)
+}
+
+/** High-Resolution Indonesian Flag Texture */
+export function createIndonesianFlagTexture(): THREE.CanvasTexture {
+  return assetCache.getTexture('flag-indonesia-texture', () => {
+    const [canvas, ctx] = makeCanvas(1024, 680)
+    // Top Red
+    ctx.fillStyle = '#dc2626'
+    ctx.fillRect(0, 0, 1024, 340)
+    // Bottom White
+    ctx.fillStyle = '#ffffff'
+    ctx.fillRect(0, 340, 1024, 340)
+    // Fine fabric texture simulation
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.03)'
+    for (let x = 0; x < 1024; x += 4) {
+      ctx.fillRect(x, 0, 2, 680)
+    }
+    return toTexture(canvas)
+  })
+}
+
+/** High-Resolution Undip Pataka Flag Texture */
+export function createUndipFlagTexture(): THREE.CanvasTexture {
+  return assetCache.getTexture('flag-undip-texture', () => {
+    const [canvas, ctx] = makeCanvas(1024, 680)
+    // Rich Royal Navy Blue Field
+    ctx.fillStyle = '#142e56'
+    ctx.fillRect(0, 0, 1024, 680)
+    // Gold Fringe Border
+    ctx.strokeStyle = '#ffd700'
+    ctx.lineWidth = 14
+    ctx.strokeRect(10, 10, 1004, 660)
+    // Inner Gold Accent Line
+    ctx.strokeStyle = '#d4af37'
+    ctx.lineWidth = 3
+    ctx.strokeRect(24, 24, 976, 632)
+    // Center Gold Shield Emblem
+    ctx.fillStyle = '#0a172c'
+    ctx.beginPath()
+    ctx.arc(512, 340, 180, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.strokeStyle = '#ffd700'
+    ctx.lineWidth = 6
+    ctx.stroke()
+    // Golden Diponegoro Silhouette
+    ctx.fillStyle = '#ffd700'
+    ctx.beginPath()
+    ctx.arc(512, 320, 70, 0, Math.PI * 2)
+    ctx.fill()
+    // Arched Title
+    ctx.fillStyle = '#ffffff'
+    ctx.font = 'bold 36px Georgia, serif'
+    ctx.textAlign = 'center'
+    ctx.fillText('UNIVERSITAS DIPONEGORO', 512, 190)
+    ctx.fillStyle = '#ffd700'
+    ctx.font = 'bold 24px Georgia, serif'
+    ctx.fillText('SEMARANG', 512, 530)
+    return toTexture(canvas)
+  })
+}
+
+/** Grand 3D Wall Typography Texture: "UNIVERSITAS DIPONEGORO" */
+export function createUndipWallTypographyTexture(): THREE.CanvasTexture {
+  return assetCache.getTexture('undip-wall-typography', () => {
+    const [canvas, ctx] = makeCanvas(2048, 480)
+    ctx.clearRect(0, 0, 2048, 480)
+    // Gold Metallic Text
+    const grad = ctx.createLinearGradient(0, 50, 0, 300)
+    grad.addColorStop(0, '#fff4b8')
+    grad.addColorStop(0.3, '#ffd700')
+    grad.addColorStop(0.7, '#d4af37')
+    grad.addColorStop(1, '#94751c')
+    ctx.fillStyle = grad
+    ctx.textAlign = 'center'
+    ctx.font = 'bold 155px "Times New Roman", Georgia, serif'
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.75)'
+    ctx.shadowBlur = 18
+    ctx.shadowOffsetX = 4
+    ctx.shadowOffsetY = 6
+    ctx.fillText('UNIVERSITAS DIPONEGORO', 1024, 270)
+    ctx.shadowColor = 'transparent'
+    // Gold fine outline
+    ctx.strokeStyle = '#ffeaa7'
+    ctx.lineWidth = 3
+    ctx.strokeText('UNIVERSITAS DIPONEGORO', 1024, 270)
+    return toTexture(canvas)
+  })
+}
+
+/**
+ * Official Shield Logo of Universitas Diponegoro
+ * Loads the official emblem image and guarantees transparent background
+ * by clearing any fake checkerboard artifacts outside the shield border.
+ */
+export function createOfficialUndipLogoTexture(): THREE.CanvasTexture {
+  return assetCache.getTexture('undip-official-logo-shield', () => {
+    const [canvas, ctx] = makeCanvas(1024, 1024)
+    const texture = toTexture(canvas)
+
+    const img = new Image()
+    img.crossOrigin = 'anonymous'
+    img.src = '/textures/undip-emblem.webp'
+    img.onload = () => {
+      const w = img.naturalWidth || 800
+      const h = img.naturalHeight || 800
+      canvas.width = w
+      canvas.height = h
+      ctx.clearRect(0, 0, w, h)
+      ctx.drawImage(img, 0, 0)
+
+      try {
+        const imgData = ctx.getImageData(0, 0, w, h)
+        const d = imgData.data
+
+        // BFS flood-fill from border pixels to erase fake checkerboard / white background
+        const visited = new Uint8Array(w * h)
+        const queue: number[] = []
+
+        const pushIfBg = (x: number, y: number) => {
+          if (x < 0 || x >= w || y < 0 || y >= h) return
+          const idx = y * w + x
+          if (visited[idx]) return
+          visited[idx] = 1
+
+          const pi = idx * 4
+          const r = d[pi]
+          const g = d[pi + 1]
+          const b = d[pi + 2]
+          const a = d[pi + 3]
+
+          if (a === 0) {
+            queue.push(idx)
+            return
+          }
+
+          // Checkerboard pixels: light neutral (gray or white)
+          const isLightNeutral =
+            r > 180 && g > 180 && b > 180 && Math.abs(r - g) < 25 && Math.abs(g - b) < 25
+          if (isLightNeutral) {
+            d[pi + 3] = 0 // transparent
+            queue.push(idx)
+          }
+        }
+
+        // Add 4 outer edges
+        for (let x = 0; x < w; x++) {
+          pushIfBg(x, 0)
+          pushIfBg(x, h - 1)
+        }
+        for (let y = 0; y < h; y++) {
+          pushIfBg(0, y)
+          pushIfBg(w - 1, y)
+        }
+
+        // Process queue
+        let qHead = 0
+        while (qHead < queue.length) {
+          const curr = queue[qHead++]
+          const cx = curr % w
+          const cy = Math.floor(curr / w)
+
+          const dirs = [
+            [cx + 1, cy],
+            [cx - 1, cy],
+            [cx, cy + 1],
+            [cx, cy - 1],
+          ]
+          for (let i = 0; i < 4; i++) {
+            const [nx, ny] = dirs[i]
+            if (nx >= 0 && nx < w && ny >= 0 && ny < h) {
+              const nidx = ny * w + nx
+              if (!visited[nidx]) {
+                visited[nidx] = 1
+                const npi = nidx * 4
+                const r = d[npi]
+                const g = d[npi + 1]
+                const b = d[npi + 2]
+                const a = d[npi + 3]
+
+                if (
+                  a === 0 ||
+                  (r > 175 && g > 175 && b > 175 && Math.abs(r - g) < 25 && Math.abs(g - b) < 25)
+                ) {
+                  d[npi + 3] = 0
+                  queue.push(nidx)
+                }
+              }
+            }
+          }
+        }
+
+        ctx.putImageData(imgData, 0, 0)
+      } catch (e) {
+        console.warn('Logo processing note:', e)
+      }
+
+      texture.needsUpdate = true
+    }
+
+    return texture
+  })
 }

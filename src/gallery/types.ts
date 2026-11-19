@@ -1,7 +1,7 @@
 import type { RefObject } from 'react'
 import type { Founder, HistoryExhibit } from './data/exhibits'
 
-export type ExhibitType = 'founder' | 'history' | 'miniature-map' | 'podium'
+export type ExhibitType = 'founder' | 'history' | 'miniature-map' | 'podium' | 'prasasti'
 
 export interface SelectedExhibit {
   type: ExhibitType
@@ -50,6 +50,16 @@ export interface CeremonialPodiumProps {
   isHovered: boolean
   onSelect: () => void
   onHover: (id: string | null) => void
+  onSelectPrasasti?: () => void
+}
+
+export interface StatueProps {
+  position: [number, number, number]
+  rotationY?: number
+  isSelected?: boolean
+  isHovered?: boolean
+  onSelect?: () => void
+  onHover?: (id: string | null) => void
 }
 
 export interface FirstPersonControlsProps {
@@ -62,11 +72,13 @@ export interface FirstPersonControlsProps {
   onProximityChange?: (isNearDirectory: boolean) => void
 }
 
+export type SectionType = 'entrance' | 'founders' | 'map' | 'podium' | 'history' | 'prasasti'
+
 export interface MobileControlsProps {
   moveInputRef: RefObject<{ forward: number; strafe: number }>
   visible: boolean
   onReset: () => void
-  onTeleport: (section: 'entrance' | 'founders' | 'map' | 'podium' | 'history') => void
+  onTeleport: (section: SectionType) => void
 }
 
 /** Legacy Types for backward compatibility */

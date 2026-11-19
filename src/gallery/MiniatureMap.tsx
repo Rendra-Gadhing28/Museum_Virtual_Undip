@@ -83,6 +83,27 @@ export function MiniatureMap({
             metalness: 0.65,
           }),
       ),
+      // Muladi Dome metallic champagne gold & glass curtain
+      domeMetallic: assetCache.getMaterial(
+        'mini-muladi-dome-gold',
+        () =>
+          new THREE.MeshStandardMaterial({
+            color: '#d6be7a',
+            roughness: 0.25,
+            metalness: 0.85,
+          }),
+      ),
+      domeGlass: assetCache.getMaterial(
+        'mini-muladi-dome-glass',
+        () =>
+          new THREE.MeshStandardMaterial({
+            color: '#8ab4d6',
+            roughness: 0.1,
+            metalness: 0.4,
+            transparent: true,
+            opacity: 0.7,
+          }),
+      ),
       waterBlue: assetCache.getMaterial(
         'mini-water-blue',
         () =>
@@ -90,6 +111,14 @@ export function MiniatureMap({
             color: '#1a5276',
             roughness: 0.1,
             metalness: 0.4,
+          }),
+      ),
+      terracottaTrack: assetCache.getMaterial(
+        'mini-terracotta-track',
+        () =>
+          new THREE.MeshStandardMaterial({
+            color: '#b3472d',
+            roughness: 0.8,
           }),
       ),
       treeGreen: assetCache.getMaterial(
@@ -208,79 +237,263 @@ export function MiniatureMap({
 
       {/* Miniature Campus Features in 3D */}
       <group position={[0, ph + 0.14, 0]}>
-        {/* --- ICONIC WIDYA PURAYA CENTRAL BUILDING --- */}
-        {/* Central Plaza Base */}
-        <mesh position={[0, 0.02, 0]}>
-          <boxGeometry args={[0.48, 0.04, 0.48]} />
-          <primitive object={materials.ivoryBody} attach="material" />
-        </mesh>
-        {/* Widya Puraya Lower Pyramid Tier */}
-        <mesh position={[0, 0.07, 0]} castShadow>
-          <boxGeometry args={[0.36, 0.06, 0.36]} />
-          <primitive object={materials.buildingWhite} attach="material" />
-        </mesh>
-        {/* Widya Puraya Mid Stepped Tier */}
-        <mesh position={[0, 0.12, 0]} castShadow>
-          <boxGeometry args={[0.26, 0.05, 0.26]} />
-          <primitive object={materials.widyaRoofGold} attach="material" />
-        </mesh>
-        {/* Widya Puraya Crown Pinnacle / Pyramid Top */}
-        <mesh position={[0, 0.17, 0]} castShadow>
-          <coneGeometry args={[0.12, 0.12, 4]} />
-          <primitive object={materials.widyaRoofGold} attach="material" />
-        </mesh>
+        {/* ============================================================
+            1. PUSAT UTAMA: GEDUNG MULADI DOME (ICONIC MULTIPURPOSE DOME)
+            Grand monumental rotunda with sweeping metallic champagne-gold dome
+            ============================================================ */}
+        <group position={[0, 0, 0.04]}>
+          {/* Circular Terraced Entrance Plaza */}
+          <mesh position={[0, 0.015, 0]}>
+            <cylinderGeometry args={[0.38, 0.40, 0.03, 36]} />
+            <primitive object={materials.ivoryBody} attach="material" />
+          </mesh>
+          <mesh position={[0, 0.032, 0]}>
+            <cylinderGeometry args={[0.36, 0.36, 0.005, 36]} />
+            <primitive object={materials.goldBrass} attach="material" />
+          </mesh>
 
-        {/* --- UNDIP RESERVOIR (WADUK UNDIP) --- */}
-        <mesh position={[-0.45, 0.005, 0.1]} rotation={[-Math.PI / 2, 0, 0.3]}>
-          <circleGeometry args={[0.28, 24]} />
-          <primitive object={materials.waterBlue} attach="material" />
-        </mesh>
+          {/* Lower Drum / Glass Rotunda Facade */}
+          <mesh position={[0, 0.055, 0]} castShadow>
+            <cylinderGeometry args={[0.30, 0.32, 0.05, 36]} />
+            <primitive object={materials.domeGlass} attach="material" />
+          </mesh>
 
-        {/* --- MINIATURE FACULTY BUILDINGS --- */}
-        {/* Faculty of Engineering (Teknik) - Blue roofs */}
-        <mesh position={[-0.65, 0.04, -0.6]} castShadow>
-          <boxGeometry args={[0.35, 0.07, 0.24]} />
+          {/* Architectural Colonnade Fins around Rotunda */}
+          {Array.from({ length: 16 }).map((_, i) => {
+            const angle = (i * Math.PI * 2) / 16
+            return (
+              <mesh
+                key={`fin-${i}`}
+                position={[Math.cos(angle) * 0.31, 0.055, Math.sin(angle) * 0.31]}
+              >
+                <boxGeometry args={[0.012, 0.05, 0.018]} />
+                <primitive object={materials.domeMetallic} attach="material" />
+              </mesh>
+            )
+          })}
+
+          {/* Mid-Tier Cornice Ring */}
+          <mesh position={[0, 0.082, 0]} castShadow>
+            <cylinderGeometry args={[0.28, 0.30, 0.012, 36]} />
+            <primitive object={materials.domeMetallic} attach="material" />
+          </mesh>
+
+          {/* THE ICONIC MULADI DOME ROOF (Sweeping Champagne Gold Hemisphere) */}
+          <mesh position={[0, 0.088, 0]} castShadow>
+            <sphereGeometry args={[0.25, 36, 18, 0, Math.PI * 2, 0, Math.PI * 0.5]} />
+            <primitive object={materials.domeMetallic} attach="material" />
+          </mesh>
+
+          {/* Concentric Ribbing along the Dome */}
+          <mesh position={[0, 0.16, 0]}>
+            <torusGeometry args={[0.18, 0.008, 8, 36]} />
+            <primitive object={materials.goldBrass} attach="material" />
+          </mesh>
+          <mesh position={[0, 0.22, 0]}>
+            <torusGeometry args={[0.11, 0.007, 8, 36]} />
+            <primitive object={materials.goldBrass} attach="material" />
+          </mesh>
+
+          {/* Lantern Oculus / Spire Crown at Top of Muladi Dome */}
+          <mesh position={[0, 0.34, 0]} castShadow>
+            <cylinderGeometry args={[0.038, 0.045, 0.025, 16]} />
+            <primitive object={materials.ivoryBody} attach="material" />
+          </mesh>
+          <mesh position={[0, 0.36, 0]}>
+            <coneGeometry args={[0.018, 0.04, 12]} />
+            <primitive object={materials.goldBrass} attach="material" />
+          </mesh>
+
+          {/* Grand Curved Entrance Canopy Portico facing South Boulevard */}
+          <group position={[0, 0.035, 0.32]}>
+            <mesh castShadow>
+              <boxGeometry args={[0.22, 0.025, 0.12]} />
+              <primitive object={materials.domeMetallic} attach="material" />
+            </mesh>
+            {/* Entrance Colonnade Pillars */}
+            {[-0.08, -0.03, 0.03, 0.08].map((cx, ci) => (
+              <mesh key={ci} position={[cx, -0.015, 0.04]}>
+                <cylinderGeometry args={[0.007, 0.007, 0.03, 8]} />
+                <primitive object={materials.goldBrass} attach="material" />
+              </mesh>
+            ))}
+          </group>
+
+          {/* Golden Lettering Plaque: "MULADI DOME" */}
+          <mesh position={[0, 0.01, 0.42]}>
+            <boxGeometry args={[0.24, 0.012, 0.04]} />
+            <primitive object={materials.goldBrass} attach="material" />
+          </mesh>
+        </group>
+
+        {/* ============================================================
+            2. GEDUNG REKTORAT WIDYA PURAYA (NORTH OF MULADI DOME)
+            Iconic Stepped Pyramid Pagoda / Cultural Landmark
+            ============================================================ */}
+        <group position={[0, 0, -0.6]}>
+          <mesh position={[0, 0.02, 0]}>
+            <boxGeometry args={[0.42, 0.03, 0.42]} />
+            <primitive object={materials.ivoryBody} attach="material" />
+          </mesh>
+          {/* Widya Puraya Lower Pyramid Tier */}
+          <mesh position={[0, 0.065, 0]} castShadow>
+            <boxGeometry args={[0.34, 0.05, 0.34]} />
+            <primitive object={materials.buildingWhite} attach="material" />
+          </mesh>
+          {/* Mid Stepped Tier */}
+          <mesh position={[0, 0.105, 0]} castShadow>
+            <boxGeometry args={[0.24, 0.04, 0.24]} />
+            <primitive object={materials.widyaRoofGold} attach="material" />
+          </mesh>
+          {/* Crown Pinnacle */}
+          <mesh position={[0, 0.15, 0]} castShadow>
+            <coneGeometry args={[0.11, 0.11, 4]} />
+            <primitive object={materials.widyaRoofGold} attach="material" />
+          </mesh>
+        </group>
+
+        {/* ============================================================
+            3. GEDUNG KULIAH BERSAMA (GKB) & ICT CENTER
+            ============================================================ */}
+        <group position={[-0.42, 0, -0.25]}>
+          <mesh position={[0, 0.06, 0]} castShadow>
+            <boxGeometry args={[0.22, 0.12, 0.18]} />
+            <primitive object={materials.buildingWhite} attach="material" />
+          </mesh>
+          <mesh position={[0, 0.125, 0]}>
+            <boxGeometry args={[0.2, 0.015, 0.16]} />
+            <primitive object={materials.navyInset} attach="material" />
+          </mesh>
+        </group>
+
+        {/* ============================================================
+            4. GEDUNG SA-MWA (SENAT AKADEMIK & MAJELIS WALI AMANAT)
+            ============================================================ */}
+        <group position={[0.42, 0, -0.25]}>
+          <mesh position={[0, 0.05, 0]} castShadow>
+            <boxGeometry args={[0.22, 0.1, 0.18]} />
+            <primitive object={materials.buildingWhite} attach="material" />
+          </mesh>
+          <mesh position={[0, 0.105, 0]}>
+            <boxGeometry args={[0.24, 0.015, 0.2]} />
+            <primitive object={materials.widyaRoofGold} attach="material" />
+          </mesh>
+        </group>
+
+        {/* ============================================================
+            5. WADUK UNDIP (DIPONEGORO RESERVOIR & BRIDGE)
+            ============================================================ */}
+        <group position={[-0.45, 0, 0.18]}>
+          <mesh position={[0, 0.005, 0]} rotation={[-Math.PI / 2, 0, 0.3]}>
+            <circleGeometry args={[0.25, 24]} />
+            <primitive object={materials.waterBlue} attach="material" />
+          </mesh>
+          {/* Curved Bridge */}
+          <mesh position={[0, 0.015, 0]} rotation={[0, 0.3, 0]}>
+            <boxGeometry args={[0.04, 0.012, 0.35]} />
+            <primitive object={materials.ivoryBody} attach="material" />
+          </mesh>
+        </group>
+
+        {/* ============================================================
+            6. KOMPLEKS FAKULTAS-FAKULTAS (CAMPUS HUBS)
+            ============================================================ */}
+        {/* Fakultas Teknik (FT) - Blue Pavilion Wings */}
+        <group position={[-0.72, 0, -0.65]}>
+          <mesh position={[0, 0.045, 0]} castShadow>
+            <boxGeometry args={[0.34, 0.08, 0.22]} />
+            <primitive object={materials.buildingWhite} attach="material" />
+          </mesh>
+          <mesh position={[0, 0.09, 0]}>
+            <boxGeometry args={[0.32, 0.015, 0.2]} />
+            <primitive object={materials.navyInset} attach="material" />
+          </mesh>
+        </group>
+
+        {/* Fakultas Hukum (FH) - Heritage Brown Courts */}
+        <group position={[0.72, 0, -0.65]}>
+          <mesh position={[0, 0.045, 0]} castShadow>
+            <boxGeometry args={[0.32, 0.08, 0.22]} />
+            <primitive object={materials.heritageBase} attach="material" />
+          </mesh>
+          <mesh position={[0, 0.09, 0]}>
+            <boxGeometry args={[0.3, 0.015, 0.2]} />
+            <primitive object={materials.widyaRoofGold} attach="material" />
+          </mesh>
+        </group>
+
+        {/* Fakultas Ekonomika dan Bisnis (FEB) */}
+        <group position={[-0.72, 0, 0.62]}>
+          <mesh position={[0, 0.045, 0]} castShadow>
+            <boxGeometry args={[0.32, 0.08, 0.24]} />
+            <primitive object={materials.buildingWhite} attach="material" />
+          </mesh>
+          <mesh position={[0, 0.09, 0]}>
+            <boxGeometry args={[0.3, 0.015, 0.22]} />
+            <primitive object={materials.heritageBase} attach="material" />
+          </mesh>
+        </group>
+
+        {/* Fakultas Kedokteran (FK) & RSND (Rumah Sakit Nasional Diponegoro) */}
+        <group position={[0.72, 0, 0.62]}>
+          <mesh position={[0, 0.065, 0]} castShadow>
+            <boxGeometry args={[0.36, 0.12, 0.26]} />
+            <primitive object={materials.buildingWhite} attach="material" />
+          </mesh>
+          {/* Hospital Emergency Cross / Heliport */}
+          <mesh position={[0, 0.13, 0]}>
+            <cylinderGeometry args={[0.07, 0.07, 0.01, 16]} />
+            <primitive object={materials.ivoryBody} attach="material" />
+          </mesh>
+        </group>
+
+        {/* FSM & FPIK */}
+        <mesh position={[-0.85, 0.035, 0.05]} castShadow>
+          <boxGeometry args={[0.18, 0.065, 0.28]} />
           <primitive object={materials.navyInset} attach="material" />
         </mesh>
-        {/* Faculty of Law (Hukum) */}
-        <mesh position={[0.62, 0.04, -0.6]} castShadow>
-          <boxGeometry args={[0.32, 0.07, 0.22]} />
+
+        {/* FISIP & FIB */}
+        <mesh position={[0.85, 0.035, 0.05]} castShadow>
+          <boxGeometry args={[0.18, 0.065, 0.28]} />
           <primitive object={materials.heritageBase} attach="material" />
         </mesh>
-        {/* Faculty of Economics & Business (FEB) */}
-        <mesh position={[-0.62, 0.04, 0.65]} castShadow>
-          <boxGeometry args={[0.3, 0.06, 0.25]} />
-          <primitive object={materials.buildingWhite} attach="material" />
-        </mesh>
-        {/* Faculty of Medicine (Kedokteran) & RSND */}
-        <mesh position={[0.65, 0.05, 0.62]} castShadow>
-          <boxGeometry args={[0.36, 0.08, 0.26]} />
-          <primitive object={materials.buildingWhite} attach="material" />
-        </mesh>
-        {/* Diponegoro University Stadium */}
-        <mesh position={[0, 0.02, 0.85]} castShadow>
-          <cylinderGeometry args={[0.22, 0.24, 0.03, 24]} />
-          <primitive object={materials.ivoryBody} attach="material" />
-        </mesh>
+
+        {/* Stadion Diponegoro (Athletics Track & Field) */}
+        <group position={[0, 0, 0.92]}>
+          {/* Running Track */}
+          <mesh position={[0, 0.015, 0]}>
+            <cylinderGeometry args={[0.22, 0.25, 0.02, 24]} />
+            <primitive object={materials.terracottaTrack} attach="material" />
+          </mesh>
+          {/* Grass Field */}
+          <mesh position={[0, 0.026, 0]}>
+            <cylinderGeometry args={[0.15, 0.15, 0.01, 24]} />
+            <primitive object={materials.treeGreen} attach="material" />
+          </mesh>
+        </group>
 
         {/* Micro Campus Trees & Greenery */}
         {[
-          [-0.25, -0.4],
-          [0.25, -0.4],
-          [-0.3, 0.4],
-          [0.3, 0.4],
-          [-0.8, 0.1],
-          [0.8, -0.1],
-          [0, -0.75],
+          [-0.24, -0.45],
+          [0.24, -0.45],
+          [-0.24, 0.48],
+          [0.24, 0.48],
+          [-0.75, 0.28],
+          [0.75, 0.28],
+          [-0.45, -0.75],
+          [0.45, -0.75],
+          [-0.2, 0.18],
+          [0.2, 0.18],
         ].map(([tx, tz], ti) => (
-          <mesh key={ti} position={[tx, 0.035, tz]}>
-            <sphereGeometry args={[0.035, 8, 8]} />
+          <mesh key={`tree-${ti}`} position={[tx, 0.038, tz]}>
+            <sphereGeometry args={[0.036, 10, 10]} />
             <primitive object={materials.treeGreen} attach="material" />
           </mesh>
         ))}
 
-        {/* Mini Accent Spotlights inside the display vitrine */}
-        <pointLight position={[0, 0.45, 0]} color="#fff0d0" intensity={12} distance={2.5} />
+        {/* Miniature Accent Spotlights Illuminating Muladi Dome & Campus */}
+        <pointLight position={[0, 0.55, 0.04]} color="#fff8e6" intensity={18} distance={3.0} />
       </group>
 
       {/* 6. High-Clarity Glass Vitrine Case */}

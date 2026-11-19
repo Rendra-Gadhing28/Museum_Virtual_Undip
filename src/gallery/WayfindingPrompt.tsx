@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import type { SectionType } from './types'
 
 interface WayfindingPromptProps {
   visible: boolean
-  onTeleport: (section: 'entrance' | 'founders' | 'map' | 'podium' | 'history') => void
+  onTeleport: (section: SectionType) => void
   onDismiss?: () => void
 }
 
@@ -25,7 +26,7 @@ export function WayfindingPrompt({
 
   if (!visible || dismissed) return null
 
-  const handleSelect = (section: 'entrance' | 'founders' | 'map' | 'podium' | 'history') => {
+  const handleSelect = (section: SectionType) => {
     onTeleport(section)
     setDismissed(true)
   }
@@ -64,8 +65,8 @@ export function WayfindingPrompt({
             >
               <span className="gr-btn-icon">👥</span>
               <div className="gr-btn-text">
-                <strong>13 Tokoh Pendiri</strong>
-                <small>Sayap Kiri • Mr. Soedarto, Mr. Imam Bardjo, dll</small>
+                <strong>5 Pendiri & 13 Rektorat</strong>
+                <small>Sayap Kiri • 5 Tokoh Utama & 13 Rektorat</small>
               </div>
             </button>
 
@@ -102,6 +103,18 @@ export function WayfindingPrompt({
               <div className="gr-btn-text">
                 <strong>Sejarah & Arsip Resmi</strong>
                 <small>Sayap Kanan • SK 1961, Foto Awal, Pidato Bung Karno</small>
+              </div>
+            </button>
+
+            <button
+              type="button"
+              className="gr-wayfind-btn gr-wayfind-gold"
+              onClick={() => handleSelect('prasasti')}
+            >
+              <span className="gr-btn-icon">🏛️</span>
+              <div className="gr-btn-text">
+                <strong>Prasasti Pendirian Undip</strong>
+                <small>Area Podium • Batu Marmer Hitam Obsidian</small>
               </div>
             </button>
 

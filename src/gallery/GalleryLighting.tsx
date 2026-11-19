@@ -1,4 +1,3 @@
-import { HALL } from './layout'
 
 interface GalleryLightingProps {
   castShadows: boolean
@@ -16,43 +15,44 @@ interface GalleryLightingProps {
 export function GalleryLighting({ castShadows }: GalleryLightingProps) {
   return (
     <group>
-      {/* 1. Low-Light Cinematic Ambient Base (Moody & Deep) */}
-      <ambientLight color="#e8d4b8" intensity={0.45} />
+      {/* 1. Ambient Fill Light - Bright & Crisp to give high contrast to Royal Navy walls */}
+      <ambientLight color="#f5eadc" intensity={0.62} />
 
-      {/* 2. Primary Architectural Sun/Skylight Ray with Crisp Soft Shadows */}
+      {/* 2. Primary Architectural Overhead Key Light
+          Positioned directly above the center of the hall to cast true-to-geometry vertical shadows
+          directly beneath objects (matching realistic silhouettes without angular distortion) */}
       <directionalLight
-        position={[3.0, HALL.height + 2.0, -4]}
-        target-position={[0, 0, -8]}
-        color="#fff5db"
-        intensity={1.0}
+        position={[0.3, 14.8, -7.0]}
+        target-position={[0, 0, -7.0]}
+        color="#fffaf0"
+        intensity={1.2}
         castShadow={castShadows}
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
-        shadow-camera-near={0.5}
-        shadow-camera-far={32}
-        shadow-camera-left={-9}
-        shadow-camera-right={9}
-        shadow-camera-top={24}
-        shadow-camera-bottom={-24}
-        shadow-bias={-0.0001}
+        shadow-camera-near={1.0}
+        shadow-camera-far={26.0}
+        shadow-camera-left={-8.5}
+        shadow-camera-right={8.5}
+        shadow-camera-top={21.0}
+        shadow-camera-bottom={-21.0}
+        shadow-bias={-0.00008}
       />
 
-      {/* 3. Subtle Counter-Fill (Cooler to create depth contrast) */}
+      {/* 3. Subtle Counter-Fill from ceiling for natural architectural illumination */}
       <directionalLight
-        position={[-3.0, HALL.height + 1.0, -14]}
-        color="#c8d8f0"
-        intensity={0.22}
+        position={[-0.3, 12.0, -7.0]}
+        color="#d8e8f8"
+        intensity={0.3}
       />
 
-      {/* 4. Left Wall (13 Founders) - Low-Light Cinematic Wall-Grazing Track Spotlights
-          Positioned to create dramatic pools of light on artwork, dark vignette between */}
+      {/* 4. Left Wall (13 Founders) - Wall-Grazing Track Spotlights */}
       {[-20, -15.5, -10, -4.5, 0.5, 5.5].map((z, i) => (
         <group key={`left-spot-${i}`} position={[-5.0, 5.8, z]}>
           <spotLight
             position={[0, 0, 0]}
             target-position={[-2.4, -3.5, 0]}
             color="#ffe8c8"
-            intensity={20}
+            intensity={24}
             angle={0.6}
             penumbra={0.85}
             distance={10.5}
@@ -61,14 +61,14 @@ export function GalleryLighting({ castShadows }: GalleryLightingProps) {
         </group>
       ))}
 
-      {/* 5. Right Wall (History & Archives Salon) - Low-Light Cinematic Track Spotlights */}
+      {/* 5. Right Wall (History & Archives Salon) - Track Spotlights */}
       {[-20, -15.5, -10, -4.5, 0.5, 5.5].map((z, i) => (
         <group key={`right-spot-${i}`} position={[5.0, 5.8, z]}>
           <spotLight
             position={[0, 0, 0]}
             target-position={[2.4, -3.5, 0]}
             color="#ffe8c8"
-            intensity={20}
+            intensity={24}
             angle={0.6}
             penumbra={0.85}
             distance={10.5}
@@ -77,69 +77,99 @@ export function GalleryLighting({ castShadows }: GalleryLightingProps) {
         </group>
       ))}
 
-      {/* 6. Dramatic Spotlight on the Pangeran Diponegoro Horse Statue at the Back */}
+      {/* 7. Dedicated Warm Yellow Spotlights for Campus Maket & Muladi Dome (Lampu Gantung Sorot Kuning) */}
       <spotLight
-        position={[3.8, 6.2, -15.5]}
-        target-position={[3.8, 1.2, -18.2]}
-        color="#ffeec2"
-        intensity={42}
-        angle={0.48}
+        position={[0, 5.2, -3.5]}
+        target-position={[0, 0.9, -3.5]}
+        color="#ffdf88"
+        intensity={68}
+        angle={0.58}
+        penumbra={0.65}
+        distance={10.0}
+        decay={2}
+      />
+      {/* Front & Rear Maket Table Warm Accents */}
+      <spotLight
+        position={[0, 5.2, -1.9]}
+        target-position={[0, 0.85, -1.9]}
+        color="#ffe79e"
+        intensity={45}
+        angle={0.52}
+        penumbra={0.7}
+        distance={9.5}
+        decay={2}
+      />
+      <spotLight
+        position={[0, 5.2, -5.1]}
+        target-position={[0, 0.85, -5.1]}
+        color="#ffe79e"
+        intensity={45}
+        angle={0.52}
+        penumbra={0.7}
+        distance={9.5}
+        decay={2}
+      />
+
+      {/* 8. Ceremonial Podium Stage Accent Light */}
+      <spotLight
+        position={[0, 6.8, -15.0]}
+        target-position={[0, 2.2, -18.2]}
+        color="#fff4da"
+        intensity={55}
+        angle={0.58}
+        penumbra={0.72}
+        distance={13.0}
+        decay={2}
+      />
+
+      {/* 9. Dedicated Spotlight on the Grand Prasasti Pendirian Undip */}
+      <spotLight
+        position={[-3.8, 6.2, -15.0]}
+        target-position={[-3.8, 1.2, -18.2]}
+        color="#fff4d4"
+        intensity={48}
+        angle={0.5}
         penumbra={0.65}
         distance={12.0}
         decay={2}
       />
 
-      {/* 7. Dedicated Highlight on Miniature Map Vitrine */}
+      {/* 10. Grand Focal Back Wall Illumination: Logo Undip & "Universitas Diponegoro" Typography */}
       <spotLight
-        position={[0, 5.8, -3.5]}
-        target-position={[0, 0.8, -3.5]}
-        color="#fff6dd"
-        intensity={36}
-        angle={0.52}
-        penumbra={0.65}
-        distance={10.0}
+        position={[0, 7.2, -19.5]}
+        target-position={[0, 4.8, -25.8]}
+        color="#fff9ec"
+        intensity={65}
+        angle={0.68}
+        penumbra={0.75}
+        distance={15.0}
         decay={2}
       />
 
-      {/* 8. Ceremonial Podium & Garuda Pancasila Spotlight (Primary Stage Accent) */}
-      <spotLight
-        position={[0, 6.4, -15.0]}
-        target-position={[0, 2.5, -18.2]}
-        color="#fff2d0"
-        intensity={50}
-        angle={0.58}
-        penumbra={0.72}
-        distance={13.0}
-        decay={2}
-        castShadow={castShadows}
-        shadow-bias={-0.0002}
-      />
+      {/* Back Wall Architectural Wall-Washing Flood Lights (Eliminating dark gloomy back) */}
+      {[-4.6, 0, 4.6].map((wx, wi) => (
+        <spotLight
+          key={`back-wash-${wi}`}
+          position={[wx, 7.6, -21.0]}
+          target-position={[wx, 4.2, -25.8]}
+          color="#ffeed0"
+          intensity={40}
+          angle={0.72}
+          penumbra={0.8}
+          distance={14.0}
+          decay={2}
+        />
+      ))}
 
-      {/* 9. Flag Area Accent Light (Left side of podium) */}
-      <spotLight
-        position={[-3.2, 5.5, -19.5]}
-        target-position={[-3.2, 1.5, -20.6]}
-        color="#fff4d6"
-        intensity={28}
-        angle={0.55}
-        penumbra={0.8}
-        distance={9.0}
-        decay={2}
-      />
+      {/* 11. Warm Corner Uplights & Fills at the Back Corners */}
+      <pointLight position={[-6.2, 3.2, -24.0]} color="#ffeed8" intensity={22} distance={10} decay={2} />
+      <pointLight position={[6.2, 3.2, -24.0]} color="#ffeed8" intensity={22} distance={10} decay={2} />
 
-      {/* 10. Cinematic Wall Vignette: Dark fill lights at room corners to deepen the mood */}
-      {/* Front corners - subtle warm fill */}
-      <pointLight position={[-7.0, 2.5, 10.0]} color="#201505" intensity={0} distance={6} decay={2} />
-      <pointLight position={[7.0, 2.5, 10.0]} color="#201505" intensity={0} distance={6} decay={2} />
-      {/* Back corners - create depth darkness */}
-      <pointLight position={[-7.0, 3.0, -24.0]} color="#0a1020" intensity={3} distance={8} decay={2} />
-      <pointLight position={[7.0, 3.0, -24.0]} color="#0a1020" intensity={3} distance={8} decay={2} />
-
-      {/* 11. Entrance Area Welcome Warm Light */}
+      {/* 12. Entrance Area Welcome Warm Light */}
       <pointLight
         position={[0, 5.5, 10.5]}
         color="#ffeedd"
-        intensity={18}
+        intensity={20}
         distance={12}
         decay={2}
       />
