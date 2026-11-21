@@ -142,10 +142,6 @@ function FounderCard({
           <cylinderGeometry args={[0.012, 0.012, 0.22, 12]} />
           <meshStandardMaterial color="#d4af37" roughness={0.3} metalness={0.8} />
         </mesh>
-<<<<<<< HEAD
-        {/* Lamp head shade */}
-=======
->>>>>>> origin/main
         <mesh position={[0, -0.04, 0.05]} rotation={[-0.7, 0, 0]}>
           <boxGeometry args={[0.34, 0.08, 0.12]} />
           <meshStandardMaterial color="#2d2217" roughness={0.5} metalness={0.6} />
