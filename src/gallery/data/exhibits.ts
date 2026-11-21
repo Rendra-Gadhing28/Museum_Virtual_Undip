@@ -7,10 +7,7 @@ export interface Founder {
   description: string
   quote?: string
   imagePath?: string
-<<<<<<< HEAD
-=======
   category?: 'pendiri-utama' | 'direktorat-rektorat'
->>>>>>> origin/main
 }
 
 export interface HistoryExhibit {
@@ -23,40 +20,24 @@ export interface HistoryExhibit {
   fullContent: string
   imagePath?: string
   highlights?: string[]
-<<<<<<< HEAD
-  // Layout metadata for salon-style arrangement
-=======
->>>>>>> origin/main
   orientation?: 'landscape' | 'portrait' | 'square'
   size?: 'large' | 'medium' | 'small'
 }
 
 /**
-<<<<<<< HEAD
- * 13 Tokoh Pendiri Universitas Diponegoro
- */
-export const UNDIP_FOUNDERS: Founder[] = [
-=======
  * 5 TOKOH PENDIRI UTAMA UNIVERSITAS DIPONEGORO
  * (Pancamitra Pendiri Yayasan Universitas Semarang 1956)
  */
 export const UNDIP_FOUNDERS_5: Founder[] = [
->>>>>>> origin/main
   {
     id: 'mr-soedarto',
     name: 'Mr. Soedarto',
     title: 'Ketua Presidium Yayasan & Rektor Pembangun',
     years: '1913–1986',
-<<<<<<< HEAD
-    role: 'Pelopor pendirian Yayasan Universitas Semarang dan peletak dasar akademik utama Undip.',
-    description: 'Mr. Soedarto adalah tokoh sentral di balik pendirian Yayasan Universitas Semarang pada 1956. Sebagai Jaksa Tinggi Jawa Tengah dan kemudian Rektor Universitas Diponegoro, beliau mendedikasikan hidupnya untuk mentransformasikan perguruan tinggi swasta lokal menjadi universitas negeri bereputasi tinggi.',
-    quote: 'Pendidikan tinggi adalah jembatan emas pembangun karakter bangsa yang berdaulat.',
-=======
     role: 'Pelopor pendirian Yayasan Universitas Semarang (1956) dan peletak dasar akademik utama Undip.',
     description: 'Mr. Soedarto adalah tokoh sentral di balik pendirian Yayasan Universitas Semarang pada 1956. Sebagai Jaksa Tinggi Jawa Tengah dan kemudian Rektor Universitas Diponegoro, beliau mendedikasikan hidupnya untuk mentransformasikan perguruan tinggi swasta lokal menjadi universitas negeri bereputasi tinggi.',
     quote: 'Pendidikan tinggi adalah jembatan emas pembangun karakter bangsa yang berdaulat.',
     category: 'pendiri-utama',
->>>>>>> origin/main
   },
   {
     id: 'mr-imam-bardjo',
@@ -66,27 +47,7 @@ export const UNDIP_FOUNDERS_5: Founder[] = [
     role: 'Ketua Pengadilan Tinggi Jawa Tengah dan Rektor pertama yang meresmikan perkuliahan perdana tahun 1957.',
     description: 'Mr. Imam Bardjo memimpin universitas di masa-masa awal yang penuh keterbatasan. Dengan wibawa kepemimpinannya, beliau berhasil menyatukan para akademisi dan praktisi hukum untuk mendirikan Fakultas Hukum dan Masyarakat serta Akademi Administrasi Negara.',
     quote: 'Bermula dari cita-cita luhur di Kota Semarang untuk mencerdaskan generasi penerus bangsa.',
-<<<<<<< HEAD
-  },
-  {
-    id: 'mr-dan-sulaiman',
-    name: 'Mr. Dan Sulaiman',
-    title: 'Prakarsa & Pengurus Inti Yayasan',
-    years: '1908–1983',
-    role: 'Penyusun kerangka organisasi dan konseptor kurikulum awal pendidikan tinggi Semarang.',
-    description: 'Mr. Dan Sulaiman berperan penting dalam merumuskan anggaran dasar dan statuta pertama universitas, menjamin legalitas serta keberlanjutan institusi dalam masa transisi pascakemerdekaan.',
-    quote: 'Integritas dan kepastian hukum adalah pilar utama kemajuan universitas.',
-  },
-  {
-    id: 'mr-soesanto-kartoatmodjo',
-    name: 'Mr. Soesanto Kartoatmodjo',
-    title: 'Perintis Fakultas & Pembina Yayasan',
-    years: '1910–1988',
-    role: 'Tokoh hukum terkemuka yang menggalang dukungan masyarakat intelektual Jawa Tengah.',
-    description: 'Aktif merintis pembentukan jurusan-jurusan baru dan mengupayakan sarana fisik perkuliahan perdana di kawasan Bodjong dan Pleburan Semarang.',
-=======
     category: 'pendiri-utama',
->>>>>>> origin/main
   },
   {
     id: 'mr-goenawan-goetomo',
@@ -95,68 +56,22 @@ export const UNDIP_FOUNDERS_5: Founder[] = [
     years: '1915–1992',
     role: 'Pelopor pendidikan administrasi dan tata kelola pemerintahan di Jawa Tengah.',
     description: 'Sebagai dekan pertama, beliau meletakkan fondasi kurikulum administrasi niaga dan negara yang kemudian berkembang menjadi Fakultas Ilmu Sosial dan Ilmu Politik (FISIP).',
-<<<<<<< HEAD
-=======
     category: 'pendiri-utama',
->>>>>>> origin/main
   },
   {
     id: 'mr-tan-tjing-hak',
     name: 'Mr. Tan Tjing Hak',
-<<<<<<< HEAD
-    title: 'Cendekiawan Hukum & Pendiri Yayasan',
-    years: '1912–1985',
-    role: 'Praktisi hukum yang mewujudkan semangat inklusivitas dan kebhinekaan dalam pendirian Undip.',
-    description: 'Kehadiran Mr. Tan Tjing Hak mencerminkan bahwa sejak awal kelahirannya, Universitas Diponegoro terbuka untuk semua etnis dan golongan masyarakat demi kemajuan ilmu pengetahuan.',
-  },
-  {
-    id: 'mr-koo-swan-ik',
-    name: 'Mr. Koo Swan Ik',
-    title: 'Tokoh Perintis & Pengurus Yayasan',
-    years: '1914–1990',
-    role: 'Membidani penguatan jejaring akademik dan kerja sama pendanaan awal pendirian universitas.',
-    description: 'Berperan besar dalam menggalang partisipasi komunitas profesional Semarang untuk mendukung pendirian gedung dan perpustakaan rintisan.',
-  },
-  {
-    id: 'tuan-achmad-tjokrokusumo',
-    name: 'Tuan Achmad Tjokrokusumo',
-    title: 'Tokoh Pengusaha & Donatur Perintis',
-    years: '1905–1978',
-    role: 'Menyediakan sarana fisik awal dan membiayai operasional perkuliahan pertama universitas.',
-    description: 'Kedermawanan dan visi kebangsaan Tuan Achmad Tjokrokusumo menjadi penopang nyata terlaksananya kuliah perdana mahasiswa angkatan 1957 tanpa kendala finansial yayasan.',
-  },
-  {
-    id: 'rm-soeprapto',
-    name: 'R.M. Soeprapto',
-    title: 'Gubernur Jawa Tengah & Pelindung Yayasan',
-    years: '1914–1998',
-    role: 'Pemberi legitimasi negara dan fasilitator fasilitas umum bagi kampus rintisan.',
-    description: 'Selaku Kepala Daerah Swatantra I Jawa Tengah, beliau memfasilitasi gedung perkuliahan di Panti Budaya dan mengesahkan akta pendirian yayasan pada 4 Desember 1956.',
-  },
-  {
-    id: 'prof-mr-sunario',
-    name: 'Prof. Mr. Sunario Sastrowardoyo',
-    title: 'Guru Besar & Perintis Fakultas Hukum',
-    years: '1902–1997',
-    role: 'Tokoh Sumpah Pemuda 1928, mantan Menlu RI, dan pembina akademis awal Undip.',
-    description: 'Memberikan kuliah umum perdana serta membina para dosen muda dalam mengajar hukum internasional dan hukum tata negara di Semarang.',
-=======
     title: 'Cendekiawan Hukum & Tokoh Inklusivitas',
     years: '1912–1985',
     role: 'Praktisi hukum terkemuka yang mewujudkan semangat inklusivitas dan kebhinekaan dalam pendirian Undip.',
     description: 'Kehadiran Mr. Tan Tjing Hak mencerminkan bahwa sejak awal kelahirannya, Universitas Diponegoro terbuka untuk semua etnis dan golongan masyarakat demi kemajuan ilmu pengetahuan.',
     category: 'pendiri-utama',
->>>>>>> origin/main
   },
   {
     id: 'dr-heyder-bin-heyder',
     name: 'dr. Heyder bin Heyder',
     title: 'Direktur R.S. Semarang & Perintis Kedokteran',
     years: '1909–1982',
-<<<<<<< HEAD
-    role: 'Memprakarsai pendirian Fakultas Kedokteran Undip bekerjasama dengan RSUP Kariadi.',
-    description: 'Dedikasinya membawa dunia medis Semarang menjadi pusat pendidikan dokter yang berdedikasi tinggi bagi masyarakat Jawa Tengah.',
-=======
     role: 'Memprakarsai pendirian Fakultas Kedokteran Undip bekerjasama dengan RSUP Dr. Kariadi.',
     description: 'Dedikasinya membawa dunia medis Semarang menjadi pusat pendidikan dokter yang berdedikasi tinggi bagi masyarakat Jawa Tengah.',
     category: 'pendiri-utama',
@@ -222,7 +137,6 @@ export const UNDIP_LEADERSHIP_13: Founder[] = [
     role: 'Tokoh Sumpah Pemuda 1928, mantan Menlu RI, dan pembina akademis awal Undip.',
     description: 'Memberikan kuliah umum perdana serta membina para dosen muda dalam mengajar hukum internasional dan hukum tata negara di Semarang.',
     category: 'direktorat-rektorat',
->>>>>>> origin/main
   },
   {
     id: 'prof-soediman',
@@ -231,38 +145,11 @@ export const UNDIP_LEADERSHIP_13: Founder[] = [
     years: '1912–1970',
     role: 'Menyusun naskah akademis serta pedoman dasar penyelenggaraan universitas.',
     description: 'Ahli hukum adat terkemuka Indonesia yang memastikan universitas memiliki kepribadian nasional berlandaskan Pancasila.',
-<<<<<<< HEAD
-=======
     category: 'direktorat-rektorat',
->>>>>>> origin/main
   },
   {
     id: 'ir-soemarman',
     name: 'Ir. Soemarman',
-<<<<<<< HEAD
-    title: 'Perintis Fakultas Teknik Semarang',
-    years: '1916–1989',
-    role: 'Insinyur sipil perintis pendidikan teknik dan pengembangan masterplan fisik kampus.',
-    description: 'Merancang tata ruang fasilitas laboratorium awal dan menjadi dekan pertama yang merintis cikal bakal Fakultas Teknik Undip yang disegani.',
-  },
-]
-
-/**
- * Historical exhibits for the History & Archives Wing:
- * Comprehensive collection organized for the salon-style multi-frame gallery wall layout
- * as requested from the user's reference photograph.
- */
-export const HISTORY_EXHIBITS: HistoryExhibit[] = [
-  // 1. Central Grand Painting: Perjuangan Pangeran Diponegoro & Api Cita-Cita Kampus
-  {
-    id: 'artwork-diponegoro-center',
-    title: 'Lukisan Sejarah: Api Perjuangan Pangeran Diponegoro (1825–1830)',
-    category: 'history',
-    period: 'Karya Bersejarah',
-    shortLabel: 'Lukisan Induk Perjuangan',
-    description: 'Karya seni monumental yang merefleksikan keberanian Pangeran Diponegoro yang menjadi sumber inspirasi nama dan jiwa Universitas Diponegoro.',
-    fullContent: 'Pangeran Diponegoro adalah pahlawan nasional yang memimpin Perang Jawa (1825–1830) melawan penindasan kolonialisme. Kepribadian beliau yang jujur, berani, adil, dan membela rakyat kecil menjadi teladan luhur bagi seluruh sivitas akademika Universitas Diponegoro.\n\nLukisan ini menggambarkan sang Pangeran menunggangi kuda di tengah kancah perjuangan, melambangkan kepemimpinan yang pantang menyerah dan berakar kuat pada nilai spiritual bangsa.',
-=======
     title: 'Dekan Perintis Teknik & Pembangunan Fisik',
     years: '1916–1989',
     role: 'Insinyur sipil perintis pendidikan teknik dan pengembangan masterplan fisik kampus.',
@@ -337,7 +224,6 @@ export const HISTORY_EXHIBITS: HistoryExhibit[] = [
     shortLabel: 'Lukisan Induk Diponegoro',
     description: 'Karya seni monumental yang merefleksikan keberanian Pangeran Diponegoro sebagai sumber inspirasi nama dan jiwa Universitas Diponegoro.',
     fullContent: 'Pangeran Diponegoro adalah pahlawan nasional yang memimpin Perang Jawa (1825–1830) melawan penindasan kolonialisme. Kepribadian beliau yang jujur, berani, adil, dan membela rakyat kecil menjadi teladan luhur bagi seluruh sivitas akademika Universitas Diponegoro.\n\nLukisan ini menggambarkan sang Pangeran menunggangi kuda putih perkasa di tengah kancah perjuangan, melambangkan kepemimpinan yang pantang menyerah dan berakar kuat pada nilai spiritual bangsa.',
->>>>>>> origin/main
     highlights: [
       'Simbol kepahlawanan patriotik bagi sivitas akademika',
       'Pemberian nama oleh Presiden Sukarno pada 9 Januari 1960',
@@ -527,9 +413,6 @@ export const HISTORY_EXHIBITS: HistoryExhibit[] = [
     size: 'medium',
   },
 
-<<<<<<< HEAD
-  // 12. Linimasa Transformasi Menuju PTN-BH
-=======
   // 12. Peletakan Batu Pertama Tembalang 1987 (NEW)
   {
     id: 'history-groundbreaking-tembalang',
@@ -639,7 +522,6 @@ export const HISTORY_EXHIBITS: HistoryExhibit[] = [
   },
 
   // 18. Transformasi Menuju PTN-BH
->>>>>>> origin/main
   {
     id: 'history-transformation',
     title: 'Transformasi Menuju PTN-BH & World Class University',
@@ -656,90 +538,4 @@ export const HISTORY_EXHIBITS: HistoryExhibit[] = [
     orientation: 'landscape',
     size: 'large',
   },
-<<<<<<< HEAD
-
-  // --- 5 FOTO TOKOH PERINTIS & PENDIRI AWAL YAYASAN 1956 ---
-  // (Prakarsa Awal Berdirinya Universitas Semarang sebelum penegerian)
-  {
-    id: 'pioneer-dr-soemardi',
-    title: 'dr. R. Soemardi (Perintis Yayasan & Layanan Medis)',
-    category: 'archive',
-    period: 'Perintis 1956',
-    shortLabel: 'Tokoh Perintis Medis',
-    description: 'Dokter senior perintis yang memprakarsai keterlibatan tenaga medis dalam pembentukan yayasan universitas.',
-    fullContent: 'dr. R. Soemardi bersama para dokter di Rumah Sakit Semarang menggalang dukungan bagi pembentukan perguruan tinggi lokal untuk melahirkan tenaga medis dan hukum yang mandiri bagi rakyat Jawa Tengah.',
-    highlights: [
-      'Anggota Dewan Kurator Awal Yayasan 1956',
-      'Penyedia sarana laboratorium rintisan awal',
-      'Pelopor jejaring rumah sakit pendidikan di Semarang',
-    ],
-    orientation: 'portrait',
-    size: 'small',
-  },
-  {
-    id: 'pioneer-prof-sunario',
-    title: 'Prof. Mr. Sunario (Perintis Kuliah Umum Perdana)',
-    category: 'archive',
-    period: 'Perintis 1956–1957',
-    shortLabel: 'Perintis Kuliah Umum',
-    description: 'Tokoh Sumpah Pemuda 1928 yang memberikan orasi ilmiah pertama pada pembukaan kuliah 1957.',
-    fullContent: 'Prof. Mr. Sunario memompa semangat kebangsaan ratusan pemuda saat peresmian universitas di Gedung Panti Budaya. Dedikasinya memastikan standar mutu akademik Fakultas Hukum sejajar dengan universitas di kota besar lainnya.',
-    highlights: [
-      'Pemberi kuliah umum perdana 9 Januari 1957',
-      'Mantan Menteri Luar Negeri dan diplomat ulung',
-      'Peletak dasar kurikulum hukum internasional Undip',
-    ],
-    orientation: 'portrait',
-    size: 'small',
-  },
-  {
-    id: 'pioneer-ir-goenoeng',
-    title: 'Ir. Goenoeng Prodjodiningrat (Perintis Teknik)',
-    category: 'archive',
-    period: 'Perintis 1956',
-    shortLabel: 'Perintis Keteknikan',
-    description: 'Insinyur senior yang merumuskan pentingnya fakultas keteknikan dalam yayasan perguruan tinggi Semarang.',
-    fullContent: 'Ir. Goenoeng Prodjodiningrat mendorong bahwa Semarang sebagai kota pelabuhan dan industri membutuhkan insinyur-insinyur handal. Pemikirannya menjadi fondasi pendirian Fakultas Teknik Undip yang kini tersohor.',
-    highlights: [
-      'Perumus arah pendidikan teknik Jawa Tengah',
-      'Penggagas sarana bengkel kerja mahasiswa awal',
-      'Anggota badan penasihat teknis yayasan 1956',
-    ],
-    orientation: 'portrait',
-    size: 'small',
-  },
-  {
-    id: 'pioneer-mr-ali-boediardjo',
-    title: 'Mr. Ali Boediardjo (Intelektual Administrasi Negara)',
-    category: 'archive',
-    period: 'Perintis 1956',
-    shortLabel: 'Perintis Tata Kelola',
-    description: 'Cendekiawan hukum dan birokrat senior pendukung pembentukan Akademi Administrasi Negara.',
-    fullContent: 'Mr. Ali Boediardjo menyumbangkan pemikiran strategis mengenai tata pamong dan administrasi modern. Bersama Mr. Goenawan, beliau merancang sistem pendidikan birokrasi profesional yang menjadi cikal bakal FISIP Undip.',
-    highlights: [
-      'Konseptor tata kelola kelembagaan universitas',
-      'Penggerak dukungan aparatur pemerintah daerah',
-      'Pelindung mahasiswa angkatan perintis 1957',
-    ],
-    orientation: 'portrait',
-    size: 'small',
-  },
-  {
-    id: 'pioneer-r-soenarto',
-    title: 'R. Soenarto (Ketua Dewan Pertimbangan Yayasan 1956)',
-    category: 'archive',
-    period: 'Perintis 1956',
-    shortLabel: 'Ketua Dewan Pertimbangan',
-    description: 'Tokoh senior pamong praja yang memimpin Dewan Pertimbangan Yayasan Universitas Semarang pertama.',
-    fullContent: 'R. Soenarto memimpin rapat-rapat pertimbangan strategis pembentukan universitas pada November–Desember 1956. Beliau menjembatani komunikasi antara para praktisi hukum swasta dan otoritas pemerintah provinsi.',
-    highlights: [
-      'Ketua Dewan Pertimbangan Yayasan pertama 1956',
-      'Penasihat utama Presiden Universitas Mr. Imam Bardjo',
-      'Penyelaras aspirasi masyarakat Jawa Tengah',
-    ],
-    orientation: 'portrait',
-    size: 'small',
-  },
-=======
->>>>>>> origin/main
 ]
