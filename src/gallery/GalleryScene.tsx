@@ -1,7 +1,7 @@
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { PerspectiveCamera } from '@react-three/drei'
-import type { SelectedExhibit } from './types'
+import type { SelectedExhibit, SectionType } from './types'
 import type { Founder, HistoryExhibit } from './data/exhibits'
 import {
   MINIATURE_MAP_POS,
@@ -109,6 +109,19 @@ export function GalleryScene() {
     })
   }, [])
 
+  const handleSelectPrasasti = useCallback(() => {
+    if (draggedRef.current) return
+    setSelectedExhibit({
+      type: 'prasasti',
+      data: {
+        id: 'prasasti-undip',
+        title: 'Prasasti Pendirian & Peresmian Universitas Diponegoro',
+        subtitle: 'Batu Marmer Hitam Obsidian • 9 Januari 1957',
+        description: 'Prasasti bersejarah peresmian Universitas Diponegoro oleh Presiden Sukarno.',
+      },
+    })
+  }, [])
+
   const handleHover = useCallback((id: string | null) => setHoveredId(id), [])
   const handleReset = useCallback(() => {
     setResetSignal((signal) => signal + 1)
@@ -116,12 +129,9 @@ export function GalleryScene() {
   }, [])
   const handleClose = useCallback(() => setSelectedExhibit(null), [])
 
-  const handleTeleport = useCallback(
-    (section: 'entrance' | 'founders' | 'map' | 'podium' | 'history') => {
-      setTargetPosition(SECTION_TARGETS[section])
-    },
-    [],
-  )
+  const handleTeleport = useCallback((section: SectionType) => {
+    setTargetPosition(SECTION_TARGETS[section])
+  }, [])
 
   const selectedFounderId =
     selectedExhibit?.type === 'founder' ? (selectedExhibit.data as Founder).id : null
@@ -176,12 +186,13 @@ export function GalleryScene() {
             onHover={handleHover}
           />
 
-          {/* Center End: Ceremonial Dais & Podium */}
+          {/* Center End: Ceremonial Dais & Podium with Inscription Plaque (Prasasti) */}
           <CeremonialPodium
             position={PODIUM_POS}
             isSelected={selectedExhibit?.type === 'podium'}
             isHovered={hoveredId === 'podium'}
             onSelect={handleSelectPodium}
+            onSelectPrasasti={handleSelectPrasasti}
             onHover={handleHover}
           />
         </Suspense>

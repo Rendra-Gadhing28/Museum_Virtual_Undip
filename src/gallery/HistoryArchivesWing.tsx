@@ -15,47 +15,50 @@ interface SalonFrameConfig {
   frameColor?: string
 }
 
-// Salon-style curated gallery wall layout coordinates inspired directly by the reference image
+/**
+ * Spacious Museum Gallery Wall Layout for History & Archives Wing:
+ * Situated along the right wall directly flanking and spanning the 3D Miniature Map.
+ * Standardized with generous gaps of at least 55cm–100cm (>50cm) between frames horizontally
+ * and 60cm (>50cm) between upper and lower rows for an airy, elegant aesthetic.
+ */
 const SALON_LAYOUT: SalonFrameConfig[] = [
-  // --- CLUSTER 1: 5 TOKOH PELOPOR & PERINTIS AWAL YAYASAN 1956 (Z = +8.2 down to Z = +5.2) ---
-  { exhibitId: 'pioneer-dr-soemardi', z: 8.0, y: 3.75, width: 1.05, height: 1.35, frameColor: '#d4af37' },
-  { exhibitId: 'pioneer-prof-sunario', z: 8.0, y: 1.95, width: 1.05, height: 1.35, frameColor: '#3d2516' },
-  { exhibitId: 'pioneer-ir-goenoeng', z: 6.7, y: 3.75, width: 1.05, height: 1.35, frameColor: '#3d2516' },
-  { exhibitId: 'pioneer-mr-ali-boediardjo', z: 6.7, y: 1.95, width: 1.05, height: 1.35, frameColor: '#d4af37' },
-  { exhibitId: 'pioneer-r-soenarto', z: 5.4, y: 2.85, width: 1.1, height: 1.45, frameColor: '#d4af37' },
+  // --- COLUMN 1 (Z = 5.6): Era Prakarsa & Statuta 1956-1957 ---
+  { exhibitId: 'archives-notary-1956', z: 5.6, y: 3.9, width: 1.15, height: 1.25, frameColor: '#d4af37' },
+  { exhibitId: 'archives-statuta-1957', z: 5.6, y: 2.05, width: 1.15, height: 1.25, frameColor: '#3d2516' },
 
-  // --- CLUSTER 2: ERA PRAKARSA, DOKUMEN & KAMPUS AWAL (Z = +3.8 down to Z = -5.0) ---
-  // Mid Left Upper: Akta Notaris 1956
-  { exhibitId: 'archives-notary-1956', z: 3.6, y: 3.75, width: 1.18, height: 1.42, frameColor: '#d4af37' },
-  // Mid Left Lower: Statuta Perdana 1957
-  { exhibitId: 'archives-statuta-1957', z: 3.6, y: 1.95, width: 1.18, height: 1.18, frameColor: '#3d2516' },
+  // --- COLUMN 2 (Z = 3.3): Kuliah Perdana di Panti Budaya & Mahasiswa 1957 ---
+  { exhibitId: 'early-photo-panti-budaya', z: 3.3, y: 3.9, width: 1.15, height: 1.2, frameColor: '#3d2516' },
+  { exhibitId: 'early-photo-students-1957', z: 3.3, y: 2.05, width: 1.15, height: 1.15, frameColor: '#2b1a10' },
 
-  // CENTERPIECE 1: Lukisan Induk Api Perjuangan Diponegoro (Prominent Center)
-  { exhibitId: 'artwork-diponegoro-center', z: 0.2, y: 2.85, width: 2.5, height: 1.68, frameColor: '#d4af37' },
+  // --- COLUMN 3: MONUMENTAL CENTERPIECE 1 (Z = 1.1) ---
+  { exhibitId: 'artwork-diponegoro-center', z: 1.1, y: 2.95, width: 2.0, height: 1.5, frameColor: '#d4af37' },
 
-  // Far Left Upper: Foto Gedung Panti Budaya
-  { exhibitId: 'early-photo-panti-budaya', z: -2.3, y: 3.7, width: 1.55, height: 1.18, frameColor: '#3d2516' },
-  // Far Left Lower: Foto Mahasiswa Angkatan 1957
-  { exhibitId: 'early-photo-students-1957', z: -2.3, y: 1.95, width: 1.55, height: 1.08, frameColor: '#2b1a10' },
+  // --- COLUMN 4 (Z = -1.5): Payung Hukum & Penegerian 1961 ---
+  { exhibitId: 'decree-sk-1961', z: -1.5, y: 3.9, width: 1.15, height: 1.25, frameColor: '#d4af37' },
+  { exhibitId: 'decree-lembaran-negara', z: -1.5, y: 2.05, width: 1.15, height: 1.2, frameColor: '#3d2516' },
 
-  // Mid Right Upper: SK Presiden & PP No. 7 Tahun 1961
-  { exhibitId: 'decree-sk-1961', z: -5.2, y: 3.75, width: 1.2, height: 1.45, frameColor: '#d4af37' },
-  // Mid Right Lower: Lembaran Negara 1961
-  { exhibitId: 'decree-lembaran-negara', z: -5.2, y: 1.95, width: 1.2, height: 1.18, frameColor: '#3d2516' },
+  // --- COLUMN 5 (Z = -3.5): DIRECTLY FACING CENTRAL MULADI DOME & CAMPUS MAKET ---
+  { exhibitId: 'history-muladi-dome', z: -3.5, y: 3.9, width: 1.25, height: 1.25, frameColor: '#d4af37' },
+  { exhibitId: 'history-widya-puraya', z: -3.5, y: 2.05, width: 1.25, height: 1.25, frameColor: '#3d2516' },
 
-  // --- CLUSTER 3: ERA TRANSFORMASI, SOEKARNO & TEMBALANG (Z = -8.5 down to Z = -20.0) ---
-  // Mid Left Upper: Foto Kunjungan Bung Karno
-  { exhibitId: 'early-photo-soekarno-visit', z: -8.5, y: 3.7, width: 1.55, height: 1.18, frameColor: '#3d2516' },
-  // Mid Left Lower: Foto Kampus Pleburan Lama
-  { exhibitId: 'early-campus-pleburan', z: -8.5, y: 1.95, width: 1.55, height: 1.1, frameColor: '#2b1a10' },
+  // --- COLUMN 6: MONUMENTAL CENTERPIECE 2 (Z = -5.7): Pidato Presiden Soekarno ---
+  { exhibitId: 'archives-soekarno-1960', z: -5.7, y: 2.95, width: 2.0, height: 1.5, frameColor: '#d4af37' },
 
-  // CENTERPIECE 2: Naskah Pidato Presiden Soekarno 1960
-  { exhibitId: 'archives-soekarno-1960', z: -12.4, y: 2.85, width: 2.4, height: 1.65, frameColor: '#d4af37' },
+  // --- COLUMN 7 (Z = -7.9): Kunjungan Presiden & Kampus Pleburan Lama ---
+  { exhibitId: 'early-photo-soekarno-visit', z: -7.9, y: 3.9, width: 1.15, height: 1.2, frameColor: '#3d2516' },
+  { exhibitId: 'early-campus-pleburan', z: -7.9, y: 2.05, width: 1.15, height: 1.15, frameColor: '#2b1a10' },
 
-  // Mid Right Upper: Masterplan Kampus Tembalang
-  { exhibitId: 'history-masterplan-tembalang', z: -15.5, y: 3.75, width: 1.25, height: 1.42, frameColor: '#3d2516' },
-  // Mid Right Lower: Transformasi PTN-BH
-  { exhibitId: 'history-transformation', z: -15.5, y: 1.95, width: 1.7, height: 1.15, frameColor: '#d4af37' },
+  // --- COLUMN 8 (Z = -10.1): Masterplan & Peletakan Batu Pertama Tembalang ---
+  { exhibitId: 'history-masterplan-tembalang', z: -10.1, y: 3.9, width: 1.15, height: 1.25, frameColor: '#3d2516' },
+  { exhibitId: 'history-groundbreaking-tembalang', z: -10.1, y: 2.05, width: 1.15, height: 1.15, frameColor: '#d4af37' },
+
+  // --- COLUMN 9 (Z = -12.3): Rumah Sakit RSND & Waduk Edukasi Undip ---
+  { exhibitId: 'history-rsnd', z: -12.3, y: 3.9, width: 1.15, height: 1.2, frameColor: '#3d2516' },
+  { exhibitId: 'history-waduk-undip', z: -12.3, y: 2.05, width: 1.15, height: 1.12, frameColor: '#2b1a10' },
+
+  // --- COLUMN 10 (Z = -14.5): Wisuda Perdana & Transformasi PTN-BH ---
+  { exhibitId: 'history-wisuda-perdana', z: -14.5, y: 3.9, width: 1.15, height: 1.25, frameColor: '#3d2516' },
+  { exhibitId: 'history-transformation', z: -14.5, y: 2.05, width: 1.2, height: 1.2, frameColor: '#d4af37' },
 ]
 
 interface SalonItemProps {
@@ -147,16 +150,16 @@ function SalonItem({
       </mesh>
 
       {/* 6. Subtle Plaque Label Below Frame */}
-      <group position={[0, -fh / 2 - 0.1, 0.02]}>
+      <group position={[0, -fh / 2 - 0.08, 0.02]}>
         <mesh>
-          <boxGeometry args={[Math.min(fw * 0.7, 1.2), 0.09, 0.015]} />
+          <boxGeometry args={[Math.min(fw * 0.75, 1.2), 0.08, 0.015]} />
           <meshStandardMaterial color="#f7f4eb" roughness={0.8} />
         </mesh>
       </group>
 
       {/* 7. Hover Line */}
       {(isHovered || isSelected) && (
-        <mesh position={[0, -fh / 2 - 0.18, 0.02]}>
+        <mesh position={[0, -fh / 2 - 0.15, 0.02]}>
           <boxGeometry args={[fw * 0.9, 0.03, 0.01]} />
           <meshBasicMaterial color="#d4af37" />
         </mesh>
@@ -173,8 +176,8 @@ interface HistoryArchivesWingProps {
 }
 
 /**
- * Sayap Sejarah & Arsip Resmi Undip (Salon-Style Clustered Hang Layout)
- * Matched meticulously to the user's reference photograph, completely filling the right wall.
+ * Sayap Sejarah & Arsip Resmi Undip (Generously Spaced Museum Gallery Wall)
+ * Spans smoothly with >= 55cm horizontal and vertical gaps alongside the 3D Miniature Map.
  */
 export function HistoryArchivesWing({
   selectedExhibitId,
@@ -182,7 +185,6 @@ export function HistoryArchivesWing({
   onSelectExhibit,
   onHover,
 }: HistoryArchivesWingProps) {
-  // Map exhibits by ID for fast lookup
   const exhibitMap = useMemo(() => {
     const map = new Map<string, HistoryExhibit>()
     HISTORY_EXHIBITS.forEach((ex) => map.set(ex.id, ex))
@@ -191,35 +193,35 @@ export function HistoryArchivesWing({
 
   return (
     <group>
-      {/* Aesthetic Museum Track-Lighting Beam running above the entire gallery wall */}
-      <mesh position={[HISTORY_WALL_X - 0.8, 5.2, -6.0]} rotation={[0, 0, 0]}>
-        <boxGeometry args={[0.08, 0.08, 30.0]} />
+      {/* Aesthetic Museum Track-Lighting Beam running above the gallery wall */}
+      <mesh position={[HISTORY_WALL_X - 0.8, 5.2, -4.5]} rotation={[0, 0, 0]}>
+        <boxGeometry args={[0.08, 0.08, 23.0]} />
         <meshStandardMaterial color="#1a1a1a" roughness={0.3} metalness={0.8} />
       </mesh>
 
-      {/* Rhythmic Focused Track Spotlights on the Clusters */}
-      {[6.2, 3.6, 0.2, -3.3, -7.5, -11.6, -15.5].map((spotZ, sIdx) => (
+      {/* Rhythmic Focused Track Spotlights on the Clusters (Warm Yellow Spotlights) */}
+      {[5.6, 3.3, 1.1, -1.5, -3.5, -5.7, -7.9, -10.1, -12.3, -14.5].map((spotZ, sIdx) => (
         <group key={`track-spot-${sIdx}`} position={[HISTORY_WALL_X - 0.8, 5.15, spotZ]}>
           {/* Spotlight Fixture Canister */}
           <mesh rotation={[0, 0, -0.45]}>
             <cylinderGeometry args={[0.05, 0.07, 0.18, 12]} />
             <meshStandardMaterial color="#222222" roughness={0.3} metalness={0.8} />
           </mesh>
-          {/* Focused Soft Wall Spotlight with Minimalist Falloff */}
+          {/* Focused Warm Gold Wall Spotlight with Soft Falloff */}
           <spotLight
             position={[0, 0, 0]}
             target-position={[0.8, -2.6, 0]}
-            color="#fff6e2"
-            intensity={22}
-            angle={0.65}
-            penumbra={0.75}
+            color="#ffea9f"
+            intensity={24}
+            angle={0.62}
+            penumbra={0.72}
             distance={7.5}
             decay={2}
           />
         </group>
       ))}
 
-      {/* Salon Gallery Wall Items (Arranged exactly like the reference image) */}
+      {/* Museum Gallery Wall Items */}
       {SALON_LAYOUT.map((config) => {
         const exhibit = exhibitMap.get(config.exhibitId)
         if (!exhibit) return null

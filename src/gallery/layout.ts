@@ -55,11 +55,8 @@ export const HISTORY_PANEL_Y = 2.8
 /** Center Exhibits & Monuments */
 export const MINIATURE_MAP_POS: [number, number, number] = [0, 0, -3.5]
 export const PODIUM_POS: [number, number, number] = [0, 0, -18.2]
-/** Horse Statue beside the podium at the back */
-export const DIPONEGORO_HORSE_POS: [number, number, number] = [3.8, 0, -18.2]
-export const DIRECTORY_BOARD_POS: [number, number, number] = [3.4, 0, 8.2]
-export const DIRECTORY_PROXIMITY_RADIUS = 3.8
-
+export const DIRECTORY_BOARD_POS: [number, number, number] = [3.8, 0, 8.5]
+export const DIRECTORY_PROXIMITY_RADIUS = 3.2
 /** Section Teleport Targets for quick navigation */
 export const SECTION_TARGETS = {
   entrance: [0, EYE_HEIGHT, 9.0] as [number, number, number],
@@ -67,6 +64,7 @@ export const SECTION_TARGETS = {
   map: [0, EYE_HEIGHT, 0.5] as [number, number, number],
   podium: [0, EYE_HEIGHT, -14.5] as [number, number, number],
   history: [4.5, EYE_HEIGHT, 0.0] as [number, number, number],
+  prasasti: [-2.6, EYE_HEIGHT, -15.5] as [number, number, number],
 }
 
 /** Ceiling Alternating Gaps Configuration */
