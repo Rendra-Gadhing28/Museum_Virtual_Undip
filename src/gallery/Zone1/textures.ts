@@ -3,16 +3,33 @@ import type { Founder, HistoryExhibit } from './data/exhibits'
 import { assetCache } from './cache'
 
 function makeCanvas(width: number, height: number): [HTMLCanvasElement, CanvasRenderingContext2D] {
+  const isMob = typeof window !== 'undefined' && (window.innerWidth <= 820 || (window.matchMedia && window.matchMedia('(pointer: coarse)').matches))
+  const targetW = isMob ? 256 : width
+  const targetH = isMob ? Math.round(height * (256 / width)) : height
+  const scale = targetW / width
+
   const canvas = document.createElement('canvas')
-  canvas.width = width
-  canvas.height = height
-  return [canvas, canvas.getContext('2d') as CanvasRenderingContext2D]
+  canvas.width = targetW
+  canvas.height = targetH
+  const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
+  if (scale !== 1) {
+    ctx.scale(scale, scale)
+  }
+  return [canvas, ctx]
 }
 
 function toTexture(canvas: HTMLCanvasElement): THREE.CanvasTexture {
+  const isMob = typeof window !== 'undefined' && (window.innerWidth <= 820 || (window.matchMedia && window.matchMedia('(pointer: coarse)').matches))
   const texture = new THREE.CanvasTexture(canvas)
   texture.colorSpace = THREE.SRGBColorSpace
-  texture.anisotropy = 8
+  if (isMob) {
+    texture.generateMipmaps = false
+    texture.minFilter = THREE.LinearFilter
+    texture.magFilter = THREE.LinearFilter
+    texture.anisotropy = 1
+  } else {
+    texture.anisotropy = 8
+  }
   return texture
 }
 
@@ -268,6 +285,34 @@ export function createFounderPortraitCanvas(founder: Founder, index: number): HT
 export function createFounderPortraitTexture(founder: Founder, index: number): THREE.CanvasTexture {
   return assetCache.getTexture(`founder-portrait-${founder.id}`, () => {
     return toTexture(createFounderPortraitCanvas(founder, index))
+  })
+}
+
+export function createFounderPlaqueTexture(founder: Founder, isMainFounder = false): THREE.CanvasTexture {
+  return assetCache.getTexture(`founder-plaque-${founder.id}-${isMainFounder}`, () => {
+    const [canvas, ctx] = makeCanvas(512, 96)
+    ctx.fillStyle = isMainFounder ? '#1b1207' : '#0c1726'
+    ctx.fillRect(0, 0, 512, 96)
+
+    ctx.strokeStyle = isMainFounder ? '#d4af37' : '#caa152'
+    ctx.lineWidth = 4
+    ctx.strokeRect(4, 4, 504, 88)
+
+    ctx.strokeStyle = 'rgba(212, 175, 55, 0.45)'
+    ctx.lineWidth = 1.5
+    ctx.strokeRect(10, 10, 492, 76)
+
+    ctx.textAlign = 'center'
+    ctx.fillStyle = '#f8f4eb'
+    fitFont(ctx, founder.name, 'Georgia, serif', 'bold', 'normal', 470, 26, 15)
+    ctx.fillText(founder.name, 256, 42)
+
+    ctx.fillStyle = isMainFounder ? '#d4af37' : '#caa152'
+    const sub = founder.years ? `${founder.years}` : founder.title
+    fitFont(ctx, sub, 'sans-serif', 'normal', 'normal', 470, 18, 12)
+    ctx.fillText(sub, 256, 72)
+
+    return toTexture(canvas)
   })
 }
 

@@ -1,17 +1,21 @@
 import type { RefObject } from 'react'
 import type { Founder, HistoryExhibit } from './data/exhibits'
 
-export type ExhibitType = 'founder' | 'history' | 'miniature-map' | 'podium' | 'prasasti'
+export type ExhibitType =
+  | 'founder'
+  | 'history'
+  | 'miniature-map'
+  | 'podium'
+  | 'prasasti'
+  | 'faculty'
+  | 'transformation'
+  | 'research'
+  | 'achievement'
+  | 'monument'
 
 export interface SelectedExhibit {
   type: ExhibitType
-  data: Founder | HistoryExhibit | {
-    id: string
-    title: string
-    subtitle: string
-    description: string
-    highlights?: string[]
-  }
+  data: any
 }
 
 export interface FounderFrameProps {
@@ -48,6 +52,7 @@ export interface CeremonialPodiumProps {
   position: [number, number, number]
   isSelected: boolean
   isHovered: boolean
+  isMobile?: boolean
   onSelect: () => void
   onHover: (id: string | null) => void
   onSelectPrasasti?: () => void

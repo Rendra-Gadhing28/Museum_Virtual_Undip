@@ -1,0 +1,189 @@
+{
+  "zoneMeta": {
+    "id": "zone3",
+    "number": 3,
+    "title": "The Heritage of Undip",
+    "subtitle": "Kompleks Megah Warisan Sejarah & Memorabilia Kampus",
+    "theme": "Sacred Academic Complex (76 x 60 m)",
+    "description": "Kompleks pameran berskala besar bergaya isometric digital heritage. Menampilkan Plaza Prasasti Monumental, Galeri 28 Foto Sejarah, Sayap 12 Vitrine Artefak, Aula Memorabilia Tokoh 'Hall of Legacy', Sayap 10 Dokumen Piagam, dan Paviliun Audiovisual Mini-Cinema."
+  },
+  "inscription": {
+    "id": "hero-inscription-stele",
+    "title": "Prasasti Monumental Peresmian Universitas Diponegoro",
+    "shortTitle": "Prasasti Peresmian",
+    "year": "9 Januari 1957 / 9 Januari 1960",
+    "signedBy": "Presiden Republik Indonesia Ir. Soekarno & Presidium Yayasan",
+    "material": "Batu Andesit Hitam Alamiah Pahat Emas Murni",
+    "dimensions": "Tinggi 7.0m x Lebar 3.0m x Tebal 0.7m (Alas Marmer 5 Undakan Ø 8m)",
+    "text": "DENGAN RAHMAT TUHAN JANG MAHA ESA, PADA HARI INI RABU TANGGAL 9 JANUARI 1957, KAMI RESMIKAN PEMBUKAAN PERKULIAHAN PERDANA UNIVERSITAS SEMARANG SEBAGAI SUMBER PENGETAHUAN DAN PEMBINA WATAK KSATRIA BANGSA. PADA DIES NATALIS KE-3 TANGGAL 9 JANUARI 1960, PRESIDEN REPUBLIK INDONESIA IR. SOEKARNO MENGANUGERAHKAN NAMA RESMI UNIVERSITAS DIPONEGORO.",
+    "transcript": "Prasasti monumental batu andesit berukir emas ini merekam detik-detik berdirinya universitas di Semarang hingga dianugerahi nama Pangeran Diponegoro oleh Bung Karno.",
+    "translation": "Amanah abadi bagi seluruh generasi penerus untuk menjaga integritas ilmiah, wibawa kebangsaan, dan keberanian membela keadilan rakyat.",
+    "audioNarrative": "/audio/prasasti-narration.mp3",
+    "source": "Arsip Statis Rektorat Universitas Diponegoro No. REG-1957-001"
+  },
+  "photos": [
+    { "id": "ph-01", "title": "Kuliah Perdana di Gedung Panti Budaya", "year": "9 Januari 1957", "width": 3.2, "height": 2.2, "source": "Arsip Nasional RI" },
+    { "id": "ph-02", "title": "Amanat Presiden Ir. Soekarno pada Dies Natalis III", "year": "9 Januari 1960", "width": 4.0, "height": 2.8, "source": "Pusat Dokumentasi Sejarah Nasional" },
+    { "id": "ph-03", "title": "Kampus Heritage Pleburan Semarang", "year": "1963", "width": 2.4, "height": 1.8, "source": "Dinas Kearsipan Kota Semarang" },
+    { "id": "ph-04", "title": "Rapat Presidium Notaris Notaris Lie Kie Kiat", "year": "1956", "width": 2.2, "height": 1.6, "source": "Buku 50 Tahun Undip" },
+    { "id": "ph-05", "title": "Wisuda Sarjana Angkatan Pertama", "year": "1961", "width": 2.6, "height": 1.9, "source": "Arsip Rektorat Undip" },
+    { "id": "ph-06", "title": "Pemberangkatan Kontingen KKN Pertama ke Pesisir", "year": "1971", "width": 3.0, "height": 2.1, "source": "LPPM Undip" },
+    { "id": "ph-07", "title": "Peresmian Fakultas Teknik Jurusan Sipil", "year": "1958", "width": 1.8, "height": 1.4, "source": "Fakultas Teknik Undip" },
+    { "id": "ph-08", "title": "Pembangunan Laboratorium Medis Kariadi", "year": "1961", "width": 2.0, "height": 1.5, "source": "Fakultas Kedokteran Undip" },
+    { "id": "ph-09", "title": "Rombongan Mahasiswa Riset Oseanografi Pertama", "year": "1968", "width": 2.4, "height": 1.7, "source": "FPIK Undip" },
+    { "id": "ph-10", "title": "Sidang Terbuka Senat Pengukuhan Guru Besar I", "year": "1962", "width": 2.5, "height": 1.8, "source": "Dewan Guru Besar Undip" },
+    { "id": "ph-11", "title": "Gedung Rektorat Pleburan Masa Awal", "year": "1959", "width": 1.9, "height": 1.4, "source": "Koleksi Sejarah Semarang" },
+    { "id": "ph-12", "title": "Mr. Imam Bardjo Memberikan Sambutan Rektor", "year": "1957", "width": 2.2, "height": 1.6, "source": "Arsip Pengadilan Tinggi Jateng" },
+    { "id": "ph-13", "title": "Mr. Soedarto Bersama Para Mahasiswa Hukum", "year": "1964", "width": 2.0, "height": 1.5, "source": "Fakultas Hukum Undip" },
+    { "id": "ph-14", "title": "Pawai Dies Natalis Mahasiswa di Simpang Lima", "year": "1965", "width": 2.8, "height": 2.0, "source": "Dokumentasi BEM Undip" },
+    { "id": "ph-15", "title": "Diskusi Akademik Mazhab Hukum Progresif", "year": "1973", "width": 2.2, "height": 1.6, "source": "Pusat Kajian Hukum Progresif" },
+    { "id": "ph-16", "title": "Riset Tambak Udang & Mangrove di Jepara", "year": "1978", "width": 2.4, "height": 1.7, "source": "Stasiun Riset Teluk Awur" },
+    { "id": "ph-17", "title": "Pameran Buku & Jurnal Ilmiah Perdana", "year": "1967", "width": 1.6, "height": 1.2, "source": "Perpustakaan Pusat Undip" },
+    { "id": "ph-18", "title": "Penandatanganan Kerjasama Riset Internasional Pertama", "year": "1974", "width": 2.3, "height": 1.6, "source": "Biro Kerjasama Luar Negeri" },
+    { "id": "ph-19", "title": "Survei Awal Lahan Perbukitan Tembalang", "year": "1984", "width": 2.7, "height": 1.9, "source": "Tim Masterplan Kampus Tembalang" },
+    { "id": "ph-20", "title": "Pemasangan Tiang Pancang Gedung Widya Puraya", "year": "1989", "width": 3.0, "height": 2.1, "source": "Biro Umum & Aset Undip" },
+    { "id": "ph-21", "title": "Perkuliahan Perdana di Kampus Tembalang", "year": "1992", "width": 2.2, "height": 1.5, "source": "Biro Akademik Undip" },
+    { "id": "ph-22", "title": "Penghijauan Hutan Kampus & Danau Retensi", "year": "1995", "width": 2.5, "height": 1.8, "source": "Pusat Lingkungan Hidup Undip" },
+    { "id": "ph-23", "title": "Kunjungan Duta Besar Sahabat ke Kampus Undip", "year": "1976", "width": 2.0, "height": 1.4, "source": "Humas Undip" },
+    { "id": "ph-24", "title": "Upacara Korps Menwa Mahadipa Batalyon Undip", "year": "1969", "width": 1.8, "height": 1.3, "source": "Dokumentasi Alumni Menwa" },
+    { "id": "ph-25", "title": "Peluncuran Kapal Riset Oseanografi Pertama", "year": "1982", "width": 2.8, "height": 2.0, "source": "FPIK Undip" },
+    { "id": "ph-26", "title": "Kongres Nasional Ikatan Alumni Undip (IKA Undip)", "year": "1980", "width": 2.1, "height": 1.5, "source": "Sekretariat IKA Undip" },
+    { "id": "ph-27", "title": "Peresmian Auditorium Imam Bardjo Pleburan", "year": "1972", "width": 2.6, "height": 1.8, "source": "Koleksi Sejarah Pleburan" },
+    { "id": "ph-28", "title": "Orasi Ilmiah Pembentukan PIP Bina Kelautan", "year": "1977", "width": 3.4, "height": 2.3, "source": "Senat Akademik Undip" }
+  ],
+  "artifacts": [
+    { "id": "art-01", "title": "Toga Rektor Heritage & Gordon Kehormatan Emas", "year": "1957", "category": "Busana Kehormatan", "vitrineType": "large", "description": "Toga beludru navy dan kalung gordon emas murni lambang Pangeran Diponegoro pada upacara perdana.", "dimensions": "3.0 x 1.5 x 2.2" },
+    { "id": "art-02", "title": "Buku Induk Registrasi Mahasiswa Angkatan I", "year": "1957", "category": "Arsip Statis", "vitrineType": "medium", "description": "Buku register kulit tua bertuliskan tangan daftar mahasiswa angkatan pertama FH dan Akademi Administrasi.", "dimensions": "1.8 x 1.2 x 1.8" },
+    { "id": "art-03", "title": "Mikroskop Monokuler Antik Carl Zeiss", "year": "1960", "category": "Instrumen Riset", "vitrineType": "medium", "description": "Mikroskop kuningan presisi tinggi peninggalan laboratorium sains awal di Kampus Pleburan.", "dimensions": "1.8 x 1.2 x 1.8" },
+    { "id": "art-04", "title": "Stempel & Segel Logam Kuningan Yayasan", "year": "1956", "category": "Atribut Legalitas", "vitrineType": "column", "description": "Segel timbul kuningan bertuliskan Yayasan Universitas Semarang yang dipakai pada akta ijazah awal.", "dimensions": "1.0 x 1.0 x 2.4" },
+    { "id": "art-05", "title": "Mesin Tik Manual Peninggalan Presidium", "year": "1956", "category": "Alat Administrasi", "vitrineType": "medium", "description": "Mesin tik mekanik antik yang digunakan untuk mengetik draf akta notaris dan surat keputusan pendirian.", "dimensions": "1.8 x 1.2 x 1.8" },
+    { "id": "art-06", "title": "Globe Navigasi & Oseanografi Antik", "year": "1968", "category": "Instrumen Maritim", "vitrineType": "large", "description": "Bola dunia kartografi laut kuno yang menjadi rujukan perintisan kajian kemaritiman Indonesia.", "dimensions": "3.0 x 1.5 x 2.2" },
+    { "id": "art-07", "title": "Kamera Pengarsipan Pelat Hitam Putih", "year": "1958", "category": "Alat Dokumentasi", "vitrineType": "medium", "description": "Kamera medium format saksi bisu perekaman ribuan momen bersejarah Dies Natalis dan perkuliahan.", "dimensions": "1.8 x 1.2 x 1.8" },
+    { "id": "art-08", "title": "Koleksi Medali Kehormatan Karya Luhur", "year": "1960–1975", "category": "Tanda Kehormatan", "vitrineType": "column", "description": "Bintang jasa dan medali emas yang dianugerahkan kepada para pendiri dan dosen teladan universitas.", "dimensions": "1.0 x 1.0 x 2.4" },
+    { "id": "art-09", "title": "Set Wadah Tinta Kristal & Pena Emas Pendiri", "year": "1956", "category": "Memorabilia", "vitrineType": "medium", "description": "Set pena celup dan tempat tinta kristal Mr. Soedarto yang dipakai merumuskan dokumen universitas.", "dimensions": "1.8 x 1.2 x 1.8" },
+    { "id": "art-10", "title": "Gulungan Ijazah Sarjana Pertama Berkertas Perkamen", "year": "1961", "category": "Bukti Akademik", "vitrineType": "large", "description": "Ijazah sarjana hukum pertama dengan cap stempel basah dan tanda tangan asli Mr. Imam Bardjo.", "dimensions": "3.0 x 1.5 x 2.2" },
+    { "id": "art-11", "title": "Alat Ukur Geodesi Theodolite Kuno", "year": "1962", "category": "Instrumen Teknik", "vitrineType": "medium", "description": "Perangkat survei pemetaan awal Departemen Teknik Sipil untuk pemetaan kawasan kampus Semarang.", "dimensions": "1.8 x 1.2 x 1.8" },
+    { "id": "art-12", "title": "Tabung Reaksi & Mortar Farmasi Keramik Kuno", "year": "1963", "category": "Instrumen Kedokteran", "vitrineType": "column", "description": "Peralatan riset kimia dan kedokteran tropis era perintisan Fakultas Kedokteran Undip.", "dimensions": "1.0 x 1.0 x 2.4" }
+  ],
+  "memorabilia": [
+    {
+      "id": "tokoh-soedarto",
+      "name": "Mr. Soedarto",
+      "period": "1913–1986",
+      "role": "Ketua Presidium Yayasan & Rektor Pembangun",
+      "contribution": "Peletak dasar akademik, perintis akta pendirian 1956, dan pembebasan lahan 180 Ha Tembalang.",
+      "quote": "Pendidikan tinggi adalah benteng kemandirian moral dan martabat bangsa.",
+      "linkedTo": ["tokoh-bardjo", "tokoh-goenawan"],
+      "orbitItems": ["Kacamata Emas", "Pena Tinta", "Plakat Mahaputera"]
+    },
+    {
+      "id": "tokoh-bardjo",
+      "name": "Mr. Imam Bardjo",
+      "period": "1902–1959",
+      "role": "Presiden (Rektor) Pertama Universitas Semarang",
+      "contribution": "Ketua Pengadilan Tinggi Jawa Tengah yang memimpin perkuliahan perdana tahun 1957.",
+      "quote": "Bermula dari cita-cita luhur di Kota Semarang untuk mencerdaskan rakyat merdeka.",
+      "linkedTo": ["tokoh-soedarto", "tokoh-sulaiman"],
+      "orbitItems": ["Palu Sidang Jati", "Naskah Orasi", "Medali Emas"]
+    },
+    {
+      "id": "tokoh-goenawan",
+      "name": "Mr. Goenawan Goetomo",
+      "period": "1915–1992",
+      "role": "Dekan Pertama Akademi Administrasi Negara",
+      "contribution": "Pionir tata kelola pemerintahan dan cikal bakal berdirinya FISIP Undip.",
+      "quote": "Tata pamong yang bersih lahir dari integritas ilmu administrasi yang berkeadilan.",
+      "linkedTo": ["tokoh-soedarto"],
+      "orbitItems": ["Buku Catatan", "Lencana Birokrasi"]
+    },
+    {
+      "id": "tokoh-sulaiman",
+      "name": "Mr. Dan Sulaiman",
+      "period": "1910–1988",
+      "role": "Presidium & Penggagas Nama Diponegoro",
+      "contribution": "Tokoh hukum terkemuka yang mengusulkan nama pahlawan Pangeran Diponegoro kepada Presiden Soekarno.",
+      "quote": "Nama Diponegoro memancarkan api keberanian membela kebenaran tanpa gentar.",
+      "linkedTo": ["tokoh-bardjo", "tokoh-soedarto"],
+      "orbitItems": ["Arsip Korespondensi", "Pena Celup"]
+    },
+    {
+      "id": "tokoh-kariadi",
+      "name": "Prof. Dr. Kariadi (drg. Soepangat)",
+      "period": "1905–1945 / 1961",
+      "role": "Inspirasi Medis & Perintis Kedokteran",
+      "contribution": "Kerjasama RSUP Dr. Kariadi dan pembentukan Fakultas Kedokteran Undip 1961.",
+      "quote": "Pengabdian dokter adalah menyembuhkan tanpa membedakan derajat manusia.",
+      "linkedTo": ["tokoh-soedarto"],
+      "orbitItems": ["Stetoskop Klasik", "Jurnal Medis"]
+    },
+    {
+      "id": "tokoh-moeljono",
+      "name": "Prof. Dr. Moeljono S. Trastotenojo",
+      "period": "1928–2010",
+      "role": "Rektor Pelopor PIP Bina Kelautan",
+      "contribution": "Mengukuhkan Pola Ilmiah Pokok Kelautan dan mendirikan Stasiun Riset Teluk Awur Jepara.",
+      "quote": "Bina Kelautan adalah jiwa kepulauan bangsa kita yang tak boleh terabaikan.",
+      "linkedTo": ["tokoh-soedarto"],
+      "orbitItems": ["Kompas Laut", "Buku PIP Kelautan"]
+    },
+    {
+      "id": "tokoh-satjipto",
+      "name": "Prof. Dr. Satjipto Rahardjo, S.H.",
+      "period": "1930–2010",
+      "role": "Guru Besar & Tokoh Hukum Progresif Dunia",
+      "contribution": "Menggagas Mazhab Hukum Progresif: hukum untuk manusia, bukan manusia untuk hukum.",
+      "quote": "Hukum untuk manusia, bukan manusia untuk hukum. Keadilan harus membahagiakan rakyat.",
+      "linkedTo": ["tokoh-soedarto"],
+      "orbitItems": ["Buku Hukum Progresif", "Pena Emas"]
+    },
+    {
+      "id": "tokoh-muladi",
+      "name": "Prof. Dr. Muladi, S.H.",
+      "period": "1943–2020",
+      "role": "Rektor ke-7 & Menteri Kehakiman RI",
+      "contribution": "Membawa Undip menuju panggung nasional dan pembangunan fasilitas akbar Muladi Dome.",
+      "quote": "Universitas harus menjadi lokomotif peradaban dan penegak hak asasi manusia.",
+      "linkedTo": ["tokoh-satjipto", "tokoh-soedarto"],
+      "orbitItems": ["Kubah Mini Muladi", "Plakat Mahaputera Adipradana"]
+    }
+  ],
+  "documents": [
+    { "id": "doc-01", "title": "Akta Notaris Lie Kie Kiat No. 59 (Pendirian Yayasan)", "year": "4 Desember 1956", "type": "Plinth Miring Kaca", "description": "Dokumen hukum fundamental pendirian badan hukum Universitas Semarang.", "source": "Arsip Statis Rektorat Undip" },
+    { "id": "doc-02", "title": "Peraturan Pemerintah No. 7 Tahun 1961 (Penegerian Undip)", "year": "15 Oktober 1960/1961", "type": "Plinth Miring Kaca", "description": "Keputusan resmi penegerian Undip dan penetapan Dies Natalis resmi 15 Oktober 1957.", "source": "Lembaran Negara Republik Indonesia" },
+    { "id": "doc-03", "title": "Surat Keputusan Menteri PP dan K No. 101247/UU", "year": "9 Desember 1960", "type": "Plinth Miring Kaca", "description": "Pengesahan status universitas negeri di bawah naungan kementerian pendidikan nasional.", "source": "Kementerian Pendidikan dan Kebudayaan" },
+    { "id": "doc-04", "title": "Piagam Penganugerahan Nama dari Presiden Soekarno", "year": "9 Januari 1960", "type": "Plinth Miring Kaca", "description": "Amanat tertulis penganugerahan nama Diponegoro saat Dies Natalis III.", "source": "Pusat Arsip Kepresidenan" },
+    { "id": "doc-05", "title": "Lembar Masterplan Awal Kawasan Kampus Pleburan", "year": "1958", "type": "Floating Page 2x2.8m", "description": "Denah arsitektur kolonial tropis komplek ruang kuliah dan perpustakaan Pleburan.", "source": "Dinas Tata Kota Semarang" },
+    { "id": "doc-06", "title": "Naskah Orasi Ilmiah Dies Natalis I Mr. Imam Bardjo", "year": "1958", "type": "Floating Page 2x2.8m", "description": "Manuskrip pidato ilmiah perdana tentang kedaulatan pendidikan tinggi daerah.", "source": "Arsip Senat Undip" },
+    { "id": "doc-07", "title": "Peta Topografi & Pembebasan Lahan Tembalang 180 Ha", "year": "1986", "type": "Floating Page 2x2.8m", "description": "Peta kontur dan rencana zonasi perbukitan Tembalang yang ditandatangani rektorat.", "source": "Biro Aset Undip" },
+    { "id": "doc-08", "title": "Buku Besar Registrasi Alumni Periode 1957–1970", "year": "1970", "type": "Meja Arsip Panjang 6m", "description": "Buku folio besar bersampul kulit berisi catatan kelulusan ribuan sarjana pertama.", "source": "Biro Kemahasiswaan Undip" },
+    { "id": "doc-09", "title": "Surat Keputusan Senat Penetapan PIP Bina Kelautan", "year": "1977", "type": "Panel Dinding Kaca", "description": "Dekrit senat yang menetapkan pengembangan wilayah pantai dan laut sebagai identitas.", "source": "Senat Akademik Undip" },
+    { "id": "doc-10", "title": "Piagam Penghargaan Bintang Mahaputera Utama Universitas", "year": "1980", "type": "Panel Dinding Kaca", "description": "Penghargaan kenegaraan atas kontribusi pengabdian masyarakat KKN perintis.", "source": "Sekretariat Negara RI" }
+  ],
+  "audiovisual": {
+    "mainCinema": {
+      "title": "Layar Utama Mini-Cinema: Rekaman Sejarah Dies Natalis 1960",
+      "year": "1960",
+      "format": "Film 16mm Restorasi Digital HD",
+      "description": "Pidato kenegaraan Presiden Soekarno menganugerahkan nama Universitas Diponegoro di hadapan ribuan sivitas akademika.",
+      "screenDimensions": "9.0 x 5.0 unit",
+      "seats": "3 Baris Kursi Bioskop Vintage Jati & Beludru Navy",
+      "videoUrl": "/videos/heritage-main-reel.mp4",
+      "audioUrl": "/audio/bung-karno-speech.mp3"
+    },
+    "tvWall": [
+      { "id": "tv-1", "title": "Arsip Pawai Dies Natalis 1965", "year": "1965" },
+      { "id": "tv-2", "title": "Wawancara Bersejarah Mr. Soedarto", "year": "1975" },
+      { "id": "tv-3", "title": "Dokumentasi KKN Perdana Karimunjawa", "year": "1971" },
+      { "id": "tv-4", "title": "Pelepasan Lulusan Fakultas Hukum 1961", "year": "1961" },
+      { "id": "tv-5", "title": "Riset Kapal Laboratorium Teluk Awur", "year": "1982" },
+      { "id": "tv-6", "title": "Pemasangan Kubah Widya Puraya", "year": "1990" },
+      { "id": "tv-7", "title": "Pidato Pengukuhan Prof. Satjipto", "year": "1979" },
+      { "id": "tv-8", "title": "Statika & Dinamika Kampus Pleburan", "year": "1968" }
+    ],
+    "listeningStations": [
+      { "id": "listen-1", "title": "Gramofon Suara: Pidato Pembukaan 9 Januari 1957", "type": "Pita Suara Piringan Hitam" },
+      { "id": "listen-2", "title": "Radio Antik: Wawancara Rektor Mr. Imam Bardjo", "type": "Siaran RRI Semarang 1958" },
+      { "id": "listen-3", "title": "Kaset Audio: Mars & Himne Universitas Diponegoro Perdana", "type": "Paduan Suara Mahasiswa 1963" }
+    ]
+  }
+}

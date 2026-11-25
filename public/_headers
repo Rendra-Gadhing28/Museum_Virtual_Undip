@@ -1,0 +1,22 @@
+# Cache-Control Headers for Museum Virtual Undip
+# Hashed static assets (immutable, 1 year cache)
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# 3D Models, Textures, and Audio (1 month cache)
+/*.glb
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+/*.ktx2
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+/*.webp
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+/*.mp3
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+# Service Worker & HTML (Never cache HTML/SW to ensure instant updates)
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+/offline.html
+  Cache-Control: public, max-age=86400
+/*
+  Cache-Control: no-cache, no-store, must-revalidate

@@ -5,6 +5,7 @@ import { assetCache } from './cache'
 interface ChandelierProps {
   position: [number, number, number]
   scale?: number
+  isMobile?: boolean
 }
 
 /**
@@ -12,7 +13,7 @@ interface ChandelierProps {
  * Matches the reference image: circular tiered crystal prisms, gold brass framework,
  * and warm interior candle/filament glow.
  */
-export function Chandelier({ position, scale = 1 }: ChandelierProps) {
+export function Chandelier({ position, scale = 1, isMobile = false }: ChandelierProps) {
   const materials = useMemo(() => {
     return {
       goldBrass: assetCache.getMaterial(
@@ -73,67 +74,34 @@ export function Chandelier({ position, scale = 1 }: ChandelierProps) {
           <primitive object={materials.goldBrass} attach="material" />
         </mesh>
         {/* Crystal Prisms hanging around Tier 1 */}
-        {Array.from({ length: 32 }).map((_, i) => {
-          const angle = (i / 32) * Math.PI * 2
-          const cx = Math.cos(angle) * 0.7
-          const cz = Math.sin(angle) * 0.7
-          return (
-            <mesh
-              key={i}
-              position={[cx, -0.22, cz]}
-              rotation={[0, angle, 0]}
-            >
-              <cylinderGeometry args={[0.02, 0.025, 0.44, 4]} />
-              <primitive object={materials.crystalPrism} attach="material" />
-            </mesh>
-          )
-        })}
+        <mesh position={[0, -0.22, 0]}>
+          <cylinderGeometry args={[0.7, 0.72, 0.38, isMobile ? 16 : 24, 1, true]} />
+          <primitive object={materials.crystalPrism} attach="material" />
+        </mesh>
       </group>
 
       {/* 4. Tier 2 (Middle Tier - Diameter ~1.0m) */}
       <group position={[0, -1.75, 0]}>
         <mesh>
-          <torusGeometry args={[0.5, 0.028, 12, 32]} />
+          <torusGeometry args={[0.5, 0.028, 12, isMobile ? 16 : 24]} />
           <primitive object={materials.goldBrass} attach="material" />
         </mesh>
-        {Array.from({ length: 24 }).map((_, i) => {
-          const angle = (i / 24) * Math.PI * 2
-          const cx = Math.cos(angle) * 0.5
-          const cz = Math.sin(angle) * 0.5
-          return (
-            <mesh
-              key={i}
-              position={[cx, -0.2, cz]}
-              rotation={[0, angle, 0]}
-            >
-              <cylinderGeometry args={[0.02, 0.025, 0.38, 4]} />
-              <primitive object={materials.crystalPrism} attach="material" />
-            </mesh>
-          )
-        })}
+        <mesh position={[0, -0.2, 0]}>
+          <cylinderGeometry args={[0.5, 0.52, 0.32, isMobile ? 16 : 24, 1, true]} />
+          <primitive object={materials.crystalPrism} attach="material" />
+        </mesh>
       </group>
 
       {/* 5. Tier 3 (Bottom Tier - Diameter ~0.6m) */}
       <group position={[0, -2.0, 0]}>
         <mesh>
-          <torusGeometry args={[0.3, 0.025, 12, 24]} />
+          <torusGeometry args={[0.3, 0.025, 12, isMobile ? 12 : 20]} />
           <primitive object={materials.goldBrass} attach="material" />
         </mesh>
-        {Array.from({ length: 16 }).map((_, i) => {
-          const angle = (i / 16) * Math.PI * 2
-          const cx = Math.cos(angle) * 0.3
-          const cz = Math.sin(angle) * 0.3
-          return (
-            <mesh
-              key={i}
-              position={[cx, -0.16, cz]}
-              rotation={[0, angle, 0]}
-            >
-              <cylinderGeometry args={[0.018, 0.022, 0.3, 4]} />
-              <primitive object={materials.crystalPrism} attach="material" />
-            </mesh>
-          )
-        })}
+        <mesh position={[0, -0.16, 0]}>
+          <cylinderGeometry args={[0.3, 0.32, 0.26, isMobile ? 12 : 18, 1, true]} />
+          <primitive object={materials.crystalPrism} attach="material" />
+        </mesh>
         {/* Bottom Crystal Pendant Finial */}
         <mesh position={[0, -0.32, 0]}>
           <octahedronGeometry args={[0.09, 0]} />
@@ -147,13 +115,6 @@ export function Chandelier({ position, scale = 1 }: ChandelierProps) {
           <sphereGeometry args={[0.22, 16, 16]} />
           <primitive object={materials.lightGlow} attach="material" />
         </mesh>
-        {/* Warm radial chandelier illumination without shadow map overhead */}
-        <pointLight
-          color="#ffe7ba"
-          intensity={26}
-          distance={15}
-          decay={2}
-        />
       </group>
     </group>
   )

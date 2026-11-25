@@ -1,8 +1,10 @@
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { PerspectiveCamera } from '@react-three/drei'
+import { CullingManager, CullingDebugOverlay, CULLING_CONFIG, type CullingStats } from '../../perf/culling'
 import type { SelectedExhibit, SectionType } from './types'
 import type { Founder, HistoryExhibit } from './data/exhibits'
+import { UNDIP_LEADERSHIP_13, HISTORY_EXHIBITS } from './data/exhibits'
 import {
   PODIUM_POS,
   SECTION_TARGETS,
@@ -20,12 +22,14 @@ import { ExhibitInformationPanel } from './ExhibitInformationPanel'
 import { WayfindingPrompt } from './WayfindingPrompt'
 import './gallery.css'
 
+const checkIsMobile = () =>
+  typeof window !== 'undefined' &&
+  (window.innerWidth <= 820 || (window.matchMedia && window.matchMedia('(pointer: coarse)').matches))
+
 function useIsMobile(): boolean {
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(checkIsMobile)
   useEffect(() => {
-    const check = () =>
-      setIsMobile(window.innerWidth <= 820 || window.matchMedia('(pointer: coarse)').matches)
-    check()
+    const check = () => setIsMobile(checkIsMobile())
     window.addEventListener('resize', check)
     return () => window.removeEventListener('resize', check)
   }, [])
@@ -46,13 +50,18 @@ function useIsMobile(): boolean {
  * - Added 3D assets: Archival bookshelves, glass tables, visitor armchairs
  * - Aesthetic museum mood lighting & warm downlights
  */
-export function Zone1() {
+interface Zone1Props {
+  onSwitchZone?: (zoneId: any) => void
+}
+
+export function Zone1({ onSwitchZone: _onSwitchZone }: Zone1Props = {}) {
   const isMobile = useIsMobile()
   const [selectedExhibit, setSelectedExhibit] = useState<SelectedExhibit | null>(null)
   const [hoveredId, setHoveredId] = useState<string | null>(null)
   const [resetSignal, setResetSignal] = useState(0)
   const [targetPosition, setTargetPosition] = useState<[number, number, number] | null>(null)
   const [isNearDirectory, setIsNearDirectory] = useState(false)
+  const [cullingStats, setCullingStats] = useState<CullingStats | null>(null)
 
   const moveInputRef = useRef<{ forward: number; strafe: number }>({ forward: 0, strafe: 0 })
   const hoveredRef = useRef<string | null>(null)
@@ -125,52 +134,104 @@ export function Zone1() {
 
   return (
     <div className={`gr-root${isMobile ? ' is-mobile' : ''}`}>
+      {/* Accessible Screen-Reader & Keyboard Traversal for 3D Exhibits */}
+      <nav aria-label="Navigasi Aksesibilitas Koleksi Pameran Zona 1" className="gr-sr-only-nav">
+        <a href="#zone1-exhibits" className="gr-skip-nav">
+          Loncat ke Daftar Aksesibel Koleksi Pameran Zona 1
+        </a>
+        <div id="zone1-exhibits" className="sr-only">
+          <h3>Daftar Pameran Tokoh Pendiri & Dokumen Sejarah Undip</h3>
+          <ul>
+            {UNDIP_LEADERSHIP_13.map((founder) => (
+              <li key={founder.id}>
+                <button
+                  type="button"
+                  onClick={() => handleSelectFounder(founder)}
+                >
+                  Buka Informasi Tokoh: {founder.name} ({founder.title})
+                </button>
+              </li>
+            ))}
+            {HISTORY_EXHIBITS.map((hist) => (
+              <li key={hist.id}>
+                <button
+                  type="button"
+                  onClick={() => handleSelectHistory(hist)}
+                >
+                  Buka Arsip Sejarah: {hist.title} ({hist.period})
+                </button>
+              </li>
+            ))}
+            <li>
+              <button type="button" onClick={handleSelectPodium}>
+                Buka Informasi Podium Kehormatan Universitas Diponegoro
+              </button>
+            </li>
+            <li>
+              <button type="button" onClick={handleSelectPrasasti}>
+                Buka Informasi Prasasti Pendirian 1957
+              </button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
       <Canvas
-        shadows={!isMobile}
-        dpr={[1, isMobile ? 1.5 : 2]}
-        gl={{ antialias: true, powerPreference: 'high-performance' }}
+        shadows={false}
+        dpr={[1, isMobile ? 1.0 : 1.75]}
+        gl={{
+          antialias: !isMobile,
+          powerPreference: 'high-performance',
+          stencil: false,
+        }}
         onPointerMissed={() => setSelectedExhibit(null)}
       >
         <color attach="background" args={['#0e1724']} />
-        <fog attach="fog" args={['#0e1724', 45, 95]} />
+        <fog attach="fog" args={[CULLING_CONFIG.fogColor, CULLING_CONFIG.fogNear, CULLING_CONFIG.fogFar]} />
 
         <PerspectiveCamera
           makeDefault
           position={START_POSITION}
           fov={isMobile ? 66 : 56}
           near={0.1}
-          far={140}
+          far={55}
         />
 
         <Suspense fallback={null}>
-          <GalleryLighting castShadows={!isMobile} />
-          <GalleryEnvironment isNearDirectory={isNearDirectory} />
+          <CullingManager onStatsUpdate={setCullingStats}>
+            <GalleryLighting castShadows={false} isMobile={isMobile} />
+            <GalleryEnvironment isNearDirectory={isNearDirectory} isMobile={isMobile} />
 
-          {/* Section 1 (Left Side): 13 Photos of UNDIP Founders */}
-          <FoundersWing
-            selectedFounderId={selectedFounderId}
-            hoveredId={hoveredId}
-            onSelectFounder={handleSelectFounder}
-            onHover={handleHover}
-          />
+            {/* Section 1 (Left Side): 13 Photos of UNDIP Founders */}
+            <FoundersWing
+              selectedFounderId={selectedFounderId}
+              hoveredId={hoveredId}
+              isMobile={isMobile}
+              onSelectFounder={handleSelectFounder}
+              onHover={handleHover}
+            />
 
-          {/* Section 2 (Right Side): UNDIP's History, Early Photos, Founding Decree, & Archives */}
-          <HistoryArchivesWing
-            selectedExhibitId={selectedHistoryId}
-            hoveredId={hoveredId}
-            onSelectExhibit={handleSelectHistory}
-            onHover={handleHover}
-          />
+            {/* Section 2 (Right Side): UNDIP's History, Early Photos, Founding Decree, & Archives */}
+            <HistoryArchivesWing
+              selectedExhibitId={selectedHistoryId}
+              hoveredId={hoveredId}
+              isMobile={isMobile}
+              onSelectExhibit={handleSelectHistory}
+              onHover={handleHover}
+            />
 
-          {/* Center End: Ceremonial Dais & Podium with Inscription Plaque (Prasasti) */}
-          <CeremonialPodium
-            position={PODIUM_POS}
-            isSelected={selectedExhibit?.type === 'podium'}
-            isHovered={hoveredId === 'podium'}
-            onSelect={handleSelectPodium}
-            onSelectPrasasti={handleSelectPrasasti}
-            onHover={handleHover}
-          />
+            {/* Center End: Ceremonial Dais & Podium with Inscription Plaque (Prasasti) */}
+            <CeremonialPodium
+              position={PODIUM_POS}
+              isSelected={selectedExhibit?.type === 'podium'}
+              isHovered={hoveredId === 'podium'}
+              isMobile={isMobile}
+              onSelect={handleSelectPodium}
+              onSelectPrasasti={handleSelectPrasasti}
+              onHover={handleHover}
+            />
+          </CullingManager>
         </Suspense>
 
         <FirstPersonControls
@@ -183,6 +244,8 @@ export function Zone1() {
           onProximityChange={setIsNearDirectory}
         />
       </Canvas>
+
+      {cullingStats && <CullingDebugOverlay stats={cullingStats} />}
 
       {/* Subtle Desktop Hints */}
       {!isMobile && <DesktopHints />}

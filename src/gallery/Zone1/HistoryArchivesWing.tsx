@@ -66,6 +66,7 @@ interface SalonItemProps {
   exhibit: HistoryExhibit
   isSelected: boolean
   isHovered: boolean
+  isMobile?: boolean
   onSelect: (exhibit: HistoryExhibit) => void
   onHover: (id: string | null) => void
 }
@@ -75,6 +76,7 @@ function SalonItem({
   exhibit,
   isSelected,
   isHovered,
+  isMobile = false,
   onSelect,
   onHover,
 }: SalonItemProps) {
@@ -113,14 +115,16 @@ function SalonItem({
         onSelect(exhibit)
       }}
     >
-      {/* 1. Dark Wood Backboard */}
-      <mesh position={[0, 0, -0.04]} castShadow>
-        <boxGeometry args={[fw + 0.08, fh + 0.08, 0.04]} />
-        <meshStandardMaterial color="#1a110a" roughness={0.7} />
-      </mesh>
+      {/* 1. Dark Wood Backboard (Desktop only) */}
+      {!isMobile && (
+        <mesh position={[0, 0, -0.04]} castShadow>
+          <boxGeometry args={[fw + 0.08, fh + 0.08, 0.04]} />
+          <meshStandardMaterial color="#1a110a" roughness={0.7} />
+        </mesh>
+      )}
 
       {/* 2. Outer Moulded Frame (Gold or Heritage Teak) */}
-      <mesh position={[0, 0, 0]} castShadow receiveShadow>
+      <mesh position={[0, 0, 0]} castShadow={!isMobile} receiveShadow={!isMobile}>
         <boxGeometry args={[fw, fh, 0.09]} />
         <meshStandardMaterial
           color={isSelected ? '#ffd966' : isHovered ? '#f5cf65' : frameColor}
@@ -131,17 +135,21 @@ function SalonItem({
         />
       </mesh>
 
-      {/* 3. Passe-Partout Matboard (Ivory/White museum matboard) */}
-      <mesh position={[0, 0, 0.035]} receiveShadow>
-        <boxGeometry args={[fw - 0.12, fh - 0.12, 0.04]} />
-        <meshStandardMaterial color="#f8f5ee" roughness={0.9} />
-      </mesh>
+      {/* 3. Passe-Partout Matboard (Ivory/White museum matboard - Desktop only) */}
+      {!isMobile && (
+        <mesh position={[0, 0, 0.035]} receiveShadow>
+          <boxGeometry args={[fw - 0.12, fh - 0.12, 0.04]} />
+          <meshStandardMaterial color="#f8f5ee" roughness={0.9} />
+        </mesh>
+      )}
 
-      {/* 4. Fine Inset Gold Foil Trim */}
-      <mesh position={[0, 0, 0.048]}>
-        <boxGeometry args={[fw - 0.2, fh - 0.2, 0.015]} />
-        <meshStandardMaterial color="#d4af37" roughness={0.25} metalness={0.85} />
-      </mesh>
+      {/* 4. Fine Inset Gold Foil Trim (Desktop only) */}
+      {!isMobile && (
+        <mesh position={[0, 0, 0.048]}>
+          <boxGeometry args={[fw - 0.2, fh - 0.2, 0.015]} />
+          <meshStandardMaterial color="#d4af37" roughness={0.25} metalness={0.85} />
+        </mesh>
+      )}
 
       {/* 5. Exhibition Canvas */}
       <mesh position={[0, 0, 0.06]}>
@@ -171,6 +179,7 @@ function SalonItem({
 interface HistoryArchivesWingProps {
   selectedExhibitId: string | null
   hoveredId: string | null
+  isMobile?: boolean
   onSelectExhibit: (exhibit: HistoryExhibit) => void
   onHover: (id: string | null) => void
 }
@@ -181,15 +190,10 @@ interface HistoryArchivesWingProps {
  */
 interface ActiveTrackSpotlightProps {
   z: number
+  isMobile?: boolean
 }
 
 function ActiveTrackSpotlight({ z }: ActiveTrackSpotlightProps) {
-  const targetObj = useMemo(() => {
-    const obj = new THREE.Object3D()
-    obj.position.set(0.8, -2.3, 0)
-    return obj
-  }, [])
-
   return (
     <group position={[HISTORY_WALL_X - 0.8, 5.15, z]}>
       {/* Track Stem Connector attaching canister to horizontal pole */}
@@ -226,28 +230,6 @@ function ActiveTrackSpotlight({ z }: ActiveTrackSpotlightProps) {
         <cylinderGeometry args={[0.055, 0.055, 0.01, 16]} />
         <meshStandardMaterial color="#d4af37" metalness={0.9} roughness={0.2} />
       </mesh>
-
-      {/* Realistic Local Fixture Glow */}
-      <pointLight
-        position={[0.09, -0.11, 0]}
-        color="#ffe299"
-        intensity={3.5}
-        distance={2.0}
-        decay={2}
-      />
-
-      {/* Directed Warm Museum Wall Spotlight */}
-      <primitive object={targetObj} />
-      <spotLight
-        position={[0.08, -0.1, 0]}
-        target={targetObj}
-        color="#fff1dc"
-        intensity={36}
-        angle={0.62}
-        penumbra={0.7}
-        distance={8.5}
-        decay={2}
-      />
     </group>
   )
 }
@@ -255,6 +237,7 @@ function ActiveTrackSpotlight({ z }: ActiveTrackSpotlightProps) {
 export function HistoryArchivesWing({
   selectedExhibitId,
   hoveredId,
+  isMobile = false,
   onSelectExhibit,
   onHover,
 }: HistoryArchivesWingProps) {
@@ -289,7 +272,7 @@ export function HistoryArchivesWing({
 
       {/* Rhythmic Focused Track Spotlights on the Clusters (Turned ON with Luminous Emitters) */}
       {[5.6, 3.3, 1.1, -1.5, -3.5, -5.7, -7.9, -10.1, -12.3, -14.5].map((spotZ, sIdx) => (
-        <ActiveTrackSpotlight key={`active-track-spot-${sIdx}`} z={spotZ} />
+        <ActiveTrackSpotlight key={`active-track-spot-${sIdx}`} z={spotZ} isMobile={isMobile} />
       ))}
 
       {/* Museum Gallery Wall Items */}
@@ -301,6 +284,7 @@ export function HistoryArchivesWing({
             key={config.exhibitId}
             config={config}
             exhibit={exhibit}
+            isMobile={isMobile}
             isSelected={selectedExhibitId === exhibit.id}
             isHovered={hoveredId === exhibit.id}
             onSelect={onSelectExhibit}

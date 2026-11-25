@@ -6,6 +6,9 @@ import {
   createHistoryDataURL,
   createPrasastiDataURL,
 } from './textures'
+import { createZone2ExhibitDataURL } from '../Zone2/textures'
+import type { Zone2Exhibit } from '../Zone2/types'
+import { DOMEntityCuller } from '../../perf/core/useDOMEntityCulling'
 
 interface ExhibitInformationPanelProps {
   selected: SelectedExhibit | null
@@ -67,6 +70,18 @@ export function ExhibitInformationPanel({
     if (selected.type === 'prasasti') {
       return createPrasastiDataURL()
     }
+    if (
+      selected.type === 'faculty' ||
+      selected.type === 'transformation' ||
+      selected.type === 'research' ||
+      selected.type === 'achievement' ||
+      selected.type === 'monument'
+    ) {
+      const z2 = selected.data as Zone2Exhibit
+      return z2.imagePath && failedSrc !== z2.imagePath
+        ? z2.imagePath
+        : createZone2ExhibitDataURL(z2)
+    }
     return ''
   }, [selected, failedSrc])
 
@@ -77,9 +92,16 @@ export function ExhibitInformationPanel({
   const isMap = selected.type === 'miniature-map'
   const isPodium = selected.type === 'podium'
   const isPrasasti = selected.type === 'prasasti'
+  const isZone2 =
+    selected.type === 'faculty' ||
+    selected.type === 'transformation' ||
+    selected.type === 'research' ||
+    selected.type === 'achievement' ||
+    selected.type === 'monument'
 
   const founderData = isFounder ? (selected.data as Founder) : null
   const historyData = isHistory ? (selected.data as HistoryExhibit) : null
+  const zone2Data = isZone2 ? (selected.data as Zone2Exhibit) : null
 
   return (
     <>
@@ -106,6 +128,16 @@ export function ExhibitInformationPanel({
               {isMap && '🗺️ Maket Arsitektural'}
               {isPodium && '🎙️ Podium Kehormatan'}
               {isPrasasti && '🏛️ Prasasti Bersejarah'}
+              {isZone2 &&
+                (selected.type === 'faculty'
+                  ? `🎓 ${zone2Data?.badge || 'Perkembangan Fakultas'}`
+                  : selected.type === 'transformation'
+                  ? `🗺️ ${zone2Data?.badge || 'Transformasi Kampus'}`
+                  : selected.type === 'research'
+                  ? `🔬 ${zone2Data?.badge || 'Pendidikan & Riset'}`
+                  : selected.type === 'achievement'
+                  ? `🏆 ${zone2Data?.badge || 'Prestasi & Kontribusi'}`
+                  : '🏛️ Monumen Kehormatan Zona 2')}
             </span>
 
             <h2 className="gr-name">
@@ -114,6 +146,7 @@ export function ExhibitInformationPanel({
               {isMap && 'Maket 3D Kampus Terpadu Universitas Diponegoro'}
               {isPodium && 'Podium Kehormatan Universitas Diponegoro'}
               {isPrasasti && 'Prasasti Pendirian & Peresmian Universitas Diponegoro'}
+              {isZone2 && zone2Data?.title}
             </h2>
 
             <p className="gr-years">
@@ -122,6 +155,7 @@ export function ExhibitInformationPanel({
               {isMap && 'Pusat Utama Gedung Muladi Dome • Kawasan Tembalang'}
               {isPodium && 'Simbol Wibawa & Nilai Perjuangan Diponegoro'}
               {isPrasasti && '9 Januari 1957 • Diresmikan Presiden RI Ir. Soekarno'}
+              {isZone2 && `${zone2Data?.subtitle} • (${zone2Data?.period})`}
             </p>
           </div>
 
@@ -197,6 +231,7 @@ export function ExhibitInformationPanel({
                   {isHistory && '✦ Arsip Dokumen Sejarah Undip'}
                   {isFounder && '✦ Potret Tokoh Pendiri'}
                   {isPrasasti && '✦ Prasasti Peresmian 1957'}
+                  {isZone2 && '✦ Galeri & Dokumentasi Zona 2 Undip'}
                 </span>
               </div>
             </div>
@@ -206,7 +241,7 @@ export function ExhibitInformationPanel({
               RIGHT COLUMN: HISTORICAL CONTENT & DOCUMENTATION
               ONLY THIS CONTAINER SCROLLS
               ============================================================ */}
-          <div className="gr-content-wrap">
+          <DOMEntityCuller className="gr-content-wrap" minHeight={280} once>
             {/* Founder Specific Description */}
             {isFounder && founderData && (
               <div className="gr-exhibit-text">
@@ -338,13 +373,62 @@ export function ExhibitInformationPanel({
               </div>
             )}
 
+            {/* Zone 2 Specific Exhibit Description (Faculties, Transformation, Research, Achievements, Monument) */}
+            {isZone2 && zone2Data && (
+              <div className="gr-exhibit-text">
+                <h4 className="gr-sec-title">Ringkasan Koleksi & Signifikansi</h4>
+                <p className="gr-desc-lead">{zone2Data.description}</p>
+
+                <h4 className="gr-sec-title">Catatan Sejarah & Dokumentasi</h4>
+                <div className="gr-desc-content">
+                  {zone2Data.fullContent.split('\n\n').map((paragraph, i) => (
+                    <p key={i}>{paragraph}</p>
+                  ))}
+                </div>
+
+                {zone2Data.highlights && zone2Data.highlights.length > 0 && (
+                  <div className="gr-highlights-box">
+                    <h4 className="gr-sec-title">Poin Kunci & Keunggulan:</h4>
+                    <ul className="gr-highlights-list">
+                      {zone2Data.highlights.map((hl, i) => (
+                        <li key={i}>{hl}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {zone2Data.stats && zone2Data.stats.length > 0 && (
+                  <div className="gr-highlights-box" style={{ marginTop: '16px' }}>
+                    <h4 className="gr-sec-title">Data & Indikator Utama:</h4>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '10px', marginTop: '10px' }}>
+                      {zone2Data.stats.map((st, i) => (
+                        <div
+                          key={i}
+                          style={{
+                            background: 'rgba(212, 175, 55, 0.1)',
+                            border: '1px solid rgba(212, 175, 55, 0.3)',
+                            borderRadius: '6px',
+                            padding: '10px 12px',
+                            textAlign: 'center',
+                          }}
+                        >
+                          <div style={{ color: '#ffd700', fontWeight: 'bold', fontSize: '16px' }}>{st.value}</div>
+                          <div style={{ color: '#cbd5e1', fontSize: '12px', marginTop: '4px' }}>{st.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Exhibit End / Continue Action Button (At the bottom of the scrollable content) */}
             <div className="gr-content-foot">
               <button type="button" className="gr-continue" onClick={onClose}>
                 Kembali Menjelajah Museum
               </button>
             </div>
-          </div>
+          </DOMEntityCuller>
         </div>
       </aside>
     </>

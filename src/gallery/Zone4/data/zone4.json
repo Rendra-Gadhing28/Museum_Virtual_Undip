@@ -1,0 +1,370 @@
+{
+  "campus": {
+    "stats": [
+      { "id": "stat-students", "label": "Mahasiswa Aktif", "value": 56840, "unit": "+", "subtitle": "Dari 38 Provinsi & 45 Negara" },
+      { "id": "stat-prodi", "label": "Program Studi", "value": 172, "unit": "Prodi", "subtitle": "Terakreditasi Unggul & Internasional" },
+      { "id": "stat-area", "label": "Luas Area Kampus", "value": 220, "unit": "Ha", "subtitle": "Kampus Hijau Berkelanjutan Tembalang & Jepara" },
+      { "id": "stat-faculties", "label": "Fakultas & Sekolah", "value": 13, "unit": "Fakultas", "subtitle": "11 Fakultas, 1 Sekolah Vokasi, 1 Sekolah Pascasarjana" }
+    ],
+    "buildings": [
+      {
+        "id": "bldg-widya-puraya",
+        "name": "Gedung Widya Puraya (Rektorat)",
+        "category": "administration",
+        "floors": 4,
+        "width": 5.4,
+        "length": 4.2,
+        "height": 2.8,
+        "x": 0,
+        "z": -4.2,
+        "year": "1994",
+        "function": "Pusat Administrasi & Simbol Utama Kehormatan Universitas",
+        "description": "Gedung ikonik dengan atap joglo modern bertingkat yang menjadi landmark utama Kampus Undip Tembalang. Menjadi kantor Rektor, Senat Akademik, dan Majelis Wali Amanat.",
+        "highlights": ["Landmark Kampus Tembalang", "Arsitektur Neo-Vernakular Jawa", "Pusat Kebijakan Strategis Universitas"]
+      },
+      {
+        "id": "bldg-ict-center",
+        "name": "ICT Center & Integrated Data Hub",
+        "category": "technology",
+        "floors": 5,
+        "width": 4.6,
+        "length": 3.4,
+        "height": 3.2,
+        "x": -6.2,
+        "z": -3.5,
+        "year": "2012",
+        "function": "Pusat Teknologi Informasi, Jaringan Kampus, & Data Center",
+        "description": "Pusat kendali infrastruktur komputasi cerdas kampus, fiber optic backbone, server cloud terintegrasi, dan pengembangan sistem akademik digital SSO Undip.",
+        "highlights": ["Supercomputing Node", "Pusat Cyber Security Kampus", "Smart Campus Command Center"]
+      },
+      {
+        "id": "bldg-sa-mwa",
+        "name": "Gedung SA & MWA",
+        "category": "administration",
+        "floors": 4,
+        "width": 3.8,
+        "length": 3.2,
+        "height": 2.4,
+        "x": 6.2,
+        "z": -3.5,
+        "year": "2018",
+        "function": "Majelis Wali Amanat & Senat Akademik",
+        "description": "Gedung perkantoran modern dengan efisiensi energi tinggi yang menampung badan penentu arah dan pengawasan otonom perguruan tinggi negeri berbadan hukum.",
+        "highlights": ["Tata Kelola PTN-BH", "Green Building Certified", "Ruang Sidang Senat Representatif"]
+      },
+      {
+        "id": "bldg-ft-dekanat",
+        "name": "Dekanat Fakultas Teknik & Research Tower",
+        "category": "faculty",
+        "floors": 6,
+        "width": 5.0,
+        "length": 3.8,
+        "height": 3.6,
+        "x": -6.8,
+        "z": 3.8,
+        "year": "2016",
+        "function": "Fakultas Teknik — Pusat Rekayasa & Inovasi Industri",
+        "description": "Fakultas teknik terlengkap di Jawa Tengah dengan 12 departemen, laboratorium perancangan modern, inkubator robotika, dan pusat riset rekayasa terapan.",
+        "highlights": ["Lab Robotika & Mobil Listrik", "Akreditasi Internasional IABEE / ASIIN", "Inkubator Startup Teknologi"]
+      },
+      {
+        "id": "bldg-fk-rsnd",
+        "name": "Fakultas Kedokteran & RS Nasional Diponegoro",
+        "category": "health",
+        "floors": 7,
+        "width": 5.6,
+        "length": 4.0,
+        "height": 4.0,
+        "x": 6.8,
+        "z": 3.8,
+        "year": "2014",
+        "function": "Rumah Sakit Pendidikan & Pusat Riset Kedokteran Tropis",
+        "description": "Kompleks kesehatan terpadu yang memadukan pendidikan klinis, riset genomika penyakit tropis, dan pelayanan kesehatan rumah sakit tipe B bertaraf internasional.",
+        "highlights": ["Rumah Sakit Pendidikan Utama", "Pusat Kedokteran Kelautan & Hiperbarik", "Stem Cell & Molecular Biology Center"]
+      },
+      {
+        "id": "bldg-feb",
+        "name": "Gedung Laboratorium Terpadu FEB",
+        "category": "faculty",
+        "floors": 5,
+        "width": 4.2,
+        "length": 3.2,
+        "height": 3.0,
+        "x": -3.2,
+        "z": 6.5,
+        "year": "2015",
+        "function": "Fakultas Ekonomika dan Bisnis — Bloomberg Financial Hub",
+        "description": "Pusat pendidikan bisnis terakreditasi internasional AACSB / ABEST21 dengan laboratorium simulasi pasar modal Bloomberg Terminal dan Islamic Financial Center.",
+        "highlights": ["Terakreditasi AACSB Internasional", "Bloomberg Financial Markets Lab", "Pusat Inkubasi Bisnis Mandiri"]
+      },
+      {
+        "id": "bldg-fpik",
+        "name": "Pusat Riset Kelautan & FPIK",
+        "category": "marine",
+        "floors": 4,
+        "width": 4.4,
+        "length": 3.4,
+        "height": 2.6,
+        "x": 3.2,
+        "z": 6.5,
+        "year": "2017",
+        "function": "Pusat Keunggulan Riset Perikanan & Ilmu Kelautan",
+        "description": "Pilar utama Pola Ilmiah Pokok (PIP) Undip: Pengembangan Wilayah Pesisir dan Laut Tropis dengan stasiun oseanografi dan laboratorium bioteknologi laut.",
+        "highlights": ["Pionir Kelautan Tropis Indonesia", "Stasiun Riset Laut Teluk Awur Jepara", "Bioteknologi Alga & Budidaya Presisi"]
+      },
+      {
+        "id": "bldg-muladi-dome",
+        "name": "Muladi Dome & Multipurpose Convention",
+        "category": "hall",
+        "floors": 3,
+        "width": 6.0,
+        "length": 5.0,
+        "height": 3.4,
+        "x": 0,
+        "z": 7.5,
+        "year": "2023",
+        "function": "Convention Center Terbesar & Auditorium Wisuda",
+        "description": "Auditorium modern termegah di Jawa Tengah dengan kapasitas lebih dari 4.000 orang, sistem akustik canggih, dan panel surya mandiri energi.",
+        "highlights": ["Kapasitas 4.000+ Kursi", "Akustik Standar Gedung Konser", "Pusat Konvensi Internasional"]
+      },
+      {
+        "id": "bldg-fsm",
+        "name": "Sains & Analitika Data (FSM)",
+        "category": "science",
+        "floors": 5,
+        "width": 4.0,
+        "length": 3.0,
+        "height": 2.9,
+        "x": -7.5,
+        "z": -0.2,
+        "year": "2019",
+        "function": "Fakultas Sains dan Matematika",
+        "description": "Pusat komputasi kuantum, kecerdasan artifisial, fisika material maju, dan pemodelan matematika kompleks untuk mitigasi bencana pesisir.",
+        "highlights": ["Pusat Riset Material Maju & Plasma", "Artificial Intelligence & Big Data Hub", "Lab Nanoteknologi"]
+      },
+      {
+        "id": "bldg-fh",
+        "name": "Dekanat Fakultas Hukum Progresif",
+        "category": "faculty",
+        "floors": 4,
+        "width": 4.0,
+        "length": 3.0,
+        "height": 2.5,
+        "x": 7.5,
+        "z": -0.2,
+        "year": "2011",
+        "function": "Pusat Studi Hukum Progresif & Klinik Peradilan Semu",
+        "description": "Fakultas legendaris berwawasan global yang melahirkan konsep hukum progresif, dilengkapi ruang sidang peradilan semu internasional bertaraf moot court dunia.",
+        "highlights": ["Ruang Sidang Semu Internasional", "Pusat Kajian Konstitusi & HAM", "Jurnal Ilmiah Terindeks Scopus"]
+      },
+      {
+        "id": "bldg-sport-center",
+        "name": "Diponegoro Stadium & Sport Center",
+        "category": "sports",
+        "floors": 2,
+        "width": 6.5,
+        "length": 4.5,
+        "height": 1.8,
+        "x": -4.2,
+        "z": -7.5,
+        "year": "2015",
+        "function": "Stadion Atletik, Sepak Bola, & Gelanggang Mahasiswa",
+        "description": "Fasilitas olahraga terpadu berstandar nasional dengan lintasan sintetis atletik, lapangan sepak bola berumput standar FIFA, dan tribun tertutup.",
+        "highlights": ["Lintasan Atletik Standar IAAF", "Gelanggang Prestasi Mahasiswa", "Kebugaran & Komunitas Kampus Sehat"]
+      },
+      {
+        "id": "bldg-mosque-maskam",
+        "name": "Masjid Kampus Baitul 'Ilmi Tembalang",
+        "category": "worship",
+        "floors": 2,
+        "width": 4.8,
+        "length": 4.8,
+        "height": 3.5,
+        "x": 4.2,
+        "z": -7.5,
+        "year": "2008",
+        "function": "Pusat Ibadah, Pembinaan Karakter, & Spiritualitas Kampus",
+        "description": "Masjid megah berkubah modern dengan ornamen kaligrafi kontemporer, menjadi ruang pembinaan akhlak mulia dan persaudaraan sivitas akademika.",
+        "highlights": ["Kubah Geometris Modern", "Kapasitas 3.500 Jamaah", "Pusat Moderasi Beragama Kampus"]
+      }
+    ]
+  },
+  "labs": [
+    {
+      "id": "lab-robotics",
+      "name": "Robotics, Automation & Electric Vehicle Lab",
+      "sector": "Teknologi Rekayasa",
+      "icon": "🤖",
+      "description": "Laboratorium pengembangan robot otonom, tangan prostetik bionik (Bionic Hand), dan mobil listrik hemat energi tim Antawirya yang menjuarai kompetisi Asia-Pasifik.",
+      "leadScientist": "Tim Riset Laboratorium Robotika & Otomasi FT Undip",
+      "innovations": ["Tangan Bionik Asto Syandana", "Mobil Hemat Energi Antawirya", "Autonomous Drone Monitoring Pesisir"]
+    },
+    {
+      "id": "lab-bioprinting",
+      "name": "3D Bioprinting & Tissue Engineering",
+      "sector": "Kesehatan & Kedokteran",
+      "icon": "🧬",
+      "description": "Fasilitas cetak 3D biomaterial untuk regenerasi jaringan kulit dan implan tulang bio-kompatibel berbasis hidroksiapatit kalsium cangkang kerang lokal.",
+      "leadScientist": "Center for Biomechanics, Biomaterials, Biomechatronics and Biosignal (CBIOM3S)",
+      "innovations": ["Bioperancah Tulang Tulang Rawan", "Hydrogel Scaffold 3D", "Implan Tulang Belakang Titanium Lokal"]
+    },
+    {
+      "id": "lab-molecular",
+      "name": "Advanced Molecular Biology & Genomic Sequencing",
+      "sector": "Sains Hayati",
+      "icon": "🔬",
+      "description": "Laboratorium genomika mutakhir untuk pemetaan varian virus tropis, deteksi dini kanker payudara, dan identifikasi DNA mikroba laut dalam.",
+      "leadScientist": "Laboratorium Terpadu Riset Genomika FK Undip",
+      "innovations": ["Rapid Detection Kit Penyakit Tropis", "Database Genomik Spesies Pesisir", "Bioinformatika Kanker Payudara"]
+    },
+    {
+      "id": "lab-renewable",
+      "name": "Renewable Solar & Offshore Wind Energy Station",
+      "sector": "Energi Terbarukan",
+      "icon": "⚡",
+      "description": "Pusat pengujian fotovoltaik panel surya bifacial efisiensi tinggi dan turbin angin vertikal lepas pantai untuk elektrifikasi pulau-pulau 3T.",
+      "leadScientist": "Center of Clean Energy & Environmental Technology (CEET)",
+      "innovations": ["Turbin Angin Savonius Pesisir", "Pembangkit Surya Terintegrasi IoT", "Baterai Penyimpan Energi Ramah Lingkungan"]
+    },
+    {
+      "id": "lab-marine",
+      "name": "Marine Biodiversity & Sustainable Aquaculture Tank",
+      "sector": "Kelautan & Perikanan",
+      "icon": "🌊",
+      "description": "Instalasi sirkulasi air laut presisi untuk pembudidayaan mikroalga penyerap karbon, transplantasi terumbu karang tahan pemanasan global, dan udang vaname ramah lingkungan.",
+      "leadScientist": "Integrated Marine Bio-Science Research Center FPIK",
+      "innovations": ["Spirulina Carbon Capture Reactor", "Restorasi Karang Biorock Berkelanjutan", "Bioflok Udang Berbasis IoT"]
+    },
+    {
+      "id": "lab-ai-supercomputing",
+      "name": "AI, Neural Networks & Quantum Computing Hub",
+      "sector": "Kecerdasan Buatan",
+      "icon": "🧠",
+      "description": "Klaster GPU superkomputer untuk pelatihan model bahasa AI lokal bahasa Jawa, computer vision deteksi kebocoran kapal laut, dan prediksi dinamika gelombang tsunami.",
+      "leadScientist": "Artificial Intelligence Research Center FSM",
+      "innovations": ["Deep Learning Early Warning Tsunami", "Model AI Bahasa Daerah Nusantara", "Smart Campus Face & Traffic Analytics"]
+    }
+  ],
+  "researchCards": [
+    {
+      "id": "res-01",
+      "title": "Bionic Prosthetic Hand with Sensory Feedback",
+      "researcher": "Dr. Rifky Ismail, S.T., M.T. & Tim CBIOM3S",
+      "field": "Biomedical Engineering",
+      "year": "2023",
+      "journal": "IEEE Transactions on Neural Systems and Rehabilitation",
+      "impact": "Tangan palsu bionik dengan sensor tekanan taktil berbiaya terjangkau bagi ribuan penyandang disabilitas di Indonesia."
+    },
+    {
+      "id": "res-02",
+      "title": "Mangrove Carbon Sequestration and Coastal Resilience",
+      "researcher": "Prof. Dr. Ir. Ambariyanto, M.Sc.",
+      "field": "Marine & Climate Science",
+      "year": "2024",
+      "journal": "Nature Communications / Marine Ecology",
+      "impact": "Model pemetaan kapasitas serapan karbon biru ekosistem mangrove di pesisir utara Jawa untuk pasar karbon global."
+    },
+    {
+      "id": "res-03",
+      "title": "Ozone Nanobubble Water for Agricultural Sanitation",
+      "researcher": "Prof. Dr. Muhammad Nur, DEA & Tim CPR",
+      "field": "Plasma Physics & Food Tech",
+      "year": "2023",
+      "journal": "Journal of Cleaner Production",
+      "impact": "Aplikasi teknologi plasma ozon untuk memperpanjang masa simpan beras dan hortikultura tanpa bahan kimia pengawet."
+    },
+    {
+      "id": "res-04",
+      "title": "Perovskite-Silicon Tandem Solar Cells for Tropical Climate",
+      "researcher": "Dr.-Ing. Silviana, S.T., M.T.",
+      "field": "Renewable Materials",
+      "year": "2024",
+      "journal": "ACS Applied Energy Materials",
+      "impact": "Peningkatan efisiensi konversi energi sel surya hingga 28,4% pada kelembaban dan suhu tinggi khas negara tropis."
+    },
+    {
+      "id": "res-05",
+      "title": "AI-Driven Deep Learning for Early Marine Pollution Tracking",
+      "researcher": "Dr. Retno Kusumaningrum, S.Si., M.Kom.",
+      "field": "Computer Science & AI",
+      "year": "2023",
+      "journal": "Marine Pollution Bulletin",
+      "impact": "Deteksi tumpahan minyak mentah di jalur pelayaran Selat Malaka menggunakan citra satelit sintetis resolusi tinggi."
+    },
+    {
+      "id": "res-06",
+      "title": "Bio-Scaffold Bone Graft Derived from Marine Shell Waste",
+      "researcher": "Prof. Dr. Jamari, S.T., M.T.",
+      "field": "Advanced Materials",
+      "year": "2022",
+      "journal": "Materials Science and Engineering: C",
+      "impact": "Transformasi limbah cangkang kerang simping menjadi bahan tambal tulang medis berstandar ISO 10993."
+    },
+    {
+      "id": "res-07",
+      "title": "Progressive Law Paradigm in Modern Constitutional Disputes",
+      "researcher": "Prof. Dr. Retno Saraswati, S.H., M.Hum.",
+      "field": "Social & Legal Studies",
+      "year": "2024",
+      "journal": "Asian Journal of Law and Society (Cambridge)",
+      "impact": "Rekomendasi reformasi peradilan konstitusional yang berkeadilan sosial bagi masyarakat marjinal di era digital."
+    },
+    {
+      "id": "res-08",
+      "title": "Nutraceutical Marine Peptide for Metabolic Syndrome",
+      "researcher": "Prof. Dr. dr. Sultana MH Faradz, Ph.D.",
+      "field": "Medicine & Genetics",
+      "year": "2023",
+      "journal": "Biomedicine & Pharmacotherapy",
+      "impact": "Ekstraksi peptida bioaktif dari teripang laut lokal untuk terapi preventif resistensi insulin dan diabetes melitus."
+    }
+  ],
+  "library": {
+    "publications": [
+      { "id": "pub-01", "title": "Scopus Indexed Publications (Annual)", "count": "4,120+", "category": "International Journal" },
+      { "id": "pub-02", "title": "Citations in Global Academic Literature", "count": "89,450+", "category": "Global Impact" },
+      { "id": "pub-03", "title": "Granted Patents & Intellectual Property (HKI)", "count": "1,340+", "category": "Innovation" },
+      { "id": "pub-04", "title": "National SINTA 1 & 2 Accredited Journals", "count": "68", "category": "National Standard" }
+    ],
+    "collections": [
+      { "id": "col-repo", "title": "Undip Institutional Repository (E-Prints)", "items": "210,000+ Dokumen Digital", "desc": "Skripsi, tesis, disertasi, dan laporan riset yang terbuka dapat diakses publik global." },
+      { "id": "col-ebook", "title": "Subscribed E-Books & Monograph Collection", "items": "145,000+ Judul Buku Digital", "desc": "Akses langsung penerbit terkemuka: ScienceDirect, Springer, Wiley, Taylor & Francis." },
+      { "id": "col-manuscript", "title": "Digitalized Javanese Historical Manuscripts", "items": "3,400 Naskah Kuno Pesisir", "desc": "Preservasi naskah sastra, hukum adat, dan catatan maritim Jawa Tengah abad 18-20." }
+    ]
+  },
+  "achievements": {
+    "rankings": [
+      { "id": "rank-qs-employability", "institution": "QS Graduate Employability Rankings", "rank": "#1 di Indonesia (Kecepatan Lulusan Bekerja)", "year": "2022–2024", "desc": "Alumni Undip menduduki peringkat pertama tercepat dalam memperoleh pekerjaan di tingkat nasional." },
+      { "id": "rank-qs-world", "institution": "QS World University Rankings", "rank": "Top 721-730 Global / Top 8 Indonesia", "year": "2025", "desc": "Lonjakan reputasi akademik, rasio sitasi riset per dosen, dan keberagaman mahasiswa internasional." },
+      { "id": "rank-greenmetric", "institution": "UI GreenMetric World University Rankings", "rank": "#2 di Indonesia / #25 di Dunia", "year": "2023–2024", "desc": "Komitmen tinggi pada pengelolaan energi hijau, transportasi ramah lingkungan, dan reduksi emisi karbon kampus." },
+      { "id": "rank-the-impact", "institution": "Times Higher Education (THE) Impact Rankings", "rank": "Top 100-200 World SDGs", "year": "2024", "desc": "Kontribusi nyata terhadap Tujuan Pembangunan Berkelanjutan PBB terutama SDG 14 (Life Below Water)." }
+    ],
+    "medals": [
+      { "id": "med-01", "competition": "Shell Eco-marathon Asia-Pacific", "category": "UrbanConcept Internal Combustion Engine", "rank": "Juara 1 Emas", "year": "2023" },
+      { "id": "med-02", "competition": "Pekan Ilmiah Mahasiswa Nasional (PIMNAS 36)", "category": "Penyelenggara & Medali Emas PKM-RE", "rank": "Peringkat 5 Nasional", "year": "2023" },
+      { "id": "med-03", "competition": "World Invention and Technology Expo (WINTEX)", "category": "Biomedical Prosthetics", "rank": "Grand Prix Gold Medal", "year": "2024" },
+      { "id": "med-04", "competition": "Gemastik XVI (Pagelaran Mahasiswa TIK Nasional)", "category": "Pengembangan Perangkat Cerdas & IoT", "rank": "Juara 1 Medali Emas", "year": "2023" },
+      { "id": "med-05", "competition": "Singapore International Water Week Innovation Award", "category": "Desalinisasi Air Payau Portabel", "rank": "Best Technological Innovation", "year": "2024" },
+      { "id": "med-06", "competition": "Harvard National Model United Nations (HNMUN)", "category": "Social, Humanitarian and Cultural Committee", "rank": "Diplomatic Commendation Award", "year": "2024" },
+      { "id": "med-07", "competition": "International Warsaw Invention Show (IWIS Poland)", "category": "Nanomaterial & Solar Cells", "rank": "Gold Medal & Special Award", "year": "2023" },
+      { "id": "med-08", "competition": "Kontes Robot Terbang Indonesia (KRTI)", "category": "Fixed Wing Autonomous Cargo", "rank": "Juara 1 Nasional", "year": "2023" }
+    ],
+    "partners": [
+      { "name": "Kyoto University", "country": "Jepang", "flag": "🇯🇵", "focus": "Riset Biosains & Mitigasi Gempa Bumi" },
+      { "name": "Leiden University", "country": "Belanda", "flag": "🇳🇱", "focus": "Hukum Internasional & Kajian Naskah Sejarah" },
+      { "name": "The University of Queensland", "country": "Australia", "flag": "🇦🇺", "focus": "Oseanografi & Konservasi Terumbu Karang" },
+      { "name": "National University of Singapore", "country": "Singapura", "flag": "🇸🇬", "focus": "Kecerdasan Artifisial & Teknologi Perkotaan" },
+      { "name": "Technische Universität Dresden", "country": "Jerman", "flag": "🇩🇪", "focus": "Rekayasa Struktur & Manufaktur Berkelanjutan" },
+      { "name": "University of California, Davis", "country": "Amerika Serikat", "flag": "🇺🇸", "focus": "Bioteknologi Pertanian & Keamanan Pangan" }
+    ],
+    "countries": [
+      { "name": "Semarang, Indonesia (Undip)", "lat": -7.05, "lng": 110.43, "type": "origin" },
+      { "name": "Jepang (Kyoto)", "lat": 35.01, "lng": 135.76, "type": "partner" },
+      { "name": "Belanda (Leiden)", "lat": 52.16, "lng": 4.49, "type": "partner" },
+      { "name": "Australia (Brisbane)", "lat": -27.47, "lng": 153.02, "type": "partner" },
+      { "name": "Singapura", "lat": 1.35, "lng": 103.82, "type": "partner" },
+      { "name": "Jerman (Dresden)", "lat": 51.05, "lng": 13.73, "type": "partner" },
+      { "name": "Amerika Serikat (California)", "lat": 38.54, "lng": -121.74, "type": "partner" }
+    ]
+  }
+}

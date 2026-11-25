@@ -4,6 +4,9 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  /* Shadow Removal: Prevent costly GPU box-shadow and text-shadow passes */
+  box-shadow: none !important;
+  text-shadow: none !important;
 }
 
 html,
@@ -14,7 +17,7 @@ body {
   height: 100%;
   overflow: hidden;
   overscroll-behavior: none;
-  background: #14100c;
+  background: #081220;
 }
 
 #root {
@@ -24,4 +27,35 @@ body {
 
 canvas {
   display: block;
+}
+
+/* ============================================================
+   Game-Engine Style Entity Culling (DOM & CSS Optimizations)
+   ============================================================ */
+
+/* 1. Animation Halting: Off-screen elements freeze all animations */
+.dom-entity-culler.is-culled,
+.dom-entity-culler.is-culled *,
+[data-culled="true"],
+[data-culled="true"] * {
+  animation-play-state: paused !important;
+}
+
+/* 2. Content-Visibility for long lists and heavy scrollable modal views */
+.gr-content-scroll,
+.gr-highlights-list,
+.gr-timeline,
+.gr-preview-body,
+.z3-panel-scroll,
+.z4-panel-body,
+.z5-panel-body,
+.gr-panel-content {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 350px;
+}
+
+/* 3. GPU compositing optimization: prefer transform & opacity */
+.is-animating-gpu {
+  will-change: transform, opacity;
+  transform: translateZ(0);
 }

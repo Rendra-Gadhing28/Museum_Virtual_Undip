@@ -15,6 +15,7 @@ import { DirectoryBoard } from './DirectoryBoard'
 interface GalleryEnvironmentProps {
   isNearDirectory?: boolean
   hoveredId?: string | null
+  isMobile?: boolean
   onHover?: (id: string | null) => void
 }
 
@@ -28,6 +29,7 @@ interface GalleryEnvironmentProps {
  */
 export function GalleryEnvironment({
   isNearDirectory = false,
+  isMobile = false,
 }: GalleryEnvironmentProps) {
   const floorTexture = useMemo(() => {
     const tex = createFloorTexture()
@@ -203,7 +205,7 @@ export function GalleryEnvironment({
       </group>
 
       {/* 8. Alternating Rectangular Gap Roof */}
-      <CeilingRoof />
+      <CeilingRoof isMobile={isMobile} />
 
       {/* 10. Central Red Carpet */}
       <RedCarpet />

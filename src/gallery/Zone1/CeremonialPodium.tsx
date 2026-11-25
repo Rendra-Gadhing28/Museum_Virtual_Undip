@@ -18,7 +18,13 @@ import { assetCache } from './cache'
  * with continuous brass aircraft suspension cables and architectural ceiling canopy,
  * eliminating any mid-air floating appearance.
  */
-function LedRingPendantChandelier({ position }: { position: [number, number, number] }) {
+function LedRingPendantChandelier({
+  position,
+  isMobile = false,
+}: {
+  position: [number, number, number]
+  isMobile?: boolean
+}) {
   // Height difference from chandelier ring (y=4.8) to ceiling (y=8.8) is exactly 4.0m
   const ceilingDist = 4.0
 
@@ -105,14 +111,16 @@ function LedRingPendantChandelier({ position }: { position: [number, number, num
         </mesh>
       </group>
 
-      {/* Soft Warm Cream Downward Illumination onto Dais (Gentle, non-glaring) */}
-      <pointLight
-        position={[0, -0.4, 0]}
-        color="#fff3e0"
-        intensity={24}
-        distance={10.0}
-        decay={2}
-      />
+      {/* Soft Warm Cream Downward Illumination onto Dais (Desktop only) */}
+      {!isMobile && (
+        <pointLight
+          position={[0, -0.4, 0]}
+          color="#fff3e0"
+          intensity={24}
+          distance={10.0}
+          decay={2}
+        />
+      )}
     </group>
   )
 }
@@ -177,6 +185,7 @@ export function CeremonialPodium({
   position,
   isSelected: _isSelected,
   isHovered: _isHovered,
+  isMobile = false,
   onSelect,
   onHover,
   onSelectPrasasti,
@@ -601,7 +610,7 @@ export function CeremonialPodium({
           MODERN ARCHITECTURAL LED RING PENDANT CHANDELIER
           Suspended gracefully from the ceiling above the stage dais
           ============================================================ */}
-      <LedRingPendantChandelier position={[0, 4.8, 0.4]} />
+      <LedRingPendantChandelier position={[0, 4.8, 0.4]} isMobile={isMobile} />
 
       {/* ============================================================
           5. STAGE DAIS & CEREMONIAL PODIUM

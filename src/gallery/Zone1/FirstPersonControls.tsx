@@ -103,7 +103,13 @@ export function FirstPersonControls({
       draggedRef.current = false
       if (event.button !== 0) return
       drag.current = { id: event.pointerId, x: event.clientX, y: event.clientY }
-      element.setPointerCapture?.(event.pointerId)
+      try {
+        if (!document.pointerLockElement) {
+          element.setPointerCapture?.(event.pointerId)
+        }
+      } catch {
+        // Prevent unhandled InvalidStateError
+      }
     }
 
     const onPointerMove = (event: PointerEvent) => {
@@ -127,7 +133,13 @@ export function FirstPersonControls({
     const onPointerUp = (event: PointerEvent) => {
       if (drag.current?.id === event.pointerId) {
         drag.current = null
-        element.releasePointerCapture?.(event.pointerId)
+        try {
+          if (element.hasPointerCapture?.(event.pointerId)) {
+            element.releasePointerCapture?.(event.pointerId)
+          }
+        } catch {
+          // Prevent unhandled InvalidStateError
+        }
       }
     }
 

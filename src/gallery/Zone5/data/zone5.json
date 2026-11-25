@@ -1,0 +1,113 @@
+{
+  "digitalCampus": {
+    "title": "Digital Twin Plaza — Kampus Virtual Undip",
+    "subtitle": "Simulasi Ruang & Data Terpadu Real-Time",
+    "services": [
+      {
+        "id": "dt-metaverse",
+        "title": "Metaverse Academic Hall",
+        "category": "digitalCampus",
+        "subtitle": "Ruang Kuliah Imersif Virtual",
+        "description": "Platform ruang belajar 3D virtual terdesentralisasi yang memungkinkan dosen dan mahasiswa berinteraksi dalam format avatar realistis untuk laboratorium anatomi, simulasi pengadilan, dan bedah arsitektur.",
+        "stats": "120+ Modul Praktikum VR Aktif [DATA CONTOH]"
+      },
+      {
+        "id": "dt-hybrid",
+        "title": "Smart Hybrid Classroom",
+        "category": "digitalCampus",
+        "subtitle": "Integrasi AI Multi-Kamera & Audio Spasial",
+        "description": "Ruang kuliah berteknologi tracking pembicara otomatis dan papan tulis digital sinkronis yang mentransmisikan materi langsung ke cloud tanpa latensi.",
+        "stats": "450 Ruang Kuliah Terkoneksi [DATA CONTOH]"
+      },
+      {
+        "id": "dt-cloud",
+        "title": "Undip Hybrid Sovereign Cloud",
+        "category": "digitalCampus",
+        "subtitle": "Pusat Data Mandiri & Komputasi Riset",
+        "description": "Pusat infrastruktur data berkecepatan 100 Gbps yang mengamankan jutaan dokumen akademik dan repositori riset universitas dengan enkripsi kuantum standar industri.",
+        "stats": "99.99% Uptime & 2.4 PetaByte Storage [DATA CONTOH]"
+      }
+    ],
+    "counters": [
+      { "label": "Layanan Digital Terpadu", "value": "180+", "detail": "Portal & API Akademik" },
+      { "label": "Kelas Daring & Hybrid", "value": "1.250", "detail": "Sesi Terjadwal Harian" },
+      { "label": "Kecepatan Jaringan Inti", "value": "100 Gbps", "detail": "Konektivitas Fiber Optik" }
+    ]
+  },
+  "aiNexus": {
+    "title": "The Neural Atrium — Pusat Kecerdasan Buatan",
+    "subtitle": "Otak Digital Riset Terapan & Transformasi Sains",
+    "domains": [
+      { "id": "ai-health", "name": "AI Biomedis & Kesehatan", "icon": "🧬", "desc": "Deteksi dini kanker dan analisis pencitraan medis berbasis Deep Learning." },
+      { "id": "ai-marine", "name": "AI Kelautan & Pesisir", "icon": "🌊", "desc": "Pemantauan ekosistem mangrove, batimetri laut, dan prediksi arus laut tropis." },
+      { "id": "ai-robotics", "name": "Robotika Cerdas", "icon": "🤖", "desc": "Robot bedah otonom, tangan bionik terjangkau, dan wahana selam tanpa awak (AUV)." },
+      { "id": "ai-nlp", "name": "NLP & Bahasa Nusantara", "icon": "🗣️", "desc": "Pelestarian naskah kuno Jawa & aksara daerah dengan model bahasa multimodal." },
+      { "id": "ai-agri", "name": "Smart Agriculture", "icon": "🌾", "desc": "Sensor spektral drone untuk pemupukan presisi dan ketahanan pangan nasional." },
+      { "id": "ai-vision", "name": "Computer Vision", "icon": "👁️", "desc": "Analisis keselamatan lalu lintas kampus dan sistem keamanan otonom." },
+      { "id": "ai-data", "name": "Big Data Analytics", "icon": "📊", "desc": "Model peramalan ekonomi pesisir dan kebijakan publik berbasis data." },
+      { "id": "ai-ethics", "name": "Etika & Tata Kelola AI", "icon": "⚖️", "desc": "Kerangka kerja kecerdasan buatan yang bertanggung jawab, transparan, dan inklusif." }
+    ],
+    "demoQA": [
+      {
+        "q": "Bagaimana visi Undip menuju 2050?",
+        "a": "Universitas Diponegoro bertransformasi menjadi World Class Research University yang mandiri, adaptif terhadap AI, pelopor ketahanan energi hijau laut tropis, dan membentuk insan berdaya saing global bermartabat luhur."
+      },
+      {
+        "q": "Apa keunggulan riset AI Kelautan Undip?",
+        "a": "Kombinasi sensor satelit, sonar otonom, dan machine learning presisi yang mampu memetakan potensi sumber daya hayati laut tropis serta memitigasi abrasi pesisir secara real-time."
+      }
+    ]
+  },
+  "smartUniversity": {
+    "title": "Command Deck — Smart Campus Dashboard",
+    "subtitle": "Mission Control Monitoring Lingkungan, Energi & Mobilitas",
+    "kiosks": [
+      { "id": "kiosk-card", "title": "Kartu Mahasiswa Digital", "metric": "56.000+ Pengguna Aktif", "desc": "Akses satu ketukan RFID & biometrik untuk perpustakaan, transportasi, dan fasilitas riset." },
+      { "id": "kiosk-parking", "title": "Smart Parking & Navigasi", "metric": "98% Efisiensi Waktu", "desc": "Sensor ultrasonik mendeteksi slot parkir kosong dan memandu kendaraan listrik." },
+      { "id": "kiosk-energy", "title": "Manajemen Energi Pintar", "metric": "Hemat Listrik 32%", "desc": "Penerangan adaptif otomatis dan kontrol pendingin ruangan hemat energi." },
+      { "id": "kiosk-clinic", "title": "Telemedisin Kampus", "metric": "24/7 Respons Darurat", "desc": "Layanan konsultasi kesehatan daring dan rekam medis digital mahasiswa RSND." },
+      { "id": "kiosk-library", "title": "Automated Book Retrieval", "metric": "1.2 Juta Akses E-Journal", "desc": "Sistem peminjaman robotik dan rekomendasi literatur berbasis AI minat baca." },
+      { "id": "kiosk-transport", "title": "Smart EV Campus Shuttle", "metric": "16 Armada Listrik", "desc": "Bus kampus niremisi dengan jadwal akurat terlacak via aplikasi ponsel." }
+    ]
+  },
+  "worldClass": {
+    "title": "The Summit — Tangga Pencapaian Dunia",
+    "subtitle": "7 Pilar Kualitas Menuju Peringkat Teratas Global",
+    "pillars": [
+      { "level": 1, "name": "Pendidikan Kelas Dunia", "target": "Kurikulum Adaptif & Akreditasi Internasional ABET/ASIIN", "year": "2026" },
+      { "level": 2, "name": "Riset Berdampak Tinggi", "target": "Sitasi Scopus Q1 > 15.000/tahun & Laboratorium Standar ISO", "year": "2028" },
+      { "level": 3, "name": "Kemitraan Global 5 Benua", "target": "Gelar Ganda (Double Degree) dengan Top 100 QS World", "year": "2030" },
+      { "level": 4, "name": "Inovasi & Komersialisasi", "target": "100+ Startup Kampus Beromzet Nasional & Paten Internasional", "year": "2032" },
+      { "level": 5, "name": "Reputasi Lulusan Global", "target": "Peringkat #1 Keterserapan Kerja Lulusan di Kawasan ASEAN", "year": "2035" },
+      { "level": 6, "name": "Dampak Sosial Berkelanjutan", "target": "Pemberdayaan 500 Desa Pesisir & Konservasi Maritim", "year": "2040" },
+      { "level": 7, "name": "Tata Kelola Otonom & Mandiri", "target": "Endowment Fund Kuat & Kedaulatan Sains Nusantara", "year": "2045" }
+    ],
+    "partnerConstellations": [
+      { "name": "Universitas Riset Tokyo", "country": "Jepang", "sector": "Robotika Maritim" },
+      { "name": "National University of Singapore", "country": "Singapura", "sector": "AI & Big Data" },
+      { "name": "Delft University of Technology", "country": "Belanda", "sector": "Teknik Pesisir" },
+      { "name": "University of Melbourne", "country": "Australia", "sector": "Biomedis & Kedokteran" },
+      { "name": "Technical University of Munich", "country": "Jerman", "sector": "Energi Terbarukan" }
+    ]
+  },
+  "sustainability": {
+    "title": "The Living Grove — Taman Inovasi & Keberlanjutan",
+    "subtitle": "Harmoni Sains, Kampus Hijau & Target Net Zero Emission",
+    "initiatives": [
+      { "sdg": "SDG 7: Energi Bersih", "title": "Pembangkit Surya Terintegrasi Atap", "metric": "Pembangkitan 4.5 MWp [DATA CONTOH]" },
+      { "sdg": "SDG 14: Ekosistem Laut", "title": "Marine Science Park Teluk Awur Jepara", "metric": "Konservasi Terumbu Karang 12 Hektar" },
+      { "sdg": "SDG 13: Aksi Iklim", "title": "Arboretum & Hutan Kota Tembalang", "metric": "Serapan 8.200 Ton CO2/Tahun" },
+      { "sdg": "SDG 6: Air Bersih", "title": "Rainwater Harvesting & Waduk Edukasi", "metric": "Kemandirian Air Baku Kampus 80%" }
+    ],
+    "carbonTarget": {
+      "current": "-28% Emisi Karbon sejak 2020",
+      "target": "Target Net-Zero Emission Undip Tahun 2045"
+    }
+  },
+  "vision": {
+    "title": "Visi Undip 2050 — Pelopor Peradaban Mulia",
+    "motto": "Universitas Riset yang Unggul, Inovatif, Mandiri, dan Berkelanjutan Berorientasi pada Pengembangan IPTEKS Tropis dan Kebangsaan",
+    "targetYear": "2050",
+    "beaconCuratorText": "Menghubungkan jejak sejarah para pendiri dengan tekad masa depan. Dari bukit Tembalang hingga panggung dunia, Universitas Diponegoro berdiri kokoh sebagai mercusuar peradaban ilmu pengetahuan yang mengabdi bagi kemakmuran dan kehormatan bangsa Indonesia."
+  }
+}

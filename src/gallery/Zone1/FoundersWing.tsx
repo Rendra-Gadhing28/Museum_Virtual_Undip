@@ -6,7 +6,7 @@ import {
   FOUNDERS_FRAME_Y,
   FOUNDERS_WALL_X,
 } from './layout'
-import { createFounderPortraitTexture } from './textures'
+import { createFounderPortraitTexture, createFounderPlaqueTexture } from './textures'
 import { assetCache } from './cache'
 
 interface FounderCardProps {
@@ -17,6 +17,7 @@ interface FounderCardProps {
   isMainFounder?: boolean
   isSelected: boolean
   isHovered: boolean
+  isMobile?: boolean
   onSelect: (founder: Founder) => void
   onHover: (id: string | null) => void
 }
@@ -29,12 +30,17 @@ function FounderCard({
   isMainFounder = false,
   isSelected,
   isHovered,
+  isMobile = false,
   onSelect,
   onHover,
 }: FounderCardProps) {
   const generatedTexture = useMemo(
     () => createFounderPortraitTexture(founder, index),
     [founder, index],
+  )
+  const plaqueTexture = useMemo(
+    () => createFounderPlaqueTexture(founder, isMainFounder),
+    [founder, isMainFounder],
   )
   const [loadedTexture, setLoadedTexture] = useState<THREE.Texture | null>(null)
 
@@ -72,14 +78,16 @@ function FounderCard({
         onSelect(founder)
       }}
     >
-      {/* 1. Dark Walnut Backing Board */}
-      <mesh position={[0, 0, -0.04]} castShadow>
-        <boxGeometry args={[frameWidth + 0.08, frameHeight + 0.08, 0.04]} />
-        <meshStandardMaterial color="#22150d" roughness={0.7} />
-      </mesh>
+      {/* 1. Dark Walnut Backing Board (Desktop only) */}
+      {!isMobile && (
+        <mesh position={[0, 0, -0.04]} castShadow>
+          <boxGeometry args={[frameWidth + 0.08, frameHeight + 0.08, 0.04]} />
+          <meshStandardMaterial color="#22150d" roughness={0.7} />
+        </mesh>
+      )}
 
       {/* 2. Outer Sculpted Frame (Gilded Gold for 5 Main Founders, Teak & Gold for Leadership) */}
-      <mesh position={[0, 0, 0]} castShadow receiveShadow>
+      <mesh position={[0, 0, 0]} castShadow={!isMobile} receiveShadow={!isMobile}>
         <boxGeometry args={[frameWidth, frameHeight, 0.09]} />
         <meshStandardMaterial
           color={
@@ -106,17 +114,21 @@ function FounderCard({
         />
       </mesh>
 
-      {/* 3. Deep Navy Matboard Inset */}
-      <mesh position={[0, 0, 0.035]} receiveShadow>
-        <boxGeometry args={[frameWidth - 0.12, frameHeight - 0.12, 0.03]} />
-        <meshStandardMaterial color="#0e2343" roughness={0.6} metalness={0.25} />
-      </mesh>
+      {/* 3. Deep Navy Matboard Inset (Desktop only) */}
+      {!isMobile && (
+        <mesh position={[0, 0, 0.035]} receiveShadow>
+          <boxGeometry args={[frameWidth - 0.12, frameHeight - 0.12, 0.03]} />
+          <meshStandardMaterial color="#0e2343" roughness={0.6} metalness={0.25} />
+        </mesh>
+      )}
 
-      {/* 4. Fine Ivory Passe-Partout Inlay */}
-      <mesh position={[0, 0, 0.046]}>
-        <boxGeometry args={[frameWidth - 0.2, frameHeight - 0.2, 0.012]} />
-        <meshStandardMaterial color="#f7f4eb" roughness={0.85} />
-      </mesh>
+      {/* 4. Fine Ivory Passe-Partout Inlay (Desktop only) */}
+      {!isMobile && (
+        <mesh position={[0, 0, 0.046]}>
+          <boxGeometry args={[frameWidth - 0.2, frameHeight - 0.2, 0.012]} />
+          <meshStandardMaterial color="#f7f4eb" roughness={0.85} />
+        </mesh>
+      )}
 
       {/* 5. Portrait Canvas Texture */}
       <mesh position={[0, 0, 0.056]}>
@@ -125,44 +137,39 @@ function FounderCard({
       </mesh>
 
       {/* 6. Gold Plaque Label Beneath */}
-      <group position={[0, -frameHeight / 2 - 0.09, 0.02]}>
+      <group position={[0, -frameHeight / 2 - 0.08, 0.02]}>
         <mesh>
-          <boxGeometry args={[frameWidth * 0.82, 0.09, 0.015]} />
+          <boxGeometry args={[frameWidth * 0.85, 0.12, 0.015]} />
           <meshStandardMaterial
-            color={isMainFounder ? '#d4af37' : '#f7f4eb'}
-            roughness={isMainFounder ? 0.3 : 0.75}
-            metalness={isMainFounder ? 0.8 : 0.1}
+            map={plaqueTexture}
+            roughness={0.4}
+            metalness={0.25}
           />
         </mesh>
       </group>
 
-      {/* 7. Gallery Sconce Downlight above the Portrait */}
-      <group position={[0, frameHeight / 2 + 0.16, 0.08]}>
-        <mesh position={[0, 0, -0.06]} rotation={[0.4, 0, 0]}>
-          <cylinderGeometry args={[0.012, 0.012, 0.22, 12]} />
-          <meshStandardMaterial color="#d4af37" roughness={0.3} metalness={0.8} />
-        </mesh>
-        <mesh position={[0, -0.04, 0.05]} rotation={[-0.7, 0, 0]}>
-          <boxGeometry args={[0.34, 0.08, 0.12]} />
-          <meshStandardMaterial color="#2d2217" roughness={0.5} metalness={0.6} />
-        </mesh>
-        <mesh position={[0, -0.07, 0.05]} rotation={[-0.7, 0, 0]}>
-          <planeGeometry args={[0.3, 0.08]} />
-          <meshStandardMaterial
-            color="#fff6e5"
-            emissive="#ffd9a0"
-            emissiveIntensity={1.8}
-            roughness={0.4}
-          />
-        </mesh>
-        <pointLight
-          position={[0, -0.08, 0.06]}
-          color="#ffe7ba"
-          intensity={isMainFounder ? 10 : 7}
-          distance={3.2}
-          decay={2}
-        />
-      </group>
+      {/* 7. Gallery Sconce Downlight above the Portrait (Desktop only) */}
+      {!isMobile && (
+        <group position={[0, frameHeight / 2 + 0.16, 0.08]}>
+          <mesh position={[0, 0, -0.06]} rotation={[0.4, 0, 0]}>
+            <cylinderGeometry args={[0.012, 0.012, 0.22, 12]} />
+            <meshStandardMaterial color="#d4af37" roughness={0.3} metalness={0.8} />
+          </mesh>
+          <mesh position={[0, -0.04, 0.05]} rotation={[-0.7, 0, 0]}>
+            <boxGeometry args={[0.34, 0.08, 0.12]} />
+            <meshStandardMaterial color="#2d2217" roughness={0.5} metalness={0.6} />
+          </mesh>
+          <mesh position={[0, -0.07, 0.05]} rotation={[-0.7, 0, 0]}>
+            <planeGeometry args={[0.3, 0.08]} />
+            <meshStandardMaterial
+              color="#fff6e5"
+              emissive="#ffd9a0"
+              emissiveIntensity={2.4}
+              roughness={0.4}
+            />
+          </mesh>
+        </group>
+      )}
 
       {/* 8. Hover Highlight Underneath */}
       {(isHovered || isSelected) && (
@@ -178,6 +185,7 @@ function FounderCard({
 interface FoundersWingProps {
   selectedFounderId: string | null
   hoveredId: string | null
+  isMobile?: boolean
   onSelectFounder: (founder: Founder) => void
   onHover: (id: string | null) => void
 }
@@ -191,6 +199,7 @@ interface FoundersWingProps {
 export function FoundersWing({
   selectedFounderId,
   hoveredId,
+  isMobile = false,
   onSelectFounder,
   onHover,
 }: FoundersWingProps) {
@@ -228,6 +237,7 @@ export function FoundersWing({
             isMainFounder={true}
             isSelected={selectedFounderId === founder.id}
             isHovered={hoveredId === founder.id}
+            isMobile={isMobile}
             onSelect={onSelectFounder}
             onHover={onHover}
           />
@@ -278,6 +288,7 @@ export function FoundersWing({
             isMainFounder={false}
             isSelected={selectedFounderId === founder.id}
             isHovered={hoveredId === founder.id}
+            isMobile={isMobile}
             onSelect={onSelectFounder}
             onHover={onHover}
           />

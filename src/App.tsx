@@ -1,11 +1,12 @@
-import { Zone1 } from './gallery'
+import { MasterMuseum } from './gallery'
 
 /**
  * Museum Virtual Undip — Scalable Multi-Zone Architecture.
- * Currently displaying Zone 1 (Ruang Kehormatan & Sejarah Undip).
+ * Incorporates 5 zones partitioned by historical gallery walls,
+ * smart memory caching, and a scalable left sidebar selector.
  */
 function App() {
-  return <Zone1 />
+  return <MasterMuseum />
 }
 
 export default App

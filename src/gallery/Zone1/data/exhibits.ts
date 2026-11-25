@@ -1,3 +1,17 @@
+import ekoImg from '../../../assets/eko.webp'
+import imamImg from '../../../assets/imam.webp'
+import jacubImg from '../../../assets/jacub.webp'
+import johanImg from '../../../assets/johan.webp'
+import mochtarImg from '../../../assets/mochtar.webp'
+import moeljonoImg from '../../../assets/moeljono.webp'
+import muladiImg from '../../../assets/muladi.webp'
+import sudartoImg from '../../../assets/sudarto.webp'
+import sudhartoImg from '../../../assets/sudharto.webp'
+import suharmonoImg from '../../../assets/suharmono.webp'
+import sunarioImg from '../../../assets/sunario.webp'
+import suroyoImg from '../../../assets/suroyo.webp'
+import susiloImg from '../../../assets/susilo.webp'
+
 export interface Founder {
   id: string
   name: string
@@ -37,6 +51,7 @@ export const UNDIP_FOUNDERS_5: Founder[] = [
     role: 'Pelopor pendirian Yayasan Universitas Semarang (1956) dan peletak dasar akademik utama Undip.',
     description: 'Mr. Soedarto adalah tokoh sentral di balik pendirian Yayasan Universitas Semarang pada 1956. Sebagai Jaksa Tinggi Jawa Tengah dan kemudian Rektor Universitas Diponegoro, beliau mendedikasikan hidupnya untuk mentransformasikan perguruan tinggi swasta lokal menjadi universitas negeri bereputasi tinggi.',
     quote: 'Pendidikan tinggi adalah jembatan emas pembangun karakter bangsa yang berdaulat.',
+    imagePath: sudartoImg,
     category: 'pendiri-utama',
   },
   {
@@ -47,6 +62,7 @@ export const UNDIP_FOUNDERS_5: Founder[] = [
     role: 'Ketua Pengadilan Tinggi Jawa Tengah dan Rektor pertama yang meresmikan perkuliahan perdana tahun 1957.',
     description: 'Mr. Imam Bardjo memimpin universitas di masa-masa awal yang penuh keterbatasan. Dengan wibawa kepemimpinannya, beliau berhasil menyatukan para akademisi dan praktisi hukum untuk mendirikan Fakultas Hukum dan Masyarakat serta Akademi Administrasi Negara.',
     quote: 'Bermula dari cita-cita luhur di Kota Semarang untuk mencerdaskan generasi penerus bangsa.',
+    imagePath: imamImg,
     category: 'pendiri-utama',
   },
   {
@@ -80,99 +96,95 @@ export const UNDIP_FOUNDERS_5: Founder[] = [
 
 /**
  * 13 TOKOH DIREKTORAT & REKTORAT UNIVERSITAS DIPONEGORO
- * (Jajaran Rektor, Dewan Pembina & Pejabat Pimpinan Lembaga)
+ * (Jajaran Rektor, Dewan Pembina & Pejabat Pimpinan Lembaga dari masa ke masa)
  */
 export const UNDIP_LEADERSHIP_13: Founder[] = [
   {
-    id: 'mr-dan-sulaiman',
-    name: 'Mr. Dan Sulaiman',
-    title: 'Prakarsa & Pengurus Inti Yayasan 1956',
-    years: '1908–1983',
-    role: 'Penyusun kerangka organisasi dan konseptor kurikulum awal pendidikan tinggi Semarang.',
-    description: 'Mr. Dan Sulaiman berperan penting dalam merumuskan anggaran dasar dan statuta pertama universitas, menjamin legalitas serta keberlanjutan institusi dalam masa transisi pascakemerdekaan.',
-    quote: 'Integritas dan kepastian hukum adalah pilar utama kemajuan universitas.',
+    id: 'prof-mr-imam-bardjo',
+    name: 'Prof. Mr. Imam Bardjo',
+    title: 'Presiden (Rektor) Pertama Undip (1957–1961)',
+    years: '1902–1959',
+    role: 'Ketua Pengadilan Tinggi Jawa Tengah dan Presiden (Rektor) pertama yang meresmikan perkuliahan perdana tahun 1957.',
+    description: 'Mr. Imam Bardjo memimpin universitas di masa-masa awal berdirinya Yayasan Universitas Semarang hingga beralih status menjadi universitas negeri bernama Universitas Diponegoro.',
+    quote: 'Bermula dari cita-cita luhur di Kota Semarang untuk mencerdaskan generasi penerus bangsa.',
+    imagePath: imamImg,
     category: 'direktorat-rektorat',
   },
   {
-    id: 'mr-soesanto-kartoatmodjo',
-    name: 'Mr. Soesanto Kartoatmodjo',
-    title: 'Perintis Fakultas & Pembina Direktorat',
-    years: '1910–1988',
-    role: 'Tokoh hukum terkemuka yang menggalang dukungan masyarakat intelektual Jawa Tengah.',
-    description: 'Aktif merintis pembentukan jurusan-jurusan baru dan mengupayakan sarana fisik perkuliahan perdana di kawasan Bodjong dan Pleburan Semarang.',
+    id: 'prof-soedarto',
+    name: 'Prof. Mr. Soedarto, S.H.',
+    title: 'Rektor Undip (1961–1962 & 1977–1986)',
+    years: '1913–1986',
+    role: 'Peletak dasar akademik utama, pengembangan kampus Pleburan & Tembalang, serta perumus Pola Ilmiah Pokok Bina Kelautan.',
+    description: 'Sebagai tokoh sentral pendiri dan rektor yang memimpin dalam dua periode bersejarah, beliau meletakkan pondasi keilmuan, kelembagaan hukum, dan integritas Tri Dharma Perguruan Tinggi di Undip.',
+    quote: 'Pendidikan tinggi adalah jembatan emas pembangun karakter bangsa yang berdaulat.',
+    imagePath: sudartoImg,
     category: 'direktorat-rektorat',
   },
   {
-    id: 'mr-koo-swan-ik',
-    name: 'Mr. Koo Swan Ik',
-    title: 'Direktorat Pengurus & Jaringan Kerjasama',
-    years: '1914–1990',
-    role: 'Membidani penguatan jejaring akademik dan kerja sama pendanaan awal pendirian universitas.',
-    description: 'Berperan besar dalam menggalang partisipasi komunitas profesional Semarang untuk mendukung pendirian gedung dan perpustakaan rintisan.',
+    id: 'prof-jakub-rais',
+    name: 'Prof. Dr. Ir. Jakub Rais, M.Sc.',
+    title: 'Caretaker Rektor Undip (1965–1966) • Tokoh Geodesi Nasional',
+    years: '1928–2020',
+    role: 'Perintis Fakultas Teknik Undip dan mantan Kepala Badan Koordinasi Survei dan Pemetaan Nasional (Bakosurtanal).',
+    description: 'Menjabat sebagai Caretaker Rektor pada masa transisi tahun 1965–1966. Beliau merupakan bapak geodesi dan survei pemetaan Indonesia serta salah satu perintis utama berdirinya pendidikan tinggi teknik di Jawa Tengah.',
+    quote: 'Ketepatan pengukuran dan keteguhan integritas adalah fondasi pembangunan bangsa.',
+    imagePath: jacubImg,
     category: 'direktorat-rektorat',
   },
   {
-    id: 'tuan-achmad-tjokrokusumo',
-    name: 'Tuan Achmad Tjokrokusumo',
-    title: 'Donatur Perintis & Dewan Penyantun',
-    years: '1905–1978',
-    role: 'Menyediakan sarana fisik awal dan membiayai operasional perkuliahan pertama universitas.',
-    description: 'Kedermawanan dan visi kebangsaan Tuan Achmad Tjokrokusumo menjadi penopang nyata terlaksananya kuliah perdana mahasiswa angkatan 1957 tanpa kendala finansial yayasan.',
-    category: 'direktorat-rektorat',
-  },
-  {
-    id: 'rm-soeprapto',
-    name: 'R.M. Soeprapto',
-    title: 'Gubernur Jawa Tengah & Dewan Pelindung',
-    years: '1914–1998',
-    role: 'Pemberi legitimasi negara dan fasilitator fasilitas umum bagi kampus rintisan.',
-    description: 'Selaku Kepala Daerah Swatantra I Jawa Tengah, beliau memfasilitasi gedung perkuliahan di Panti Budaya dan mengesahkan akta pendirian yayasan pada 4 Desember 1956.',
+    id: 'gubernur-mochtar',
+    name: 'Mochtar',
+    title: 'Gubernur Jawa Tengah (1960–1966) • Dewan Pembina Undip',
+    years: '1909–1985',
+    role: 'Pengawal penegerian Undip menjadi Universitas Negeri pada 15 Oktober 1960 (PP No. 40/1960).',
+    description: 'Sebagai Gubernur Jawa Tengah dan Ketua Presidium Pelindung Undip pada masa krusial awal penegerian, beliau memberikan dukungan penuh bagi penyediaan sarana, fasilitas, dan anggaran pemerintah untuk kampus Undip.',
+    quote: 'Kemajuan daerah Jawa Tengah bertumpu pada keunggulan intelektual generasi mudanya.',
+    imagePath: mochtarImg,
     category: 'direktorat-rektorat',
   },
   {
     id: 'prof-mr-sunario',
     name: 'Prof. Mr. Sunario Sastrowardoyo',
-    title: 'Guru Besar & Pembina Akademis Awal',
+    title: 'Rektor Undip (1973–1977) • Tokoh Sumpah Pemuda 1928',
     years: '1902–1997',
-    role: 'Tokoh Sumpah Pemuda 1928, mantan Menlu RI, dan pembina akademis awal Undip.',
-    description: 'Memberikan kuliah umum perdana serta membina para dosen muda dalam mengajar hukum internasional dan hukum tata negara di Semarang.',
-    category: 'direktorat-rektorat',
-  },
-  {
-    id: 'prof-soediman',
-    name: 'Prof. Soediman Kartohadiprodjo',
-    title: 'Pakar Hukum Adat & Penata Statuta',
-    years: '1912–1970',
-    role: 'Menyusun naskah akademis serta pedoman dasar penyelenggaraan universitas.',
-    description: 'Ahli hukum adat terkemuka Indonesia yang memastikan universitas memiliki kepribadian nasional berlandaskan Pancasila.',
-    category: 'direktorat-rektorat',
-  },
-  {
-    id: 'ir-soemarman',
-    name: 'Ir. Soemarman',
-    title: 'Dekan Perintis Teknik & Pembangunan Fisik',
-    years: '1916–1989',
-    role: 'Insinyur sipil perintis pendidikan teknik dan pengembangan masterplan fisik kampus.',
-    description: 'Merancang tata ruang fasilitas laboratorium awal dan menjadi dekan pertama yang merintis cikal bakal Fakultas Teknik Undip yang disegani.',
-    category: 'direktorat-rektorat',
-  },
-  {
-    id: 'prof-moeljono',
-    name: 'Prof. Dr. dr. R. Moeljono S. Trastotenojo',
-    title: 'Rektor Undip (1986–1994) • Pelopor Kampus Tembalang',
-    years: '1931–2007',
-    role: 'Rektor visioner yang menginisiasi pembangunan kampus terpadu Tembalang 180 hektar.',
-    description: 'Di bawah kepemimpinan beliau, megaproyek pemindahan kampus Undip dari Pleburan ke perbukitan Tembalang terealisasi dengan dukungan Bank Dunia dan pemerintah.',
-    quote: 'Membangun kampus bukan sekadar menata batu bata, tetapi membangun peradaban.',
+    role: 'Tokoh Sumpah Pemuda 1928, mantan Menlu RI, dan Rektor pemantap kurikulum hukum kebangsaan.',
+    description: 'Membawa reputasi diplomatik internasional ke dalam kepemimpinan akademik Undip, memperkuat kerjasama kelembagaan dan pendidikan hukum nasional berlandaskan Pancasila.',
+    quote: 'Satu nusa, satu bangsa, satu bahasa: persatuan intelektual adalah kekuatan Indonesia.',
+    imagePath: sunarioImg,
     category: 'direktorat-rektorat',
   },
   {
     id: 'prof-suroyo',
     name: 'Prof. Dr. dr. A. Suroyo',
-    title: 'Rektor Undip (1977–1986) • Pemantap Keilmuan',
+    title: 'Rektor Undip (1977–1986) • Pemantap Keilmuan & Biomedis',
     years: '1927–2005',
-    role: 'Meletakkan dasar riset biomedis dan penguatan kurikulum berbasis kebutuhan daerah.',
-    description: 'Memperkuat reputasi akademik Fakultas Kedokteran dan memperluas hubungan kerja sama dengan institusi pendidikan tinggi luar negeri.',
+    role: 'Meletakkan dasar riset biomedis dan penguatan kurikulum berbasis kebutuhan masyarakat.',
+    description: 'Memperkuat reputasi akademik Fakultas Kedokteran dan memperluas hubungan kerja sama dengan institusi pendidikan tinggi serta rumah sakit rujukan di dalam dan luar negeri.',
+    quote: 'Pengabdian ilmu kedokteran adalah keikhlasan melayani kemanusiaan.',
+    imagePath: suroyoImg,
+    category: 'direktorat-rektorat',
+  },
+  {
+    id: 'prof-moeljono',
+    name: 'Prof. Dr. dr. R. Moeljono S. Trastotenojo',
+    title: 'Rektor Undip (1986–1994) • Pelopor Kampus Terpadu Tembalang',
+    years: '1931–2007',
+    role: 'Rektor visioner yang menginisiasi megaproyek kampus terpadu Tembalang seluas 180 hektar.',
+    description: 'Di bawah kepemimpinan beliau, megaproyek pemindahan kampus Undip dari Pleburan ke perbukitan Tembalang terealisasi dengan dukungan Bank Dunia dan pemerintah Republik Indonesia.',
+    quote: 'Membangun kampus bukan sekadar menata batu bata, tetapi membangun peradaban.',
+    imagePath: moeljonoImg,
+    category: 'direktorat-rektorat',
+  },
+  {
+    id: 'prof-muladi',
+    name: 'Prof. Dr. Muladi, S.H.',
+    title: 'Rektor Undip (1994–1998) • Tokoh Hukum Pidana & Menkeh RI',
+    years: '1943–2020',
+    role: 'Pakar hukum pidana terkemuka, Menteri Kehakiman RI, dan Gubernur Lemhannas.',
+    description: 'Membawa Undip menuju panggung nasional dan global. Beliau memprakarsai modernisasi manajemen universitas, reformasi hukum, dan namanya diabadikan pada Gedung Pertemuan Muladi Dome.',
+    quote: 'Hukum harus menjadi panglima yang mengayomi hak asasi dan martabat kemanusiaan.',
+    imagePath: muladiImg,
     category: 'direktorat-rektorat',
   },
   {
@@ -183,6 +195,7 @@ export const UNDIP_LEADERSHIP_13: Founder[] = [
     role: 'Tokoh arsitektur nasional, budayawan, dan intelektual publik yang mempopulerkan jati diri Undip.',
     description: 'Dikenal luas sebagai intelektual yang hangat dan arsitek berwawasan lingkungan, beliau memimpin kampus di era reformasi dengan pendekatan kultural dan dialogis.',
     quote: 'Ilmu tanpa nurani dan sentuhan seni akan kehilangan makna kemanusiaannya.',
+    imagePath: ekoImg,
     category: 'direktorat-rektorat',
   },
   {
@@ -192,6 +205,8 @@ export const UNDIP_LEADERSHIP_13: Founder[] = [
     years: '1949–2022',
     role: 'Mendorong pendirian Rumah Sakit Nasional Diponegoro (RSND) dan percepatan riset unggulan.',
     description: 'Menjadikan Undip sebagai salah satu universitas riset terdepan di Indonesia serta memprakarsai berdirinya rumah sakit pendidikan megah di Tembalang.',
+    quote: 'Riset bermutu tinggi adalah jantung universitas kelas dunia.',
+    imagePath: susiloImg,
     category: 'direktorat-rektorat',
   },
   {
@@ -202,6 +217,29 @@ export const UNDIP_LEADERSHIP_13: Founder[] = [
     role: 'Membidani status kemandirian PTN-BH dan mewujudkan eco-campus ramah lingkungan.',
     description: 'Pakar manajemen lingkungan hidup terkemuka Indonesia yang sukses mengantarkan Undip menuju status Perguruan Tinggi Negeri Berbadan Hukum serta kampus berkelanjutan berwawasan global.',
     quote: 'Kelestarian alam dan kemajuan ilmu pengetahuan harus senantiasa berjalan beriringan.',
+    imagePath: sudhartoImg,
+    category: 'direktorat-rektorat',
+  },
+  {
+    id: 'prof-yos-johan-utama',
+    name: 'Prof. Dr. Yos Johan Utama, S.H., M.Hum.',
+    title: 'Rektor Undip (2015–2024) • Era PTN-BH & World Class University',
+    years: '1962–sekarang',
+    role: 'Membawa Undip melompat tinggi dalam pemeringkatan internasional QS World University Rankings.',
+    description: 'Memimpin era keemasan PTN-BH Undip dengan memperkuat teaching factory, hilirisasi riset, modernisasi fasilitas kampus Tembalang, dan peningkatan reputasi alumni siap kerja.',
+    quote: 'Undip bermartabat, Undip bermanfaat bagi nusa dan bangsa.',
+    imagePath: johanImg,
+    category: 'direktorat-rektorat',
+  },
+  {
+    id: 'prof-suharnomo',
+    name: 'Prof. Dr. Suharnomo, S.E., M.Si.',
+    title: 'Rektor Undip (2024–sekarang) • Undip Bermartabat, Undip Bermanfaat',
+    years: '1970–sekarang',
+    role: 'Rektor petahana yang mengusung visi kepemimpinan inklusif, riset berdampak, dan kemitraan global.',
+    description: 'Guru Besar Manajemen FEB Undip yang memimpin akselerasi digital, transformasi kurikulum masa depan, dan sinergi kampus dengan industri serta masyarakat luas.',
+    quote: 'Perguruan tinggi harus menjadi mercusuar peradaban dan pemberi solusi nyata bagi rakyat.',
+    imagePath: suharmonoImg,
     category: 'direktorat-rektorat',
   },
 ]
