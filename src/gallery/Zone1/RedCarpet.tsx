@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import * as THREE from 'three'
 import { RED_CARPET } from './layout'
 import { createRedCarpetTexture } from './textures'
+import { createProceduralNormalMap, MaterialLibrary, QUALITY } from '../quality'
 
 /**
  * Ceremonial Red Carpet Runner
@@ -19,19 +20,32 @@ export function RedCarpet() {
     return tex
   }, [])
 
+  const fabricNormal = useMemo(() => {
+    const n = createProceduralNormalMap('fabric', 512, 512)
+    n.repeat.set(4, Math.round((RED_CARPET.zStart - RED_CARPET.zEnd) * 2))
+    return n
+  }, [])
+
+  const brassMaterial = useMemo(() => MaterialLibrary.antiqueBrass(false), [])
+
   const length = RED_CARPET.zStart - RED_CARPET.zEnd
   const centerZ = (RED_CARPET.zStart + RED_CARPET.zEnd) / 2
   const width = RED_CARPET.width
 
   return (
     <group position={[0, RED_CARPET.y, centerZ]}>
-      {/* Main Velvet Carpet Runner Mesh */}
+      {/* Main Velvet Carpet Runner Mesh (MeshPhysicalMaterial + sheen + fabric normal) */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[width, length]} />
-        <meshStandardMaterial
+        <meshPhysicalMaterial
           map={carpetTexture}
-          roughness={0.85}
-          metalness={0.08}
+          normalMap={QUALITY.current.physicalMaterials ? fabricNormal : null}
+          normalScale={new THREE.Vector2(0.55, 0.55)}
+          roughness={0.86}
+          metalness={0.04}
+          sheen={QUALITY.current.sheen ? 0.9 : 0}
+          sheenColor="#e04555"
+          sheenRoughness={0.35}
         />
       </mesh>
 
@@ -39,20 +53,20 @@ export function RedCarpet() {
       {[-1, 1].map((side) => (
         <mesh key={side} position={[side * (width / 2 + 0.02), 0.01, 0]}>
           <boxGeometry args={[0.04, 0.02, length]} />
-          <meshStandardMaterial color="#d4af37" roughness={0.35} metalness={0.8} />
+          <primitive object={brassMaterial} attach="material" />
         </mesh>
       ))}
 
       {/* Front Entrance Carpet Threshold / Brass Tread */}
       <mesh position={[0, 0.015, length / 2]}>
         <boxGeometry args={[width + 0.08, 0.025, 0.08]} />
-        <meshStandardMaterial color="#d4af37" roughness={0.3} metalness={0.85} />
+        <primitive object={brassMaterial} attach="material" />
       </mesh>
 
       {/* Back Podium Threshold Brass Tread */}
       <mesh position={[0, 0.015, -length / 2]}>
         <boxGeometry args={[width + 0.08, 0.025, 0.08]} />
-        <meshStandardMaterial color="#d4af37" roughness={0.3} metalness={0.85} />
+        <primitive object={brassMaterial} attach="material" />
       </mesh>
     </group>
   )

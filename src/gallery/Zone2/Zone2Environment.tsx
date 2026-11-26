@@ -4,7 +4,7 @@ import { Text } from '@react-three/drei'
 import { createFloorTexture } from '../Zone1/textures'
 import { CeilingRoof } from '../Zone1/CeilingRoof'
 import { RedCarpet } from '../Zone1/RedCarpet'
-import { Bookshelf, VisitorLounge } from '../Zone1/MuseumFurniture'
+import { Bookshelf } from '../Zone1/MuseumFurniture'
 import {
   ZONE2_HALL,
   ZONE2_HALL_CENTER_Z,
@@ -13,6 +13,7 @@ import {
 import { createZone2MonumentTexture } from './textures'
 import { ZONE2_MONUMENT } from './data/zone2Exhibits'
 import type { Zone2Exhibit } from './types'
+import { MaterialLibrary, QUALITY } from '../quality'
 
 interface Zone2EnvironmentProps {
   onSelectMonument?: (exhibit: Zone2Exhibit) => void
@@ -60,8 +61,11 @@ export function Zone2Environment({
         <planeGeometry args={[halfW * 2, length]} />
         <meshStandardMaterial
           map={floorTexture}
-          roughness={0.28}
-          metalness={0.12}
+          normalMap={QUALITY.current.physicalMaterials ? MaterialLibrary.cremaMarfilMarble().normalMap : null}
+          normalScale={new THREE.Vector2(0.22, 0.22)}
+          roughnessMap={QUALITY.current.physicalMaterials ? MaterialLibrary.cremaMarfilMarble().roughnessMap : null}
+          roughness={0.24}
+          metalness={0.08}
         />
       </mesh>
 
@@ -206,11 +210,7 @@ export function Zone2Environment({
         isMobile={isMobile}
       />
 
-      {/* 11. Museum Furniture: Visitor Lounges & Archival Bookshelves */}
-      <VisitorLounge position={[-3.8, 0, 4.0]} rotationY={Math.PI / 2} />
-      <VisitorLounge position={[3.8, 0, 4.0]} rotationY={-Math.PI / 2} />
-      <VisitorLounge position={[-3.8, 0, -13.0]} rotationY={Math.PI / 2} />
-      <VisitorLounge position={[3.8, 0, -13.0]} rotationY={-Math.PI / 2} />
+      {/* 11. Museum Furniture: Archival Bookshelves */}
 
       {/* Left-wall bookshelves moved to the front/back corners so the
           11 faculty panels can span the full left wall of Zone 2 */}

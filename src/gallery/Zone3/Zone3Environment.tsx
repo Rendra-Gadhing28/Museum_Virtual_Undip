@@ -2,7 +2,6 @@ import { useMemo } from 'react'
 import * as THREE from 'three'
 import { Text } from '@react-three/drei'
 import { createFloorTexture } from '../Zone1/textures'
-import { VisitorLounge } from '../Zone1/MuseumFurniture'
 import { CeilingRoof } from '../Zone1/CeilingRoof'
 import {
   ZONE3_HALL,
@@ -11,6 +10,7 @@ import {
   ZONE3_DIRECTORY_POS,
   ZONE3_DIRECTORY_PROXIMITY_RADIUS,
 } from './layout'
+import { MaterialLibrary, QUALITY } from '../quality'
 
 interface Zone3EnvironmentProps {
   isNearDirectory?: boolean
@@ -56,8 +56,11 @@ export function Zone3Environment({
         <planeGeometry args={[halfW * 2, length]} />
         <meshStandardMaterial
           map={floorTexture}
-          roughness={0.28}
-          metalness={0.12}
+          normalMap={QUALITY.current.physicalMaterials ? MaterialLibrary.cremaMarfilMarble().normalMap : null}
+          normalScale={new THREE.Vector2(0.22, 0.22)}
+          roughnessMap={QUALITY.current.physicalMaterials ? MaterialLibrary.cremaMarfilMarble().roughnessMap : null}
+          roughness={0.24}
+          metalness={0.08}
         />
       </mesh>
 
@@ -175,8 +178,6 @@ export function Zone3Environment({
       {/* ==============================================================
           5. AREA DUDUK LOUNGE PENGUNJUNG
           ============================================================== */}
-      <VisitorLounge position={[-halfW + 2.2, 0, centerZ + 12]} />
-      <VisitorLounge position={[halfW - 2.2, 0, centerZ + 12]} rotationY={Math.PI} />
 
       {/* ==============================================================
           6. PAPAN DIREKTORI "MAU KE MANA?" WAYFINDING

@@ -1,6 +1,6 @@
 import type { RefObject } from 'react'
 
-export type ZoneId = 'zone1' | 'zone2' | 'zone3' | 'zone4' | 'zone5'
+export type ZoneId = 'zone1' | 'zone2' | 'zone3'
 
 export interface ZoneMeta {
   id: ZoneId

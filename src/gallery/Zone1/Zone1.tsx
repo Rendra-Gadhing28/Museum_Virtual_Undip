@@ -20,7 +20,35 @@ import { DesktopHints } from './DesktopHints'
 import { MobileControls } from './MobileControls'
 import { ExhibitInformationPanel } from './ExhibitInformationPanel'
 import { WayfindingPrompt } from './WayfindingPrompt'
+import { LightingRig, DetailPass, PostFX, QUALITY } from '../quality'
+import { ZoneGraphicsController } from '../graphics'
+import {
+  CaptionUI,
+  CHAPTERS,
+  CinematicIntro,
+  GoldenDustParticles,
+  INTRO_STORAGE_KEY,
+  NARRATIVE_SLIDES,
+  type CinematicStateUpdate,
+  type IntroPhase,
+} from '../cinematic'
 import './gallery.css'
+
+const checkIsFirstVisit = (): boolean => {
+  try {
+    return window.localStorage.getItem(INTRO_STORAGE_KEY) !== 'true'
+  } catch {
+    return true
+  }
+}
+
+const markIntroSeen = () => {
+  try {
+    window.localStorage.setItem(INTRO_STORAGE_KEY, 'true')
+  } catch {
+    // Ignore storage restriction errors
+  }
+}
 
 const checkIsMobile = () =>
   typeof window !== 'undefined' &&
@@ -52,9 +80,13 @@ function useIsMobile(): boolean {
  */
 interface Zone1Props {
   onSwitchZone?: (zoneId: any) => void
+  onIntroStateChange?: (isActive: boolean) => void
 }
 
-export function Zone1({ onSwitchZone: _onSwitchZone }: Zone1Props = {}) {
+export function Zone1({
+  onSwitchZone: _onSwitchZone,
+  onIntroStateChange,
+}: Zone1Props = {}) {
   const isMobile = useIsMobile()
   const [selectedExhibit, setSelectedExhibit] = useState<SelectedExhibit | null>(null)
   const [hoveredId, setHoveredId] = useState<string | null>(null)
@@ -62,6 +94,26 @@ export function Zone1({ onSwitchZone: _onSwitchZone }: Zone1Props = {}) {
   const [targetPosition, setTargetPosition] = useState<[number, number, number] | null>(null)
   const [isNearDirectory, setIsNearDirectory] = useState(false)
   const [cullingStats, setCullingStats] = useState<CullingStats | null>(null)
+  const [introPhase, setIntroPhase] = useState<IntroPhase>(() =>
+    checkIsFirstVisit() ? 'title' : 'done',
+  )
+  const [narrativeSlideIndex, setNarrativeSlideIndex] = useState(0)
+  const [isIntroFading, setIsIntroFading] = useState(false)
+  const isIntroActive = introPhase !== 'done'
+  const isTourPlaying = introPhase === 'tour'
+
+  useEffect(() => {
+    onIntroStateChange?.(isIntroActive)
+  }, [isIntroActive, onIntroStateChange])
+  const [cinematicState, setCinematicState] = useState<CinematicStateUpdate>({
+    chapter: CHAPTERS[0],
+    telemetry: {
+      chapterId: CHAPTERS[0].id,
+      primaryValue: 'Initializing...',
+      secondaryValue: 'Checking runtime assets',
+    },
+    progressPercent: 0,
+  })
 
   const moveInputRef = useRef<{ forward: number; strafe: number }>({ forward: 0, strafe: 0 })
   const hoveredRef = useRef<string | null>(null)
@@ -123,6 +175,52 @@ export function Zone1({ onSwitchZone: _onSwitchZone }: Zone1Props = {}) {
   }, [])
   const handleClose = useCallback(() => setSelectedExhibit(null), [])
 
+  const finishIntro = useCallback(() => {
+    markIntroSeen()
+    setIsIntroFading(true)
+    setTimeout(() => {
+      setIntroPhase('done')
+      setIsIntroFading(false)
+    }, 550)
+  }, [])
+
+  const handleAdvancePhase = useCallback(() => {
+    if (introPhase === 'title') {
+      setNarrativeSlideIndex(0)
+      setIntroPhase('statement')
+      return
+    }
+    if (introPhase === 'statement') {
+      if (narrativeSlideIndex < NARRATIVE_SLIDES.length - 1) {
+        setNarrativeSlideIndex((idx) => idx + 1)
+      } else {
+        // Hilangkan blur lalu kamera dolly masuk ke ruangan
+        setIsIntroFading(true)
+        setTimeout(() => {
+          setIsIntroFading(false)
+          setIntroPhase('tour')
+        }, 550)
+      }
+    }
+  }, [introPhase, narrativeSlideIndex])
+
+  const handleReplayIntro = useCallback(() => {
+    setSelectedExhibit(null)
+    setTargetPosition(null)
+    setIsIntroFading(false)
+    setNarrativeSlideIndex(0)
+    setCinematicState({
+      chapter: CHAPTERS[0],
+      telemetry: {
+        chapterId: CHAPTERS[0].id,
+        primaryValue: 'Initializing...',
+        secondaryValue: 'Replaying engine showcase',
+      },
+      progressPercent: 0,
+    })
+    setIntroPhase('title')
+  }, [])
+
   const handleTeleport = useCallback((section: SectionType) => {
     setTargetPosition(SECTION_TARGETS[section])
   }, [])
@@ -178,8 +276,7 @@ export function Zone1({ onSwitchZone: _onSwitchZone }: Zone1Props = {}) {
 
 
       <Canvas
-        shadows={false}
-        dpr={[1, isMobile ? 1.0 : 1.75]}
+        dpr={[1, isMobile ? 1.0 : Math.min(QUALITY.current.pixelRatioMax, 1.5)]}
         gl={{
           antialias: !isMobile,
           powerPreference: 'high-performance',
@@ -187,6 +284,7 @@ export function Zone1({ onSwitchZone: _onSwitchZone }: Zone1Props = {}) {
         }}
         onPointerMissed={() => setSelectedExhibit(null)}
       >
+        <ZoneGraphicsController zone="zone1" />
         <color attach="background" args={['#0e1724']} />
         <fog attach="fog" args={[CULLING_CONFIG.fogColor, CULLING_CONFIG.fogNear, CULLING_CONFIG.fogFar]} />
 
@@ -200,7 +298,13 @@ export function Zone1({ onSwitchZone: _onSwitchZone }: Zone1Props = {}) {
 
         <Suspense fallback={null}>
           <CullingManager onStatsUpdate={setCullingStats}>
-            <GalleryLighting castShadows={false} isMobile={isMobile} />
+            {/* Ringan Quality Passes (Tanpa HDRI PMREM / Shadow / Spotlight Berat) */}
+            <LightingRig zone="zone1" />
+            <DetailPass zone="zone1" />
+            <PostFX zone="zone1" />
+            <GoldenDustParticles active={isIntroActive} />
+
+            <GalleryLighting castShadows={!isMobile} isMobile={isMobile} />
             <GalleryEnvironment isNearDirectory={isNearDirectory} isMobile={isMobile} />
 
             {/* Section 1 (Left Side): 13 Photos of UNDIP Founders */}
@@ -231,6 +335,14 @@ export function Zone1({ onSwitchZone: _onSwitchZone }: Zone1Props = {}) {
               onSelectPrasasti={handleSelectPrasasti}
               onHover={handleHover}
             />
+
+            <CinematicIntro
+              active={isTourPlaying}
+              isIntroOpen={isIntroActive}
+              baseFov={isMobile ? 66 : 56}
+              onStateUpdate={setCinematicState}
+              onComplete={finishIntro}
+            />
           </CullingManager>
         </Suspense>
 
@@ -242,16 +354,42 @@ export function Zone1({ onSwitchZone: _onSwitchZone }: Zone1Props = {}) {
           panelOpenRef={panelOpenRef}
           draggedRef={draggedRef}
           onProximityChange={setIsNearDirectory}
+          disabled={isIntroActive}
         />
       </Canvas>
 
-      {cullingStats && <CullingDebugOverlay stats={cullingStats} />}
+      {import.meta.env.DEV && cullingStats && <CullingDebugOverlay stats={cullingStats} />}
+
+      {/* Cinematic Intro Title, Editorial Statement, Letterbox & Captions */}
+      <CaptionUI
+        phase={introPhase}
+        narrativeSlideIndex={narrativeSlideIndex}
+        chapter={cinematicState.chapter}
+        telemetry={cinematicState.telemetry}
+        progressPercent={cinematicState.progressPercent}
+        isFadingOut={isIntroFading}
+        onAdvancePhase={handleAdvancePhase}
+        onSkip={finishIntro}
+      />
+
+      {/* Replay Intro Button (Top-Right when in active gameplay) */}
+      {!isIntroActive && (
+        <button
+          type="button"
+          className="cinematic-replay-btn"
+          onClick={handleReplayIntro}
+          title="Putar Ulang Intro Sinematik Engine"
+        >
+          <span className="cinematic-replay-icon">▶</span>
+          <span>Replay Intro</span>
+        </button>
+      )}
 
       {/* Subtle Desktop Hints */}
-      {!isMobile && <DesktopHints />}
+      {!isIntroActive && !isMobile && <DesktopHints />}
 
       {/* Mobile Touch Controls */}
-      {isMobile && (
+      {!isIntroActive && isMobile && (
         <MobileControls
           moveInputRef={moveInputRef}
           visible={selectedExhibit === null}
@@ -261,10 +399,12 @@ export function Zone1({ onSwitchZone: _onSwitchZone }: Zone1Props = {}) {
       )}
 
       {/* Interactive Wayfinding Prompt: Appears ONLY when near the Directory Board */}
-      <WayfindingPrompt
-        visible={isNearDirectory && selectedExhibit === null}
-        onTeleport={handleTeleport}
-      />
+      {!isIntroActive && (
+        <WayfindingPrompt
+          visible={isNearDirectory && selectedExhibit === null}
+          onTeleport={handleTeleport}
+        />
+      )}
 
       {/* Information Panel: Default right sidebar, expandable to large center modal */}
       <ExhibitInformationPanel

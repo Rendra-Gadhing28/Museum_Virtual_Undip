@@ -148,28 +148,34 @@ function FounderCard({
         </mesh>
       </group>
 
-      {/* 7. Gallery Sconce Downlight above the Portrait (Desktop only) */}
-      {!isMobile && (
-        <group position={[0, frameHeight / 2 + 0.16, 0.08]}>
-          <mesh position={[0, 0, -0.06]} rotation={[0.4, 0, 0]}>
-            <cylinderGeometry args={[0.012, 0.012, 0.22, 12]} />
-            <meshStandardMaterial color="#d4af37" roughness={0.3} metalness={0.8} />
-          </mesh>
-          <mesh position={[0, -0.04, 0.05]} rotation={[-0.7, 0, 0]}>
-            <boxGeometry args={[0.34, 0.08, 0.12]} />
-            <meshStandardMaterial color="#2d2217" roughness={0.5} metalness={0.6} />
-          </mesh>
-          <mesh position={[0, -0.07, 0.05]} rotation={[-0.7, 0, 0]}>
-            <planeGeometry args={[0.3, 0.08]} />
-            <meshStandardMaterial
-              color="#fff6e5"
-              emissive="#ffd9a0"
-              emissiveIntensity={2.4}
-              roughness={0.4}
-            />
-          </mesh>
-        </group>
-      )}
+      {/* 7. Gallery Sconce Downlight above the Portrait (Lampu Sconce Menyala Terang) */}
+      <group position={[0, frameHeight / 2 + 0.18, 0.1]}>
+        {/* Brass Mounting Arm */}
+        <mesh position={[0, 0, -0.06]} rotation={[0.4, 0, 0]}>
+          <cylinderGeometry args={[0.012, 0.012, 0.22, 12]} />
+          <meshStandardMaterial color="#c5a059" metalness={0.9} roughness={0.2} />
+        </mesh>
+        {/* Lamp Fixture Hood (Brushed Brass & Dark Finish) */}
+        <mesh position={[0, -0.03, 0.05]} rotation={[-0.45, 0, 0]}>
+          <boxGeometry args={[0.38, 0.07, 0.12]} />
+          <meshStandardMaterial color="#2d2217" roughness={0.4} metalness={0.7} />
+        </mesh>
+        {/* Brass Trim Accent on Lamp Hood */}
+        <mesh position={[0, -0.01, 0.05]} rotation={[-0.45, 0, 0]}>
+          <boxGeometry args={[0.4, 0.015, 0.13]} />
+          <meshStandardMaterial color="#d4af37" metalness={0.9} roughness={0.2} />
+        </mesh>
+        {/* VISIBLY ON: Luminous Soft Warm Ivory LED Lens Facing Down & Front */}
+        <mesh position={[0, -0.058, 0.06]} rotation={[-0.45, 0, 0]}>
+          <boxGeometry args={[0.34, 0.035, 0.09]} />
+          <meshStandardMaterial
+            color="#ffffff"
+            emissive="#fff7e8"
+            emissiveIntensity={5.0}
+            roughness={0.1}
+          />
+        </mesh>
+      </group>
 
       {/* 8. Hover Highlight Underneath */}
       {(isHovered || isSelected) && (

@@ -34,28 +34,6 @@ export const ZONE_CATALOG: ZoneMeta[] = [
     badge: 'Tersedia',
     accentColor: '#C9A24B',
   },
-  {
-    id: 'zone4',
-    number: 4,
-    title: 'Undip Today',
-    subtitle: 'Kampus Modern & Smart Labs',
-    theme: 'Contemporary Excellence',
-    description: 'Kompleks pameran maket kampus hidup 90x70m, Research Dome inovasi DNA helix & 6 lab mutakhir, Menara Atrium 5 lantai Book Helix, dan Global Stage pengakuan dunia.',
-    isAvailable: true,
-    badge: 'Tersedia',
-    accentColor: '#7FD1E8',
-  },
-  {
-    id: 'zone5',
-    number: 5,
-    title: 'Undip Future',
-    subtitle: 'Kampus Digital, AI & Peradaban 2050',
-    theme: 'World Class & Sustainability',
-    description: 'Kompleks pameran futuristik 100x80m: Digital Twin Plaza, The Neural Atrium AI Brain, Command Deck Smart Campus, The Summit Menara Spiral 7 Tingkat, The Living Grove 17 SDGs, dan Vision Beacon Fajar 2050.',
-    isAvailable: true,
-    badge: 'Tersedia',
-    accentColor: '#38BDF8',
-  },
 ]
 
 /**

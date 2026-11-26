@@ -4,7 +4,7 @@ import { DOMEntityCuller } from '../../perf/core/useDOMEntityCulling'
 
 interface Zone3InfoPanelProps {
   selectedItem: {
-    type: 'inscription' | 'artifact' | 'memorabilia' | 'photo' | 'document' | 'audiovisual' | 'heritage-table'
+    type: 'inscription' | 'artifact' | 'memorabilia' | 'photo' | 'document' | 'audiovisual' | 'heritage-table' | 'muladi-dome'
     data: any
   } | null
   onClose: () => void
@@ -60,6 +60,7 @@ export function Zone3InfoPanel({ selectedItem, onClose }: Zone3InfoPanelProps) {
               {isPhoto && '📷 ARSIP FOTO SEJARAH (1956–1971)'}
               {isDocument && '📜 DOKUMEN & PIAGAM PENEGERIAN'}
               {isAudiovisual && '📽️ REKAMAN AUDIOVISUAL VINTAGE'}
+              {type === 'muladi-dome' && '🏛️ MAKET AKBAR: MULADI DOME UNDIP'}
               {type === 'heritage-table' && '⚔️ PUSAKA KEHORMATAN DIPONEGORO'}
             </span>
             <span className="gr-zone3-era-tag">
@@ -210,13 +211,15 @@ export function Zone3InfoPanel({ selectedItem, onClose }: Zone3InfoPanelProps) {
             </div>
           )}
 
-          {/* Section 7: Meja Pusaka Diponegoro */}
-          {type === 'heritage-table' && (
+          {/* Section 7: Maket Muladi Dome & Meja Pusaka */}
+          {(type === 'muladi-dome' || type === 'heritage-table') && (
             <div className="gr-zone3-heritage-detail">
               <p className="gr-desc-lead">{data.description}</p>
               {data.highlights && (
                 <div className="gr-highlights-box">
-                  <h4 className="gr-sec-title">Nilai Historis & Pusaka:</h4>
+                  <h4 className="gr-sec-title">
+                    {type === 'muladi-dome' ? 'Keunggulan Arsitektur & Fasilitas:' : 'Nilai Historis & Pusaka:'}
+                  </h4>
                   <ul className="gr-highlights-list">
                     {data.highlights.map((hl: string, hli: number) => (
                       <li key={hli}>{hl}</li>

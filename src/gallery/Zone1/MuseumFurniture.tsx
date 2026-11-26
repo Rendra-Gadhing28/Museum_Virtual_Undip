@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import * as THREE from 'three'
 import { assetCache } from './cache'
+import { MaterialLibrary } from '../quality'
 
 interface FurnitureProps {
   position: [number, number, number]
@@ -13,15 +14,7 @@ interface FurnitureProps {
 export function Bookshelf({ position, rotationY = 0 }: FurnitureProps) {
   const materials = useMemo(() => {
     return {
-      woodFrame: assetCache.getMaterial(
-        'furn-wood-frame',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#3d2516',
-            roughness: 0.48,
-            metalness: 0.12,
-          }),
-      ),
+      woodFrame: MaterialLibrary.polishedTeakwood(),
       woodBack: assetCache.getMaterial(
         'furn-wood-back',
         () =>
@@ -30,15 +23,7 @@ export function Bookshelf({ position, rotationY = 0 }: FurnitureProps) {
             roughness: 0.6,
           }),
       ),
-      goldTrim: assetCache.getMaterial(
-        'furn-gold-trim',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#d4af37',
-            roughness: 0.3,
-            metalness: 0.85,
-          }),
-      ),
+      goldTrim: MaterialLibrary.antiqueBrass(false),
       bookSpines: [
         assetCache.getMaterial('furn-book-0', () => new THREE.MeshStandardMaterial({ color: '#59161a', roughness: 0.6 })),
         assetCache.getMaterial('furn-book-1', () => new THREE.MeshStandardMaterial({ color: '#0d2744', roughness: 0.6 })),
@@ -151,35 +136,9 @@ export function Bookshelf({ position, rotationY = 0 }: FurnitureProps) {
 export function GlassTable({ position, rotationY = 0 }: FurnitureProps) {
   const materials = useMemo(() => {
     return {
-      glass: assetCache.getMaterial(
-        'furn-glass-top',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#ffffff',
-            transparent: true,
-            opacity: 0.35,
-            roughness: 0.05,
-            metalness: 0.1,
-          }),
-      ),
-      goldLegs: assetCache.getMaterial(
-        'furn-table-gold',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#d4af37',
-            roughness: 0.28,
-            metalness: 0.88,
-          }),
-      ),
-      woodUnderShelf: assetCache.getMaterial(
-        'furn-table-shelf',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#3d2516',
-            roughness: 0.5,
-            metalness: 0.1,
-          }),
-      ),
+      glass: MaterialLibrary.museumVitrineGlass(),
+      goldLegs: MaterialLibrary.antiqueBrass(false),
+      woodUnderShelf: MaterialLibrary.polishedTeakwood(),
       bookCover: assetCache.getMaterial(
         'furn-table-book-cover',
         () =>
@@ -265,33 +224,9 @@ export function GlassTable({ position, rotationY = 0 }: FurnitureProps) {
 export function Armchair({ position, rotationY = 0 }: FurnitureProps) {
   const materials = useMemo(() => {
     return {
-      navyVelvet: assetCache.getMaterial(
-        'furn-chair-velvet',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#0e2a47',
-            roughness: 0.75,
-            metalness: 0.15,
-          }),
-      ),
-      woodFrame: assetCache.getMaterial(
-        'furn-chair-wood',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#3d2516',
-            roughness: 0.45,
-            metalness: 0.12,
-          }),
-      ),
-      goldStuds: assetCache.getMaterial(
-        'furn-chair-studs',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#d4af37',
-            roughness: 0.25,
-            metalness: 0.9,
-          }),
-      ),
+      navyVelvet: MaterialLibrary.royalVelvet('#0e2a47'),
+      woodFrame: MaterialLibrary.polishedTeakwood(),
+      goldStuds: MaterialLibrary.antiqueBrass(true),
     }
   }, [])
 

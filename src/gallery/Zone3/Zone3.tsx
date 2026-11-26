@@ -20,6 +20,8 @@ import {
   ZONE3_TARGETS,
 } from './layout'
 import type { ZoneId } from '../Zone2/types'
+import { LightingRig, DetailPass, PostFX, QUALITY } from '../quality'
+import { ZoneGraphicsController } from '../graphics'
 import '../Zone1/gallery.css'
 import './zone3.css'
 
@@ -141,8 +143,7 @@ export function Zone3({ onSwitchZone }: Zone3Props) {
   return (
     <div className={`gr-root gr-zone3-root${isMobile ? ' is-mobile' : ''}`}>
       <Canvas
-        shadows={false}
-        dpr={[1, isMobile ? 1.0 : 1.5]}
+        dpr={[1, isMobile ? 1.0 : Math.min(QUALITY.current.pixelRatioMax, 1.5)]}
         gl={{
           antialias: !isMobile,
           powerPreference: 'high-performance',
@@ -154,6 +155,7 @@ export function Zone3({ onSwitchZone }: Zone3Props) {
         }}
         onPointerMissed={() => setSelectedItem(null)}
       >
+        <ZoneGraphicsController zone="zone3" />
         <color attach="background" args={['#0e1724']} />
         <fog attach="fog" args={['#0e1724', 40, 85]} />
         <PerspectiveCamera
@@ -167,8 +169,13 @@ export function Zone3({ onSwitchZone }: Zone3Props) {
         <Suspense fallback={null}>
           <CanvasStatsCollector onStatsUpdate={setCullingStats} />
 
+          {/* Ringan Quality Passes */}
+          <LightingRig zone="zone3" />
+          <DetailPass zone="zone3" />
+          <PostFX zone="zone3" />
+
           {/* 1. Pencahayaan Galeri Museum Hangat Kuning */}
-          <Zone3Lighting castShadows={false} isMobile={isMobile} />
+          <Zone3Lighting castShadows={!isMobile} isMobile={isMobile} />
 
           {/* 2. Kontrol Hibrida (First-Person Walking & Guided Tour) */}
           <Zone3Controls

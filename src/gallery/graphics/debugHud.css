@@ -1,0 +1,226 @@
+/* Styling untuk Graphics Diagnostic HUD */
+
+.gfx-hud-container {
+  position: fixed;
+  top: 72px;
+  right: 20px;
+  width: 320px;
+  background: rgba(13, 17, 23, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  backdrop-filter: blur(14px);
+  color: #e2e8f0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  z-index: 99999;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.65);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.gfx-hud-container.minimized {
+  width: 240px;
+}
+
+.gfx-hud-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gfx-hud-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.gfx-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+}
+
+.gfx-badge {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.gfx-badge.mode-original {
+  background: #475569;
+  color: #f1f5f9;
+}
+
+.gfx-badge.mode-ultra {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.6);
+}
+
+.gfx-badge.mode-exaggerate {
+  background: #ea580c;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(234, 88, 12, 0.8);
+}
+
+.gfx-hud-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.gfx-icon-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 11px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.gfx-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.gfx-hud-body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Mode Selector Buttons */
+.gfx-mode-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+}
+
+.gfx-mode-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  padding: 6px 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: all 0.2s ease;
+}
+
+.gfx-mode-btn small {
+  font-size: 8px;
+  font-weight: 400;
+  color: #64748b;
+}
+
+.gfx-mode-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.gfx-mode-btn.active-original {
+  background: #334155;
+  border-color: #64748b;
+  color: #ffffff;
+}
+
+.gfx-mode-btn.active-ultra {
+  background: #1d4ed8;
+  border-color: #3b82f6;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.gfx-mode-btn.active-exaggerate {
+  background: #c2410c;
+  border-color: #f97316;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(249, 115, 22, 0.7);
+}
+
+/* Telemetry Grid */
+.gfx-telemetry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.gfx-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.gfx-label {
+  font-size: 9px;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.gfx-val {
+  font-size: 11px;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.gfx-val.highlight {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.gfx-val.fps {
+  color: #4ade80;
+  font-weight: 700;
+}
+
+.gfx-hud-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 8px;
+  color: #94a3b8;
+  font-size: 9.5px;
+  line-height: 1.35;
+}
+
+/* Reopen Floating Button */
+.gfx-hud-reopen-btn {
+  position: fixed;
+  top: 72px;
+  right: 20px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  color: #f8fafc;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 99999;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.gfx-hud-reopen-btn:hover {
+  background: rgba(30, 41, 59, 0.95);
+  border-color: #60a5fa;
+}

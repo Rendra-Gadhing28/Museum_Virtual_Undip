@@ -19,6 +19,8 @@ import {
   ZONE2_TARGETS,
 } from './layout'
 import type { Zone2Exhibit, ZoneId } from './types'
+import { LightingRig, DetailPass, PostFX, QUALITY } from '../quality'
+import { ZoneGraphicsController } from '../graphics'
 import '../Zone1/gallery.css'
 
 function useIsMobile(): boolean {
@@ -103,11 +105,11 @@ export function Zone2({ onSwitchZone: _onSwitchZone }: Zone2Props) {
   return (
     <div className={`gr-root${isMobile ? ' is-mobile' : ''}`}>
       <Canvas
-        shadows={false}
-        dpr={[1, isMobile ? 1.0 : 1.5]}
+        dpr={[1, isMobile ? 1.0 : Math.min(QUALITY.current.pixelRatioMax, 1.5)]}
         gl={{ antialias: !isMobile, powerPreference: 'high-performance' }}
         onPointerMissed={() => setSelectedExhibit(null)}
       >
+        <ZoneGraphicsController zone="zone2" />
         {/* Warm Gallery Horizon Color */}
         <color attach="background" args={['#100d08']} />
         <fog attach="fog" args={['#100d08', 35, 75]} />
@@ -122,6 +124,12 @@ export function Zone2({ onSwitchZone: _onSwitchZone }: Zone2Props) {
 
         <Suspense fallback={null}>
           <CanvasStatsCollector onStatsUpdate={setCullingStats} />
+
+          {/* Ringan Quality Passes */}
+          <LightingRig zone="zone2" />
+          <DetailPass zone="zone2" />
+          <PostFX zone="zone2" />
+
           {/* Strictly Warm Golden/Amber Lighting (2700K - 3000K) */}
           <Zone2Lighting />
 

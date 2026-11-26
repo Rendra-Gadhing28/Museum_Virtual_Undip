@@ -36,6 +36,7 @@ export function FirstPersonControls({
   panelOpenRef,
   draggedRef,
   onProximityChange,
+  disabled = false,
 }: FirstPersonControlsProps) {
   const { camera, gl } = useThree()
   const keys = useRef(new Set<string>())
@@ -44,10 +45,24 @@ export function FirstPersonControls({
   const pos = useRef<[number, number, number]>([...START_POSITION])
   const drag = useRef<{ id: number; x: number; y: number } | null>(null)
   const isNearDirectoryRef = useRef(false)
+  const disabledRef = useRef(disabled)
+
+  useEffect(() => {
+    disabledRef.current = disabled
+    if (!disabled) {
+      // Ensure exact alignment with spawn point when intro hands over control
+      pos.current = [...START_POSITION]
+      yaw.current = 0
+      pitch.current = 0
+      keys.current.clear()
+      drag.current = null
+    }
+  }, [disabled])
 
   // Keyboard Event Listeners
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
+      if (disabledRef.current) return
       // Toggle pointer lock on 'KeyN' / 'n'
       if (event.code === 'KeyN' || event.key.toLowerCase() === 'n') {
         event.preventDefault()
@@ -100,6 +115,7 @@ export function FirstPersonControls({
     const element = gl.domElement
 
     const onPointerDown = (event: PointerEvent) => {
+      if (disabledRef.current) return
       draggedRef.current = false
       if (event.button !== 0) return
       drag.current = { id: event.pointerId, x: event.clientX, y: event.clientY }
@@ -144,7 +160,7 @@ export function FirstPersonControls({
     }
 
     const onClick = () => {
-      if (panelOpenRef.current || hoveredRef.current) return
+      if (disabledRef.current || panelOpenRef.current || hoveredRef.current) return
       if (document.pointerLockElement === element) return
       if (!window.matchMedia('(pointer: fine)').matches) return
       try {
@@ -197,6 +213,7 @@ export function FirstPersonControls({
 
   // Frame Loop Movement Update
   useFrame((_, delta) => {
+    if (disabledRef.current) return
     const dt = Math.min(delta, 0.05)
 
     // Calculate movement vector in camera local space

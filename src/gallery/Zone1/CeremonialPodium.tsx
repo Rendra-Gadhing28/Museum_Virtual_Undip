@@ -11,6 +11,7 @@ import {
 } from './textures'
 import { HALL } from './layout'
 import { assetCache } from './cache'
+import { createProceduralNormalMap, MaterialLibrary, QUALITY } from '../quality'
 
 /**
  * Modern Architectural LED Ring Pendant Chandelier
@@ -20,7 +21,7 @@ import { assetCache } from './cache'
  */
 function LedRingPendantChandelier({
   position,
-  isMobile = false,
+  isMobile: _isMobile = false,
 }: {
   position: [number, number, number]
   isMobile?: boolean
@@ -84,10 +85,10 @@ function LedRingPendantChandelier({
         <mesh position={[0, 0, 0.012]}>
           <torusGeometry args={[1.3, 0.016, 16, 48]} />
           <meshStandardMaterial
-            color="#fff8ed"
-            emissive="#ffdca3"
-            emissiveIntensity={3.2}
-            roughness={0.2}
+            color="#fffdf8"
+            emissive="#fff6e8"
+            emissiveIntensity={1.8}
+            roughness={0.25}
           />
         </mesh>
       </group>
@@ -103,24 +104,15 @@ function LedRingPendantChandelier({
         <mesh position={[0, 0, 0.012]}>
           <torusGeometry args={[0.8, 0.014, 16, 40]} />
           <meshStandardMaterial
-            color="#fff8ed"
-            emissive="#ffdca3"
-            emissiveIntensity={3.2}
-            roughness={0.2}
+            color="#fffdf8"
+            emissive="#fff6e8"
+            emissiveIntensity={1.8}
+            roughness={0.25}
           />
         </mesh>
       </group>
 
-      {/* Soft Warm Cream Downward Illumination onto Dais (Desktop only) */}
-      {!isMobile && (
-        <pointLight
-          position={[0, -0.4, 0]}
-          color="#fff3e0"
-          intensity={24}
-          distance={10.0}
-          decay={2}
-        />
-      )}
+      {/* Soft Warm Ivory Downward Illumination removed for lightweight ambient lighting */}
     </group>
   )
 }
@@ -143,7 +135,7 @@ function StaticCurvedFlag({
   texture,
 }: StaticFlagProps) {
   const geom = useMemo(() => {
-    const g = new THREE.PlaneGeometry(width, height, 16, 8)
+    const g = new THREE.PlaneGeometry(width, height, 24, 14)
     const pos = g.attributes.position
     for (let i = 0; i < pos.count; i++) {
       const u = pos.getX(i)
@@ -158,12 +150,23 @@ function StaticCurvedFlag({
     return g
   }, [width, height])
 
+  const fabricNormal = useMemo(() => {
+    const n = createProceduralNormalMap('fabric', 512, 512)
+    n.repeat.set(3, 2)
+    return n
+  }, [])
+
   return (
     <mesh position={position} geometry={geom} castShadow>
-      <meshStandardMaterial
+      <meshPhysicalMaterial
         map={texture}
-        roughness={0.45}
-        metalness={0.08}
+        normalMap={QUALITY.current.physicalMaterials ? fabricNormal : null}
+        normalScale={new THREE.Vector2(0.4, 0.4)}
+        roughness={0.72}
+        metalness={0.04}
+        sheen={QUALITY.current.sheen ? 0.75 : 0}
+        sheenColor="#ffffff"
+        sheenRoughness={0.45}
         side={THREE.DoubleSide}
       />
     </mesh>
@@ -198,6 +201,7 @@ export function CeremonialPodium({
 
   // Load the official Undip shield logo from the user's reference photo (auto-cleaned background)
   const officialLogoTexture = useMemo(() => createOfficialUndipLogoTexture(), [])
+  const carvedStoneMaps = useMemo(() => MaterialLibrary.carvedStoneMaps(), [])
 
   const baseMaterials = useMemo(() => {
     return {
@@ -240,15 +244,7 @@ export function CeremonialPodium({
             metalness: 0.05,
           }),
       ),
-      teakWood: assetCache.getMaterial(
-        'pod-teak-wood',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#3d2516',
-            roughness: 0.52,
-            metalness: 0.08,
-          }),
-      ),
+      teakWood: MaterialLibrary.polishedTeakwood(),
       darkTeakCarved: assetCache.getMaterial(
         'pod-dark-teak',
         () =>
@@ -305,24 +301,8 @@ export function CeremonialPodium({
             metalness: 0.3,
           }),
       ),
-      redVelvet: assetCache.getMaterial(
-        'pod-red-velvet',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#8b151b',
-            roughness: 0.9,
-            metalness: 0.05,
-          }),
-      ),
-      goldBrass: assetCache.getMaterial(
-        'pod-gold-brass',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#c59f48',
-            roughness: 0.3,
-            metalness: 0.85,
-          }),
-      ),
+      redVelvet: MaterialLibrary.royalVelvet('#8b151b'),
+      goldBrass: MaterialLibrary.antiqueBrass(false),
       leatherBlotter: assetCache.getMaterial(
         'pod-leather-blotter',
         () =>
@@ -332,14 +312,7 @@ export function CeremonialPodium({
             metalness: 0.1,
           }),
       ),
-      parchment: assetCache.getMaterial(
-        'pod-parchment',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#f4ecd8',
-            roughness: 0.8,
-          }),
-      ),
+      parchment: MaterialLibrary.parchmentPaper('#f4ecd8'),
       microphoneChrome: assetCache.getMaterial(
         'pod-mic-chrome',
         () =>
@@ -415,21 +388,10 @@ export function CeremonialPodium({
               <meshStandardMaterial
                 color="#fffcf5"
                 emissive="#ffedd0"
-                emissiveIntensity={3.6}
-                roughness={0.15}
+                emissiveIntensity={1.6}
+                roughness={0.25}
               />
             </mesh>
-            {/* Downward Focused Soft Warm Cream Spot */}
-            <spotLight
-              position={[0, -0.05, 0]}
-              target-position={[0, -5.0, 0]}
-              color="#fff4df"
-              intensity={32}
-              angle={0.52}
-              penumbra={0.7}
-              distance={11.0}
-              decay={2}
-            />
           </group>
         ))}
 
@@ -796,11 +758,16 @@ export function CeremonialPodium({
             </mesh>
 
             <mesh position={[0, 0.066, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-              <planeGeometry args={[1.36, 1.02]} />
+              <planeGeometry args={[1.36, 1.02, 48, 36]} />
               <meshStandardMaterial
                 map={prasastiTexture}
-                roughness={0.25}
-                metalness={0.65}
+                normalMap={QUALITY.current.physicalMaterials ? carvedStoneMaps.normalMap : null}
+                normalScale={new THREE.Vector2(0.55, 0.55)}
+                displacementMap={QUALITY.current.microDetailBump ? carvedStoneMaps.displacementMap : null}
+                displacementScale={0.008}
+                roughnessMap={QUALITY.current.physicalMaterials ? carvedStoneMaps.roughnessMap : null}
+                roughness={0.35}
+                metalness={0.55}
               />
             </mesh>
 

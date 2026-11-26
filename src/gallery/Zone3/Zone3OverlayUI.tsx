@@ -5,7 +5,7 @@ interface Zone3OverlayUIProps {
   onResetPosition: () => void
   onTeleport: (target: 'entrance' | 'prasasti' | 'photos' | 'artifacts' | 'legacy' | 'documents' | 'cinema') => void
   isNearDirectory: boolean
-  onSwitchZone?: (zoneId: 'zone1' | 'zone2' | 'zone4' | 'zone5') => void
+  onSwitchZone?: (zoneId: 'zone1' | 'zone2' | 'zone3') => void
 }
 
 /**
@@ -171,10 +171,10 @@ export function Zone3OverlayUI({
             <button
               type="button"
               className="z3-portal-pill"
-              onClick={() => onSwitchZone?.('zone4')}
-              title="Lanjut ke Zona 4"
+              onClick={() => onSwitchZone?.('zone1')}
+              title="Kembali ke Zona 1"
             >
-              Ke Zona 4 (Today) ►
+              ◄ Ke Zona 1 (Origin)
             </button>
           </div>
         </div>

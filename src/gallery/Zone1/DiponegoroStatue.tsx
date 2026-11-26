@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import * as THREE from 'three'
 import type { StatueProps } from './types'
 import { assetCache } from './cache'
+import { MaterialLibrary } from '../quality'
 
 /**
  * 3D Monumental Statue: Pangeran Diponegoro on White Horse (Kuda Putih)
@@ -19,79 +20,17 @@ export function DiponegoroStatue({
   const materials = useMemo(() => {
     return {
       // 1. Pure White Horse Material (Alabaster / White Marble with smooth pearlescent sheen)
-      whiteHorse: assetCache.getMaterial(
-        'statue-white-horse',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#f8fafc',
-            roughness: 0.3,
-            metalness: 0.08,
-          }),
-      ),
-      whiteMane: assetCache.getMaterial(
-        'statue-white-mane',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#ffffff',
-            roughness: 0.42,
-            metalness: 0.04,
-          }),
-      ),
+      whiteHorse: MaterialLibrary.statuaryMarble('#f8fafc', 0.24),
+      whiteMane: MaterialLibrary.statuaryMarble('#ffffff', 0.34),
       // 2. Diponegoro White Royal Robe & White Sorban
-      heroWhiteRobe: assetCache.getMaterial(
-        'statue-hero-white-robe',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#f7f6f2',
-            roughness: 0.45,
-            metalness: 0.06,
-          }),
-      ),
-      heroSorban: assetCache.getMaterial(
-        'statue-hero-sorban',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#ffffff',
-            roughness: 0.4,
-          }),
-      ),
+      heroWhiteRobe: MaterialLibrary.statuaryMarble('#f7f6f2', 0.36),
+      heroSorban: MaterialLibrary.statuaryMarble('#ffffff', 0.34),
       // 3. Gold Trims & Keris Pusaka
-      goldAccent: assetCache.getMaterial(
-        'statue-gold',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#d4af37',
-            roughness: 0.25,
-            metalness: 0.88,
-          }),
-      ),
-      goldBright: assetCache.getMaterial(
-        'statue-gold-bright',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#ffd700',
-            roughness: 0.2,
-            metalness: 0.92,
-          }),
-      ),
+      goldAccent: MaterialLibrary.antiqueBrass(false),
+      goldBright: MaterialLibrary.antiqueBrass(true),
       // 4. White Marble Plinth & Teakwood Base
-      marblePlinth: assetCache.getMaterial(
-        'statue-marble-white',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#f4f0e8',
-            roughness: 0.38,
-            metalness: 0.08,
-          }),
-      ),
-      teakBase: assetCache.getMaterial(
-        'statue-teak',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#3d2516',
-            roughness: 0.5,
-          }),
-      ),
+      marblePlinth: MaterialLibrary.cremaMarfilMarble({ roughness: 0.26, clearcoat: 0.35 }),
+      teakBase: MaterialLibrary.polishedTeakwood(),
       darkTeak: assetCache.getMaterial(
         'statue-dark-teak',
         () =>
@@ -109,14 +48,7 @@ export function DiponegoroStatue({
             metalness: 0.2,
           }),
       ),
-      navyVelvet: assetCache.getMaterial(
-        'statue-navy-velvet',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#122a4d',
-            roughness: 0.85,
-          }),
-      ),
+      navyVelvet: MaterialLibrary.royalVelvet('#122a4d'),
     }
   }, [])
 

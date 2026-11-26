@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import * as THREE from 'three'
+import { createProceduralRoughnessMap, MaterialLibrary, QUALITY } from '../quality'
 
 interface DirectoryBoardProps {
   position: [number, number, number]
@@ -137,19 +138,19 @@ export function DirectoryBoard({
   const texture = useMemo(() => createDirectoryTexture(), [])
 
   const materials = useMemo(() => {
+    const boardRough = createProceduralRoughnessMap(0.45, 0.18)
     return {
-      heritageWood: new THREE.MeshStandardMaterial({
-        color: '#3d2516',
-        roughness: 0.48,
-        metalness: 0.12,
-      }),
-      goldTrim: new THREE.MeshStandardMaterial({
-        color: isNear ? '#ffe07b' : '#d4af37',
-        emissive: isNear ? '#d4af37' : '#000000',
-        emissiveIntensity: isNear ? 0.35 : 0,
-        roughness: 0.28,
-        metalness: 0.88,
-      }),
+      heritageWood: MaterialLibrary.polishedTeakwood(),
+      goldTrim: isNear
+        ? new THREE.MeshStandardMaterial({
+            color: '#ffe07b',
+            emissive: '#d4af37',
+            emissiveIntensity: 0.35,
+            roughness: 0.28,
+            metalness: 0.85,
+            roughnessMap: QUALITY.current.physicalMaterials ? boardRough : null,
+          })
+        : MaterialLibrary.antiqueBrass(false),
       navyBacking: new THREE.MeshStandardMaterial({
         color: '#0b1d3a',
         roughness: 0.5,
@@ -219,13 +220,6 @@ export function DirectoryBoard({
             <planeGeometry args={[0.3, 0.06]} />
             <primitive object={materials.lampWarm} attach="material" />
           </mesh>
-          <pointLight
-            position={[0, -0.1, 0.1]}
-            color="#ffe7ba"
-            intensity={10}
-            distance={3.0}
-            decay={2}
-          />
         </group>
       </group>
 

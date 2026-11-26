@@ -6,6 +6,8 @@ import { Text } from '@react-three/drei'
 import { createDioramaPlaqueTexture } from './textures'
 import type { Zone2Exhibit } from './types'
 import { ZONE2_CENTERPIECE } from './data/zone2Exhibits'
+import { MaterialLibrary } from '../quality'
+import { InstancedFoliage } from '../common/InstancedFoliage'
 
 interface CampusTransformationDioramaProps {
   position: [number, number, number]
@@ -32,6 +34,9 @@ export function CampusTransformationDiorama({
 }: CampusTransformationDioramaProps) {
   const plaqueTexture = useMemo(() => createDioramaPlaqueTexture(), [])
   const ringRef = useRef<THREE.Mesh>(null)
+  const ivoryMarbleMat = useMemo(() => MaterialLibrary.cremaMarfilMarble(), [])
+  const goldBrassMat = useMemo(() => MaterialLibrary.antiqueBrass(false), [])
+  const barkMat = useMemo(() => MaterialLibrary.treeBark('#4a3728'), [])
 
   // Subtle pulsing animation on interactive indicator
   const isVisible = useEntityVisibility()
@@ -72,19 +77,19 @@ export function CampusTransformationDiorama({
       {/* Gold Trim Line around Tier 1 */}
       <mesh position={[0, 0.25, 0]}>
         <boxGeometry args={[4.84, 0.02, 3.44]} />
-        <meshStandardMaterial color="#d4af37" metalness={0.8} roughness={0.2} />
+        <primitive object={goldBrassMat} attach="material" />
       </mesh>
 
       {/* Tier 2 - Raised Platform */}
       <mesh position={[0, 0.38, 0]} castShadow receiveShadow>
         <boxGeometry args={[4.4, 0.24, 3.0]} />
-        <meshStandardMaterial color="#f7f4ec" roughness={0.25} metalness={0.1} />
+        <primitive object={ivoryMarbleMat} attach="material" />
       </mesh>
 
       {/* Gold Inlay Edge on Tier 2 */}
       <mesh position={[0, 0.51, 0]}>
         <boxGeometry args={[4.44, 0.02, 3.04]} />
-        <meshStandardMaterial color="#ffd700" metalness={0.85} roughness={0.15} />
+        <primitive object={goldBrassMat} attach="material" />
       </mesh>
 
       {/* Tier 3 - Campus Display Top Surface (Landscape Green / Modern Ground) */}
@@ -124,19 +129,21 @@ export function CampusTransformationDiorama({
           <meshStandardMaterial color="#8f3a22" roughness={0.4} />
         </mesh>
 
-        {/* Miniature Trees */}
+        {/* Miniature Trees (Bark + InstancedMesh Alpha-Tested Leaves) */}
         {[-0.45, 0.45].map((tx, ti) => (
-          <group key={`tree-pleburan-${ti}`} position={[tx, 0.05, 0]}>
-            <mesh position={[0, 0.1, 0]}>
-              <cylinderGeometry args={[0.02, 0.03, 0.2, 6]} />
-              <meshStandardMaterial color="#4a3728" />
-            </mesh>
-            <mesh position={[0, 0.24, 0]} castShadow>
-              <sphereGeometry args={[0.12, 8, 8]} />
-              <meshStandardMaterial color="#2d5a27" roughness={0.6} />
-            </mesh>
-          </group>
+          <mesh key={`tree-pleburan-${ti}`} position={[tx, 0.15, 0]} castShadow>
+            <cylinderGeometry args={[0.02, 0.03, 0.2, 8]} />
+            <primitive object={barkMat} attach="material" />
+          </mesh>
         ))}
+        <InstancedFoliage
+          clusters={[
+            { position: [-0.45, 0.29, 0], radius: 0.12, count: 24 },
+            { position: [0.45, 0.29, 0], radius: 0.12, count: 24 },
+          ]}
+          leafSize={0.08}
+          color="#2d5a27"
+        />
 
         <Text
           position={[0, 0.05, 0.82]}

@@ -75,6 +75,7 @@ export interface FirstPersonControlsProps {
   panelOpenRef: RefObject<boolean>
   draggedRef: RefObject<boolean>
   onProximityChange?: (isNearDirectory: boolean) => void
+  disabled?: boolean
 }
 
 export type SectionType = 'entrance' | 'founders' | 'map' | 'podium' | 'history' | 'prasasti'

@@ -19,7 +19,7 @@
  * Both helpers toggle `Object3D.visible` and pause rendering computations,
  * ensuring 0 GPU/CPU waste on objects outside the visitor's field of view.
  */
-import { createContext, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, useMemo, useRef, type ReactNode } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
@@ -81,7 +81,6 @@ export function EntityCulling({
   const groupRef = useRef<THREE.Group>(null)
   const boundsRef = useRef<THREE.Sphere | null>(null)
   const frameRef = useRef(0)
-  const [isVisible, setIsVisible] = useState(true)
 
   // Reused maths objects — never allocate inside useFrame.
   const frustum = useMemo(() => new THREE.Frustum(), [])
@@ -99,7 +98,6 @@ export function EntityCulling({
       boundsRef.current = null
       const group = groupRef.current
       if (group) group.visible = true
-      setIsVisible(true)
       return
     }
 
@@ -136,7 +134,6 @@ export function EntityCulling({
     if (!enabled || alwaysVisible) {
       if (!group.visible) {
         group.visible = true
-        setIsVisible(true)
         onVisibilityChange?.(true)
       }
       frameRef.current = 0
@@ -169,13 +166,12 @@ export function EntityCulling({
 
     if (group.visible !== visible) {
       group.visible = visible
-      setIsVisible(visible)
       onVisibilityChange?.(visible)
     }
   })
 
   return (
-    <EntityVisibilityContext.Provider value={isVisible}>
+    <EntityVisibilityContext.Provider value={true}>
       <group ref={groupRef}>{children}</group>
     </EntityVisibilityContext.Provider>
   )

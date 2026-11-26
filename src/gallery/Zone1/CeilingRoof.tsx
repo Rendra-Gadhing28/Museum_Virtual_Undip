@@ -85,9 +85,9 @@ export function CeilingRoof({
         'ceil-cove-glow',
         () =>
           new THREE.MeshStandardMaterial({
-            color: '#fff3db',
-            emissive: '#ffd999',
-            emissiveIntensity: 2.2,
+            color: '#fffdf5',
+            emissive: '#fff4dc',
+            emissiveIntensity: 3.5,
             roughness: 0.3,
           }),
       ),
@@ -96,8 +96,8 @@ export function CeilingRoof({
         () =>
           new THREE.MeshStandardMaterial({
             color: '#ffffff',
-            emissive: '#fff0d0',
-            emissiveIntensity: 2.5,
+            emissive: '#fffbf0',
+            emissiveIntensity: 3.8,
           }),
       ),
       timberCrown: assetCache.getMaterial(
@@ -284,17 +284,6 @@ export function CeilingRoof({
 
             {/* 4. Grand Multi-Tiered Crystal Chandelier Suspended in Center of Bay */}
             <Chandelier position={[0, 0.12, 0]} scale={1.2} isMobile={isMobile} />
-
-            {/* Ambient Cove Fill Light for this bay (desktop only) */}
-            {!isMobile && (
-              <pointLight
-                position={[0, -0.6, 0]}
-                color="#fff0cc"
-                intensity={18}
-                distance={12}
-                decay={2}
-              />
-            )}
           </group>
         )
       })}

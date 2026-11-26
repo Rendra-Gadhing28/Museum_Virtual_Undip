@@ -3,6 +3,8 @@ import * as THREE from 'three'
 import type { MiniatureMapProps } from './types'
 import { createCampusMiniatureTexture } from './textures'
 import { assetCache } from './cache'
+import { MaterialLibrary } from '../quality'
+import { InstancedFoliage } from '../common/InstancedFoliage'
 
 /**
  * 3D Miniature Map of Universitas Diponegoro (Tembalang & Pleburan Campus)
@@ -19,24 +21,8 @@ export function MiniatureMap({
 
   const baseMaterials = useMemo(() => {
     return {
-      heritageBase: assetCache.getMaterial(
-        'mini-heritage-base',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#3d2516',
-            roughness: 0.5,
-            metalness: 0.15,
-          }),
-      ),
-      ivoryBody: assetCache.getMaterial(
-        'mini-ivory-body',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#f7f4eb',
-            roughness: 0.85,
-            metalness: 0.05,
-          }),
-      ),
+      heritageBase: MaterialLibrary.polishedTeakwood(),
+      ivoryBody: MaterialLibrary.cremaMarfilMarble({ roughness: 0.45, clearcoat: 0.15 }),
       navyInset: assetCache.getMaterial(
         'mini-navy-inset',
         () =>
@@ -46,26 +32,8 @@ export function MiniatureMap({
             metalness: 0.2,
           }),
       ),
-      goldBrass: assetCache.getMaterial(
-        'mini-gold-brass',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#d4af37',
-            roughness: 0.28,
-            metalness: 0.88,
-          }),
-      ),
-      glass: assetCache.getMaterial(
-        'mini-glass-vitrine',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#ffffff',
-            transparent: true,
-            opacity: 0.32,
-            roughness: 0.05,
-            metalness: 0.1,
-          }),
-      ),
+      goldBrass: MaterialLibrary.antiqueBrass(false),
+      glass: MaterialLibrary.museumVitrineGlass(),
       buildingWhite: assetCache.getMaterial(
         'mini-building-white',
         () =>
@@ -104,15 +72,7 @@ export function MiniatureMap({
             opacity: 0.7,
           }),
       ),
-      waterBlue: assetCache.getMaterial(
-        'mini-water-blue',
-        () =>
-          new THREE.MeshStandardMaterial({
-            color: '#1a5276',
-            roughness: 0.1,
-            metalness: 0.4,
-          }),
-      ),
+      waterBlue: MaterialLibrary.marineWater(),
       terracottaTrack: assetCache.getMaterial(
         'mini-terracotta-track',
         () =>
@@ -473,24 +433,27 @@ export function MiniatureMap({
           </mesh>
         </group>
 
-        {/* Micro Campus Trees & Greenery */}
-        {[
-          [-0.24, -0.45],
-          [0.24, -0.45],
-          [-0.24, 0.48],
-          [0.24, 0.48],
-          [-0.75, 0.28],
-          [0.75, 0.28],
-          [-0.45, -0.75],
-          [0.45, -0.75],
-          [-0.2, 0.18],
-          [0.2, 0.18],
-        ].map(([tx, tz], ti) => (
-          <mesh key={`tree-${ti}`} position={[tx, 0.038, tz]}>
-            <sphereGeometry args={[0.036, 10, 10]} />
-            <primitive object={materials.treeGreen} attach="material" />
-          </mesh>
-        ))}
+        {/* Micro Campus Trees & Greenery (InstancedMesh Alpha-Tested Leaves) */}
+        <InstancedFoliage
+          clusters={[
+            [-0.24, -0.45],
+            [0.24, -0.45],
+            [-0.24, 0.48],
+            [0.24, 0.48],
+            [-0.75, 0.28],
+            [0.75, 0.28],
+            [-0.45, -0.75],
+            [0.45, -0.75],
+            [-0.2, 0.18],
+            [0.2, 0.18],
+          ].map(([tx, tz]) => ({
+            position: [tx, 0.045, tz] as [number, number, number],
+            radius: 0.042,
+            count: 14,
+          }))}
+          leafSize={0.036}
+          color="#2d5a27"
+        />
 
         {/* Miniature Accent Spotlights Illuminating Muladi Dome & Campus */}
         <pointLight position={[0, 0.55, 0.04]} color="#fff8e6" intensity={18} distance={3.0} />

@@ -9,8 +9,9 @@ import {
 import { createFloorTexture } from './textures'
 import { CeilingRoof } from './CeilingRoof'
 import { RedCarpet } from './RedCarpet'
-import { Bookshelf, VisitorLounge } from './MuseumFurniture'
+import { Bookshelf } from './MuseumFurniture'
 import { DirectoryBoard } from './DirectoryBoard'
+import { MaterialLibrary, QUALITY } from '../quality'
 
 interface GalleryEnvironmentProps {
   isNearDirectory?: boolean
@@ -55,8 +56,11 @@ export function GalleryEnvironment({
         <planeGeometry args={[halfW * 2, length]} />
         <meshStandardMaterial
           map={floorTexture}
-          roughness={0.28}
-          metalness={0.12}
+          normalMap={QUALITY.current.physicalMaterials ? MaterialLibrary.cremaMarfilMarble().normalMap : null}
+          normalScale={new THREE.Vector2(0.22, 0.22)}
+          roughnessMap={QUALITY.current.physicalMaterials ? MaterialLibrary.cremaMarfilMarble().roughnessMap : null}
+          roughness={0.24}
+          metalness={0.08}
         />
       </mesh>
 
@@ -214,11 +218,7 @@ export function GalleryEnvironment({
       <Bookshelf position={[halfW - 0.35, 0, 10.6]} rotationY={-Math.PI / 2} />
       <Bookshelf position={[-halfW + 0.35, 0, 10.6]} rotationY={Math.PI / 2} />
 
-      {/* 12. EXTRA ASSETS: Visitor Lounge */}
-      <VisitorLounge position={[4.8, 0, 3.8]} rotationY={-Math.PI / 6} />
-      <VisitorLounge position={[-4.8, 0, 3.8]} rotationY={Math.PI / 6} />
-
-      {/* 13. EXTRA ASSET: Standing Wayfinding Directory Board */}
+      {/* 12. EXTRA ASSET: Standing Wayfinding Directory Board */}
       <DirectoryBoard
         position={DIRECTORY_BOARD_POS}
         rotationY={-Math.PI / 4}

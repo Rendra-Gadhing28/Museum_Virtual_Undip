@@ -193,7 +193,7 @@ interface ActiveTrackSpotlightProps {
   isMobile?: boolean
 }
 
-function ActiveTrackSpotlight({ z }: ActiveTrackSpotlightProps) {
+function ActiveTrackSpotlight({ z, isMobile: _isMobile = false }: ActiveTrackSpotlightProps) {
   return (
     <group position={[HISTORY_WALL_X - 0.8, 5.15, z]}>
       {/* Track Stem Connector attaching canister to horizontal pole */}
@@ -214,14 +214,14 @@ function ActiveTrackSpotlight({ z }: ActiveTrackSpotlightProps) {
         <meshStandardMaterial color="#1f1d19" roughness={0.35} metalness={0.8} />
       </mesh>
 
-      {/* Luminous Glowing Warm LED Lens / Bulb (VISIBLY ON & SHINING) */}
-      <mesh position={[0.075, -0.09, 0]} rotation={[0, 0, -0.45]}>
-        <cylinderGeometry args={[0.048, 0.048, 0.018, 16]} />
+      {/* Luminous Glowing Warm Ivory LED Lens / Bulb (VISIBLY ON & SHINING) */}
+      <mesh position={[0.08, -0.095, 0]} rotation={[0, 0, -0.45]}>
+        <cylinderGeometry args={[0.052, 0.052, 0.025, 16]} />
         <meshStandardMaterial
-          color="#fffdf5"
-          emissive="#ffcc44"
-          emissiveIntensity={4.8}
-          roughness={0.12}
+          color="#ffffff"
+          emissive="#fff8ed"
+          emissiveIntensity={5.5}
+          roughness={0.1}
         />
       </mesh>
 

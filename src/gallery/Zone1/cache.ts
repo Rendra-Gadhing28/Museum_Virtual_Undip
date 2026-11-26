@@ -12,6 +12,12 @@ class AssetCache {
   private geometries = new Map<string, THREE.BufferGeometry>()
   private materials = new Map<string, THREE.Material>()
 
+  // Antrean loader bertahap (maks 3 unduhan paralel) agar tidak terjadi N+1 load sekaligus
+  private loadQueue: Array<{ url: string; onLoaded?: (tex: THREE.Texture) => void }> = []
+  private activeLoads = 0
+  private readonly maxConcurrentLoads = 3
+  private loader = new THREE.TextureLoader()
+
   /**
    * Get or create a cached CanvasTexture.
    * Ensures canvas drawing and GPU texture upload happen strictly once.
@@ -25,9 +31,38 @@ class AssetCache {
     return tex
   }
 
+  private pumpQueue() {
+    while (this.activeLoads < this.maxConcurrentLoads && this.loadQueue.length > 0) {
+      const item = this.loadQueue.shift()!
+      const cached = this.externalTextures.get(item.url)
+      if (cached) {
+        item.onLoaded?.(cached)
+        continue
+      }
+
+      this.activeLoads++
+      this.loader.load(
+        item.url,
+        (tex) => {
+          tex.colorSpace = THREE.SRGBColorSpace
+          tex.anisotropy = 8
+          this.externalTextures.set(item.url, tex)
+          item.onLoaded?.(tex)
+          this.activeLoads--
+          this.pumpQueue()
+        },
+        undefined,
+        () => {
+          this.activeLoads--
+          this.pumpQueue()
+        },
+      )
+    }
+  }
+
   /**
-   * Asynchronously load and cache external image textures in memory.
-   * Ensures files are fetched and decoded only once across mounts/renders.
+   * Asynchronously load and cache external image textures with bounded concurrency.
+   * Prevents loading dozens of high-res textures simultaneously on mount.
    */
   loadExternalTexture(url: string, onLoaded?: (tex: THREE.Texture) => void): THREE.Texture | null {
     const cached = this.externalTextures.get(url)
@@ -36,19 +71,8 @@ class AssetCache {
       return cached
     }
 
-    const loader = new THREE.TextureLoader()
-    loader.load(
-      url,
-      (tex) => {
-        tex.colorSpace = THREE.SRGBColorSpace
-        this.externalTextures.set(url, tex)
-        if (onLoaded) onLoaded(tex)
-      },
-      undefined,
-      () => {
-        // failed load handled gracefully
-      },
-    )
+    this.loadQueue.push({ url, onLoaded })
+    this.pumpQueue()
     return null
   }
 

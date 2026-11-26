@@ -5,6 +5,8 @@ import { Text } from '@react-three/drei'
 import { createSteleInscriptionTexture } from './textures'
 import { PRASASTI_HERO_POS, HERITAGE_TABLE_POS } from './layout'
 import zone3Data from './data/zone3.json'
+import { MaterialLibrary, QUALITY } from '../quality'
+import { MuladiDomeVitrine } from './MuladiDomeVitrine'
 
 interface HeritageCenterpieceProps {
   selectedId: string | null
@@ -31,6 +33,8 @@ export function HeritageCenterpiece({
     () => createSteleInscriptionTexture(zone3Data.inscription),
     []
   )
+  const andesiteMat = useMemo(() => MaterialLibrary.volcanicAndesite(), [])
+  const carvedStoneMaps = useMemo(() => MaterialLibrary.carvedStoneMaps(), [])
 
   useFrame((state) => {
     if (ringRef.current) {
@@ -41,82 +45,39 @@ export function HeritageCenterpiece({
   const isPrasastiSelected = selectedId === 'hero-inscription-stele'
   const isPrasastiHovered = hoveredId === 'hero-inscription-stele'
 
-  const isHeritageTableSelected = selectedId === 'heritage-emblem-center'
-  const isHeritageTableHovered = hoveredId === 'heritage-emblem-center'
+  const isVitrineSelected = selectedId === 'muladi-dome-vitrine' || selectedId === 'heritage-emblem-center'
+  const isVitrineHovered = hoveredId === 'muladi-dome-vitrine' || hoveredId === 'heritage-emblem-center'
 
   return (
     <group>
       {/* ==============================================================
-          1. MEJA PUSAKA & LAMBANG DIPONEGORO DI SUMBU TENGAH (Z = -2.5)
+          1. MINIATUR KACA MULADI DOME DI SUMBU TENGAH (Z = -2.5)
           ============================================================== */}
-      <group
+      <MuladiDomeVitrine
         position={HERITAGE_TABLE_POS}
-        onClick={(e) => {
-          e.stopPropagation()
+        isSelected={isVitrineSelected}
+        isHovered={isVitrineHovered}
+        onSelect={() => {
           onSelect({
-            type: 'heritage-table',
+            type: 'muladi-dome',
             data: {
-              id: 'heritage-emblem-center',
-              title: 'Pusaka Lambang Kehormatan Pangeran Diponegoro',
-              category: 'Pusaka Kehormatan',
-              year: '1960',
-              description: 'Patung dada relief dan lambang resmi Pangeran Diponegoro yang dianugerahkan oleh Presiden Sukarno pada Dies Natalis III, melambangkan watak ksatria, kejujuran ilmiah, dan keberanian membela keadilan rakyat.',
+              id: 'muladi-dome-vitrine',
+              title: 'Maket Miniatur Muladi Dome (Multipurpose Convention Hall)',
+              category: 'Arsitektur Akbar Undip',
+              year: '2023',
+              description:
+                'Gedung serbaguna dan convention hall termegah Universitas Diponegoro berkapasitas lebih dari 4.500 orang. Mengadopsi arsitektur atap bantal dengan motif anyaman besek tradisional khas Jawa Tengah dan fasad kisi louvers modern.',
               highlights: [
-                'Bahan: Perunggu Tempa Bersepuh Emas Murni 24 Karat',
-                'Simbol Keris & Sorban: Keteguhan Iman dan Jiwa Kepahlawanan',
-                'Diresmikan Bersama Penetapan Nama Universitas Diponegoro',
+                'Model 3D Arsitektur Presisi Muladi Dome dalam Etalase Kaca',
+                'Desain Ikonik: Atap Anyaman Besek Tradisional & Sirip Louvers Fasad',
+                'Fasilitas Terakbar: Convention Hall, Grand Ballroom, Exhibition Area',
+                'Penghormatan kepada Prof. Dr. Muladi, S.H. atas jasa kepemimpinan beliau',
               ],
             },
           })
         }}
-        onPointerOver={(e) => {
-          e.stopPropagation()
-          onHover('heritage-emblem-center')
-        }}
-        onPointerOut={() => onHover(null)}
-      >
-        {/* Undakan Meja Marmer Hitam Bertingkat */}
-        <mesh position={[0, 0.25, 0]} castShadow receiveShadow>
-          <boxGeometry args={[4.2, 0.5, 3.2]} />
-          <meshStandardMaterial
-            color={isHeritageTableSelected ? '#2e2515' : isHeritageTableHovered ? '#1f1b14' : '#141416'}
-            roughness={0.3}
-            metalness={0.2}
-          />
-        </mesh>
-        <mesh position={[0, 0.51, 0]}>
-          <boxGeometry args={[4.26, 0.02, 3.26]} />
-          <meshStandardMaterial color="#c9a24b" metalness={0.9} roughness={0.2} />
-        </mesh>
-
-        {/* Tingkat Kedua Marmer Ivory */}
-        <mesh position={[0, 0.65, 0]} castShadow receiveShadow>
-          <boxGeometry args={[3.6, 0.26, 2.6]} />
-          <meshStandardMaterial color="#f7f2e6" roughness={0.3} />
-        </mesh>
-
-        {/* Relief Lambang Emas Pangeran Diponegoro */}
-        <group position={[0, 0.85, 0]}>
-          {/* Piringan Medali Emas */}
-          <mesh rotation={[-Math.PI / 2, 0, 0]} castShadow>
-            <cylinderGeometry args={[0.9, 0.9, 0.08, 36]} />
-            <meshStandardMaterial color="#ffd700" metalness={0.92} roughness={0.15} />
-          </mesh>
-          {/* Sorban & Siluet Simbolik */}
-          <mesh position={[0, 0.25, 0]} castShadow>
-            <cylinderGeometry args={[0.35, 0.45, 0.45, 24]} />
-            <meshStandardMaterial color="#c9a24b" metalness={0.85} roughness={0.25} />
-          </mesh>
-        </group>
-
-        {/* Teks Penjelasan Plinth */}
-        <Text position={[0, 0.32, 1.62]} fontSize={0.1} color="#ffd700" anchorX="center">
-          PUSAKA LAMBANG KEHORMATAN DIPONEGORO
-        </Text>
-        <Text position={[0, 0.18, 1.62]} fontSize={0.075} color="#cbd5e1" anchorX="center">
-          (Klik untuk membaca naskah kuratorial pusaka)
-        </Text>
-      </group>
+        onHover={onHover}
+      />
 
       {/* ==============================================================
           2. HERO: PLAZA PRASASTI MONUMENTAL PERESMIAN (Z = -21.0)
@@ -180,21 +141,30 @@ export function HeritageCenterpiece({
           {/* Batu Andesit Utama */}
           <mesh position={[0, 2.6, 0]} castShadow receiveShadow>
             <boxGeometry args={[2.6, 4.4, 0.42]} />
-            <meshStandardMaterial
-              color={isPrasastiSelected ? '#252528' : isPrasastiHovered ? '#1c1c1e' : '#141416'}
-              roughness={0.65}
-              metalness={0.15}
-            />
+            {isPrasastiSelected || isPrasastiHovered ? (
+              <meshStandardMaterial
+                color={isPrasastiSelected ? '#252528' : '#1c1c1e'}
+                roughness={0.65}
+                metalness={0.15}
+              />
+            ) : (
+              <primitive object={andesiteMat} attach="material" />
+            )}
           </mesh>
 
-          {/* Plat Permukaan Tekstur Ukiran Emas Prasasti */}
+          {/* Plat Permukaan Tekstur Ukiran Emas Prasasti (Normal + Displacement + Segmented) */}
           <mesh position={[0, 2.6, 0.22]}>
-            <planeGeometry args={[2.45, 4.2]} />
+            <planeGeometry args={[2.45, 4.2, 48, 84]} />
             <meshStandardMaterial
               map={inscriptionTexture}
+              normalMap={QUALITY.current.physicalMaterials ? carvedStoneMaps.normalMap : null}
+              normalScale={new THREE.Vector2(0.65, 0.65)}
+              displacementMap={QUALITY.current.microDetailBump ? carvedStoneMaps.displacementMap : null}
+              displacementScale={0.014}
+              roughnessMap={QUALITY.current.physicalMaterials ? carvedStoneMaps.roughnessMap : null}
               color="#ffffff"
-              roughness={0.4}
-              metalness={0.3}
+              roughness={0.45}
+              metalness={0.28}
             />
           </mesh>
 
@@ -223,7 +193,6 @@ export function HeritageCenterpiece({
               <sphereGeometry args={[0.12, 16, 16]} />
               <meshBasicMaterial color="#ffaa33" />
             </mesh>
-            <pointLight position={[0, 2.7, 0]} color="#ff9922" intensity={18} distance={8} decay={2} />
           </group>
         ))}
       </group>
