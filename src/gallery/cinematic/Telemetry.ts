@@ -35,25 +35,39 @@ export function formatTelemetryForChapter(
         secondaryValue: `${mem.geometries} geometries • ${mem.textures} textures`,
       }
 
-    case 'zone1':
+    case 'room1':
       return {
         chapterId,
-        primaryValue: `Tokoh Pendiri & Rektorat Undip`,
-        secondaryValue: `${render.calls} draw calls • Kampus Muladi Dome`,
+        primaryValue: `5 Tokoh Pancamitra & Akta Yayasan 1956`,
+        secondaryValue: `Dinding Kiri • Pintu 01`,
       }
 
-    case 'zone2':
+    case 'room2':
       return {
         chapterId,
-        primaryValue: `11+ Fakultas • Pleburan & Tembalang`,
-        secondaryValue: `Riset Kelautan (PIP) & Pengabdian KKN`,
+        primaryValue: `Keppres Penegerian 1960 & Pidato Soekarno`,
+        secondaryValue: `Dinding Kiri • Pintu 02`,
       }
 
-    case 'zone3':
+    case 'room3':
       return {
         chapterId,
-        primaryValue: `Vitrine Artefak & Transformasi Inovasi`,
-        secondaryValue: `Diorama Isometrik Warisan Akademik`,
+        primaryValue: `13 Rektor Universitas Diponegoro`,
+        secondaryValue: `Dinding Kiri • Pintu 03`,
+      }
+
+    case 'room4':
+      return {
+        chapterId,
+        primaryValue: `Pleburan–Tembalang • Widya Puraya • RSND`,
+        secondaryValue: `Dinding Kanan • Pintu 04`,
+      }
+
+    case 'room5':
+      return {
+        chapterId,
+        primaryValue: `Cetak Biru & Linimasa Muladi Dome`,
+        secondaryValue: `Dinding Kanan • Pintu 05`,
       }
 
     case 'epilogue':

@@ -38,88 +38,114 @@ function createDirectoryTexture(): THREE.CanvasTexture {
 
   ctx.fillStyle = '#dcd6c8'
   ctx.font = 'italic 18px Georgia, serif'
-  ctx.fillText('Peta Tata Letak & Sayap Pameran', 400, 185)
+  ctx.fillText('Denah Tata Letak Base Zone 1 (Formasi 3 — 2)', 400, 185)
 
   // Gold separator
   ctx.fillStyle = '#d4af37'
   ctx.fillRect(80, 215, 640, 3)
 
-  // Illustrated Mini Floorplan of the Museum
+  // Illustrated Mini Floorplan of Base Zone 1 (5 Doors: 3 Left, 2 Right)
   ctx.fillStyle = '#142744'
-  ctx.fillRect(100, 250, 600, 320)
+  ctx.fillRect(100, 245, 600, 330)
   ctx.strokeStyle = '#c5a059'
   ctx.lineWidth = 2
-  ctx.strokeRect(100, 250, 600, 320)
+  ctx.strokeRect(100, 245, 600, 330)
 
-  // Floorplan Left Wing
-  ctx.fillStyle = '#0d325e'
-  ctx.fillRect(120, 270, 140, 280)
-  ctx.fillStyle = '#ffd966'
-  ctx.font = 'bold 16px sans-serif'
-  ctx.fillText('SAYAP KIRI', 190, 390)
-  ctx.font = '14px sans-serif'
-  ctx.fillText('13 Tokoh Pendiri', 190, 420)
+  // Left Wall 3 Doors (top=R.03 back, mid=R.02, bottom=R.01 front)
+  const leftRooms = [
+    { label: 'RUANG 03', sub: 'Galeri Rektorat', y: 265 },
+    { label: 'RUANG 02', sub: 'Penegerian 1960', y: 365 },
+    { label: 'RUANG 01', sub: 'Pendiri & Yayasan', y: 465 },
+  ]
+  leftRooms.forEach((r) => {
+    ctx.fillStyle = '#0d325e'
+    ctx.fillRect(118, r.y, 172, 82)
+    ctx.strokeStyle = '#d4af37'
+    ctx.lineWidth = 2
+    ctx.strokeRect(118, r.y, 172, 82)
+    ctx.fillStyle = '#ffd966'
+    ctx.font = 'bold 15px sans-serif'
+    ctx.fillText(r.label, 204, r.y + 34)
+    ctx.fillStyle = '#f0ece1'
+    ctx.font = '13px sans-serif'
+    ctx.fillText(r.sub, 204, r.y + 58)
+  })
 
-  // Floorplan Right Wing
-  ctx.fillStyle = '#0d325e'
-  ctx.fillRect(540, 270, 140, 280)
-  ctx.fillStyle = '#ffd966'
-  ctx.font = 'bold 16px sans-serif'
-  ctx.fillText('SAYAP KANAN', 610, 390)
-  ctx.font = '14px sans-serif'
-  ctx.fillText('Sejarah & Arsip', 610, 420)
+  // Right Wall 2 Doors (upper=R.05, lower=R.04)
+  const rightRooms = [
+    { label: 'RUANG 05', sub: 'Muladi Dome', y: 305 },
+    { label: 'RUANG 04', sub: 'Kampus Fisik', y: 425 },
+  ]
+  rightRooms.forEach((r) => {
+    ctx.fillStyle = '#0d325e'
+    ctx.fillRect(510, r.y, 172, 92)
+    ctx.strokeStyle = '#d4af37'
+    ctx.lineWidth = 2
+    ctx.strokeRect(510, r.y, 172, 92)
+    ctx.fillStyle = '#ffd966'
+    ctx.font = 'bold 15px sans-serif'
+    ctx.fillText(r.label, 596, r.y + 38)
+    ctx.fillStyle = '#f0ece1'
+    ctx.font = '13px sans-serif'
+    ctx.fillText(r.sub, 596, r.y + 64)
+  })
 
   // Floorplan Red Carpet & Center
   ctx.fillStyle = '#8b0000'
-  ctx.fillRect(360, 270, 80, 280)
+  ctx.fillRect(365, 265, 70, 290)
   ctx.fillStyle = '#ffd966'
-  ctx.font = 'bold 13px sans-serif'
-  ctx.fillText('Karpet Merah', 400, 470)
+  ctx.font = 'bold 12px sans-serif'
+  ctx.fillText('Karpet', 400, 445)
+  ctx.fillText('Merah', 400, 463)
 
-  // Map box
+  // Podium & Prasasti box at back
   ctx.fillStyle = '#d4af37'
-  ctx.fillRect(375, 360, 50, 40)
-  ctx.fillStyle = '#000'
+  ctx.fillRect(352, 272, 96, 44)
+  ctx.fillStyle = '#0a192f'
   ctx.font = 'bold 11px sans-serif'
-  ctx.fillText('Maket', 400, 385)
+  ctx.fillText('Podium &', 400, 290)
+  ctx.fillText('Prasasti', 400, 305)
 
-  // Podium box
-  ctx.fillStyle = '#d4af37'
-  ctx.fillRect(365, 285, 70, 35)
-  ctx.fillStyle = '#000'
-  ctx.font = 'bold 11px sans-serif'
-  ctx.fillText('Podium', 400, 307)
+  // Visitor Spawn marker
+  ctx.fillStyle = '#ffd966'
+  ctx.beginPath()
+  ctx.arc(400, 528, 12, 0, Math.PI * 2)
+  ctx.fill()
+  ctx.fillStyle = '#0a192f'
+  ctx.font = 'bold 10px sans-serif'
+  ctx.fillText('ANDA', 400, 532)
 
   // Directory List
   ctx.textAlign = 'left'
   ctx.fillStyle = '#d4af37'
-  ctx.font = 'bold 22px Georgia, serif'
-  ctx.fillText('Destinasi Utama Galeri:', 100, 620)
+  ctx.font = 'bold 21px Georgia, serif'
+  ctx.fillText('Daftar Ruangan Pameran Zona 1:', 95, 615)
 
   const items = [
-    '✦ Sayap Kiri: 13 Potret Pendiri Undip (Mr. Soedarto, Mr. Imam Bardjo, dll)',
-    '✦ Area Tengah: Karpet Merah Menuju Maket 3D Kampus & Podium Kehormatan',
-    '✦ Sayap Kanan: Arsip Pendirian 1956, SK Penegerian 1961, Foto Awal Kampus',
-    '✦ Atap Arsitektur: Pola Ritmik Celah Persegi Panjang Emas & Pencahayaan Estetik',
+    '✦ Ruang 01 (Kiri): Arsip Pendiri & Yayasan (Pancamitra 1956)',
+    '✦ Ruang 02 (Kiri): Penegerian & Pidato Presiden Soekarno (1960)',
+    '✦ Ruang 03 (Kiri): Galeri Rektorat & 13 Pimpinan Undip',
+    '✦ Ruang 04 (Kanan): Transformasi Kampus Pleburan – Tembalang',
+    '✦ Ruang 05 (Kanan): Cetak Biru & Linimasa Gedung Muladi Dome',
   ]
 
   ctx.fillStyle = '#f0ece1'
-  ctx.font = '16px system-ui, sans-serif'
+  ctx.font = '15.5px system-ui, sans-serif'
   items.forEach((item, idx) => {
-    ctx.fillText(item, 100, 665 + idx * 46)
+    ctx.fillText(item, 95, 654 + idx * 38)
   })
 
   // Bottom prompt callout
-  ctx.fillStyle = 'rgba(212, 175, 55, 0.18)'
-  ctx.fillRect(80, 870, 640, 75)
+  ctx.fillStyle = 'rgba(212, 175, 55, 0.16)'
+  ctx.fillRect(80, 868, 640, 74)
   ctx.strokeStyle = '#d4af37'
   ctx.lineWidth = 1.5
-  ctx.strokeRect(80, 870, 640, 75)
+  ctx.strokeRect(80, 868, 640, 74)
 
   ctx.textAlign = 'center'
   ctx.fillStyle = '#ffe699'
-  ctx.font = 'bold 20px sans-serif'
-  ctx.fillText('📍 Berdiri di sini untuk memilih menu "Mau kemana??"', 400, 915)
+  ctx.font = 'bold 18px sans-serif'
+  ctx.fillText('Klik pintu ruangan di dinding kiri atau kanan untuk masuk', 400, 912)
 
   const texture = new THREE.CanvasTexture(canvas)
   texture.colorSpace = THREE.SRGBColorSpace

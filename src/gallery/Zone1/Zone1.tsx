@@ -1,32 +1,37 @@
-import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { PerspectiveCamera } from '@react-three/drei'
 import type { SelectedExhibit, SectionType } from './types'
 import type { Founder, HistoryExhibit } from './data/exhibits'
 import { UNDIP_LEADERSHIP_13, HISTORY_EXHIBITS } from './data/exhibits'
 import {
+  BOUNDS,
   PODIUM_POS,
   SECTION_TARGETS,
   START_POSITION,
 } from './layout'
 import { GalleryEnvironment } from './GalleryEnvironment'
 import { GalleryLighting } from './GalleryLighting'
-import { FoundersWing } from './FoundersWing'
-import { HistoryArchivesWing } from './HistoryArchivesWing'
 import { CeremonialPodium } from './CeremonialPodium'
 import { FirstPersonControls } from './FirstPersonControls'
 import { DesktopHints } from './DesktopHints'
 import { MobileControls } from './MobileControls'
 import { ExhibitInformationPanel } from './ExhibitInformationPanel'
-import { WayfindingPrompt } from './WayfindingPrompt'
 import { ZoneGraphicsController } from '../graphics'
+import { AudioToggleButton, museumAudio } from '../audio'
+import { Zone1SubRoom } from './Zone1SubRoom'
+import {
+  ZONE1_PORTAL_DOORS,
+  computeSubRoomDimensions,
+  getRoomExhibits,
+  type Zone1RoomId,
+} from './subRooms'
 import {
   CaptionUI,
   CHAPTERS,
   CinematicIntro,
   GoldenDustParticles,
   INTRO_STORAGE_KEY,
-  NARRATIVE_SLIDES,
   type CinematicStateUpdate,
   type IntroPhase,
 } from '../cinematic'
@@ -63,6 +68,30 @@ function useIsMobile(): boolean {
 }
 
 /**
+ * Menandakan bahwa Suspense 3D di dalam <Canvas> telah selesai dimuat
+ * dan siap menampilkan frame pertama sebelum animasi judul dimulai.
+ */
+function CanvasReadyNotifier({ onReady }: { onReady: () => void }) {
+  useEffect(() => {
+    let raf2 = 0
+    let timer = 0
+    const raf1 = window.requestAnimationFrame(() => {
+      raf2 = window.requestAnimationFrame(() => {
+        timer = window.setTimeout(() => {
+          onReady()
+        }, 400)
+      })
+    })
+    return () => {
+      window.cancelAnimationFrame(raf1)
+      if (raf2) window.cancelAnimationFrame(raf2)
+      if (timer) window.clearTimeout(timer)
+    }
+  }, [onReady])
+  return null
+}
+
+/**
  * Museum Virtual Undip - Master 3D Gallery Scene
  * Requirements implemented:
  * - Minimal-space large area divided into side sections
@@ -88,6 +117,8 @@ export function Zone1({
   const isMobile = useIsMobile()
   const [selectedExhibit, setSelectedExhibit] = useState<SelectedExhibit | null>(null)
   const [hoveredId, setHoveredId] = useState<string | null>(null)
+  const [activeRoomId, setActiveRoomId] = useState<Zone1RoomId | null>(null)
+  const [spawnPosition, setSpawnPosition] = useState<[number, number, number]>(START_POSITION)
   const [resetSignal, setResetSignal] = useState(0)
   const [targetPosition, setTargetPosition] = useState<[number, number, number] | null>(null)
   const [isNearDirectory, setIsNearDirectory] = useState(false)
@@ -96,6 +127,8 @@ export function Zone1({
   )
   const [narrativeSlideIndex, setNarrativeSlideIndex] = useState(0)
   const [isIntroFading, setIsIntroFading] = useState(false)
+  const [isCanvasReady, setIsCanvasReady] = useState(false)
+  const handleCanvasReady = useCallback(() => setIsCanvasReady(true), [])
   const isIntroActive = introPhase !== 'done'
   const isTourPlaying = introPhase === 'tour'
 
@@ -129,18 +162,30 @@ export function Zone1({
     panelOpenRef.current = selectedExhibit !== null
   }, [selectedExhibit])
 
+  useEffect(() => {
+    return () => {
+      museumAudio.stopBgm()
+    }
+  }, [])
+
   const handleSelectFounder = useCallback((founder: Founder) => {
     if (draggedRef.current) return
+    museumAudio.unlock()
+    museumAudio.playModalOpen()
     setSelectedExhibit({ type: 'founder', data: founder })
   }, [])
 
   const handleSelectHistory = useCallback((exhibit: HistoryExhibit) => {
     if (draggedRef.current) return
+    museumAudio.unlock()
+    museumAudio.playModalOpen()
     setSelectedExhibit({ type: 'history', data: exhibit })
   }, [])
 
   const handleSelectPodium = useCallback(() => {
     if (draggedRef.current) return
+    museumAudio.unlock()
+    museumAudio.playModalOpen()
     setSelectedExhibit({
       type: 'podium',
       data: {
@@ -154,6 +199,8 @@ export function Zone1({
 
   const handleSelectPrasasti = useCallback(() => {
     if (draggedRef.current) return
+    museumAudio.unlock()
+    museumAudio.playModalOpen()
     setSelectedExhibit({
       type: 'prasasti',
       data: {
@@ -165,12 +212,20 @@ export function Zone1({
     })
   }, [])
 
-  const handleHover = useCallback((id: string | null) => setHoveredId(id), [])
+  const handleHover = useCallback((id: string | null) => {
+    if (id && id !== hoveredRef.current) {
+      museumAudio.playHover()
+    }
+    setHoveredId(id)
+  }, [])
   const handleReset = useCallback(() => {
     setResetSignal((signal) => signal + 1)
     setTargetPosition(null)
   }, [])
-  const handleClose = useCallback(() => setSelectedExhibit(null), [])
+  const handleClose = useCallback(() => {
+    museumAudio.playModalClose()
+    setSelectedExhibit(null)
+  }, [])
 
   const finishIntro = useCallback(() => {
     markIntroSeen()
@@ -188,18 +243,10 @@ export function Zone1({
       return
     }
     if (introPhase === 'statement') {
-      if (narrativeSlideIndex < NARRATIVE_SLIDES.length - 1) {
-        setNarrativeSlideIndex((idx) => idx + 1)
-      } else {
-        // Hilangkan blur lalu kamera dolly masuk ke ruangan
-        setIsIntroFading(true)
-        setTimeout(() => {
-          setIsIntroFading(false)
-          setIntroPhase('tour')
-        }, 550)
-      }
+      setIsIntroFading(false)
+      setIntroPhase('tour')
     }
-  }, [introPhase, narrativeSlideIndex])
+  }, [introPhase])
 
   const handleReplayIntro = useCallback(() => {
     setSelectedExhibit(null)
@@ -221,6 +268,43 @@ export function Zone1({
   const handleTeleport = useCallback((section: SectionType) => {
     setTargetPosition(SECTION_TARGETS[section])
   }, [])
+
+  const activePortal = useMemo(
+    () => ZONE1_PORTAL_DOORS.find((p) => p.id === activeRoomId) ?? null,
+    [activeRoomId],
+  )
+
+  const activeRoomDims = useMemo(() => {
+    if (!activePortal) return null
+    const { founders, histories } = getRoomExhibits(activePortal)
+    return computeSubRoomDimensions(founders.length + histories.length)
+  }, [activePortal])
+
+  const handleEnterRoom = useCallback((roomId: Zone1RoomId) => {
+    if (draggedRef.current) return
+    const portal = ZONE1_PORTAL_DOORS.find((p) => p.id === roomId)
+    if (!portal) return
+    museumAudio.unlock()
+    museumAudio.playDoorTransition()
+    const { founders, histories } = getRoomExhibits(portal)
+    const dims = computeSubRoomDimensions(founders.length + histories.length)
+    setSelectedExhibit(null)
+    setHoveredId(null)
+    setActiveRoomId(roomId)
+    setSpawnPosition(dims.spawnPosition)
+    setTargetPosition(null)
+  }, [])
+
+  const handleExitRoom = useCallback(() => {
+    if (draggedRef.current) return
+    museumAudio.playDoorTransition()
+    const lastPortal = ZONE1_PORTAL_DOORS.find((p) => p.id === activeRoomId)
+    setSelectedExhibit(null)
+    setHoveredId(null)
+    setActiveRoomId(null)
+    setSpawnPosition(lastPortal?.returnPosition ?? START_POSITION)
+    setTargetPosition(null)
+  }, [activeRoomId])
 
   const selectedFounderId =
     selectedExhibit?.type === 'founder' ? (selectedExhibit.data as Founder).id : null
@@ -294,53 +378,59 @@ export function Zone1({
         />
 
         <Suspense fallback={null}>
-          <group>
-            <GoldenDustParticles active={isIntroActive} />
-            <GalleryLighting castShadows={!isMobile} isMobile={isMobile} />
-            <GalleryEnvironment isNearDirectory={isNearDirectory} isMobile={isMobile} />
-
-            {/* Section 1 (Left Side): 13 Photos of UNDIP Founders */}
-            <FoundersWing
+          {activePortal ? (
+            <Zone1SubRoom
+              portal={activePortal}
               selectedFounderId={selectedFounderId}
+              selectedHistoryId={selectedHistoryId}
               hoveredId={hoveredId}
               isMobile={isMobile}
               onSelectFounder={handleSelectFounder}
+              onSelectHistory={handleSelectHistory}
               onHover={handleHover}
+              onExitRoom={handleExitRoom}
             />
+          ) : (
+            <group>
+              <GoldenDustParticles active={isIntroActive} />
+              <GalleryLighting castShadows={!isMobile} isMobile={isMobile} />
+              <GalleryEnvironment
+                isNearDirectory={isNearDirectory}
+                hoveredId={hoveredId}
+                isMobile={isMobile}
+                portals={ZONE1_PORTAL_DOORS}
+                onSelectPortal={handleEnterRoom}
+                onHover={handleHover}
+              />
 
-            {/* Section 2 (Right Side): UNDIP's History, Early Photos, Founding Decree, & Archives */}
-            <HistoryArchivesWing
-              selectedExhibitId={selectedHistoryId}
-              hoveredId={hoveredId}
-              isMobile={isMobile}
-              onSelectExhibit={handleSelectHistory}
-              onHover={handleHover}
-            />
+              {/* Center End: Ceremonial Dais & Podium with Inscription Plaque (Prasasti) */}
+              <CeremonialPodium
+                position={PODIUM_POS}
+                isSelected={selectedExhibit?.type === 'podium'}
+                isHovered={hoveredId === 'podium'}
+                isMobile={isMobile}
+                onSelect={handleSelectPodium}
+                onSelectPrasasti={handleSelectPrasasti}
+                onHover={handleHover}
+              />
 
-            {/* Center End: Ceremonial Dais & Podium with Inscription Plaque (Prasasti) */}
-            <CeremonialPodium
-              position={PODIUM_POS}
-              isSelected={selectedExhibit?.type === 'podium'}
-              isHovered={hoveredId === 'podium'}
-              isMobile={isMobile}
-              onSelect={handleSelectPodium}
-              onSelectPrasasti={handleSelectPrasasti}
-              onHover={handleHover}
-            />
-
-            <CinematicIntro
-              active={isTourPlaying}
-              isIntroOpen={isIntroActive}
-              baseFov={isMobile ? 66 : 56}
-              onStateUpdate={setCinematicState}
-              onComplete={finishIntro}
-            />
-          </group>
+              <CinematicIntro
+                active={isTourPlaying}
+                isIntroOpen={isIntroActive}
+                baseFov={isMobile ? 66 : 56}
+                onStateUpdate={setCinematicState}
+                onComplete={finishIntro}
+              />
+              <CanvasReadyNotifier onReady={handleCanvasReady} />
+            </group>
+          )}
         </Suspense>
 
         <FirstPersonControls
           resetSignal={resetSignal}
           targetPosition={targetPosition}
+          spawnPosition={spawnPosition}
+          bounds={activeRoomDims?.bounds ?? BOUNDS}
           moveInputRef={moveInputRef}
           hoveredRef={hoveredRef}
           panelOpenRef={panelOpenRef}
@@ -354,6 +444,7 @@ export function Zone1({
       {/* Cinematic Intro Title, Editorial Statement, Letterbox & Captions */}
       <CaptionUI
         phase={introPhase}
+        isCanvasReady={isCanvasReady}
         narrativeSlideIndex={narrativeSlideIndex}
         chapter={cinematicState.chapter}
         telemetry={cinematicState.telemetry}
@@ -363,17 +454,66 @@ export function Zone1({
         onSkip={finishIntro}
       />
 
-      {/* Replay Intro Button (Top-Right when in active gameplay) */}
-      {!isIntroActive && (
-        <button
-          type="button"
-          className="cinematic-replay-btn"
-          onClick={handleReplayIntro}
-          title="Putar Ulang Intro Sinematik Engine"
+      {/* Tombol Kembali ke Base Zone saat berada di dalam sub-ruangan */}
+      {!isIntroActive && activePortal && (
+        <div
+          style={{
+            position: 'fixed',
+            top: '20px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 95,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            background: 'rgba(10, 14, 23, 0.88)',
+            backdropFilter: 'blur(12px)',
+            padding: '8px 16px',
+            borderRadius: '999px',
+            border: '1px solid rgba(212, 175, 55, 0.45)',
+            color: '#fdfbf7',
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)',
+          }}
         >
-          <span className="cinematic-replay-icon">▶</span>
-          <span>Replay Intro</span>
-        </button>
+          <button
+            type="button"
+            onClick={handleExitRoom}
+            style={{
+              background: 'rgba(212, 175, 55, 0.2)',
+              border: '1px solid #d4af37',
+              color: '#ffd700',
+              borderRadius: '999px',
+              padding: '4px 12px',
+              fontSize: '0.82rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+            }}
+          >
+            ← Kembali ke Base Zone
+          </button>
+          <span style={{ fontSize: '0.85rem', fontWeight: 500, color: '#e2e8f0' }}>
+            {activePortal.doorNumber}: {activePortal.title}
+          </span>
+        </div>
+      )}
+
+      {/* Tombol Suara (BGM & SFX) + Replay Intro di Pojok Kanan Atas */}
+      {!isIntroActive && (
+        <>
+          <AudioToggleButton />
+          <button
+            type="button"
+            className="cinematic-replay-btn"
+            onClick={() => {
+              museumAudio.playUiClick()
+              handleReplayIntro()
+            }}
+            title="Putar Ulang Intro Sinematik Engine"
+          >
+            <span className="cinematic-replay-icon">▶</span>
+            <span>Replay Intro</span>
+          </button>
+        </>
       )}
 
       {/* Subtle Desktop Hints */}
@@ -385,14 +525,6 @@ export function Zone1({
           moveInputRef={moveInputRef}
           visible={selectedExhibit === null}
           onReset={handleReset}
-          onTeleport={handleTeleport}
-        />
-      )}
-
-      {/* Interactive Wayfinding Prompt: Appears ONLY when near the Directory Board */}
-      {!isIntroActive && (
-        <WayfindingPrompt
-          visible={isNearDirectory && selectedExhibit === null}
           onTeleport={handleTeleport}
         />
       )}

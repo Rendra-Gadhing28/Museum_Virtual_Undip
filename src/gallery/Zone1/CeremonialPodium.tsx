@@ -480,49 +480,69 @@ export function CeremonialPodium({
           ))}
 
           {/* ============================================================
-              WARM LIGHT KUNING: COVE LIGHTING ON INNER REVEAL OF LAYER 2
+              LED OREN FAJAR EMAS: MENGELILINGI BINGKAI MONUMEN
               ============================================================ */}
-          {/* Top Cove Strip */}
-          <mesh position={[0, 2.35, 0.05]}>
-            <boxGeometry args={[8.4, 0.035, 0.035]} />
-            <primitive object={materials.warmCoveLightGlow} attach="material" />
+          {/* Top LED Strip */}
+          <mesh position={[0, 2.35, 0.08]}>
+            <boxGeometry args={[8.44, 0.06, 0.05]} />
+            <meshStandardMaterial color="#ffcc66" emissive="#ff8c1a" emissiveIntensity={5.2} roughness={0.2} />
           </mesh>
-          {/* Bottom Cove Strip */}
-          <mesh position={[0, -2.35, 0.05]}>
-            <boxGeometry args={[8.4, 0.035, 0.035]} />
-            <primitive object={materials.warmCoveLightGlow} attach="material" />
+          {/* Bottom LED Strip */}
+          <mesh position={[0, -2.35, 0.08]}>
+            <boxGeometry args={[8.44, 0.06, 0.05]} />
+            <meshStandardMaterial color="#ffcc66" emissive="#ff8c1a" emissiveIntensity={5.2} roughness={0.2} />
           </mesh>
-          {/* Left Cove Strip */}
-          <mesh position={[-4.1, 0, 0.05]}>
-            <boxGeometry args={[0.035, 4.7, 0.035]} />
-            <primitive object={materials.warmCoveLightGlow} attach="material" />
+          {/* Left LED Strip */}
+          <mesh position={[-4.12, 0, 0.08]}>
+            <boxGeometry args={[0.06, 4.74, 0.05]} />
+            <meshStandardMaterial color="#ffcc66" emissive="#ff8c1a" emissiveIntensity={5.2} roughness={0.2} />
           </mesh>
-          {/* Right Cove Strip */}
-          <mesh position={[4.1, 0, 0.05]}>
-            <boxGeometry args={[0.035, 4.7, 0.035]} />
-            <primitive object={materials.warmCoveLightGlow} attach="material" />
+          {/* Right LED Strip */}
+          <mesh position={[4.12, 0, 0.08]}>
+            <boxGeometry args={[0.06, 4.74, 0.05]} />
+            <meshStandardMaterial color="#ffcc66" emissive="#ff8c1a" emissiveIntensity={5.2} roughness={0.2} />
           </mesh>
 
-          {/* Architectural Cove Lighting is provided softly and uniformly
-              by the emissive cove channels and indirect back-glow mesh,
-              completely removing harsh localized point-light flare hotspots */}
+          {/* Pendar Soft Light Warm di Tengah Papan & Cahaya Oren Fajar Emas */}
+          {!isMobile && (
+            <>
+              <pointLight position={[0, 0.35, 2.2]} color="#ffdfa8" intensity={9} distance={8.5} decay={1.7} />
+              <pointLight position={[-2.8, 0, 1.0]} color="#ff9429" intensity={6.5} distance={7.5} decay={1.7} />
+              <pointLight position={[2.8, 0, 1.0]} color="#ff9429" intensity={6.5} distance={7.5} decay={1.7} />
+            </>
+          )}
 
           {/* ============================================================
               LAYER 3: POLISHED IVORY GRANITE RECTANGULAR MONOLITH
-              "kalau layer2 persegi panjang, layer 3 juga dibuat sama, bedanya nanti ada gap diantara mereka"
-              Layer 2: 9.0m x 5.2m
-              Layer 3: 7.8m x 4.2m (Uniform 60cm lateral reveal & 50cm vertical reveal gap!)
               ============================================================ */}
           <group position={[0, 0, 0.12]}>
-            {/* Architectural Indirect Cove Backlight behind Layer 3 */}
+            {/* Architectural Indirect Dawn-Orange-Gold Backlight behind Layer 3 */}
             <mesh position={[0, 0, -0.015]}>
-              <boxGeometry args={[7.84, 4.24, 0.02]} />
+              <boxGeometry args={[7.98, 4.38, 0.03]} />
               <meshStandardMaterial
-                color="#ffecc7"
-                emissive="#ffb74d"
-                emissiveIntensity={2.2}
-                roughness={0.4}
+                color="#ffcc66"
+                emissive="#ff8811"
+                emissiveIntensity={4.2}
+                roughness={0.25}
               />
+            </mesh>
+
+            {/* Garis LED Oren Fajar Emas Tampak Depan di Sekeliling Bingkai */}
+            <mesh position={[0, 2.15, 0.032]}>
+              <boxGeometry args={[7.92, 0.045, 0.025]} />
+              <meshStandardMaterial color="#ffd175" emissive="#ff921f" emissiveIntensity={4.8} roughness={0.2} />
+            </mesh>
+            <mesh position={[0, -2.15, 0.032]}>
+              <boxGeometry args={[7.92, 0.045, 0.025]} />
+              <meshStandardMaterial color="#ffd175" emissive="#ff921f" emissiveIntensity={4.8} roughness={0.2} />
+            </mesh>
+            <mesh position={[-3.94, 0, 0.032]}>
+              <boxGeometry args={[0.045, 4.34, 0.025]} />
+              <meshStandardMaterial color="#ffd175" emissive="#ff921f" emissiveIntensity={4.8} roughness={0.2} />
+            </mesh>
+            <mesh position={[3.94, 0, 0.032]}>
+              <boxGeometry args={[0.045, 4.34, 0.025]} />
+              <meshStandardMaterial color="#ffd175" emissive="#ff921f" emissiveIntensity={4.8} roughness={0.2} />
             </mesh>
 
             {/* Gilded Bevel Perimeter Trim for Granite Slab */}
@@ -531,10 +551,23 @@ export function CeremonialPodium({
               <primitive object={materials.goldTrim} attach="material" />
             </mesh>
 
-            {/* Main Pure Ivory Granite Slab (Matte Honed, Zero specular glare) */}
+            {/* Main Pure Ivory Granite Slab (Soft Warm Light Wash) */}
             <mesh position={[0, 0, 0.015]} castShadow receiveShadow>
               <boxGeometry args={[7.8, 4.2, 0.05]} />
               <primitive object={materials.ivoryGraniteMaterial} attach="material" />
+            </mesh>
+            {/* Lapisan Pendar Soft Warm Light Tipis di Permukaan Papan */}
+            <mesh position={[0, 0, 0.042]}>
+              <planeGeometry args={[7.74, 4.14]} />
+              <meshStandardMaterial
+                color="#fff3db"
+                emissive="#ffdca3"
+                emissiveIntensity={0.24}
+                transparent
+                opacity={0.22}
+                roughness={0.95}
+                metalness={0}
+              />
             </mesh>
 
             {/* ============================================================
@@ -660,8 +693,8 @@ export function CeremonialPodium({
             <primitive object={materials.goldBrass} attach="material" />
           </mesh>
 
-          {/* Slanted Reading Desk (Cleaned up: Zero vertical glitch boards) */}
-          <group position={[0, 1.05, 0]} rotation={[0.22, 0, 0]}>
+          {/* Slanted Reading Desk (Menghadap ke Pintu Masuk +Z: sisi tinggi di depan, miring ke pembicara di -Z) */}
+          <group position={[0, 1.05, 0]} rotation={[-0.22, 0, 0]}>
             <mesh castShadow receiveShadow>
               <boxGeometry args={[1.12, 0.08, 0.75]} />
               <primitive object={materials.darkTeakCarved} attach="material" />
@@ -673,29 +706,29 @@ export function CeremonialPodium({
               <primitive object={materials.leatherBlotter} attach="material" />
             </mesh>
 
-            {/* Document Retaining Rail */}
-            <mesh position={[0, 0.055, 0.35]}>
+            {/* Document Retaining Rail (di sisi pembicara -Z) */}
+            <mesh position={[0, 0.055, -0.35]}>
               <boxGeometry args={[1.0, 0.03, 0.03]} />
               <primitive object={materials.goldTrim} attach="material" />
             </mesh>
 
             {/* Diplomatic Address Parchment Scroll (Properly flat in XZ plane) */}
-            <mesh position={[0, 0.045, 0.04]} rotation={[-Math.PI / 2, 0, 0.02]}>
+            <mesh position={[0, 0.045, -0.04]} rotation={[-Math.PI / 2, 0, 0.02]}>
               <planeGeometry args={[0.38, 0.48]} />
               <primitive object={materials.parchment} attach="material" />
             </mesh>
 
-            {/* Condenser Studio Gooseneck Microphone */}
-            <group position={[0.26, 0.05, -0.15]}>
+            {/* Condenser Studio Gooseneck Microphone (Mengarah ke Pembicara di -Z) */}
+            <group position={[0.26, 0.05, 0.15]}>
               <mesh castShadow>
                 <cylinderGeometry args={[0.04, 0.05, 0.025, 16]} />
                 <primitive object={materials.goldTrim} attach="material" />
               </mesh>
-              <mesh position={[0, 0.16, 0.05]} rotation={[0.3, 0, 0]} castShadow>
+              <mesh position={[0, 0.16, -0.05]} rotation={[-0.3, 0, 0]} castShadow>
                 <cylinderGeometry args={[0.009, 0.009, 0.3, 10]} />
                 <primitive object={materials.microphoneChrome} attach="material" />
               </mesh>
-              <group position={[0, 0.32, 0.12]} rotation={[0.4, 0, 0]}>
+              <group position={[0, 0.32, -0.12]} rotation={[-0.4, 0, 0]}>
                 <mesh castShadow>
                   <cylinderGeometry args={[0.018, 0.018, 0.08, 16]} />
                   <primitive object={materials.microphoneChrome} attach="material" />

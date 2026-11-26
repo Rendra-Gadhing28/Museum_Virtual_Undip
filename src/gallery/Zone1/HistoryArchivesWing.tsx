@@ -61,9 +61,11 @@ const SALON_LAYOUT: SalonFrameConfig[] = [
   { exhibitId: 'history-transformation', z: -14.5, y: 2.05, width: 1.2, height: 1.2, frameColor: '#d4af37' },
 ]
 
-interface SalonItemProps {
+export interface SalonItemProps {
   config: SalonFrameConfig
   exhibit: HistoryExhibit
+  position?: [number, number, number]
+  rotationY?: number
   isSelected: boolean
   isHovered: boolean
   isMobile?: boolean
@@ -71,9 +73,11 @@ interface SalonItemProps {
   onHover: (id: string | null) => void
 }
 
-function SalonItem({
+export function SalonItem({
   config,
   exhibit,
+  position,
+  rotationY = -Math.PI / 2,
   isSelected,
   isHovered,
   isMobile = false,
@@ -98,10 +102,12 @@ function SalonItem({
   const texture = loadedTexture ?? generatedTexture
   const { width: fw, height: fh, frameColor = '#d4af37' } = config
 
+  const resolvedPos: [number, number, number] = position ?? [HISTORY_WALL_X, config.y, config.z]
+
   return (
     <group
-      position={[HISTORY_WALL_X, config.y, config.z]}
-      rotation={[0, -Math.PI / 2, 0]}
+      position={resolvedPos}
+      rotation={[0, rotationY, 0]}
       onPointerOver={(e) => {
         e.stopPropagation()
         onHover(exhibit.id)

@@ -11,12 +11,15 @@ import { CeilingRoof } from './CeilingRoof'
 import { RedCarpet } from './RedCarpet'
 import { Bookshelf } from './MuseumFurniture'
 import { DirectoryBoard } from './DirectoryBoard'
-import { MaterialLibrary, QUALITY } from '../graphics'
+import { PortalDoor } from './PortalDoor'
+import type { Zone1PortalDoor, Zone1RoomId } from './subRooms'
 
 interface GalleryEnvironmentProps {
   isNearDirectory?: boolean
   hoveredId?: string | null
   isMobile?: boolean
+  portals?: Zone1PortalDoor[]
+  onSelectPortal?: (roomId: Zone1RoomId) => void
   onHover?: (id: string | null) => void
 }
 
@@ -30,7 +33,11 @@ interface GalleryEnvironmentProps {
  */
 export function GalleryEnvironment({
   isNearDirectory = false,
+  hoveredId = null,
   isMobile = false,
+  portals = [],
+  onSelectPortal,
+  onHover,
 }: GalleryEnvironmentProps) {
   const floorTexture = useMemo(() => {
     const tex = createFloorTexture()
@@ -47,7 +54,7 @@ export function GalleryEnvironment({
 
   return (
     <group>
-      {/* 1. Master Marble Floor */}
+      {/* 1. Master Marble Floor (Matte & Tidak Terlalu Terang / Anti-Silau) */}
       <mesh
         rotation={[-Math.PI / 2, 0, 0]}
         position={[0, 0, centerZ]}
@@ -56,51 +63,69 @@ export function GalleryEnvironment({
         <planeGeometry args={[halfW * 2, length]} />
         <meshStandardMaterial
           map={floorTexture}
-          normalMap={QUALITY.current.physicalMaterials ? MaterialLibrary.cremaMarfilMarble().normalMap : null}
-          normalScale={new THREE.Vector2(0.22, 0.22)}
-          roughnessMap={QUALITY.current.physicalMaterials ? MaterialLibrary.cremaMarfilMarble().roughnessMap : null}
-          roughness={0.24}
-          metalness={0.08}
+          color="#b8b0a2"
+          roughness={0.94}
+          metalness={0}
         />
       </mesh>
 
-      {/* 2. Left Wall (Founders Side) */}
-      <mesh
-        position={[-halfW, height / 2, centerZ]}
-        rotation={[0, Math.PI / 2, 0]}
-        receiveShadow
-      >
-        <planeGeometry args={[length, height]} />
-        <meshStandardMaterial color="#f7f4ec" roughness={0.92} />
-      </mesh>
+      {/* 2. Left Wall (Perpaduan Blue Navy Bawah & Putih Ivory Atas - Matte) */}
+      <group>
+        <mesh
+          position={[-halfW, 2.12, centerZ]}
+          rotation={[0, Math.PI / 2, 0]}
+          receiveShadow
+        >
+          <planeGeometry args={[length, 4.24]} />
+          <meshStandardMaterial color="#142e56" roughness={1} metalness={0} />
+        </mesh>
+        <mesh
+          position={[-halfW, 4.24 + (height - 4.24) / 2, centerZ]}
+          rotation={[0, Math.PI / 2, 0]}
+          receiveShadow
+        >
+          <planeGeometry args={[length, height - 4.24]} />
+          <meshStandardMaterial color="#dcd5c7" roughness={1} metalness={0} />
+        </mesh>
+      </group>
 
-      {/* 3. Right Wall (History & Archives Side) */}
-      <mesh
-        position={[halfW, height / 2, centerZ]}
-        rotation={[0, -Math.PI / 2, 0]}
-        receiveShadow
-      >
-        <planeGeometry args={[length, height]} />
-        <meshStandardMaterial color="#f7f4ec" roughness={0.92} />
-      </mesh>
+      {/* 3. Right Wall (Perpaduan Blue Navy Bawah & Putih Ivory Atas - Matte) */}
+      <group>
+        <mesh
+          position={[halfW, 2.12, centerZ]}
+          rotation={[0, -Math.PI / 2, 0]}
+          receiveShadow
+        >
+          <planeGeometry args={[length, 4.24]} />
+          <meshStandardMaterial color="#142e56" roughness={1} metalness={0} />
+        </mesh>
+        <mesh
+          position={[halfW, 4.24 + (height - 4.24) / 2, centerZ]}
+          rotation={[0, -Math.PI / 2, 0]}
+          receiveShadow
+        >
+          <planeGeometry args={[length, height - 4.24]} />
+          <meshStandardMaterial color="#dcd5c7" roughness={1} metalness={0} />
+        </mesh>
+      </group>
 
-      {/* 4. Front Entrance Wall (Behind Visitor) */}
+      {/* 4. Front Entrance Wall (Behind Visitor - Matte Ivory) */}
       <mesh
         position={[0, height / 2, HALL.zFront]}
         rotation={[0, Math.PI, 0]}
         receiveShadow
       >
         <planeGeometry args={[halfW * 2, height]} />
-        <meshStandardMaterial color="#f7f4ec" roughness={0.92} />
+        <meshStandardMaterial color="#dcd5c7" roughness={1} metalness={0} />
       </mesh>
 
-      {/* 5. Back Focal Wall (Behind the Ceremonial Dais) - Royal Navy Blue */}
+      {/* 5. Back Focal Wall (Behind the Ceremonial Dais) - Royal Navy Blue Matte */}
       <mesh
         position={[0, height / 2, HALL.zBack]}
         receiveShadow
       >
         <planeGeometry args={[halfW * 2, height]} />
-        <meshStandardMaterial color="#142e56" roughness={0.7} />
+        <meshStandardMaterial color="#142e56" roughness={1} metalness={0} />
       </mesh>
 
       {/* 6. Grand Architectural Wainscoting & Baseboards along Left & Right Walls */}
@@ -224,6 +249,22 @@ export function GalleryEnvironment({
         rotationY={-Math.PI / 4}
         isNear={isNearDirectory}
       />
+
+      {/* 13. 5 Pintu Portal Sub-Ruangan Zona 1 (Penataan | 3   2 |) */}
+      {portals.map((portal) => (
+        <PortalDoor
+          key={portal.id}
+          id={`portal-${portal.id}`}
+          doorNumber={portal.doorNumber}
+          title={portal.title}
+          subtitle={portal.subtitle}
+          position={portal.position}
+          rotationY={portal.rotationY}
+          isHovered={hoveredId === `portal-${portal.id}`}
+          onSelect={() => onSelectPortal?.(portal.id)}
+          onHover={(id) => onHover?.(id)}
+        />
+      ))}
     </group>
   )
 }

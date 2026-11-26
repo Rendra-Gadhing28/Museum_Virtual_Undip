@@ -9,7 +9,7 @@ import {
 import { createFounderPortraitTexture, createFounderPlaqueTexture } from './textures'
 import { assetCache } from './cache'
 
-interface FounderCardProps {
+export interface FounderCardProps {
   founder: Founder
   index: number
   position: [number, number, number]
@@ -22,7 +22,7 @@ interface FounderCardProps {
   onHover: (id: string | null) => void
 }
 
-function FounderCard({
+export function FounderCard({
   founder,
   index,
   position,

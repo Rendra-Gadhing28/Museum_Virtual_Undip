@@ -22,6 +22,7 @@ export interface CeilingRoofProps {
   centerZ?: number
   zFront?: number
   zBack?: number
+  showChandeliers?: boolean
 }
 
 export function CeilingRoof({
@@ -32,6 +33,7 @@ export function CeilingRoof({
   centerZ = HALL_CENTER_Z,
   zFront = HALL.zFront,
   zBack = HALL.zBack,
+  showChandeliers = true,
 }: CeilingRoofProps) {
   const diamondTexture = useMemo(() => {
     const tex = createPvcDiamondLatticeTexture()
@@ -85,10 +87,10 @@ export function CeilingRoof({
         'ceil-cove-glow',
         () =>
           new THREE.MeshStandardMaterial({
-            color: '#fffdf5',
-            emissive: '#fff4dc',
-            emissiveIntensity: 3.5,
-            roughness: 0.3,
+            color: '#ffffff',
+            emissive: '#fffbf2',
+            emissiveIntensity: 4.5,
+            roughness: 0.2,
           }),
       ),
       downlightBulb: assetCache.getMaterial(
@@ -96,8 +98,8 @@ export function CeilingRoof({
         () =>
           new THREE.MeshStandardMaterial({
             color: '#ffffff',
-            emissive: '#fffbf0',
-            emissiveIntensity: 3.8,
+            emissive: '#ffffff',
+            emissiveIntensity: 4.8,
           }),
       ),
       timberCrown: assetCache.getMaterial(
@@ -116,6 +118,12 @@ export function CeilingRoof({
 
   // Dynamic coffer bays down the length of the hall
   const bays = useMemo(() => {
+    if (length < 28) {
+      // 1 centered bay for compact sub-rooms
+      return [
+        { z: centerZ, id: 'single-bay', length: Math.max(6.0, length - 4.2) },
+      ]
+    }
     if (length > 42) {
       // 3 bays for larger zones (Zone 3, 4, 5)
       const bLen = Math.min(13.0, (length - 8) / 3)
@@ -283,7 +291,9 @@ export function CeilingRoof({
             )}
 
             {/* 4. Grand Multi-Tiered Crystal Chandelier Suspended in Center of Bay */}
-            <Chandelier position={[0, 0.12, 0]} scale={1.2} isMobile={isMobile} />
+            {showChandeliers && (
+              <Chandelier position={[0, 0.12, 0]} scale={1.2} isMobile={isMobile} />
+            )}
           </group>
         )
       })}

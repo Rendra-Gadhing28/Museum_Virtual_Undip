@@ -70,6 +70,8 @@ export interface StatueProps {
 export interface FirstPersonControlsProps {
   resetSignal: number
   targetPosition?: [number, number, number] | null
+  spawnPosition?: [number, number, number]
+  bounds?: { minX: number; maxX: number; minZ: number; maxZ: number }
   moveInputRef: RefObject<{ forward: number; strafe: number }>
   hoveredRef: RefObject<string | null>
   panelOpenRef: RefObject<boolean>

@@ -1,15 +1,17 @@
 /**
- * CaptionUI — Editorial Title Screen, Statement Screen, & Cinematic Letterbox HUD
+ * CaptionUI — Editorial Title Screen, Single Description Screen, & Cinematic Letterbox HUD
  *
  * Phases:
- * - 'title': Fullscreen dark obsidian title screen ("Museum Virtual Undip")
- * - 'statement': Centered editorial statement over dimmed 3D gallery
- * - 'tour': Letterbox bars, bottom-left chapter caption, real telemetry, & Skip
+ * - 'title': Fullscreen dark obsidian title screen ("Museum Virtual Undip") with 1.2s line-by-line enter/exit
+ *            Waits for `isCanvasReady` before starting the entrance animation.
+ * - 'statement': Single centered description screen about Museum Virtual Undip with 1.2s line-by-line enter/exit
+ * - 'tour': Letterbox bars, bottom-left door caption, & Skip
  */
 
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { ChapterConfig } from './config'
 import type { TelemetrySnapshot } from './Telemetry'
+import { museumAudio } from '../audio'
 import './cinematic.css'
 
 export type IntroPhase = 'title' | 'statement' | 'tour' | 'done'
@@ -21,21 +23,14 @@ export interface NarrativeSlide {
 
 export const NARRATIVE_SLIDES: NarrativeSlide[] = [
   {
-    heading: 'Obor Keilmuan di Pesisir Utara Jawa',
-    body: 'Dari gagasan lima pendiri pada tahun 1956, lahir Universitas Diponegoro—sebuah ikhtiar menjaga ilmu pengetahuan, watak ksatria, dan pengabdian bagi bangsa.',
-  },
-  {
-    heading: 'Jejak yang Hidup dalam Cahaya',
-    body: 'Setiap bingkai potret, arsip sejarah, prasasti batu, dan maket kampus di ruangan ini menyimpan kisah perjalanan dari Pleburan menuju Tembalang.',
-  },
-  {
-    heading: 'Melangkah Masuk ke Ruang Pameran',
-    body: 'Silakan melangkah masuk dan menyusuri galeri virtual interaktif ini—setiap koleksi terbuka untuk Anda dekati dan pelajari.',
+    heading: 'Ruang Sejarah Digital Universitas Diponegoro',
+    body: 'Menghadirkan perjalanan Universitas Diponegoro sejak prakarsa pendirian tahun 1956, kepemimpinan rektorat dari masa ke masa, hingga transformasi fisik menuju universitas riset berkelas dunia dalam diorama 3D interaktif.',
   },
 ]
 
 interface CaptionUIProps {
   phase: IntroPhase
+  isCanvasReady?: boolean
   narrativeSlideIndex?: number
   chapter: ChapterConfig
   telemetry: TelemetrySnapshot | null
@@ -45,9 +40,11 @@ interface CaptionUIProps {
   onSkip: () => void
 }
 
+const EXIT_WAIT_MS = 1440
+
 export function CaptionUI({
   phase,
-  narrativeSlideIndex = 0,
+  isCanvasReady = true,
   chapter,
   telemetry,
   progressPercent,
@@ -55,6 +52,41 @@ export function CaptionUI({
   onAdvancePhase,
   onSkip,
 }: CaptionUIProps) {
+  const [exitingPhase, setExitingPhase] = useState<IntroPhase | null>(null)
+  const exitTimerRef = useRef<number | null>(null)
+
+  const isExitingLines = exitingPhase === phase
+
+  useEffect(() => {
+    return () => {
+      if (exitTimerRef.current !== null) {
+        window.clearTimeout(exitTimerRef.current)
+        exitTimerRef.current = null
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (exitingPhase && exitingPhase !== phase) {
+      setExitingPhase(null)
+    }
+  }, [phase, exitingPhase])
+
+  const triggerLineExitAdvance = () => {
+    if (!isCanvasReady || isExitingLines || isFadingOut) return
+    museumAudio.unlock()
+    museumAudio.startBgm()
+    museumAudio.playUiClick()
+    setExitingPhase(phase)
+    if (exitTimerRef.current !== null) {
+      window.clearTimeout(exitTimerRef.current)
+    }
+    exitTimerRef.current = window.setTimeout(() => {
+      exitTimerRef.current = null
+      onAdvancePhase()
+    }, EXIT_WAIT_MS)
+  }
+
   useEffect(() => {
     if (phase === 'done') return
 
@@ -69,7 +101,7 @@ export function CaptionUI({
         e.preventDefault()
         e.stopPropagation()
         if (phase === 'title' || phase === 'statement') {
-          onAdvancePhase()
+          triggerLineExitAdvance()
         } else if (phase === 'tour') {
           onSkip()
         }
@@ -78,88 +110,91 @@ export function CaptionUI({
 
     window.addEventListener('keydown', handleKeyDown, { capture: true })
     return () => window.removeEventListener('keydown', handleKeyDown, { capture: true })
-  }, [phase, onAdvancePhase, onSkip])
+  })
 
   if (phase === 'done') return null
 
-  if (phase === 'title') {
+  if (phase === 'title' || phase === 'statement') {
+    const activeSlide = NARRATIVE_SLIDES[0]
+
     return (
       <div
-        className={`cinematic-title-screen ${isFadingOut ? 'is-fading-out' : ''}`}
-        onClick={onAdvancePhase}
-        role="button"
+        className={`cinematic-title-screen ${phase === 'title' ? 'cin-phase-title' : 'cin-phase-statement'} ${!isCanvasReady ? 'cin-waiting' : ''} ${isExitingLines ? 'is-exiting-lines' : ''} ${isFadingOut ? 'is-fading-out' : ''}`}
+        onClick={triggerLineExitAdvance}
+        role={phase === 'title' ? 'button' : 'dialog'}
         tabIndex={0}
-        aria-label="Museum Virtual Undip — Klik di mana saja untuk masuk"
+        aria-label={
+          phase === 'title'
+            ? 'Museum Virtual Undip — Klik di mana saja untuk masuk'
+            : 'Deskripsi Museum Virtual Undip'
+        }
       >
         <div className="cinematic-ambient-glow" aria-hidden="true" />
-        <div className="cinematic-title-content">
-          <span className="cinematic-eyebrow">A DIGITAL EXHIBITION • UNIVERSITAS DIPONEGORO</span>
-          <h1 className="cinematic-hero-title">
-            Museum Virtual
-            <span className="cinematic-hero-italic">Undip</span>
-          </h1>
-          <p className="cinematic-hero-sub">
-            A WALKABLE 3D GALLERY, BUILT IN THE BROWSER
-          </p>
-        </div>
-        <div className="cinematic-enter-prompt">CLICK ANYWHERE TO ENTER</div>
-      </div>
-    )
-  }
 
-  if (phase === 'statement') {
-    const safeIdx = Math.min(Math.max(0, narrativeSlideIndex), NARRATIVE_SLIDES.length - 1)
-    const activeSlide = NARRATIVE_SLIDES[safeIdx]
-    const isLastSlide = safeIdx >= NARRATIVE_SLIDES.length - 1
-
-    return (
-      <div
-        className={`cinematic-statement-screen ${isFadingOut ? 'is-fading-out' : ''}`}
-        onClick={onAdvancePhase}
-        role="dialog"
-        aria-label="Narasi Pembuka Museum Virtual Undip"
-      >
-        <div key={safeIdx} className="cinematic-statement-content cinematic-crossfade-slide">
-          <div className="cinematic-slide-counter" aria-hidden="true">
-            {String(safeIdx + 1).padStart(2, '0')} / {String(NARRATIVE_SLIDES.length).padStart(2, '0')}
+        {phase === 'title' ? (
+          <div key="text-title" style={{ display: 'contents' }}>
+            <div className="cinematic-title-content">
+              <span className="cinematic-eyebrow cin-line cin-line-1">
+                A DIGITAL EXHIBITION • UNIVERSITAS DIPONEGORO
+              </span>
+              <h1 className="cinematic-hero-title">
+                <span className="cin-line cin-line-2" style={{ display: 'block' }}>
+                  Museum Virtual
+                </span>
+                <span className="cinematic-hero-italic cin-line cin-line-3">Undip</span>
+              </h1>
+              <p className="cinematic-hero-sub cin-line cin-line-4">
+                DIORAMA SEJARAH 3D INTERAKTIF BERBASIS WEB
+              </p>
+            </div>
+            <div className="cinematic-enter-prompt cin-line cin-line-5">
+              {isCanvasReady ? 'KLIK DI MANA SAJA UNTUK MASUK' : 'MEMUAT RUANG 3D...'}
+            </div>
           </div>
-          <h2 className="cinematic-statement-heading">
-            {activeSlide.heading}
-          </h2>
-          <p className="cinematic-statement-body">
-            {activeSlide.body}
-          </p>
-        </div>
-        <div className="cinematic-statement-actions">
-          <button
-            type="button"
-            className="cinematic-continue-prompt"
-            onClick={(e) => {
-              e.stopPropagation()
-              onAdvancePhase()
-            }}
-          >
-            {isLastSlide
-              ? 'TEKAN SPACE UNTUK MASUK KE RUANGAN'
-              : 'TEKAN SPACE UNTUK LANJUT'}
-          </button>
-          <button
-            type="button"
-            className="cinematic-statement-skip"
-            onClick={(e) => {
-              e.stopPropagation()
-              onSkip()
-            }}
-          >
-            LEWATI KE GALERI [ESC]
-          </button>
-        </div>
+        ) : (
+          <div key="text-statement" style={{ display: 'contents' }}>
+            <div className="cinematic-statement-content">
+              <div className="cinematic-slide-counter cin-line cin-line-1" aria-hidden="true">
+                TENTANG MUSEUM VIRTUAL
+              </div>
+              <h2 className="cinematic-statement-heading cin-line cin-line-2">
+                {activeSlide.heading}
+              </h2>
+              <p className="cinematic-statement-body cin-line cin-line-3">
+                {activeSlide.body}
+              </p>
+            </div>
+            <div className="cinematic-statement-actions cin-line cin-line-4">
+              <button
+                type="button"
+                className="cinematic-continue-prompt"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  triggerLineExitAdvance()
+                }}
+              >
+                KLIK ATAU TEKAN SPACE UNTUK MULAI TUR SINEMATIK
+              </button>
+              <button
+                type="button"
+                className="cinematic-statement-skip"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onSkip()
+                }}
+              >
+                LEWATI KE GALERI [ESC]
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     )
   }
 
   return (
     <div
+      key="phase-tour"
       className={`cinematic-overlay-root ${isFadingOut ? 'is-fading-out' : ''}`}
       role="region"
       aria-label="Sinematik Pembuka Museum Engine"
@@ -189,7 +224,7 @@ export function CaptionUI({
         <div className="cinematic-caption-meta">
           {chapter.chapterNumber !== null ? (
             <span className="cinematic-chapter-badge">
-              ZONA 0{chapter.chapterNumber} / 0{chapter.totalTechChapters}
+              RUANG 0{chapter.chapterNumber} / 0{chapter.totalTechChapters}
             </span>
           ) : (
             <span className="cinematic-chapter-badge">MUSEUM VIRTUAL UNDIP</span>

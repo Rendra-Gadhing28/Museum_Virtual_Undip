@@ -31,6 +31,8 @@ const SPRINT_KEYS = new Set(['ShiftLeft', 'ShiftRight', 'Shift'])
 export function FirstPersonControls({
   resetSignal,
   targetPosition,
+  spawnPosition = START_POSITION,
+  bounds = BOUNDS,
   moveInputRef,
   hoveredRef,
   panelOpenRef,
@@ -42,22 +44,28 @@ export function FirstPersonControls({
   const keys = useRef(new Set<string>())
   const yaw = useRef(0)
   const pitch = useRef(0)
-  const pos = useRef<[number, number, number]>([...START_POSITION])
+  const pos = useRef<[number, number, number]>([...spawnPosition])
   const drag = useRef<{ id: number; x: number; y: number } | null>(null)
   const isNearDirectoryRef = useRef(false)
   const disabledRef = useRef(disabled)
 
   useEffect(() => {
+    pos.current = [...spawnPosition]
+    yaw.current = 0
+    pitch.current = 0
+  }, [spawnPosition])
+
+  useEffect(() => {
     disabledRef.current = disabled
     if (!disabled) {
       // Ensure exact alignment with spawn point when intro hands over control
-      pos.current = [...START_POSITION]
+      pos.current = [...spawnPosition]
       yaw.current = 0
       pitch.current = 0
       keys.current.clear()
       drag.current = null
     }
-  }, [disabled])
+  }, [disabled, spawnPosition])
 
   // Keyboard Event Listeners
   useEffect(() => {
@@ -249,8 +257,8 @@ export function FirstPersonControls({
       const dx = (strafe * cosY - forward * sinY) * currentSpeed * dt
       const dz = (-forward * cosY - strafe * sinY) * currentSpeed * dt
 
-      pos.current[0] = Math.max(BOUNDS.minX, Math.min(BOUNDS.maxX, pos.current[0] + dx))
-      pos.current[2] = Math.max(BOUNDS.minZ, Math.min(BOUNDS.maxZ, pos.current[2] + dz))
+      pos.current[0] = Math.max(bounds.minX, Math.min(bounds.maxX, pos.current[0] + dx))
+      pos.current[2] = Math.max(bounds.minZ, Math.min(bounds.maxZ, pos.current[2] + dz))
     }
 
     camera.position.set(pos.current[0], EYE_HEIGHT, pos.current[2])

@@ -47,12 +47,72 @@
   transition: opacity 0.85s ease, backdrop-filter 0.85s ease;
 }
 
+@keyframes cinLineEnterUp {
+  0% {
+    opacity: 0;
+    transform: translateY(34px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cinLineExitUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-34px);
+  }
+}
+
+.cin-waiting .cin-line {
+  opacity: 0;
+  animation: none !important;
+}
+
+/* Masuk awal judul: 3 detik (lambat & megah) */
+.cin-phase-title .cin-line {
+  animation: cinLineEnterUp 3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.cin-phase-title .cin-line-1 { animation-delay: 0.1s; }
+.cin-phase-title .cin-line-2 { animation-delay: 0.35s; }
+.cin-phase-title .cin-line-3 { animation-delay: 0.6s; }
+.cin-phase-title .cin-line-4 { animation-delay: 0.85s; }
+.cin-phase-title .cin-line-5 { animation-delay: 1.1s; }
+
+/* Masuk deskripsi (dan layar berikutnya): 1.2 detik */
+.cin-phase-statement .cin-line {
+  animation: cinLineEnterUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.cin-phase-statement .cin-line-1 { animation-delay: 0.06s; }
+.cin-phase-statement .cin-line-2 { animation-delay: 0.18s; }
+.cin-phase-statement .cin-line-3 { animation-delay: 0.30s; }
+.cin-phase-statement .cin-line-4 { animation-delay: 0.42s; }
+
+/* Keluar ke atas baris per baris: 1.2 detik */
+.is-exiting-lines .cin-line {
+  animation: cinLineExitUp 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards !important;
+}
+
+.is-exiting-lines .cin-line-1 { animation-delay: 0.0s !important; }
+.is-exiting-lines .cin-line-2 { animation-delay: 0.06s !important; }
+.is-exiting-lines .cin-line-3 { animation-delay: 0.12s !important; }
+.is-exiting-lines .cin-line-4 { animation-delay: 0.18s !important; }
+.is-exiting-lines .cin-line-5 { animation-delay: 0.24s !important; }
+
 .cinematic-title-screen.is-fading-out,
 .cinematic-statement-screen.is-fading-out {
   opacity: 0;
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
   pointer-events: none;
+  transition: opacity 1.2s ease, backdrop-filter 1.2s ease;
 }
 
 @keyframes cinTitleFadeIn {
@@ -119,7 +179,6 @@
   text-align: center;
   max-width: 780px;
   transform-origin: center center;
-  animation: cinTitleFadeIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .cinematic-eyebrow {
