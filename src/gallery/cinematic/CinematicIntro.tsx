@@ -9,7 +9,6 @@
 import { useEffect, useMemo, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
-import { useCulling } from '../../perf/culling'
 import { EYE_HEIGHT, START_POSITION } from '../Zone1/layout'
 import { CameraRail } from './CameraRail'
 import {
@@ -40,7 +39,6 @@ export function CinematicIntro({
   onComplete,
 }: CinematicIntroProps) {
   const { camera, gl } = useThree()
-  const { stats } = useCulling()
   const rail = useMemo(() => new CameraRail(), [])
 
   const elapsedRef = useRef(0)
@@ -49,10 +47,8 @@ export function CinematicIntro({
   const reducedMotionRef = useRef(false)
 
   const metricsRef = useRef<LiveEngineMetrics>({
-    culling: stats,
+    fps: 60,
   })
-
-  metricsRef.current.culling = stats
 
   // Detect prefers-reduced-motion & reset timer whenever intro becomes active
   useEffect(() => {

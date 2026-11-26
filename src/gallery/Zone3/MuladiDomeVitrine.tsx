@@ -1,9 +1,7 @@
 import { useMemo } from 'react'
 import * as THREE from 'three'
 import { useGLTF } from '@react-three/drei'
-import { MaterialLibrary } from '../quality'
-import { MINIATURE_DOME_CONFIG } from '../MuladiDome/config'
-import { createRoofTextureBundle, createLandscapeTextureBundle } from '../MuladiDome/textures'
+import { MaterialLibrary, createProceduralNormalMap } from '../graphics'
 
 export interface MuladiDomeVitrineProps {
   position?: [number, number, number]
@@ -39,9 +37,22 @@ export function MuladiDomeVitrine({
   // Muat model GLB terkompresi (Draco offline di /draco/)
   const { scene } = useGLTF('/assets/models/muladi_dome_draco.glb', '/draco/')
 
-  // 1. Tekstur PBR Asli Muladi Dome (Resolusi 512px cepat, bebas freeze CPU)
-  const roofTextures = useMemo(() => createRoofTextureBundle(MINIATURE_DOME_CONFIG), [])
-  const landscapeTextures = useMemo(() => createLandscapeTextureBundle(MINIATURE_DOME_CONFIG), [])
+  // 1. Tekstur PBR Asli Muladi Dome
+  const roofTextures = useMemo(() => {
+    return {
+      albedoMap: null as any,
+      normalMap: createProceduralNormalMap('stone', 128, 128),
+      roughnessMap: null as any,
+      aoMap: null as any,
+    }
+  }, [])
+  const landscapeTextures = useMemo(() => {
+    return {
+      groundAlbedoMap: null as any,
+      plazaMap: null as any,
+      plazaNormal: null as any,
+    }
+  }, [])
 
   // 2. Kumpulan Material PBR Asli Muladi Dome
   const customMaterials = useMemo(() => {

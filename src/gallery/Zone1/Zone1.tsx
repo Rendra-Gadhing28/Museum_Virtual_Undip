@@ -1,7 +1,6 @@
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { PerspectiveCamera } from '@react-three/drei'
-import { CullingManager, CullingDebugOverlay, CULLING_CONFIG, type CullingStats } from '../../perf/culling'
 import type { SelectedExhibit, SectionType } from './types'
 import type { Founder, HistoryExhibit } from './data/exhibits'
 import { UNDIP_LEADERSHIP_13, HISTORY_EXHIBITS } from './data/exhibits'
@@ -20,7 +19,6 @@ import { DesktopHints } from './DesktopHints'
 import { MobileControls } from './MobileControls'
 import { ExhibitInformationPanel } from './ExhibitInformationPanel'
 import { WayfindingPrompt } from './WayfindingPrompt'
-import { LightingRig, DetailPass, PostFX, QUALITY } from '../quality'
 import { ZoneGraphicsController } from '../graphics'
 import {
   CaptionUI,
@@ -93,7 +91,6 @@ export function Zone1({
   const [resetSignal, setResetSignal] = useState(0)
   const [targetPosition, setTargetPosition] = useState<[number, number, number] | null>(null)
   const [isNearDirectory, setIsNearDirectory] = useState(false)
-  const [cullingStats, setCullingStats] = useState<CullingStats | null>(null)
   const [introPhase, setIntroPhase] = useState<IntroPhase>(() =>
     checkIsFirstVisit() ? 'title' : 'done',
   )
@@ -276,7 +273,7 @@ export function Zone1({
 
 
       <Canvas
-        dpr={[1, isMobile ? 1.0 : Math.min(QUALITY.current.pixelRatioMax, 1.5)]}
+        dpr={[1, isMobile ? 1.0 : 1.5]}
         gl={{
           antialias: !isMobile,
           powerPreference: 'high-performance',
@@ -286,7 +283,7 @@ export function Zone1({
       >
         <ZoneGraphicsController zone="zone1" />
         <color attach="background" args={['#0e1724']} />
-        <fog attach="fog" args={[CULLING_CONFIG.fogColor, CULLING_CONFIG.fogNear, CULLING_CONFIG.fogFar]} />
+        <fog attach="fog" args={['#0e1724', 15, 60]} />
 
         <PerspectiveCamera
           makeDefault
@@ -297,13 +294,8 @@ export function Zone1({
         />
 
         <Suspense fallback={null}>
-          <CullingManager onStatsUpdate={setCullingStats}>
-            {/* Ringan Quality Passes (Tanpa HDRI PMREM / Shadow / Spotlight Berat) */}
-            <LightingRig zone="zone1" />
-            <DetailPass zone="zone1" />
-            <PostFX zone="zone1" />
+          <group>
             <GoldenDustParticles active={isIntroActive} />
-
             <GalleryLighting castShadows={!isMobile} isMobile={isMobile} />
             <GalleryEnvironment isNearDirectory={isNearDirectory} isMobile={isMobile} />
 
@@ -343,7 +335,7 @@ export function Zone1({
               onStateUpdate={setCinematicState}
               onComplete={finishIntro}
             />
-          </CullingManager>
+          </group>
         </Suspense>
 
         <FirstPersonControls
@@ -358,7 +350,6 @@ export function Zone1({
         />
       </Canvas>
 
-      {import.meta.env.DEV && cullingStats && <CullingDebugOverlay stats={cullingStats} />}
 
       {/* Cinematic Intro Title, Editorial Statement, Letterbox & Captions */}
       <CaptionUI

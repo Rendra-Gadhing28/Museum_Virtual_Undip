@@ -1,13 +1,12 @@
 import { useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import { useFrame } from '@react-three/fiber'
-import { useEntityVisibility } from '../../perf/core/EntityCulling'
 import { Text } from '@react-three/drei'
 import { createDioramaPlaqueTexture } from './textures'
 import type { Zone2Exhibit } from './types'
 import { ZONE2_CENTERPIECE } from './data/zone2Exhibits'
-import { MaterialLibrary } from '../quality'
-import { InstancedFoliage } from '../common/InstancedFoliage'
+import { MaterialLibrary } from '../graphics'
+import { InstancedFoliage } from '../graphics/InstancedFoliage'
 
 interface CampusTransformationDioramaProps {
   position: [number, number, number]
@@ -39,7 +38,7 @@ export function CampusTransformationDiorama({
   const barkMat = useMemo(() => MaterialLibrary.treeBark('#4a3728'), [])
 
   // Subtle pulsing animation on interactive indicator
-  const isVisible = useEntityVisibility()
+  const isVisible = true
 
   useFrame((state) => {
     if (!isVisible) return

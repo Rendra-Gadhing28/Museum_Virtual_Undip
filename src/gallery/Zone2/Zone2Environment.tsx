@@ -13,7 +13,7 @@ import {
 import { createZone2MonumentTexture } from './textures'
 import { ZONE2_MONUMENT } from './data/zone2Exhibits'
 import type { Zone2Exhibit } from './types'
-import { MaterialLibrary, QUALITY } from '../quality'
+import { MaterialLibrary, QUALITY } from '../graphics'
 
 interface Zone2EnvironmentProps {
   onSelectMonument?: (exhibit: Zone2Exhibit) => void

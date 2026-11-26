@@ -10,7 +10,7 @@ import {
   ZONE3_DIRECTORY_POS,
   ZONE3_DIRECTORY_PROXIMITY_RADIUS,
 } from './layout'
-import { MaterialLibrary, QUALITY } from '../quality'
+import { MaterialLibrary, QUALITY } from '../graphics'
 
 interface Zone3EnvironmentProps {
   isNearDirectory?: boolean

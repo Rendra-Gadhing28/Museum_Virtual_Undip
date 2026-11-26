@@ -11,7 +11,7 @@ import { CeilingRoof } from './CeilingRoof'
 import { RedCarpet } from './RedCarpet'
 import { Bookshelf } from './MuseumFurniture'
 import { DirectoryBoard } from './DirectoryBoard'
-import { MaterialLibrary, QUALITY } from '../quality'
+import { MaterialLibrary, QUALITY } from '../graphics'
 
 interface GalleryEnvironmentProps {
   isNearDirectory?: boolean

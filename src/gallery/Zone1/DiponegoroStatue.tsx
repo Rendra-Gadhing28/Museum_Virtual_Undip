@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import * as THREE from 'three'
 import type { StatueProps } from './types'
 import { assetCache } from './cache'
-import { MaterialLibrary } from '../quality'
+import { MaterialLibrary } from '../graphics'
 
 /**
  * 3D Monumental Statue: Pangeran Diponegoro on White Horse (Kuda Putih)

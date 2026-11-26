@@ -11,7 +11,7 @@ import {
 } from './textures'
 import { HALL } from './layout'
 import { assetCache } from './cache'
-import { createProceduralNormalMap, MaterialLibrary, QUALITY } from '../quality'
+import { createProceduralNormalMap, MaterialLibrary, QUALITY } from '../graphics'
 
 /**
  * Modern Architectural LED Ring Pendant Chandelier

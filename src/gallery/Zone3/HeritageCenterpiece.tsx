@@ -5,7 +5,7 @@ import { Text } from '@react-three/drei'
 import { createSteleInscriptionTexture } from './textures'
 import { PRASASTI_HERO_POS, HERITAGE_TABLE_POS } from './layout'
 import zone3Data from './data/zone3.json'
-import { MaterialLibrary, QUALITY } from '../quality'
+import { MaterialLibrary, QUALITY } from '../graphics'
 import { MuladiDomeVitrine } from './MuladiDomeVitrine'
 
 interface HeritageCenterpieceProps {

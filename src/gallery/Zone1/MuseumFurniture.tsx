@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import * as THREE from 'three'
 import { assetCache } from './cache'
-import { MaterialLibrary } from '../quality'
+import { MaterialLibrary } from '../graphics'
 
 interface FurnitureProps {
   position: [number, number, number]

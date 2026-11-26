@@ -8,7 +8,6 @@ import {
 } from './textures'
 import { createZone2ExhibitDataURL } from '../Zone2/textures'
 import type { Zone2Exhibit } from '../Zone2/types'
-import { DOMEntityCuller } from '../../perf/core/useDOMEntityCulling'
 
 interface ExhibitInformationPanelProps {
   selected: SelectedExhibit | null
@@ -241,7 +240,7 @@ export function ExhibitInformationPanel({
               RIGHT COLUMN: HISTORICAL CONTENT & DOCUMENTATION
               ONLY THIS CONTAINER SCROLLS
               ============================================================ */}
-          <DOMEntityCuller className="gr-content-wrap" minHeight={280} once>
+          <div className="gr-content-wrap">
             {/* Founder Specific Description */}
             {isFounder && founderData && (
               <div className="gr-exhibit-text">
@@ -428,7 +427,7 @@ export function ExhibitInformationPanel({
                 Kembali Menjelajah Museum
               </button>
             </div>
-          </DOMEntityCuller>
+          </div>
         </div>
       </aside>
     </>

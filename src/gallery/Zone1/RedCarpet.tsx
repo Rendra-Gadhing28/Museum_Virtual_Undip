@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import * as THREE from 'three'
 import { RED_CARPET } from './layout'
 import { createRedCarpetTexture } from './textures'
-import { createProceduralNormalMap, MaterialLibrary, QUALITY } from '../quality'
+import { createProceduralNormalMap, MaterialLibrary, QUALITY } from '../graphics'
 
 /**
  * Ceremonial Red Carpet Runner

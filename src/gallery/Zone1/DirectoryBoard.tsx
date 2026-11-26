@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import * as THREE from 'three'
-import { createProceduralRoughnessMap, MaterialLibrary, QUALITY } from '../quality'
+import { createProceduralRoughnessMap, MaterialLibrary, QUALITY } from '../graphics'
 
 interface DirectoryBoardProps {
   position: [number, number, number]

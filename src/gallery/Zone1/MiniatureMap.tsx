@@ -3,8 +3,8 @@ import * as THREE from 'three'
 import type { MiniatureMapProps } from './types'
 import { createCampusMiniatureTexture } from './textures'
 import { assetCache } from './cache'
-import { MaterialLibrary } from '../quality'
-import { InstancedFoliage } from '../common/InstancedFoliage'
+import { MaterialLibrary } from '../graphics'
+import { InstancedFoliage } from '../graphics/InstancedFoliage'
 
 /**
  * 3D Miniature Map of Universitas Diponegoro (Tembalang & Pleburan Campus)

@@ -1,7 +1,6 @@
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { PerspectiveCamera } from '@react-three/drei'
-import { CanvasStatsCollector, CullingDebugOverlay, type CullingStats } from '../../perf/culling'
 import type { SelectedExhibit, SectionType } from '../Zone1/types'
 import { FirstPersonControls } from '../Zone1/FirstPersonControls'
 import { DesktopHints } from '../Zone1/DesktopHints'
@@ -19,7 +18,6 @@ import {
   ZONE2_TARGETS,
 } from './layout'
 import type { Zone2Exhibit, ZoneId } from './types'
-import { LightingRig, DetailPass, PostFX, QUALITY } from '../quality'
 import { ZoneGraphicsController } from '../graphics'
 import '../Zone1/gallery.css'
 
@@ -57,7 +55,6 @@ export function Zone2({ onSwitchZone: _onSwitchZone }: Zone2Props) {
   const [resetSignal, setResetSignal] = useState(0)
   const [targetPosition, setTargetPosition] = useState<[number, number, number] | null>(null)
   const [isNearDirectory, setIsNearDirectory] = useState(false)
-  const [cullingStats, setCullingStats] = useState<CullingStats | null>(null)
 
   const moveInputRef = useRef<{ forward: number; strafe: number }>({ forward: 0, strafe: 0 })
   const hoveredRef = useRef<string | null>(null)
@@ -105,7 +102,7 @@ export function Zone2({ onSwitchZone: _onSwitchZone }: Zone2Props) {
   return (
     <div className={`gr-root${isMobile ? ' is-mobile' : ''}`}>
       <Canvas
-        dpr={[1, isMobile ? 1.0 : Math.min(QUALITY.current.pixelRatioMax, 1.5)]}
+        dpr={[1, isMobile ? 1.0 : 1.5]}
         gl={{ antialias: !isMobile, powerPreference: 'high-performance' }}
         onPointerMissed={() => setSelectedExhibit(null)}
       >
@@ -123,12 +120,6 @@ export function Zone2({ onSwitchZone: _onSwitchZone }: Zone2Props) {
         />
 
         <Suspense fallback={null}>
-          <CanvasStatsCollector onStatsUpdate={setCullingStats} />
-
-          {/* Ringan Quality Passes */}
-          <LightingRig zone="zone2" />
-          <DetailPass zone="zone2" />
-          <PostFX zone="zone2" />
 
           {/* Strictly Warm Golden/Amber Lighting (2700K - 3000K) */}
           <Zone2Lighting />
@@ -202,8 +193,7 @@ export function Zone2({ onSwitchZone: _onSwitchZone }: Zone2Props) {
         onClose={handleClose}
       />
 
-      {/* Real-time F3 Debug Diagnostics HUD */}
-      {cullingStats && <CullingDebugOverlay stats={cullingStats} />}
+
     </div>
   )
 }

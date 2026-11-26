@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
 import { ZONE3_CONFIG } from './zone3Config'
-import { DOMEntityCuller } from '../../perf/core/useDOMEntityCulling'
 
 interface Zone3InfoPanelProps {
   selectedItem: {
@@ -88,7 +87,7 @@ export function Zone3InfoPanel({ selectedItem, onClose }: Zone3InfoPanelProps) {
         </header>
 
         {/* Modal Body */}
-        <DOMEntityCuller className="gr-zone3-modal-body" minHeight={200} once>
+        <div className="gr-zone3-modal-body">
           {/* Section 1: Hero Prasasti Berdiri Detail */}
           {isInscription && (
             <div className="gr-zone3-inscription-detail">
@@ -229,7 +228,7 @@ export function Zone3InfoPanel({ selectedItem, onClose }: Zone3InfoPanelProps) {
               )}
             </div>
           )}
-        </DOMEntityCuller>
+        </div>
 
         {/* Modal Footer */}
         <footer className="gr-zone3-modal-footer">

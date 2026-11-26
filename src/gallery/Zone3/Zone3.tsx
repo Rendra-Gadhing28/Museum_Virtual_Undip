@@ -1,7 +1,6 @@
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { PerspectiveCamera } from '@react-three/drei'
-import { CanvasStatsCollector, CullingDebugOverlay, type CullingStats } from '../../perf/culling'
 
 import { Zone3Environment } from './Zone3Environment'
 import { Zone3Lighting } from './Zone3Lighting'
@@ -20,8 +19,7 @@ import {
   ZONE3_TARGETS,
 } from './layout'
 import type { ZoneId } from '../Zone2/types'
-import { LightingRig, DetailPass, PostFX, QUALITY } from '../quality'
-import { ZoneGraphicsController } from '../graphics'
+import { ZoneGraphicsController, QUALITY } from '../graphics'
 import '../Zone1/gallery.css'
 import './zone3.css'
 
@@ -66,7 +64,6 @@ export function Zone3({ onSwitchZone }: Zone3Props) {
   const [resetSignal, setResetSignal] = useState(0)
   const [targetPosition, setTargetPosition] = useState<[number, number, number] | null>(null)
   const [isNearDirectory, setIsNearDirectory] = useState(false)
-  const [cullingStats, setCullingStats] = useState<CullingStats | null>(null)
 
   // Guided Tour State
   const [isTouring, setIsTouring] = useState<boolean>(false)
@@ -167,12 +164,6 @@ export function Zone3({ onSwitchZone }: Zone3Props) {
         />
 
         <Suspense fallback={null}>
-          <CanvasStatsCollector onStatsUpdate={setCullingStats} />
-
-          {/* Ringan Quality Passes */}
-          <LightingRig zone="zone3" />
-          <DetailPass zone="zone3" />
-          <PostFX zone="zone3" />
 
           {/* 1. Pencahayaan Galeri Museum Hangat Kuning */}
           <Zone3Lighting castShadows={!isMobile} isMobile={isMobile} />
@@ -280,8 +271,7 @@ export function Zone3({ onSwitchZone }: Zone3Props) {
         onClose={handleClose}
       />
 
-      {/* Real-time F3 Debug Diagnostics HUD */}
-      {cullingStats && <CullingDebugOverlay stats={cullingStats} />}
+
     </div>
   )
 }
