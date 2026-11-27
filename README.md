@@ -15,6 +15,8 @@ Situs web diorama dan pameran sejarah virtual 3D interaktif Universitas Diponego
 * **Dokumentasi Arsitektur Sistem**: [docs/ARSITEKTUR_DAN_SISTEM.md](file:///d:/pkl/Museum_Virtual_Undip/docs/ARSITEKTUR_DAN_SISTEM.md)
 * **Pedoman Kebahasaan Baku (KBBI & EYD V)**: [docs/PEDOMAN_KEBAHASAAN.md](file:///d:/pkl/Museum_Virtual_Undip/docs/PEDOMAN_KEBAHASAAN.md)
 * **Matriks Pemecahan Masalah & Keputusan**: [docs/PROBLEM_SOLVING_DAN_KEPUTUSAN.md](file:///d:/pkl/Museum_Virtual_Undip/docs/PROBLEM_SOLVING_DAN_KEPUTUSAN.md)
+* **Standar Operasional Prosedur Aset 3D (Blender & Web)**: [docs/SOP_PIPELINE_ASET_3D_BLENDER_DAN_WEB.md](file:///d:/pkl/Museum_Virtual_Undip/docs/SOP_PIPELINE_ASET_3D_BLENDER_DAN_WEB.md)
+* **Lembar Kendali Tugas 3D Designer (Baked Lighting)**: [docs/DAFTAR_TUGAS_3D_DESIGNER_BAKED_LIGHTING.md](file:///d:/pkl/Museum_Virtual_Undip/docs/DAFTAR_TUGAS_3D_DESIGNER_BAKED_LIGHTING.md)
 * **Spesifikasi Miro**: [docs/MIRO_SPECIFICATION.md](file:///d:/pkl/Museum_Virtual_Undip/docs/MIRO_SPECIFICATION.md)
 
 ---

@@ -1,22 +1,100 @@
-import { useMemo } from 'react'
+import { Suspense, useMemo } from 'react'
 import * as THREE from 'three'
+import { useGLTF } from '@react-three/drei'
 import type { StatueProps } from './types'
 import { assetCache } from './cache'
 import { MaterialLibrary } from '../graphics'
 
+interface ExtendedStatueProps extends StatueProps {
+  scale?: number
+}
+
+/**
+ * 3D Model GLB Loader for Patung Kuda Pangeran Diponegoro
+ * Loads /assets/patung_kuda.glb using offline Draco decoder.
+ */
+function HorseStatueGLB({ scale = 2.4 }: { scale?: number }) {
+  const { scene } = useGLTF('/assets/patung_kuda.glb', '/draco/')
+  const clonedScene = useMemo(() => {
+    const clone = scene.clone(true)
+    clone.traverse((child) => {
+      if ((child as THREE.Mesh).isMesh) {
+        child.castShadow = true
+        child.receiveShadow = true
+      }
+    })
+    return clone
+  }, [scene])
+
+  // Center bottom of patung_kuda sits right on the marble plinth surface
+  return (
+    <primitive
+      object={clonedScene}
+      position={[0, 0.55 * scale, 0]}
+      scale={scale}
+      rotation={[0, 0, 0]}
+    />
+  )
+}
+
+/**
+ * Procedural Sculpture Fallback:
+ * Rendered instantly while GLB is loading or as graceful degradation.
+ */
+function ProceduralHorseFallback({ materials }: { materials: any }) {
+  return (
+    <group>
+      {/* Sculpture Base Plinth Plate in Polished White Marble & Gold */}
+      <mesh position={[0, 0.05, 0]} castShadow>
+        <boxGeometry args={[1.5, 0.09, 2.2]} />
+        <primitive object={materials.marblePlinth} attach="material" />
+      </mesh>
+      <mesh position={[0, 0.105, 0]}>
+        <boxGeometry args={[1.54, 0.02, 2.24]} />
+        <primitive object={materials.goldAccent} attach="material" />
+      </mesh>
+
+      {/* The White Horse Torso & Neck */}
+      <mesh position={[0, 0.95, -0.1]} rotation={[-0.55, 0, 0]} castShadow>
+        <boxGeometry args={[0.56, 0.68, 1.25]} />
+        <primitive object={materials.whiteHorse} attach="material" />
+      </mesh>
+      <mesh position={[0, 1.48, 0.38]} rotation={[0.4, 0, 0]} castShadow>
+        <boxGeometry args={[0.46, 0.78, 0.52]} />
+        <primitive object={materials.whiteHorse} attach="material" />
+      </mesh>
+      <mesh position={[0, 1.62, 0.22]} rotation={[0.4, 0, 0]} castShadow>
+        <boxGeometry args={[0.12, 0.75, 0.18]} />
+        <primitive object={materials.whiteMane} attach="material" />
+      </mesh>
+      <group position={[0, 1.95, 0.56]} rotation={[0.2, 0, 0]}>
+        <mesh castShadow>
+          <boxGeometry args={[0.3, 0.34, 0.55]} />
+          <primitive object={materials.whiteHorse} attach="material" />
+        </mesh>
+        <mesh position={[0, -0.09, 0.3]} castShadow>
+          <boxGeometry args={[0.23, 0.22, 0.26]} />
+          <primitive object={materials.whiteHorse} attach="material" />
+        </mesh>
+      </group>
+    </group>
+  )
+}
+
 /**
  * 3D Monumental Statue: Pangeran Diponegoro on White Horse (Kuda Putih)
- * Arranged neatly in the back corner of the grand hall with an expanded, spacious plaza,
+ * Arranged neatly with an expanded, spacious plaza,
  * polished brass stanchion posts, and royal velvet cords.
  */
 export function DiponegoroStatue({
   position,
   rotationY = 0,
+  scale = 1.0,
   isSelected = false,
   isHovered = false,
   onSelect,
   onHover,
-}: StatueProps) {
+}: ExtendedStatueProps) {
   const materials = useMemo(() => {
     return {
       // 1. Pure White Horse Material (Alabaster / White Marble with smooth pearlescent sheen)
@@ -56,6 +134,7 @@ export function DiponegoroStatue({
     <group
       position={position}
       rotation={[0, rotationY, 0]}
+      scale={[scale, scale, scale]}
       onPointerOver={(e) => {
         e.stopPropagation()
         onHover?.('statue')
@@ -197,7 +276,8 @@ export function DiponegoroStatue({
 
       {/* ============================================================
           3. SCULPTURE: PANGERAN DIPONEGORO DENGAN KUDA PUTIH
-          (The Heroic Prince Diponegoro on His Iconic White Rearing Steed)
+          Mounted majestically on the marble pedestal plinth.
+          Uses 3D GLB Model (patung_kuda.glb) with Procedural Fallback.
           ============================================================ */}
       <group position={[0, 1.76, 0]}>
         {/* Sculpture Base Plinth Plate in Polished White Marble & Gold */}
@@ -210,200 +290,9 @@ export function DiponegoroStatue({
           <primitive object={materials.goldAccent} attach="material" />
         </mesh>
 
-        {/* --- 3A. THE MAJESTIC WHITE HORSE (KUDA PUTIH) --- */}
-        {/* Main Torso (Angled upward in rearing stance) */}
-        <mesh position={[0, 0.95, -0.1]} rotation={[-0.55, 0, 0]} castShadow>
-          <boxGeometry args={[0.56, 0.68, 1.25]} />
-          <primitive object={materials.whiteHorse} attach="material" />
-        </mesh>
-
-        {/* Horse Chest & Neck (Rising high into the air) */}
-        <mesh position={[0, 1.48, 0.38]} rotation={[0.4, 0, 0]} castShadow>
-          <boxGeometry args={[0.46, 0.78, 0.52]} />
-          <primitive object={materials.whiteHorse} attach="material" />
-        </mesh>
-
-        {/* Pure White Flowing Mane on Neck */}
-        <mesh position={[0, 1.62, 0.22]} rotation={[0.4, 0, 0]} castShadow>
-          <boxGeometry args={[0.12, 0.75, 0.18]} />
-          <primitive object={materials.whiteMane} attach="material" />
-        </mesh>
-
-        {/* White Horse Head with alert ears */}
-        <group position={[0, 1.95, 0.56]} rotation={[0.2, 0, 0]}>
-          <mesh castShadow>
-            <boxGeometry args={[0.3, 0.34, 0.55]} />
-            <primitive object={materials.whiteHorse} attach="material" />
-          </mesh>
-          {/* Muzzle */}
-          <mesh position={[0, -0.09, 0.3]} castShadow>
-            <boxGeometry args={[0.23, 0.22, 0.26]} />
-            <primitive object={materials.whiteHorse} attach="material" />
-          </mesh>
-          {/* White Alert Ears */}
-          {[-0.1, 0.1].map((ex, ei) => (
-            <mesh
-              key={ei}
-              position={[ex, 0.24, -0.1]}
-              rotation={[-0.2, 0, ei === 0 ? -0.2 : 0.2]}
-              castShadow
-            >
-              <coneGeometry args={[0.045, 0.15, 8]} />
-              <primitive object={materials.whiteMane} attach="material" />
-            </mesh>
-          ))}
-
-          {/* Royal Golden Bridle & Bit */}
-          <mesh position={[0, -0.02, 0.16]}>
-            <torusGeometry args={[0.16, 0.016, 8, 20]} />
-            <primitive object={materials.goldBright} attach="material" />
-          </mesh>
-        </group>
-
-        {/* Front Legs (Rearing into the air with Gold Horseshoes) */}
-        {/* Left Front Leg (Raised high) */}
-        <group position={[-0.24, 1.38, 0.32]} rotation={[0.7, 0, -0.15]}>
-          <mesh position={[0, -0.26, 0]} castShadow>
-            <cylinderGeometry args={[0.075, 0.065, 0.52, 12]} />
-            <primitive object={materials.whiteHorse} attach="material" />
-          </mesh>
-          <mesh position={[0, -0.64, 0.14]} rotation={[-0.8, 0, 0]} castShadow>
-            <cylinderGeometry args={[0.06, 0.048, 0.48, 12]} />
-            <primitive object={materials.whiteHorse} attach="material" />
-          </mesh>
-          {/* Gleaming Gold Horseshoe */}
-          <mesh position={[0, -0.9, 0.28]} castShadow>
-            <cylinderGeometry args={[0.058, 0.07, 0.09, 12]} />
-            <primitive object={materials.goldBright} attach="material" />
-          </mesh>
-        </group>
-
-        {/* Right Front Leg (Bent in gallop) */}
-        <group position={[0.24, 1.48, 0.22]} rotation={[0.9, 0, 0.15]}>
-          <mesh position={[0, -0.24, 0]} castShadow>
-            <cylinderGeometry args={[0.075, 0.065, 0.48, 12]} />
-            <primitive object={materials.whiteHorse} attach="material" />
-          </mesh>
-          <mesh position={[0, -0.54, 0.18]} rotation={[-1.1, 0, 0]} castShadow>
-            <cylinderGeometry args={[0.06, 0.048, 0.45, 12]} />
-            <primitive object={materials.whiteHorse} attach="material" />
-          </mesh>
-          {/* Gleaming Gold Horseshoe */}
-          <mesh position={[0, -0.78, 0.32]} castShadow>
-            <cylinderGeometry args={[0.058, 0.07, 0.09, 12]} />
-            <primitive object={materials.goldBright} attach="material" />
-          </mesh>
-        </group>
-
-        {/* Hind Legs (Firmly planted on the marble plinth) */}
-        {[-0.24, 0.24].map((hx, hi) => (
-          <group key={hi} position={[hx, 0.6, -0.6]}>
-            <mesh position={[0, -0.06, 0]} rotation={[-0.3, 0, 0]} castShadow>
-              <cylinderGeometry args={[0.11, 0.085, 0.58, 12]} />
-              <primitive object={materials.whiteHorse} attach="material" />
-            </mesh>
-            <mesh position={[0, -0.42, 0]} rotation={[0.2, 0, 0]} castShadow>
-              <cylinderGeometry args={[0.075, 0.065, 0.52, 12]} />
-              <primitive object={materials.whiteHorse} attach="material" />
-            </mesh>
-            <mesh position={[0, -0.64, 0]} castShadow>
-              <cylinderGeometry args={[0.075, 0.088, 0.11, 12]} />
-              <primitive object={materials.goldAccent} attach="material" />
-            </mesh>
-          </group>
-        ))}
-
-        {/* Flowing Pure White Horse Tail */}
-        <mesh position={[0, 0.72, -0.92]} rotation={[0.42, 0, 0]} castShadow>
-          <cylinderGeometry args={[0.09, 0.035, 0.85, 12]} />
-          <primitive object={materials.whiteMane} attach="material" />
-        </mesh>
-
-        {/* --- 3B. PANGERAN DIPONEGORO IN NOBLE WHITE WARRIOR ROBE --- */}
-        <group position={[0, 1.36, -0.08]}>
-          {/* Royal Navy Blue Saddlecloth with Gold Embroidered Border */}
-          <mesh position={[0, -0.08, 0]} castShadow>
-            <boxGeometry args={[0.62, 0.15, 0.68]} />
-            <primitive object={materials.navyVelvet} attach="material" />
-          </mesh>
-          <mesh position={[0, -0.075, 0]}>
-            <boxGeometry args={[0.64, 0.03, 0.7]} />
-            <primitive object={materials.goldAccent} attach="material" />
-          </mesh>
-
-          {/* Torso & Flowing White Javanese Warrior Robe (Jubah Putih) */}
-          <mesh position={[0, 0.42, 0]} castShadow>
-            <boxGeometry args={[0.5, 0.66, 0.36]} />
-            <primitive object={materials.heroWhiteRobe} attach="material" />
-          </mesh>
-
-          {/* Royal Golden Sash across the Chest */}
-          <mesh position={[0, 0.44, 0.19]} rotation={[0, 0, 0.4]}>
-            <boxGeometry args={[0.08, 0.62, 0.02]} />
-            <primitive object={materials.goldBright} attach="material" />
-          </mesh>
-
-          {/* White Legs astride the White Horse */}
-          {[-0.3, 0.3].map((lx, li) => (
-            <mesh
-              key={li}
-              position={[lx, 0.05, 0.05]}
-              rotation={[0.5, 0, li === 0 ? -0.2 : 0.2]}
-              castShadow
-            >
-              <boxGeometry args={[0.16, 0.58, 0.24]} />
-              <primitive object={materials.heroWhiteRobe} attach="material" />
-            </mesh>
-          ))}
-
-          {/* Head & Iconic White Sorban Diponegoro */}
-          <group position={[0, 0.88, 0.04]}>
-            <mesh castShadow>
-              <sphereGeometry args={[0.15, 16, 16]} />
-              <primitive object={materials.heroWhiteRobe} attach="material" />
-            </mesh>
-            {/* White Turban Wrap (Sorban Putih Diponegoro) */}
-            <mesh position={[0, 0.07, 0]} castShadow>
-              <torusGeometry args={[0.16, 0.07, 14, 28]} />
-              <primitive object={materials.heroSorban} attach="material" />
-            </mesh>
-            {/* Gold Turban Pinnacle Crest */}
-            <mesh position={[0, 0.18, -0.03]} castShadow>
-              <coneGeometry args={[0.075, 0.14, 12]} />
-              <primitive object={materials.goldBright} attach="material" />
-            </mesh>
-          </group>
-
-          {/* Right Arm: Raised Forward Brandishing the Sacred Golden Keris */}
-          <group position={[0.28, 0.56, 0.09]} rotation={[0.82, 0.32, 0.38]}>
-            <mesh position={[0, 0.22, 0]} castShadow>
-              <cylinderGeometry args={[0.06, 0.048, 0.45, 10]} />
-              <primitive object={materials.heroWhiteRobe} attach="material" />
-            </mesh>
-
-            {/* Sacred Keris Pusaka Diponegoro in Gleaming Gold */}
-            <group position={[0, 0.48, 0]} rotation={[0.2, 0, 0]}>
-              {/* Keris Hilt (Hulu Keris Ukir) */}
-              <mesh castShadow>
-                <cylinderGeometry args={[0.022, 0.022, 0.14, 10]} />
-                <primitive object={materials.goldBright} attach="material" />
-              </mesh>
-              {/* Wavy Luk Blade of Keris Diponegoro */}
-              <mesh position={[0, 0.24, 0]} castShadow>
-                <boxGeometry args={[0.028, 0.38, 0.06]} />
-                <primitive object={materials.goldBright} attach="material" />
-              </mesh>
-            </group>
-          </group>
-
-          {/* Left Arm: Holding Gold Reins Firmly */}
-          <group position={[-0.28, 0.48, 0.12]} rotation={[0.5, -0.2, -0.3]}>
-            <mesh position={[0, 0.18, 0]} castShadow>
-              <cylinderGeometry args={[0.06, 0.048, 0.38, 10]} />
-              <primitive object={materials.heroWhiteRobe} attach="material" />
-            </mesh>
-          </group>
-        </group>
+        <Suspense fallback={<ProceduralHorseFallback materials={materials} />}>
+          <HorseStatueGLB scale={2.4} />
+        </Suspense>
       </group>
 
       {/* Interactive Selection Highlight Ring */}
@@ -555,6 +444,7 @@ export function UndipLogoMonument({ position, rotationY = 0 }: StatueProps) {
             <boxGeometry args={[0.32, 0.1, letterDepth]} />
             <primitive object={materials.navyBlueLetters} attach="material" />
           </mesh>
+          {/* Bottom crossbar */}
           <mesh position={[0, -letterHeight / 2 + 0.05, 0]} castShadow>
             <boxGeometry args={[0.32, 0.1, letterDepth]} />
             <primitive object={materials.navyBlueLetters} attach="material" />
@@ -597,4 +487,10 @@ export function UndipLogoMonument({ position, rotationY = 0 }: StatueProps) {
       </group>
     </group>
   )
+}
+
+try {
+  useGLTF.preload('/assets/patung_kuda.glb', '/draco/')
+} catch {
+  // Ignore in SSR
 }

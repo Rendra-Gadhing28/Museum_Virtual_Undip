@@ -148,8 +148,8 @@ export function ExhibitInformationPanel({
               {isZone2 && zone2Data?.title}
             </h2>
 
-            <p className="gr-years">
-              {isFounder && `${founderData?.title} • (${founderData?.years})`}
+            <p className="gr-years" style={{ fontStyle: 'normal' }}>
+              {isFounder && `${founderData?.title} • Masa Jabatan ${founderData?.tenure ?? founderData?.years}`}
               {isHistory && historyData?.period}
               {isMap && 'Pusat Utama Gedung Muladi Dome • Kawasan Tembalang'}
               {isPodium && 'Simbol Wibawa & Nilai Perjuangan Diponegoro'}
@@ -227,10 +227,13 @@ export function ExhibitInformationPanel({
                   }}
                 />
                 <span className="gr-media-caption">
-                  {isHistory && '✦ Arsip Dokumen Sejarah Undip'}
-                  {isFounder && '✦ Potret Tokoh Pendiri'}
-                  {isPrasasti && '✦ Prasasti Peresmian 1957'}
-                  {isZone2 && '✦ Galeri & Dokumentasi Zona 2 Undip'}
+                  {isHistory && 'Arsip Dokumen Sejarah Undip'}
+                  {isFounder &&
+                    (founderData?.category === 'pendiri-utama'
+                      ? 'Pendiri Undip'
+                      : 'Rektorat Undip')}
+                  {isPrasasti && 'Prasasti Peresmian 1957'}
+                  {isZone2 && 'Galeri dan Dokumentasi Zona 2 Undip'}
                 </span>
               </div>
             </div>
@@ -244,10 +247,52 @@ export function ExhibitInformationPanel({
             {/* Founder Specific Description */}
             {isFounder && founderData && (
               <div className="gr-exhibit-text">
-                <h4 className="gr-sec-title">Peran Sejarah Pendirian</h4>
+                <h4 className="gr-sec-title">Ringkasan Profil</h4>
+                <table
+                  style={{
+                    width: '100%',
+                    borderCollapse: 'collapse',
+                    marginBottom: '18px',
+                    fontSize: '0.92rem',
+                    fontStyle: 'normal',
+                  }}
+                >
+                  <tbody>
+                    <tr style={{ borderBottom: '1px solid rgba(212, 175, 55, 0.2)' }}>
+                      <td style={{ padding: '6px 8px', color: '#d4af37', fontWeight: 600, width: '38%' }}>
+                        Nama Lengkap
+                      </td>
+                      <td style={{ padding: '6px 8px', color: '#f1f5f9' }}>{founderData.name}</td>
+                    </tr>
+                    <tr style={{ borderBottom: '1px solid rgba(212, 175, 55, 0.2)' }}>
+                      <td style={{ padding: '6px 8px', color: '#d4af37', fontWeight: 600 }}>
+                        Jabatan
+                      </td>
+                      <td style={{ padding: '6px 8px', color: '#f1f5f9' }}>{founderData.title}</td>
+                    </tr>
+                    <tr style={{ borderBottom: '1px solid rgba(212, 175, 55, 0.2)' }}>
+                      <td style={{ padding: '6px 8px', color: '#d4af37', fontWeight: 600 }}>
+                        Masa Jabatan
+                      </td>
+                      <td style={{ padding: '6px 8px', color: '#f1f5f9', fontStyle: 'normal' }}>
+                        {founderData.tenure ?? founderData.years}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style={{ padding: '6px 8px', color: '#d4af37', fontWeight: 600 }}>
+                        Kategori
+                      </td>
+                      <td style={{ padding: '6px 8px', color: '#f1f5f9' }}>
+                        {founderData.category === 'pendiri-utama' ? 'Pendiri Undip' : 'Rektorat Undip'}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <h4 className="gr-sec-title">Peran Sejarah dan Pengabdian</h4>
                 <p className="gr-desc-lead">{founderData.role}</p>
 
-                <h4 className="gr-sec-title">Biografi & Dedikasi</h4>
+                <h4 className="gr-sec-title">Biografi dan Dedikasi</h4>
                 <p className="gr-desc-text">{founderData.description}</p>
 
                 {founderData.quote && (
@@ -307,8 +352,8 @@ export function ExhibitInformationPanel({
                     atas prestasi dan keteladanan watak kesatria Pangeran Diponegoro.
                   </p>
                   <p>
-                    Status perguruan tinggi negeri dikukuhkan melalui Peraturan Pemerintah No. 7 Tahun 1961
-                    dengan menetapkan tanggal 15 Oktober 1957 sebagai hari lahir (Dies Natalis) resmi institusi.
+                    Status perguruan tinggi negeri dikukuhkan melalui Peraturan Pemerintah Nomor 7 Tahun 1961
+                    setelah diresmikan pada tanggal 15 Oktober 1960, dengan menetapkan tanggal 15 Oktober 1957 sebagai hari lahir (Dies Natalis) resmi institusi.
                   </p>
                 </div>
 
@@ -319,10 +364,10 @@ export function ExhibitInformationPanel({
                 <div className="gr-highlights-box">
                   <h4 className="gr-sec-title">Poin Penting Prasasti:</h4>
                   <ul className="gr-highlights-list">
-                    <li><strong>Diresmikan:</strong> Oleh Presiden Pertama RI Ir. Soekarno</li>
+                    <li><strong>Diresmikan:</strong> Oleh Presiden Pertama Republik Indonesia Ir. Soekarno</li>
                     <li><strong>Motto Luhur:</strong> "Pernah Jaya, Tetap Jaya, Makin Jaya"</li>
-                    <li><strong>Presidium Pendiri:</strong> Mr. Soedarto, Mr. Imam Bardjo, Mr. Dan Sulaiman, dkk.</li>
-                    <li><strong>Material:</strong> Granit Hitam Obsidian Diponegoro dengan Ukiran Emas Murni</li>
+                    <li><strong>Presidium Pendiri:</strong> Mr. Sudarto, Mr. Imam Bardjo, Mr. Dan Soelaiman, dan kawan-kawan</li>
+                    <li><strong>Material:</strong> Granit Hitam Obsidian dengan Ukiran Emas Murni</li>
                   </ul>
                 </div>
               </div>
@@ -334,8 +379,8 @@ export function ExhibitInformationPanel({
                 <h4 className="gr-sec-title">Tentang Maket Kawasan Kampus</h4>
                 <p className="gr-desc-lead">
                   Maket arsitektural 3D ini merepresentasikan tata ruang Kampus Terpadu
-                  Universitas Diponegoro di Tembalang seluas lebih dari 180 hektar dengan pusat utama
-                  gedung <strong>Muladi Dome</strong>.
+                  Universitas Diponegoro di Tembalang seluas 212 hektare dengan pusat utama
+                  Gedung <strong>Muladi Dome</strong>.
                 </p>
 
                 <h4 className="gr-sec-title">Landmark & Fasilitas Utama:</h4>

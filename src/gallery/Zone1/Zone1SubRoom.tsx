@@ -7,6 +7,7 @@ import { FounderCard } from './FoundersWing'
 import { SalonItem } from './HistoryArchivesWing'
 import { PortalDoor } from './PortalDoor'
 import { CeilingRoof } from './CeilingRoof'
+import { DiponegoroStatue, UndipLogoMonument } from './DiponegoroStatue'
 import {
   computeSubRoomDimensions,
   getRoomExhibits,
@@ -563,6 +564,46 @@ export function Zone1SubRoom({
           </group>
         )
       })}
+
+      {/* Monumen Pahlawan Nasional Pangeran Diponegoro sebagai Pusat Ruang 02 */}
+      {portal.id === 'penegerian-soekarno' && (
+        <group>
+          {!isMobile && (
+            <spotLight
+              position={[0, dims.height - 0.5, dims.zBack + 4.8]}
+              target-position={[0, 1.8, dims.zBack + 3.4]}
+              color="#fff6e0"
+              intensity={14}
+              angle={0.65}
+              penumbra={0.6}
+              decay={1.6}
+              distance={16}
+            />
+          )}
+          <DiponegoroStatue
+            position={[0, 0, dims.zBack + 3.4]}
+            rotationY={0}
+            scale={0.92}
+            isSelected={selectedHistoryId === 'artwork-diponegoro-center'}
+            isHovered={hoveredId === 'subroom-statue'}
+            onSelect={() => {
+              const dipo = histories.find((h) => h.id === 'artwork-diponegoro-center')
+              if (dipo) onSelectHistory(dipo)
+            }}
+            onHover={onHover}
+          />
+        </group>
+      )}
+
+      {/* Monumen Tipografi UNDIP Emas di Ruang 03 (Galeri Rektorat) */}
+      {portal.id === 'rektorat-pimpinan' && (
+        <group>
+          <UndipLogoMonument
+            position={[0, 0, dims.zBack + 2.8]}
+            rotationY={0}
+          />
+        </group>
+      )}
     </group>
   )
 }

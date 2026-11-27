@@ -134,16 +134,18 @@ export function CaptionUI({
         {phase === 'title' ? (
           <div key="text-title" style={{ display: 'contents' }}>
             <div className="cinematic-title-content">
-              <span className="cinematic-eyebrow cin-line cin-line-1">
-                A DIGITAL EXHIBITION • UNIVERSITAS DIPONEGORO
+              <span className="cinematic-eyebrow cin-line cin-line-1" style={{ letterSpacing: '6px', fontSize: '0.9rem', color: '#d4af37', fontWeight: 600 }}>
+                WELCOME TO
               </span>
               <h1 className="cinematic-hero-title">
-                <span className="cin-line cin-line-2" style={{ display: 'block' }}>
+                <span className="cin-line cin-line-2" style={{ display: 'block', fontSize: '3.6rem', letterSpacing: '4px', textTransform: 'uppercase' }}>
                   Museum Virtual
                 </span>
-                <span className="cinematic-hero-italic cin-line cin-line-3">Undip</span>
+                <span className="cinematic-hero-italic cin-line cin-line-3" style={{ fontSize: '3.4rem', color: '#fae19c' }}>
+                  Undip
+                </span>
               </h1>
-              <p className="cinematic-hero-sub cin-line cin-line-4">
+              <p className="cinematic-hero-sub cin-line cin-line-4" style={{ letterSpacing: '3px', marginTop: '12px', opacity: 0.85 }}>
                 DIORAMA SEJARAH 3D INTERAKTIF BERBASIS WEB
               </p>
             </div>

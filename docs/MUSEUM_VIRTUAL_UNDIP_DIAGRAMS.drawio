@@ -1,0 +1,504 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-11-26T06:43:00.000Z" agent="Antigravity" version="24.0.0" type="device">
+  <diagram id="tab_workflow" name="1. Workflow Website">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1480" pageHeight="1020" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="tab_workflow_c2" value="&lt;b&gt;WORKFLOW WEBSITE — MUSEUM VIRTUAL UNDIP&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;font-weight:normal;color:#E6C265'&gt;Alur umum perjalanan pengunjung dari membuka website hingga menjelajahi pameran 3D&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1F3A;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=18;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="40" y="24" width="1360" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c3" value="Pengguna Membuka Website&lt;br/&gt;Museum Virtual Undip" style="rounded=1;arcSize=50;rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1F3A;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=13;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="560" y="115" width="320" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c4" value="Sistem Memuat Galeri Utama&lt;br/&gt;(Menyiapkan Ruang 3D &amp;amp; Aset Awal)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EEF5;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="560" y="200" width="320" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c5" value="Kunjungan Pertama?" style="rhombus;rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF6DC;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="605" y="290" width="230" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c6" value="Tur Intro Sinematik Pembuka&lt;br/&gt;(Layar Judul → Narasi → Gerak Kamera Otomatis)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EFE0;strokeColor=#8C6D2E;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="170" y="300" width="330" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c7" value="Masuk ke Ruang Utama (Zona 1)&lt;br/&gt;Sudut Pandang Orang Pertama Siap Digunakan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1F3A;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=13;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="545" y="420" width="350" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c8" value="Eksplorasi &amp;amp; Navigasi Bebas&lt;br/&gt;Desktop: Tombol WASD + Mouse  |  Mobile: Joystick Sentuh + Usap Layar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EEF5;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="470" y="515" width="500" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c9" value="Pilih Zona di Menu Kiri&lt;br/&gt;(Zona 1, Zona 2, atau Zona 3)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="60" y="640" width="290" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c10" value="Sistem Memuat Zona Tujuan&lt;br/&gt;&amp;amp; Menempatkan Pengguna di Titik Awal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EFE0;strokeColor=#8C6D2E;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="60" y="745" width="290" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c11" value="Masuk Pintu Portal (Zona 1)&lt;br/&gt;(Ruang 01 hingga Ruang 05)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="400" y="640" width="290" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c12" value="Masuk ke Sub-Ruangan Khusus&lt;br/&gt;(Tersedia Tombol Kembali ke Ruang Utama)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EFE0;strokeColor=#8C6D2E;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="400" y="745" width="290" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c13" value="Dekati Papan Direktori&lt;br/&gt;atau Pilih Mode Tur (Zona 3)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="740" y="640" width="290" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c14" value="Tampil Panduan Arah, Teleportasi Cepat,&lt;br/&gt;atau Tur Otomatis 5 Stasiun" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EFE0;strokeColor=#8C6D2E;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="740" y="745" width="290" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c15" value="Arahkan Kursor &amp;amp; Klik&lt;br/&gt;Objek / Foto / Artefak Pameran" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1080" y="640" width="310" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c16" value="Efek Suara Aktif &amp;amp; Panel Informasi Terbuka&lt;br/&gt;(Gambar di Kiri, Narasi Sejarah di Kanan)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF6DC;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1080" y="745" width="310" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c17" value="Tutup Panel (ESC / Tombol X)&lt;br/&gt;Kembali Melanjutkan Eksplorasi" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EEF5;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1080" y="855" width="310" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_workflow_c3" target="tab_workflow_c4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_workflow_c4" target="tab_workflow_c5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c20" value="Ya" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="tab_workflow_c5" target="tab_workflow_c6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c21" value="Selesai / Skip" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="tab_workflow_c6" target="tab_workflow_c7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c22" value="Tidak (Sudah Pernah)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="tab_workflow_c5" target="tab_workflow_c7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_workflow_c7" target="tab_workflow_c8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="tab_workflow_c8" target="tab_workflow_c9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="tab_workflow_c8" target="tab_workflow_c11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="tab_workflow_c8" target="tab_workflow_c13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="tab_workflow_c8" target="tab_workflow_c15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_workflow_c9" target="tab_workflow_c10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_workflow_c11" target="tab_workflow_c12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_workflow_c13" target="tab_workflow_c14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_workflow_c15" target="tab_workflow_c16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_workflow_c32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_workflow_c16" target="tab_workflow_c17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="tab_features" name="2. Fitur User">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1480" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="tab_features_c2" value="&lt;b&gt;FITUR PENGGUNA — MUSEUM VIRTUAL UNDIP&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;font-weight:normal;color:#E6C265'&gt;Pengelompokan fitur utama yang dapat digunakan langsung oleh pengunjung&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1F3A;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=18;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="40" y="24" width="1360" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="40" y="115" width="420" height="690" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c4" value="A. NAVIGASI &amp;amp; KONTROL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1F3A;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=15;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="56" y="132" width="388" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c5" value="&lt;b&gt;Kontrol Desktop&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Berjalan bebas dengan tombol WASD / Panah, tahan Shift untuk berlari, serta geser mouse untuk melihat sekeliling.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="62" y="210" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=1;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_features_c4" target="tab_features_c5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c7" value="&lt;b&gt;Kontrol Mobile&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Virtual joystick di sisi kiri untuk berjalan dan usap layar di sisi kanan untuk mengarahkan pandangan.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="62" y="355" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=1;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_features_c5" target="tab_features_c7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c9" value="&lt;b&gt;Papan Direktori &amp;amp; Teleportasi&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Mendekati papan petunjuk memunculkan panduan arah dan tombol lompat cepat ke titik penting.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="62" y="500" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=1;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_features_c7" target="tab_features_c9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c11" value="&lt;b&gt;Mode Tur Terpandu (Zona 3)&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Tombol Tur Otomatis yang membawa kamera berkeliling ke 5 stasiun utama secara berurutan.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="62" y="645" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=1;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_features_c9" target="tab_features_c11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c13" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="510" y="115" width="420" height="690" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c14" value="B. EKSPLORASI &amp;amp; INTERAKSI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E3A5F;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=15;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="526" y="132" width="388" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c15" value="&lt;b&gt;Menu Pindah 3 Zona&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Bilah sisi kiri yang memudahkan perpindahan antara Zona 1, Zona 2, dan Zona 3 kapan saja.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="532" y="210" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=1;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_features_c14" target="tab_features_c15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c17" value="&lt;b&gt;5 Pintu Portal Sub-Ruang&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Pintu interaktif di Zona 1 untuk masuk ke ruangan tematik khusus beserta tombol kembali.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="532" y="355" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=1;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_features_c15" target="tab_features_c17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c19" value="&lt;b&gt;Sorot &amp;amp; Klik Pameran 3D&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Setiap potret, prasasti, diorama, vitrine, dan dokumen memberi tanda visual saat disorot dan dapat diklik.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="532" y="500" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=1;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_features_c17" target="tab_features_c19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c21" value="&lt;b&gt;Panel Informasi Dua Kolom&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Tampilan layar terpisah: gambar/dokumen tetap diam di kiri dan narasi lengkap dapat digulir di kanan.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="532" y="645" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=1;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_features_c19" target="tab_features_c21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c23" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="980" y="115" width="420" height="690" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c24" value="C. AUDIO &amp;amp; PENGALAMAN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C6D2E;strokeColor=#0B1F3A;strokeWidth=2;fontColor=#FFFFFF;fontSize=15;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="996" y="132" width="388" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c25" value="&lt;b&gt;Intro Sinematik Pembuka&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Pengenalan visual museum saat kunjungan pertama dengan opsi Lewati (Skip) kapan saja.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1002" y="210" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=1;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_features_c24" target="tab_features_c25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c27" value="&lt;b&gt;Tombol Putar Ulang Intro&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Pengunjung dapat memutar ulang tur sinematik pembuka melalui tombol di pojok kanan atas.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1002" y="355" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=1;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_features_c25" target="tab_features_c27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c29" value="&lt;b&gt;Kontrol Suara (BGM &amp;amp; SFX)&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Tombol pengatur musik latar galeri dan efek suara interaksi yang ramah kebijakan browser.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1002" y="500" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=1;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_features_c27" target="tab_features_c29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c31" value="&lt;b&gt;Reset Posisi Kamera&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Tombol pengembalian posisi ke titik awal jika pengguna ingin mengulang rute eksplorasi.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1002" y="645" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_features_c32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=1;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_features_c29" target="tab_features_c31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="tab_detailing" name="3. Detailing">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1480" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="tab_detailing_c2" value="&lt;b&gt;DETAILING TEKNIS, VISUAL &amp;amp;amp; INTERAKSI&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;font-weight:normal;color:#E6C265'&gt;Standar desain, kualitas grafis, dan mekanisme teknis di balik pengalaman museum&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1F3A;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=18;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="40" y="24" width="1360" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_detailing_c3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="40" y="115" width="420" height="690" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_detailing_c4" value="1. DETAIL VISUAL &amp;amp; SUASANA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1F3A;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=15;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="56" y="132" width="388" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_detailing_c5" value="&lt;b&gt;Palet Warna Kerajaan&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Menggunakan paduan Biru Navy, Emas Klasik, Putih Gading (Ivory), dan Cokelat Kayu Warisan.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="62" y="210" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_detailing_c6" value="&lt;b&gt;Pencahayaan Bertemperatur&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Lampu sorot hangat galeri (Warm Ivory &amp;amp; Emas) tanpa cahaya putih dingin agar terasa khidmat.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="62" y="355" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_detailing_c7" value="&lt;b&gt;Aset 3D &amp;amp; Furnitur Lengkap&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Dilengkapi model 3D Muladi Dome terkompresi, lampu gantung, rak arsip, meja kaca, dan kursi pengunjung.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="62" y="500" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_detailing_c8" value="&lt;b&gt;Tekstur Arsip &amp;amp; Plakat&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Foto sejarah resolusi tinggi dipadukan dengan plakat dan prasasti berukir emas yang tajam.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="62" y="645" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_detailing_c9" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="510" y="115" width="420" height="690" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_detailing_c10" value="2. PERFORMA &amp;amp; OPTIMASI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E3A5F;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=15;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="526" y="132" width="388" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_detailing_c11" value="&lt;b&gt;Pemuatan Zona Bertahap&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Website hanya memuat data zona yang sedang dibuka sehingga waktu muat awal tetap cepat dan ringan.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="532" y="210" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_detailing_c12" value="&lt;b&gt;Resolusi Adaptif Perangkat&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Ketajaman layar menyesuaikan otomatis antara perangkat ponsel dan laptop/desktop agar tetap stabil.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="532" y="355" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_detailing_c13" value="&lt;b&gt;Pembatas Gerak Ruangan&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Sistem menjaga posisi pengunjung agar tidak menembus dinding atau keluar dari batas area museum.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="532" y="500" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_detailing_c14" value="&lt;b&gt;Optimasi Aset &amp;amp; Vegetasi&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Penggunaan kompresi aset 3D modern dan teknik instancing untuk menjaga kelancaran 60 FPS.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="532" y="645" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_detailing_c15" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="980" y="115" width="420" height="690" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_detailing_c16" value="3. KAMERA, AUDIO &amp;amp; GRAFIS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C6D2E;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=15;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="996" y="132" width="388" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_detailing_c17" value="&lt;b&gt;Jalur Kamera Sinematik&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Pergerakan kamera intro mengikuti lintasan kurva halus yang berhenti tepat di titik mulai pengunjung.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1002" y="210" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_detailing_c18" value="&lt;b&gt;Dukungan Gerak Terbatas&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Opsi pengurangan animasi otomatis bagi pengguna yang mengaktifkan preferensi gerak terbatas.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1002" y="355" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_detailing_c19" value="&lt;b&gt;Mesin Audio Terpadu&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Musik latar dan efek suara klik/hover aktif setelah interaksi pertama agar sesuai aturan browser.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1002" y="500" width="376" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_detailing_c20" value="&lt;b&gt;Pengatur Kualitas per Zona&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Setiap zona memiliki profil pencahayaan, kabut ruang, dan material yang diatur khusus.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1002" y="645" width="376" height="115" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="tab_zones" name="4. Model Ruangan &amp; Zona">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1520" pageHeight="980" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="tab_zones_c2" value="&lt;b&gt;MODEL RUANGAN &amp;amp;amp; ZONA — TATA RUANG 3D&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;font-weight:normal;color:#E6C265'&gt;Struktur arsitektur dan pembagian area spasial pada ketiga zona museum&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1F3A;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=18;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="40" y="24" width="1440" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c3" value="MUSEUM VIRTUAL UNDIP&lt;br/&gt;(3 Zona Utama Terhubung)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1F3A;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=15;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="580" y="115" width="360" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c4" value="ZONA 1: AWAL MULA UNDIP&lt;br/&gt;(Aula Sejarah &amp;amp; Rektorat)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E3A5F;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=13;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="60" y="230" width="400" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c5" value="Aula Utama (Sumbu Tengah)&lt;br/&gt;Karpet Merah, Peta Miniatur Undip, Podium Kehormatan, &amp;amp; Papan Direktori" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="60" y="330" width="400" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c6" value="Formasi Dinding Portal | 3 Kiri   2 Kanan |&lt;br/&gt;5 Pintu Portal Menuju Sub-Ruangan Tematik" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EFE0;strokeColor=#8C6D2E;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="60" y="440" width="400" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c7" value="Sub-Ruangan Dinamis (Ruang 01 - 05)&lt;br/&gt;Ukuran Panjang &amp;amp; Lebar Otomatis Menyesuaikan Jumlah Koleksi, dengan 5 Desain Atap Berbeda" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF6DC;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="60" y="545" width="400" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c8" value="ZONA 2: PERKEMBANGAN ILMU&lt;br/&gt;(Fakultas, Riset &amp;amp; Transformasi)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E3A5F;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=13;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="560" y="230" width="400" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c9" value="Sumbu Tengah Ruangan&lt;br/&gt;Diorama 3D Bertingkat Transformasi Kampus &amp;amp; Monumen Utama" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF6DC;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="560" y="330" width="400" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c10" value="Sayap Kiri Galeri&lt;br/&gt;Koridor Pameran Perkembangan 11 Fakultas Undip" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="560" y="440" width="400" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c11" value="Sayap Kanan Galeri&lt;br/&gt;Area Pendidikan, Riset Unggulan, &amp;amp; Kontribusi Masyarakat" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EFE0;strokeColor=#8C6D2E;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="560" y="545" width="400" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c12" value="ZONA 3: WARISAN SEJARAH&lt;br/&gt;(Kompleks Terbuka 76m x 60m)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E3A5F;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=13;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1060" y="230" width="420" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c13" value="&lt;b&gt;Pusat (Plaza Prasasti)&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px'&gt;Area lingkaran radius 10m dengan alas marmer 5 undakan&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1060" y="325" width="420" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=1;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_zones_c12" target="tab_zones_c13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c15" value="&lt;b&gt;Utara (Galeri Foto)&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px'&gt;Dinding lengkung megah sepanjang 40m x tinggi 9m&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EFE0;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1060" y="421" width="420" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=1;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_zones_c13" target="tab_zones_c15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c17" value="&lt;b&gt;Barat (Sayap Artefak)&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px'&gt;Ruang display kaca seluas 24m x 26m dengan lorong tengah&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1060" y="517" width="420" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=1;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_zones_c15" target="tab_zones_c17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c19" value="&lt;b&gt;Timur (Sayap Dokumen)&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px'&gt;Area pameran naskah &amp;amp; piagam seluas 24m x 26m&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EFE0;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1060" y="613" width="420" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=1;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_zones_c17" target="tab_zones_c19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c21" value="&lt;b&gt;Barat Daya (Hall of Legacy)&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px'&gt;Aula bundar berdiameter 20m dengan 8 pilar tokoh&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1060" y="709" width="420" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=1;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_zones_c19" target="tab_zones_c21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c23" value="&lt;b&gt;Tenggara (Mini-Cinema)&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px'&gt;Paviliun audiovisual 24m x 16m dengan layar lebar 9m x 5m&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EFE0;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1060" y="805" width="420" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=1;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_zones_c21" target="tab_zones_c23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="tab_zones_c3" target="tab_zones_c4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="tab_zones_c3" target="tab_zones_c8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="tab_zones_c3" target="tab_zones_c12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_zones_c4" target="tab_zones_c5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_zones_c5" target="tab_zones_c6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_zones_c6" target="tab_zones_c7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_zones_c8" target="tab_zones_c9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_zones_c9" target="tab_zones_c10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zones_c33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;" parent="1" edge="1" source="tab_zones_c10" target="tab_zones_c11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="tab_contents" name="5. Isi Setiap Ruangan">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1560" pageHeight="1080" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="tab_contents_c2" value="&lt;b&gt;ISI DARI SETIAP RUANGAN — KOLEKSI &amp;amp;amp; PAMERAN&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;font-weight:normal;color:#E6C265'&gt;Daftar lengkap materi sejarah, tokoh, artefak, dan dokumen di seluruh ruangan museum&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1F3A;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=18;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="40" y="24" width="1480" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="40" y="115" width="470" height="910" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c4" value="ZONA 1: AWAL MULA UNDIP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1F3A;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=15;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="56" y="130" width="438" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c5" value="&lt;b&gt;Aula Utama (Base Hall)&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;13 Potret Rektor, Podium Kehormatan, Prasasti Peresmian 1957, Peta Miniatur Kampus, Monumen Pangeran Diponegoro, &amp;amp; Papan Direktori.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="58" y="198" width="434" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c6" value="&lt;b&gt;Ruang 01: Arsip Pendiri &amp;amp; Yayasan&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;5 Tokoh Pendiri (Soedarto, Imam Bardjo, Goenawan Goetomo, Tan Tjing Hak, Heyder), Akta Notaris 1956, Statuta 1957, Foto Panti Budaya &amp;amp; Mahasiswa 1957.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="58" y="333" width="434" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c7" value="&lt;b&gt;Ruang 02: Penegerian &amp;amp; Pidato Soekarno&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Lukisan Pangeran Diponegoro, PP No. 7/1961, Salinan Lembaran Negara, Arsip Pidato &amp;amp; Dokumentasi Kunjungan Presiden Soekarno 1960.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="58" y="468" width="434" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c8" value="&lt;b&gt;Ruang 03: Galeri Rektorat &amp;amp; Pimpinan&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;13 Potret &amp;amp; Biografi Lengkap Rektor Undip dari masa ke masa (Prof. Imam Bardjo hingga Prof. Suharnomo).&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="58" y="603" width="434" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c9" value="&lt;b&gt;Ruang 04: Transformasi Kampus Fisik&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Foto Kampus Pleburan, Masterplan &amp;amp; Peletakan Batu Pertama Tembalang, Menara Widya Puraya, RSND, dan Waduk Pendidikan.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="58" y="738" width="434" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c10" value="&lt;b&gt;Ruang 05: Cetak Biru Muladi Dome&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Arsitektur Gedung Muladi Dome, Foto Wisuda Perdana 1962, serta kisah transformasi menuju PTN-BH &amp;amp; World Class University.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="58" y="873" width="434" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c11" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="545" y="115" width="470" height="910" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c12" value="ZONA 2: PERKEMBANGAN ILMU" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E3A5F;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=15;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="561" y="130" width="438" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c13" value="&lt;b&gt;Sayap Kiri: 11 Fakultas Undip&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Profil sejarah &amp;amp; capaian: FH, FEB, FT, FK, FPP, FIB, FISIP, FPIK, FSM, FKM, dan Fakultas Psikologi.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="563" y="198" width="434" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c14" value="&lt;b&gt;Tengah: Diorama Transformasi Kampus&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Miniatur 3D evolusi fisik Kampus Heritage Pleburan, Kampus Terpadu Tembalang, &amp;amp; Marine Science Park Jepara.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="563" y="358" width="434" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c15" value="&lt;b&gt;Tengah: Monumen Utama Zona 2&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Monumen 'The Growth of Knowledge' sebagai simbol pertumbuhan ilmu pengetahuan dan inovasi.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="563" y="518" width="434" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c16" value="&lt;b&gt;Sayap Kanan: Riset Unggulan&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Pola Ilmiah Pokok (PIP) Bina Kelautan, Laboratorium Terpadu, serta capaian 500+ Hak Paten &amp;amp; hilirisasi produk.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="563" y="678" width="434" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c17" value="&lt;b&gt;Sayap Kanan: Prestasi &amp;amp; Pengabdian&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Program Pelopor KKN Tematik 3T (1.200+ desa binaan) serta capaian peringkat dunia QS Rankings &amp;amp; UI GreenMetric.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="563" y="838" width="434" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c18" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1050" y="115" width="470" height="910" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c19" value="ZONA 3: WARISAN SEJARAH" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C6D2E;strokeColor=#0B1F3A;strokeWidth=2;fontColor=#FFFFFF;fontSize=15;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1066" y="130" width="438" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c20" value="&lt;b&gt;Plaza Pusat: Prasasti Monumental&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Prasasti batu andesit pahat emas peresmian Universitas Semarang (1957) &amp;amp; penganugerahan nama Diponegoro oleh Ir. Soekarno (1960).&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#8C6D2E;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1068" y="198" width="434" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c21" value="&lt;b&gt;Galeri Utara: 28 Foto Sejarah&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Kilas balik visual 1956–1995: kuliah perdana, amanat Bung Karno, KKN pertama, survei Tembalang, hingga kapal riset.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#8C6D2E;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1068" y="333" width="434" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c22" value="&lt;b&gt;Sayap Barat: 12 Vitrine Artefak&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Toga Rektor, Buku Induk Angkatan I, Mikroskop Zeiss, Segel Yayasan, Mesin Tik Presidium, Globe Maritim, Ijazah Perkamen, dll.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#8C6D2E;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1068" y="468" width="434" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c23" value="&lt;b&gt;Barat Daya: Hall of Legacy (8 Pilar)&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;8 Tokoh kunci beserta benda memorabilia orbit: Soedarto, Imam Bardjo, Goenawan, Dan Sulaiman, Kariadi, Moeljono, Satjipto, Muladi.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#8C6D2E;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1068" y="603" width="434" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c24" value="&lt;b&gt;Sayap Timur: 10 Dokumen Piagam&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Akta Notaris 1956, PP No. 7/1961, Piagam Soekarno, Masterplan Pleburan, Peta Lahan Tembalang 180 Ha, Dekrit PIP Kelautan.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#8C6D2E;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1068" y="738" width="434" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_contents_c25" value="&lt;b&gt;Tenggara: Paviliun Mini-Cinema&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;color:#334155'&gt;Layar utama film restorasi Dies Natalis 1960, 8 TV Wall arsip dokumenter, &amp;amp; 3 stasiun dengar (Gramofon, Radio RRI, Kaset Mars Undip).&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#8C6D2E;strokeWidth=2;fontColor=#0B1F3A;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1068" y="873" width="434" height="118" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="tab_zone1_detail" name="6. Penjabaran Zona 1">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1720" pageHeight="1320" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="tab_zone1_detail_c2" value="&lt;b&gt;PENJABARAN DETAIL ZONA 1 — SETIAP RUANGAN BESERTA ISINYA&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:12px;font-weight:normal;color:#E6C265'&gt;Rincian lengkap Aula Utama (Base Zone 1) dan seluruh isi koleksi pada Ruang 01 hingga Ruang 05&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1F3A;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=18;fontStyle=1;fontFamily=Segoe UI;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="40" y="24" width="1640" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zone1_detail_c3" value="&lt;b&gt;AULA UTAMA (BASE ZONE 1) — Ukuran 15.2m x 38.0m x Tinggi 8.8m&lt;/b&gt;&lt;br/&gt;• &lt;b&gt;Arsitektur &amp;amp; Cahaya:&lt;/b&gt; Langit-langit celah bergantian, lampu gantung chandelier, partikel debu emas (saat intro), &amp;amp; lantai marmer.&lt;br/&gt;• &lt;b&gt;Sumbu Tengah:&lt;/b&gt; Karpet Merah (lebar 3.2m), Peta Miniatur Kampus Undip, Podium Kehormatan, Prasasti Peresmian (9 Jan 1957), &amp;amp; Monumen Pangeran Diponegoro.&lt;br/&gt;• &lt;b&gt;Furnitur &amp;amp; Navigasi:&lt;/b&gt; Papan Direktori (radius deteksi 3.2m + denah formasi 3–2), Rak Buku Arsip, Meja Kaca, Kursi Santai Pengunjung, &amp;amp; 5 Pintu Portal." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1F3A;strokeColor=#C9A24B;strokeWidth=2;fontColor=#FFFFFF;fontSize=13;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="40" y="108" width="1640" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zone1_detail_c4" value="&lt;b&gt;RUANG 01: ARSIP PENDIRI &amp;amp; YAYASAN&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:11px;color:#8C6D2E;font-weight:bold'&gt;Posisi: Dinding Kiri 1 | Atap: Coffered Skylight | Lampu Hias Dinding&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;b&gt;A. 5 Tokoh Pendiri Utama (Bingkai Emas):&lt;/b&gt;&lt;br/&gt;1. Mr. Soedarto (Ketua Presidium Yayasan &amp;amp; Rektor Pembangun)&lt;br/&gt;2. Mr. Imam Bardjo (Presiden/Rektor Pertama Univ. Semarang)&lt;br/&gt;3. Mr. Goenawan Goetomo (Dekan Pertama Akad. Administrasi Negara)&lt;br/&gt;4. Mr. Tan Tjing Hak (Cendekiawan Hukum &amp;amp; Tokoh Inklusivitas)&lt;br/&gt;5. dr. Heyder bin Heyder (Direktur R.S. Semarang &amp;amp; Perintis Kedokteran)&lt;br/&gt;&lt;br/&gt;&lt;b&gt;B. 4 Arsip Sejarah Awal:&lt;/b&gt;&lt;br/&gt;6. Akta Pendirian Yayasan No. 59 Tahun 1956&lt;br/&gt;7. Naskah Statuta &amp;amp; Kurikulum Perdana (1957)&lt;br/&gt;8. Foto Perkuliahan Awal di Gedung Panti Budaya (1957–1966)&lt;br/&gt;9. Foto Angkatan Pertama Mahasiswa Undip (1957)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=12;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="40" y="270" width="520" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zone1_detail_c5" value="&lt;b&gt;RUANG 02: PENEGERIAN &amp;amp; PIDATO SOEKARNO&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:11px;color:#8C6D2E;font-weight:bold'&gt;Posisi: Dinding Kiri 2 | Atap: Labyrinth PVC | Lampu Hias Dinding&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Isi 5 Koleksi Sejarah Penegerian:&lt;/b&gt;&lt;br/&gt;1. Lukisan Induk: Api Perjuangan Pangeran Diponegoro (1825–1830)&lt;br/&gt;&lt;br/&gt;2. Peraturan Pemerintah No. 7 Tahun 1961 (Penegerian Undip)&lt;br/&gt;&lt;br/&gt;3. Salinan Lembaran Berita Negara Penegerian Undip&lt;br/&gt;&lt;br/&gt;4. Arsip Pidato Presiden Soekarno (9 Januari 1960)&lt;br/&gt;&lt;br/&gt;5. Dokumentasi Kunjungan Bung Karno pada Dies Natalis III" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=12;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="600" y="270" width="520" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zone1_detail_c6" value="&lt;b&gt;RUANG 03: GALERI REKTORAT &amp;amp; PIMPINAN&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:11px;color:#8C6D2E;font-weight:bold'&gt;Posisi: Dinding Kiri 3 | Atap: Octagon Dome | Lampu Hias Dinding&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Isi 13 Potret &amp;amp; Biografi Pimpinan / Rektor Undip:&lt;/b&gt;&lt;br/&gt;1. Prof. Mr. Imam Bardjo (1957–1961)&lt;br/&gt;2. Prof. Mr. Soedarto, S.H. (1961–1962 &amp;amp; 1977–1986)&lt;br/&gt;3. Prof. Dr. Ir. Jakub Rais, M.Sc. (Caretaker 1965–1966)&lt;br/&gt;4. Mochtar (Gubernur Jateng 1960–1966 • Dewan Pembina)&lt;br/&gt;5. Prof. Mr. Sunario Sastrowardoyo (1973–1977)&lt;br/&gt;6. Prof. Dr. dr. A. Suroyo (1977–1986)&lt;br/&gt;7. Prof. Dr. dr. R. Moeljono S. Trastotenojo (1986–1994)&lt;br/&gt;8. Prof. Dr. Muladi, S.H. (1994–1998)&lt;br/&gt;9. Prof. Ir. Eko Budihardjo, M.Sc. (1998–2006)&lt;br/&gt;10. Prof. Dr. dr. Susilo Wibowo, M.S., Sp.And. (2006–2010)&lt;br/&gt;11. Prof. Dr. Sudharto P. Hadi, MES, Ph.D. (2010–2014)&lt;br/&gt;12. Prof. Dr. Yos Johan Utama, S.H., M.Hum. (2015–2024)&lt;br/&gt;13. Prof. Dr. Suharnomo, S.E., M.Si. (2024–sekarang)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFBF7;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=12;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1160" y="270" width="520" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zone1_detail_c7" value="&lt;b&gt;RUANG 04: TRANSFORMASI KAMPUS FISIK&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:11px;color:#8C6D2E;font-weight:bold'&gt;Posisi: Dinding Kanan 1 | Atap: Coffered PVC | Lampu Hias Dinding&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Isi 6 Koleksi Pembangunan &amp;amp; Infrastruktur Kampus:&lt;/b&gt;&lt;br/&gt;1. Foto Kampus Pleburan &amp;amp; Gedung Rektorat (1969–1985)&lt;br/&gt;2. Masterplan &amp;amp; Pembangunan Kampus Tembalang (1985–1990)&lt;br/&gt;3. Foto Peletakan Batu Pertama Kampus Tembalang (1987)&lt;br/&gt;4. Foto Pembangunan Menara Rektorat Widya Puraya (1993)&lt;br/&gt;5. Rumah Sakit Nasional Diponegoro (RSND) &amp;amp; FK Tembalang&lt;br/&gt;6. Waduk Pendidikan Undip &amp;amp; Sabuk Hijau Konservasi" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=12;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="40" y="710" width="520" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zone1_detail_c8" value="&lt;b&gt;RUANG 05: CETAK BIRU MULADI DOME&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:11px;color:#8C6D2E;font-weight:bold'&gt;Posisi: Dinding Kanan 2 | Atap: Radial Dome | Lampu Hias Dinding&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Isi 3 Koleksi Ikon &amp;amp; Transformasi Modern:&lt;/b&gt;&lt;br/&gt;1. Gedung Muladi Dome: Mahakarya Convention &amp;amp; Expo Hall&lt;br/&gt;&lt;br/&gt;2. Foto Wisuda Sarjana Perdana Universitas Diponegoro (1962)&lt;br/&gt;&lt;br/&gt;3. Transformasi Menuju PTN-BH &amp;amp; World Class University" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#C9A24B;strokeWidth=2;fontColor=#0B1F3A;fontSize=12;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="600" y="710" width="520" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zone1_detail_c9" value="&lt;b&gt;FASILITAS &amp;amp; MEKANISME DI SETIAP SUB-RUANGAN&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:11px;color:#1E3A5F;font-weight:bold'&gt;Berlaku Konsisten pada Ruang 01 hingga Ruang 05&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;• &lt;b&gt;Dimensi Otomatis:&lt;/b&gt; Panjang (minimal 15m) &amp;amp; lebar ruang (10.8m–13.6m) menyesuaikan jumlah koleksi di dalamnya.&lt;br/&gt;• &lt;b&gt;Pencahayaan Khusus:&lt;/b&gt; Setiap bingkai dilengkapi lampu hias dinding emas &amp;amp; sorot cahaya hangat.&lt;br/&gt;• &lt;b&gt;Interaksi Pameran:&lt;/b&gt; Arahkan kursor untuk sorot emas + klik untuk membuka Panel Informasi 2 Kolom (Gambar Tetap + Teks Gulir).&lt;br/&gt;• &lt;b&gt;Navigasi Keluar:&lt;/b&gt; Tersedia pintu keluar di belakang ruangan serta tombol kapsul '← Kembali ke Base Zone' di atas tengah layar." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EEF5;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=12;fontStyle=0;fontFamily=Segoe UI;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1160" y="710" width="520" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zone1_detail_c10" value="Portal Kiri 1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;exitX=0.18;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="tab_zone1_detail_c3" target="tab_zone1_detail_c4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zone1_detail_c11" value="Portal Kiri 2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="tab_zone1_detail_c3" target="tab_zone1_detail_c5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zone1_detail_c12" value="Portal Kiri 3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;exitX=0.82;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="tab_zone1_detail_c3" target="tab_zone1_detail_c6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zone1_detail_c13" value="Portal Kanan 1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8C6D2E;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="tab_zone1_detail_c4" target="tab_zone1_detail_c7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zone1_detail_c14" value="Portal Kanan 2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8C6D2E;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="tab_zone1_detail_c5" target="tab_zone1_detail_c8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tab_zone1_detail_c15" value="Standar Sub-Ruang" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1E3A5F;strokeWidth=2;fontColor=#0B1F3A;fontSize=11;fontStyle=1;fontFamily=Segoe UI;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="tab_zone1_detail_c6" target="tab_zone1_detail_c9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

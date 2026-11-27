@@ -13,6 +13,7 @@ import {
 import { GalleryEnvironment } from './GalleryEnvironment'
 import { GalleryLighting } from './GalleryLighting'
 import { CeremonialPodium } from './CeremonialPodium'
+import { DiponegoroStatue, UndipLogoMonument } from './DiponegoroStatue'
 import { FirstPersonControls } from './FirstPersonControls'
 import { DesktopHints } from './DesktopHints'
 import { MobileControls } from './MobileControls'
@@ -35,15 +36,8 @@ import {
   type CinematicStateUpdate,
   type IntroPhase,
 } from '../cinematic'
+import { MuseumInteractivePreloader } from '../cinematic/MuseumInteractivePreloader'
 import './gallery.css'
-
-const checkIsFirstVisit = (): boolean => {
-  try {
-    return window.localStorage.getItem(INTRO_STORAGE_KEY) !== 'true'
-  } catch {
-    return true
-  }
-}
 
 const markIntroSeen = () => {
   try {
@@ -122,9 +116,8 @@ export function Zone1({
   const [resetSignal, setResetSignal] = useState(0)
   const [targetPosition, setTargetPosition] = useState<[number, number, number] | null>(null)
   const [isNearDirectory, setIsNearDirectory] = useState(false)
-  const [introPhase, setIntroPhase] = useState<IntroPhase>(() =>
-    checkIsFirstVisit() ? 'title' : 'done',
-  )
+  const [hasVisitedInitial, setHasVisitedInitial] = useState(false)
+  const [introPhase, setIntroPhase] = useState<IntroPhase>('title')
   const [narrativeSlideIndex, setNarrativeSlideIndex] = useState(0)
   const [isIntroFading, setIsIntroFading] = useState(false)
   const [isCanvasReady, setIsCanvasReady] = useState(false)
@@ -208,6 +201,34 @@ export function Zone1({
         title: 'Prasasti Pendirian & Peresmian Universitas Diponegoro',
         subtitle: 'Batu Marmer Hitam Obsidian • 9 Januari 1957',
         description: 'Prasasti bersejarah peresmian Universitas Diponegoro oleh Presiden Sukarno.',
+      },
+    })
+  }, [])
+
+  const handleSelectStatue = useCallback((_statueId = 'diponegoro-statue') => {
+    if (draggedRef.current) return
+    museumAudio.unlock()
+    museumAudio.playModalOpen()
+    const diponegoroData = HISTORY_EXHIBITS.find((e) => e.id === 'artwork-diponegoro-center')
+    setSelectedExhibit({
+      type: 'monument',
+      data: {
+        id: 'monumen-pangeran-diponegoro',
+        title: 'Monumen Agung Pangeran Diponegoro & Kuda Putih',
+        category: 'Monumen Bersejarah',
+        period: 'Simbol Kejuangan Undip',
+        description:
+          diponegoroData?.description ||
+          'Patung ikonik Pangeran Diponegoro menunggangi kuda putih perkasa sebagai perlambang kejujuran, keberanian, dan keadilan.',
+        fullContent:
+          diponegoroData?.fullContent ||
+          'Pangeran Diponegoro adalah pahlawan nasional yang memimpin Perang Jawa (1825–1830) melawan penindasan kolonialisme. Kepribadian beliau yang jujur, berani, adil, dan membela rakyat kecil menjadi teladan luhur bagi seluruh sivitas akademika Universitas Diponegoro.\n\nMonumen ini menggambarkan sang Pangeran menunggangi kuda putih perkasa di tengah kancah perjuangan, melambangkan kepemimpinan yang pantang menyerah dan berakar kuat pada nilai spiritual bangsa.',
+        highlights: diponegoroData?.highlights || [
+          'Simbol kepahlawanan patriotik bagi sivitas akademika',
+          'Pemberian nama langsung oleh Presiden Sukarno pada 9 Januari 1960',
+          'Nilai luhur: Kejujuran, Keberanian, dan Kepedulian Sosial',
+        ],
+        imagePath: '/textures/undip-emblem.webp',
       },
     })
   }, [])
@@ -414,6 +435,22 @@ export function Zone1({
                 onHover={handleHover}
               />
 
+              {/* Monumental Diponegoro Statue on Grand Hall Left Plaza */}
+              <DiponegoroStatue
+                position={[-4.5, 0, -21.0]}
+                rotationY={Math.PI / 4}
+                isSelected={selectedExhibit?.type === 'monument'}
+                isHovered={hoveredId === 'statue-base'}
+                onSelect={() => handleSelectStatue('statue-base')}
+                onHover={handleHover}
+              />
+
+              {/* Monumental UNDIP Typography on Grand Hall Right Plaza */}
+              <UndipLogoMonument
+                position={[4.6, 0, -21.0]}
+                rotationY={-Math.PI / 4}
+              />
+
               <CinematicIntro
                 active={isTourPlaying}
                 isIntroOpen={isIntroActive}
@@ -441,18 +478,31 @@ export function Zone1({
       </Canvas>
 
 
-      {/* Cinematic Intro Title, Editorial Statement, Letterbox & Captions */}
-      <CaptionUI
-        phase={introPhase}
-        isCanvasReady={isCanvasReady}
-        narrativeSlideIndex={narrativeSlideIndex}
-        chapter={cinematicState.chapter}
-        telemetry={cinematicState.telemetry}
-        progressPercent={cinematicState.progressPercent}
-        isFadingOut={isIntroFading}
-        onAdvancePhase={handleAdvancePhase}
-        onSkip={finishIntro}
-      />
+      {/* Interactive Heritage Preloader: Hanya saat awal pertama memuat halaman */}
+      {introPhase === 'title' && !hasVisitedInitial && (
+        <MuseumInteractivePreloader
+          isReady={isCanvasReady}
+          onLoaded={() => {
+            setHasVisitedInitial(true)
+            // Tetap di introPhase === 'title' agar masuk ke Canvas Judul Museum Virtual Undip!
+          }}
+        />
+      )}
+
+      {/* Cinematic Intro Title, Editorial Statement, Letterbox & Captions (Canvas Judul & Tur Kamera) */}
+      {introPhase !== 'done' && (hasVisitedInitial || introPhase !== 'title') && (
+        <CaptionUI
+          phase={introPhase}
+          isCanvasReady={isCanvasReady}
+          narrativeSlideIndex={narrativeSlideIndex}
+          chapter={cinematicState.chapter}
+          telemetry={cinematicState.telemetry}
+          progressPercent={cinematicState.progressPercent}
+          isFadingOut={isIntroFading}
+          onAdvancePhase={handleAdvancePhase}
+          onSkip={finishIntro}
+        />
+      )}
 
       {/* Tombol Kembali ke Base Zone saat berada di dalam sub-ruangan */}
       {!isIntroActive && activePortal && (

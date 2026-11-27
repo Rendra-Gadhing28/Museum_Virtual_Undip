@@ -97,7 +97,7 @@ export function MasterMuseum() {
 
       {/* Render Viewport: Hanya memuat bundel zona yang aktif */}
       <main className={`gr-zone-viewport ${isSwitching ? 'is-switching' : ''}`}>
-        <Suspense fallback={<div className="gr-zone-loader">Memuat Zona Museum...</div>}>
+        <Suspense fallback={null}>
           {currentZone === 'zone1' && (
             <Zone1 onSwitchZone={handleSelectZone} onIntroStateChange={setIsIntroActive} />
           )}
