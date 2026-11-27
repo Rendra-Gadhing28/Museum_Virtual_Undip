@@ -35,8 +35,8 @@ export const BOUNDS = {
 /** Red Carpet */
 export const RED_CARPET = {
   width: 3.2,
-  zStart: 11.4,
-  zEnd: -21.2,
+  zStart: HALL.zFront,
+  zEnd: HALL.zBack,
   y: 0.02,
 } as const
 

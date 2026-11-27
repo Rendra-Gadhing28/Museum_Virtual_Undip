@@ -67,7 +67,7 @@ export interface StatueProps {
   onHover?: (id: string | null) => void
 }
 
-export interface FirstPersonControlsProps {
+export interface ThirdPersonControlsProps {
   resetSignal: number
   targetPosition?: [number, number, number] | null
   spawnPosition?: [number, number, number]
@@ -79,6 +79,8 @@ export interface FirstPersonControlsProps {
   onProximityChange?: (isNearDirectory: boolean) => void
   disabled?: boolean
 }
+
+export type FirstPersonControlsProps = ThirdPersonControlsProps
 
 export type SectionType = 'entrance' | 'founders' | 'map' | 'podium' | 'history' | 'prasasti'
 

@@ -2,7 +2,6 @@ import { useMemo } from 'react'
 import * as THREE from 'three'
 import type { CeremonialPodiumProps } from './types'
 import {
-  createPrasastiTexture,
   createIndonesianFlagTexture,
   createUndipFlagTexture,
   createUndipWallTypographyTexture,
@@ -189,11 +188,10 @@ export function CeremonialPodium({
   isSelected: _isSelected,
   isHovered: _isHovered,
   isMobile = false,
-  onSelect,
-  onHover,
-  onSelectPrasasti,
+  onSelect: _onSelect,
+  onHover: _onHover,
+  onSelectPrasasti: _onSelectPrasasti,
 }: CeremonialPodiumProps) {
-  const prasastiTexture = useMemo(() => createPrasastiTexture(), [])
   const wallTitleTexture = useMemo(() => createUndipWallTypographyTexture(), [])
   const indoFlagTexture = useMemo(() => createIndonesianFlagTexture(), [])
   const undipFlagTexture = useMemo(() => createUndipFlagTexture(), [])
@@ -201,7 +199,6 @@ export function CeremonialPodium({
 
   // Load the official Undip shield logo from the user's reference photo (auto-cleaned background)
   const officialLogoTexture = useMemo(() => createOfficialUndipLogoTexture(), [])
-  const carvedStoneMaps = useMemo(() => MaterialLibrary.carvedStoneMaps(), [])
 
   const baseMaterials = useMemo(() => {
     return {
@@ -608,277 +605,65 @@ export function CeremonialPodium({
       <LedRingPendantChandelier position={[0, 4.8, 0.4]} isMobile={isMobile} />
 
       {/* ============================================================
-          5. STAGE DAIS & CEREMONIAL PODIUM
+          CEREMONIAL FLAGS (RIGHT FLANK)
           ============================================================ */}
-      <group
-        onPointerOver={(e) => {
-          e.stopPropagation()
-          onHover('podium')
-        }}
-        onPointerOut={(e) => {
-          e.stopPropagation()
-          onHover(null)
-        }}
-        onClick={(e) => {
-          e.stopPropagation()
-          onSelect()
-        }}
-      >
-        {/* Tier 1 Stage Platform */}
-        <mesh position={[0, 0.1, 0]} castShadow receiveShadow>
-          <boxGeometry args={[5.6, 0.2, 3.6]} />
+      <group position={[4.0, 0, -1.8]}>
+        {/* Polished Teakwood Stand (Clean architectural timber, no clashing brass front) */}
+        <mesh position={[0, 0.08, 0]} castShadow receiveShadow>
+          <boxGeometry args={[1.9, 0.16, 0.7]} />
           <primitive object={materials.teakWood} attach="material" />
         </mesh>
-        <mesh position={[0, 0.19, 1.8]}>
-          <boxGeometry args={[5.64, 0.02, 0.04]} />
-          <primitive object={materials.goldTrim} attach="material" />
-        </mesh>
-
-        {/* Tier 2 Stage Platform */}
-        <mesh position={[0, 0.26, -0.2]} castShadow receiveShadow>
-          <boxGeometry args={[4.8, 0.16, 2.8]} />
+        <mesh position={[0, 0.162, 0]} receiveShadow>
+          <boxGeometry args={[1.84, 0.015, 0.64]} />
           <primitive object={materials.darkTeakCarved} attach="material" />
         </mesh>
-        <mesh position={[0, 0.33, 1.2]}>
-          <boxGeometry args={[4.84, 0.02, 0.04]} />
-          <primitive object={materials.goldTrim} attach="material" />
-        </mesh>
 
-        {/* Red Carpet on Stage Top */}
-        <mesh position={[0, 0.345, 0.1]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-          <planeGeometry args={[2.6, 2.4]} />
-          <primitive object={materials.redVelvet} attach="material" />
-        </mesh>
-
-        {/* Ceremonial Carved Teakwood Podium Structure */}
-        <group position={[0, 0.34, 0.35]}>
-          {/* Base Plinth */}
-          <mesh position={[0, 0.05, 0]} castShadow receiveShadow>
-            <boxGeometry args={[1.2, 0.1, 0.8]} />
-            <primitive object={materials.darkTeakCarved} attach="material" />
-          </mesh>
-          <mesh position={[0, 0.105, 0]}>
-            <boxGeometry args={[1.16, 0.015, 0.76]} />
-            <primitive object={materials.goldTrim} attach="material" />
-          </mesh>
-
-          {/* Podium Column Body */}
-          <mesh position={[0, 0.58, 0]} castShadow receiveShadow>
-            <boxGeometry args={[1.0, 0.86, 0.65]} />
-            <primitive object={materials.teakWood} attach="material" />
-          </mesh>
-
-          {/* Carved Teak Front Frame (Clean, no weird blue plate) */}
-          <mesh position={[0, 0.58, 0.328]}>
-            <boxGeometry args={[0.84, 0.72, 0.015]} />
-            <primitive object={materials.darkTeakCarved} attach="material" />
-          </mesh>
-          <mesh position={[0, 0.58, 0.334]}>
-            <boxGeometry args={[0.82, 0.7, 0.008]} />
-            <primitive object={materials.goldTrim} attach="material" />
-          </mesh>
-
-          {/* Official Undip Shield Emblem on Podium Front */}
-          <mesh position={[0, 0.64, 0.342]}>
-            <planeGeometry args={[0.38, 0.44]} />
-            <meshStandardMaterial
-              map={officialLogoTexture}
-              transparent
-              roughness={0.25}
-              metalness={0.5}
-            />
-          </mesh>
-          <mesh position={[0, 0.34, 0.34]}>
-            <boxGeometry args={[0.7, 0.07, 0.015]} />
+        {/* Recessed Brass Sockets for flagpoles */}
+        {[-0.45, 0.45].map((sx, si) => (
+          <mesh key={si} position={[sx, 0.18, 0]} castShadow>
+            <cylinderGeometry args={[0.05, 0.065, 0.06, 16]} />
             <primitive object={materials.goldBrass} attach="material" />
           </mesh>
+        ))}
 
-          {/* Slanted Reading Desk (Menghadap ke Pintu Masuk +Z: sisi tinggi di depan, miring ke pembicara di -Z) */}
-          <group position={[0, 1.05, 0]} rotation={[-0.22, 0, 0]}>
-            <mesh castShadow receiveShadow>
-              <boxGeometry args={[1.12, 0.08, 0.75]} />
-              <primitive object={materials.darkTeakCarved} attach="material" />
-            </mesh>
-
-            {/* Inset Leather Desk Blotter (Properly flat in XZ plane) */}
-            <mesh position={[0, 0.042, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-              <planeGeometry args={[0.96, 0.6]} />
-              <primitive object={materials.leatherBlotter} attach="material" />
-            </mesh>
-
-            {/* Document Retaining Rail (di sisi pembicara -Z) */}
-            <mesh position={[0, 0.055, -0.35]}>
-              <boxGeometry args={[1.0, 0.03, 0.03]} />
-              <primitive object={materials.goldTrim} attach="material" />
-            </mesh>
-
-            {/* Diplomatic Address Parchment Scroll (Properly flat in XZ plane) */}
-            <mesh position={[0, 0.045, -0.04]} rotation={[-Math.PI / 2, 0, 0.02]}>
-              <planeGeometry args={[0.38, 0.48]} />
-              <primitive object={materials.parchment} attach="material" />
-            </mesh>
-
-            {/* Condenser Studio Gooseneck Microphone (Mengarah ke Pembicara di -Z) */}
-            <group position={[0.26, 0.05, 0.15]}>
-              <mesh castShadow>
-                <cylinderGeometry args={[0.04, 0.05, 0.025, 16]} />
-                <primitive object={materials.goldTrim} attach="material" />
-              </mesh>
-              <mesh position={[0, 0.16, -0.05]} rotation={[-0.3, 0, 0]} castShadow>
-                <cylinderGeometry args={[0.009, 0.009, 0.3, 10]} />
-                <primitive object={materials.microphoneChrome} attach="material" />
-              </mesh>
-              <group position={[0, 0.32, -0.12]} rotation={[-0.4, 0, 0]}>
-                <mesh castShadow>
-                  <cylinderGeometry args={[0.018, 0.018, 0.08, 16]} />
-                  <primitive object={materials.microphoneChrome} attach="material" />
-                </mesh>
-                <mesh position={[0, 0.04, 0]}>
-                  <sphereGeometry args={[0.018, 16, 16]} />
-                  <primitive object={materials.microphoneChrome} attach="material" />
-                </mesh>
-              </group>
-            </group>
-          </group>
+        {/* BENDERA MERAH PUTIH */}
+        <group position={[-0.45, 0.18, 0]}>
+          {/* Brass Flagpole */}
+          <mesh position={[0, 1.8, 0]} castShadow>
+            <cylinderGeometry args={[0.022, 0.022, 3.6, 16]} />
+            <primitive object={materials.goldBrass} attach="material" />
+          </mesh>
+          <mesh position={[0, 3.65, 0]}>
+            <coneGeometry args={[0.055, 0.18, 12]} />
+            <primitive object={materials.goldBrass} attach="material" />
+          </mesh>
+          {/* Static Curved Fabric Mesh */}
+          <StaticCurvedFlag
+            position={[0.54, 2.7, 0]}
+            width={1.08}
+            height={0.72}
+            texture={indoFlagTexture}
+          />
         </group>
 
-        {/* ============================================================
-            6. MONUMENTAL PRASASTI PENDIRIAN & PERESMIAN UNDIP (LEFT FLANK)
-            ============================================================ */}
-        <group
-          position={[-4.0, 0, -1.8]}
-          onPointerOver={(e) => {
-            e.stopPropagation()
-            onHover('prasasti')
-          }}
-          onPointerOut={(e) => {
-            e.stopPropagation()
-            onHover(null)
-          }}
-          onClick={(e) => {
-            e.stopPropagation()
-            if (onSelectPrasasti) {
-              onSelectPrasasti()
-            }
-          }}
-        >
-          {/* Carved Teakwood Monument Base */}
-          <mesh position={[0, 0.14, 0]} castShadow receiveShadow>
-            <boxGeometry args={[1.75, 0.28, 1.35]} />
-            <primitive object={materials.teakWood} attach="material" />
+        {/* BENDERA PATAKA UNDIP */}
+        <group position={[0.45, 0.18, 0]}>
+          {/* Brass Flagpole */}
+          <mesh position={[0, 1.8, 0]} castShadow>
+            <cylinderGeometry args={[0.022, 0.022, 3.6, 16]} />
+            <primitive object={materials.goldBrass} attach="material" />
           </mesh>
-          <mesh position={[0, 0.285, 0]}>
-            <boxGeometry args={[1.7, 0.02, 1.3]} />
-            <primitive object={materials.goldTrim} attach="material" />
+          <mesh position={[0, 3.65, 0]}>
+            <coneGeometry args={[0.055, 0.18, 12]} />
+            <primitive object={materials.goldBrass} attach="material" />
           </mesh>
-
-          {/* Stepped Pedestal Tier 2 */}
-          <mesh position={[0, 0.44, 0]} castShadow receiveShadow>
-            <boxGeometry args={[1.5, 0.3, 1.1]} />
-            <primitive object={materials.darkTeakCarved} attach="material" />
-          </mesh>
-
-          {/* Slanted Polished Black Granite Inscription Slab */}
-          <group position={[0, 0.72, -0.05]} rotation={[-0.42, 0, 0]}>
-            <mesh castShadow receiveShadow>
-              <boxGeometry args={[1.42, 0.12, 1.08]} />
-              <primitive object={materials.blackGranite} attach="material" />
-            </mesh>
-
-            <mesh position={[0, 0.065, 0]}>
-              <boxGeometry args={[1.44, 0.02, 1.1]} />
-              <primitive object={materials.goldBright} attach="material" />
-            </mesh>
-
-            <mesh position={[0, 0.066, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-              <planeGeometry args={[1.36, 1.02, 48, 36]} />
-              <meshStandardMaterial
-                map={prasastiTexture}
-                normalMap={QUALITY.current.physicalMaterials ? carvedStoneMaps.normalMap : null}
-                normalScale={new THREE.Vector2(0.55, 0.55)}
-                displacementMap={QUALITY.current.microDetailBump ? carvedStoneMaps.displacementMap : null}
-                displacementScale={0.008}
-                roughnessMap={QUALITY.current.physicalMaterials ? carvedStoneMaps.roughnessMap : null}
-                roughness={0.35}
-                metalness={0.55}
-              />
-            </mesh>
-
-            {/* Corner Gilded Brass Brackets */}
-            {[-0.64, 0.64].map((bx, bi) =>
-              [-0.48, 0.48].map((bz, bzi) => (
-                <mesh key={`brk-${bi}-${bzi}`} position={[bx, 0.075, bz]} castShadow>
-                  <boxGeometry args={[0.06, 0.03, 0.06]} />
-                  <primitive object={materials.goldBright} attach="material" />
-                </mesh>
-              )),
-            )}
-          </group>
-        </group>
-
-        {/* ============================================================
-            7. NATURALLY WAVING CEREMONIAL FLAGS (RIGHT FLANK)
-            Symmetrically placed opposite Prasasti.
-            "hapus kuningan di depan palang tiang bendera" -> Clean teakwood base without brass faceplates.
-            ============================================================ */}
-        <group position={[4.0, 0, -1.8]}>
-          {/* Polished Teakwood Stand (Clean architectural timber, no clashing brass front) */}
-          <mesh position={[0, 0.08, 0]} castShadow receiveShadow>
-            <boxGeometry args={[1.9, 0.16, 0.7]} />
-            <primitive object={materials.teakWood} attach="material" />
-          </mesh>
-          <mesh position={[0, 0.162, 0]} receiveShadow>
-            <boxGeometry args={[1.84, 0.015, 0.64]} />
-            <primitive object={materials.darkTeakCarved} attach="material" />
-          </mesh>
-
-          {/* Recessed Brass Sockets for flagpoles */}
-          {[-0.45, 0.45].map((sx, si) => (
-            <mesh key={si} position={[sx, 0.18, 0]} castShadow>
-              <cylinderGeometry args={[0.05, 0.065, 0.06, 16]} />
-              <primitive object={materials.goldBrass} attach="material" />
-            </mesh>
-          ))}
-
-          {/* 7A. BENDERA MERAH PUTIH */}
-          <group position={[-0.45, 0.18, 0]}>
-            {/* Brass Flagpole */}
-            <mesh position={[0, 1.8, 0]} castShadow>
-              <cylinderGeometry args={[0.022, 0.022, 3.6, 16]} />
-              <primitive object={materials.goldBrass} attach="material" />
-            </mesh>
-            <mesh position={[0, 3.65, 0]}>
-              <coneGeometry args={[0.055, 0.18, 12]} />
-              <primitive object={materials.goldBrass} attach="material" />
-            </mesh>
-            {/* Static Curved Fabric Mesh */}
-            <StaticCurvedFlag
-              position={[0.54, 2.7, 0]}
-              width={1.08}
-              height={0.72}
-              texture={indoFlagTexture}
-            />
-          </group>
-
-          {/* 7B. BENDERA PATAKA UNDIP */}
-          <group position={[0.45, 0.18, 0]}>
-            {/* Brass Flagpole */}
-            <mesh position={[0, 1.8, 0]} castShadow>
-              <cylinderGeometry args={[0.022, 0.022, 3.6, 16]} />
-              <primitive object={materials.goldBrass} attach="material" />
-            </mesh>
-            <mesh position={[0, 3.65, 0]}>
-              <coneGeometry args={[0.055, 0.18, 12]} />
-              <primitive object={materials.goldBrass} attach="material" />
-            </mesh>
-            {/* Static Curved Fabric Mesh */}
-            <StaticCurvedFlag
-              position={[0.54, 2.7, 0]}
-              width={1.08}
-              height={0.72}
-              texture={undipFlagTexture}
-            />
-          </group>
+          {/* Static Curved Fabric Mesh */}
+          <StaticCurvedFlag
+            position={[0.54, 2.7, 0]}
+            width={1.08}
+            height={0.72}
+            texture={undipFlagTexture}
+          />
         </group>
       </group>
     </group>

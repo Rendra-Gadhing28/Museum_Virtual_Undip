@@ -8,15 +8,18 @@ export function DesktopHints() {
         <kbd>W</kbd>
         <kbd>A</kbd>
         <kbd>S</kbd>
-        <kbd>D</kbd> atau <kbd>Panah</kbd> jalan & geser
+        <kbd>D</kbd> / <kbd>Panah</kbd> jalan
       </span>
       <span>
         <kbd>Shift</kbd> lari
       </span>
-      <span>klik & geser mouse untuk melihat</span>
-      <span>klik objek untuk membaca informasi</span>
       <span>
-        <kbd>N</kbd> kunci / lepas pandangan
+        <kbd>Spasi</kbd> lompat
+      </span>
+      <span>klik & geser / klik kanan putar kamera</span>
+      <span>scroll zoom kamera</span>
+      <span>
+        <kbd>N</kbd> kunci / lepas kursor
       </span>
       <span>
         <kbd>ESC</kbd> lepas kursor

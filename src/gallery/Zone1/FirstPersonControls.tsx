@@ -48,6 +48,7 @@ export function FirstPersonControls({
   const drag = useRef<{ id: number; x: number; y: number } | null>(null)
   const isNearDirectoryRef = useRef(false)
   const disabledRef = useRef(disabled)
+  ;(window as any).__FPC__ = { pos, yaw, pitch }
 
   useEffect(() => {
     pos.current = [...spawnPosition]

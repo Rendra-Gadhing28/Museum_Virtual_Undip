@@ -1,6 +1,7 @@
 import { Suspense, useMemo } from 'react'
 import * as THREE from 'three'
 import { useGLTF } from '@react-three/drei'
+import { useThree } from '@react-three/fiber'
 import type { StatueProps } from './types'
 import { assetCache } from './cache'
 import { MaterialLibrary } from '../graphics'
@@ -15,12 +16,66 @@ interface ExtendedStatueProps extends StatueProps {
  */
 function HorseStatueGLB({ scale = 2.4 }: { scale?: number }) {
   const { scene } = useGLTF('/assets/patung_kuda.glb', '/draco/')
+  const { camera } = useThree()
+  ;(window as any).__THREE_CAMERA__ = camera
   const clonedScene = useMemo(() => {
     const clone = scene.clone(true)
     clone.traverse((child) => {
       if ((child as THREE.Mesh).isMesh) {
         child.castShadow = true
         child.receiveShadow = true
+        ;(window as any).__HORSE_MESH__ = child
+
+        const mat = (child as THREE.Mesh).material as THREE.MeshStandardMaterial
+        if (mat) {
+          const customMat = mat.clone()
+          customMat.onBeforeCompile = (shader) => {
+            shader.vertexShader = shader.vertexShader.replace(
+              '#include <common>',
+              `#include <common>
+              varying vec3 vModelPosition;`
+            ).replace(
+              '#include <begin_vertex>',
+              `#include <begin_vertex>
+              vModelPosition = position;`
+            )
+
+            shader.fragmentShader = shader.fragmentShader.replace(
+              '#include <common>',
+              `#include <common>
+              varying vec3 vModelPosition;
+              
+              bool isRider(vec3 p) {
+                // Diponegoro upper body, head, turban, keris, arms
+                if (p.y > 0.08 && p.z < 0.02 && p.z > -0.28 && abs(p.x) < 0.18) return true;
+                if (p.y > 0.20 && p.z < 0.05 && p.z > -0.22) return true;
+                // Diponegoro legs along the flanks
+                if (p.y >= -0.22 && p.y <= 0.08 && p.z >= -0.15 && p.z <= 0.04 && abs(p.x) > 0.085) return true;
+                return false;
+              }`
+            ).replace(
+              '#include <map_fragment>',
+              `#include <map_fragment>
+              if (!isRider(vModelPosition)) {
+                diffuseColor = vec4(0.96, 0.96, 0.98, 1.0);
+              }`
+            ).replace(
+              '#include <roughnessmap_fragment>',
+              `#include <roughnessmap_fragment>
+              if (!isRider(vModelPosition)) {
+                roughnessFactor = 0.36;
+              }`
+            ).replace(
+              '#include <metalnessmap_fragment>',
+              `#include <metalnessmap_fragment>
+              if (!isRider(vModelPosition)) {
+                metalnessFactor = 0.02;
+              }`
+            )
+          }
+          customMat.needsUpdate = true
+          ;(child as THREE.Mesh).material = customMat
+        }
       }
     })
     return clone
@@ -313,123 +368,95 @@ export function DiponegoroStatue({
 export function UndipLogoMonument({ position, rotationY = 0 }: StatueProps) {
   const materials = useMemo(() => {
     return {
-      plinthIvory: new THREE.MeshStandardMaterial({
+      ivoryBg: new THREE.MeshStandardMaterial({
         color: '#f7f4eb',
-        roughness: 0.85,
+        roughness: 0.78,
+        metalness: 0.02,
       }),
-      teakBorder: new THREE.MeshStandardMaterial({
-        color: '#3d2516',
-        roughness: 0.5,
-      }),
-      navyBlueLetters: new THREE.MeshStandardMaterial({
+      navyBlue: new THREE.MeshStandardMaterial({
         color: '#0b1d3a',
         roughness: 0.35,
-        metalness: 0.25,
-      }),
-      goldBevel: new THREE.MeshStandardMaterial({
-        color: '#d4af37',
-        roughness: 0.25,
-        metalness: 0.88,
+        metalness: 0.2,
       }),
     }
   }, [])
 
-  // Letter width and spacing
   const letterDepth = 0.22
   const letterHeight = 0.72
 
   return (
     <group position={position} rotation={[0, rotationY, 0]}>
-      {/* Plinth Base */}
+      {/* Ivory Plinth Base with Navy Blue Trim */}
       <mesh position={[0, 0.1, 0]} castShadow receiveShadow>
-        <boxGeometry args={[3.8, 0.2, 0.9]} />
-        <primitive object={materials.teakBorder} attach="material" />
+        <boxGeometry args={[3.9, 0.2, 0.92]} />
+        <primitive object={materials.navyBlue} attach="material" />
       </mesh>
-      <mesh position={[0, 0.21, 0]}>
-        <boxGeometry args={[3.74, 0.02, 0.84]} />
-        <primitive object={materials.goldBevel} attach="material" />
-      </mesh>
-      <mesh position={[0, 0.32, 0]} castShadow receiveShadow>
-        <boxGeometry args={[3.6, 0.2, 0.76]} />
-        <primitive object={materials.plinthIvory} attach="material" />
+      <mesh position={[0, 0.3, 0]} castShadow receiveShadow>
+        <boxGeometry args={[3.7, 0.22, 0.78]} />
+        <primitive object={materials.ivoryBg} attach="material" />
       </mesh>
 
-      {/* 3D "U N D I P" Block Letters */}
-      <group position={[0, 0.42 + letterHeight / 2, 0]}>
+      {/* Ivory Backdrop Panel behind the Navy Blue UNDIP letters */}
+      <mesh position={[0, 0.85, -0.18]} castShadow receiveShadow>
+        <boxGeometry args={[3.55, 0.96, 0.12]} />
+        <primitive object={materials.ivoryBg} attach="material" />
+      </mesh>
+      <mesh position={[0, 0.85, -0.245]} receiveShadow>
+        <boxGeometry args={[3.62, 1.02, 0.03]} />
+        <primitive object={materials.navyBlue} attach="material" />
+      </mesh>
+
+      {/* 3D "U N D I P" Block Letters (Navy Blue) */}
+      <group position={[0, 0.42 + letterHeight / 2, 0.02]}>
         {/* Letter 'U' */}
-        <group position={[-1.35, 0, 0]}>
-          {/* Left upright */}
+        <group position={[-1.32, 0, 0]}>
           <mesh position={[-0.18, 0.06, 0]} castShadow>
             <boxGeometry args={[0.13, letterHeight - 0.12, letterDepth]} />
-            <primitive object={materials.navyBlueLetters} attach="material" />
+            <primitive object={materials.navyBlue} attach="material" />
           </mesh>
-          {/* Right upright */}
           <mesh position={[0.18, 0.06, 0]} castShadow>
             <boxGeometry args={[0.13, letterHeight - 0.12, letterDepth]} />
-            <primitive object={materials.navyBlueLetters} attach="material" />
+            <primitive object={materials.navyBlue} attach="material" />
           </mesh>
-          {/* Bottom curve */}
           <mesh position={[0, -letterHeight / 2 + 0.09, 0]} castShadow>
             <boxGeometry args={[0.49, 0.14, letterDepth]} />
-            <primitive object={materials.navyBlueLetters} attach="material" />
-          </mesh>
-          {/* Gold Front Trim */}
-          <mesh position={[0, 0, letterDepth / 2 + 0.005]}>
-            <boxGeometry args={[0.49, letterHeight, 0.01]} />
-            <primitive object={materials.goldBevel} attach="material" />
+            <primitive object={materials.navyBlue} attach="material" />
           </mesh>
         </group>
 
         {/* Letter 'N' */}
-        <group position={[-0.68, 0, 0]}>
-          {/* Left upright */}
+        <group position={[-0.66, 0, 0]}>
           <mesh position={[-0.18, 0, 0]} castShadow>
             <boxGeometry args={[0.13, letterHeight, letterDepth]} />
-            <primitive object={materials.navyBlueLetters} attach="material" />
+            <primitive object={materials.navyBlue} attach="material" />
           </mesh>
-          {/* Right upright */}
           <mesh position={[0.18, 0, 0]} castShadow>
             <boxGeometry args={[0.13, letterHeight, letterDepth]} />
-            <primitive object={materials.navyBlueLetters} attach="material" />
+            <primitive object={materials.navyBlue} attach="material" />
           </mesh>
-          {/* Diagonal bar */}
-          <mesh position={[0, 0, 0]} rotation={[0, 0, -0.44]} castShadow>
-            <boxGeometry args={[0.12, letterHeight * 1.1, letterDepth]} />
-            <primitive object={materials.navyBlueLetters} attach="material" />
-          </mesh>
-          {/* Gold Front Trim */}
-          <mesh position={[0, 0, letterDepth / 2 + 0.005]}>
-            <boxGeometry args={[0.49, letterHeight, 0.01]} />
-            <primitive object={materials.goldBevel} attach="material" />
+          <mesh position={[0, 0, 0]} rotation={[0, 0, 0.44]} castShadow>
+            <boxGeometry args={[0.12, letterHeight * 1.06, letterDepth]} />
+            <primitive object={materials.navyBlue} attach="material" />
           </mesh>
         </group>
 
         {/* Letter 'D' */}
         <group position={[0, 0, 0]}>
-          {/* Left vertical */}
           <mesh position={[-0.18, 0, 0]} castShadow>
             <boxGeometry args={[0.13, letterHeight, letterDepth]} />
-            <primitive object={materials.navyBlueLetters} attach="material" />
+            <primitive object={materials.navyBlue} attach="material" />
           </mesh>
-          {/* Top horizontal */}
           <mesh position={[0.02, letterHeight / 2 - 0.07, 0]} castShadow>
             <boxGeometry args={[0.34, 0.14, letterDepth]} />
-            <primitive object={materials.navyBlueLetters} attach="material" />
+            <primitive object={materials.navyBlue} attach="material" />
           </mesh>
-          {/* Bottom horizontal */}
           <mesh position={[0.02, -letterHeight / 2 + 0.07, 0]} castShadow>
             <boxGeometry args={[0.34, 0.14, letterDepth]} />
-            <primitive object={materials.navyBlueLetters} attach="material" />
+            <primitive object={materials.navyBlue} attach="material" />
           </mesh>
-          {/* Curved right vertical */}
           <mesh position={[0.18, 0, 0]} castShadow>
             <boxGeometry args={[0.13, letterHeight - 0.22, letterDepth]} />
-            <primitive object={materials.navyBlueLetters} attach="material" />
-          </mesh>
-          {/* Gold Front Trim */}
-          <mesh position={[0, 0, letterDepth / 2 + 0.005]}>
-            <boxGeometry args={[0.49, letterHeight, 0.01]} />
-            <primitive object={materials.goldBevel} attach="material" />
+            <primitive object={materials.navyBlue} attach="material" />
           </mesh>
         </group>
 
@@ -437,51 +464,35 @@ export function UndipLogoMonument({ position, rotationY = 0 }: StatueProps) {
         <group position={[0.62, 0, 0]}>
           <mesh castShadow>
             <boxGeometry args={[0.16, letterHeight, letterDepth]} />
-            <primitive object={materials.navyBlueLetters} attach="material" />
+            <primitive object={materials.navyBlue} attach="material" />
           </mesh>
-          {/* Top/bottom crossbar */}
           <mesh position={[0, letterHeight / 2 - 0.05, 0]} castShadow>
             <boxGeometry args={[0.32, 0.1, letterDepth]} />
-            <primitive object={materials.navyBlueLetters} attach="material" />
+            <primitive object={materials.navyBlue} attach="material" />
           </mesh>
-          {/* Bottom crossbar */}
           <mesh position={[0, -letterHeight / 2 + 0.05, 0]} castShadow>
             <boxGeometry args={[0.32, 0.1, letterDepth]} />
-            <primitive object={materials.navyBlueLetters} attach="material" />
-          </mesh>
-          {/* Gold Front Trim */}
-          <mesh position={[0, 0, letterDepth / 2 + 0.005]}>
-            <boxGeometry args={[0.32, letterHeight, 0.01]} />
-            <primitive object={materials.goldBevel} attach="material" />
+            <primitive object={materials.navyBlue} attach="material" />
           </mesh>
         </group>
 
         {/* Letter 'P' */}
-        <group position={[1.28, 0, 0]}>
-          {/* Left upright */}
+        <group position={[1.26, 0, 0]}>
           <mesh position={[-0.16, 0, 0]} castShadow>
             <boxGeometry args={[0.13, letterHeight, letterDepth]} />
-            <primitive object={materials.navyBlueLetters} attach="material" />
+            <primitive object={materials.navyBlue} attach="material" />
           </mesh>
-          {/* Upper loop top */}
           <mesh position={[0.04, letterHeight / 2 - 0.07, 0]} castShadow>
             <boxGeometry args={[0.32, 0.14, letterDepth]} />
-            <primitive object={materials.navyBlueLetters} attach="material" />
+            <primitive object={materials.navyBlue} attach="material" />
           </mesh>
-          {/* Upper loop mid */}
           <mesh position={[0.04, 0.05, 0]} castShadow>
             <boxGeometry args={[0.32, 0.14, letterDepth]} />
-            <primitive object={materials.navyBlueLetters} attach="material" />
+            <primitive object={materials.navyBlue} attach="material" />
           </mesh>
-          {/* Upper loop right */}
           <mesh position={[0.18, letterHeight / 4, 0]} castShadow>
             <boxGeometry args={[0.12, letterHeight / 2, letterDepth]} />
-            <primitive object={materials.navyBlueLetters} attach="material" />
-          </mesh>
-          {/* Gold Front Trim */}
-          <mesh position={[0, 0, letterDepth / 2 + 0.005]}>
-            <boxGeometry args={[0.49, letterHeight, 0.01]} />
-            <primitive object={materials.goldBevel} attach="material" />
+            <primitive object={materials.navyBlue} attach="material" />
           </mesh>
         </group>
       </group>

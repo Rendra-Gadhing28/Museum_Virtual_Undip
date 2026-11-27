@@ -2,7 +2,7 @@ import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { PerspectiveCamera } from '@react-three/drei'
 import type { SelectedExhibit, SectionType } from '../Zone1/types'
-import { FirstPersonControls } from '../Zone1/FirstPersonControls'
+import { ThirdPersonControls } from '../Zone1/ThirdPersonControls'
 import { DesktopHints } from '../Zone1/DesktopHints'
 import { MobileControls } from '../Zone1/MobileControls'
 import { ExhibitInformationPanel } from '../Zone1/ExhibitInformationPanel'
@@ -157,15 +157,17 @@ export function Zone2({ onSwitchZone: _onSwitchZone }: Zone2Props) {
           />
         </Suspense>
 
-        <FirstPersonControls
-          resetSignal={resetSignal}
-          targetPosition={targetPosition}
-          moveInputRef={moveInputRef}
-          hoveredRef={hoveredRef}
-          panelOpenRef={panelOpenRef}
-          draggedRef={draggedRef}
-          onProximityChange={setIsNearDirectory}
-        />
+        <Suspense fallback={null}>
+          <ThirdPersonControls
+            resetSignal={resetSignal}
+            targetPosition={targetPosition}
+            moveInputRef={moveInputRef}
+            hoveredRef={hoveredRef}
+            panelOpenRef={panelOpenRef}
+            draggedRef={draggedRef}
+            onProximityChange={setIsNearDirectory}
+          />
+        </Suspense>
       </Canvas>
 
       {/* Subtle Desktop Navigation Hints */}

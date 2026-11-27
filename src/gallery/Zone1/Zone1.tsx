@@ -14,7 +14,7 @@ import { GalleryEnvironment } from './GalleryEnvironment'
 import { GalleryLighting } from './GalleryLighting'
 import { CeremonialPodium } from './CeremonialPodium'
 import { DiponegoroStatue, UndipLogoMonument } from './DiponegoroStatue'
-import { FirstPersonControls } from './FirstPersonControls'
+import { ThirdPersonControls } from './ThirdPersonControls'
 import { DesktopHints } from './DesktopHints'
 import { MobileControls } from './MobileControls'
 import { ExhibitInformationPanel } from './ExhibitInformationPanel'
@@ -445,10 +445,10 @@ export function Zone1({
                 onHover={handleHover}
               />
 
-              {/* Monumental UNDIP Typography on Grand Hall Right Plaza */}
+              {/* Monumental UNDIP Typography centered at Grand Hall Back */}
               <UndipLogoMonument
-                position={[4.6, 0, -21.0]}
-                rotationY={-Math.PI / 4}
+                position={[0, 0, -21.0]}
+                rotationY={0}
               />
 
               <CinematicIntro
@@ -463,18 +463,20 @@ export function Zone1({
           )}
         </Suspense>
 
-        <FirstPersonControls
-          resetSignal={resetSignal}
-          targetPosition={targetPosition}
-          spawnPosition={spawnPosition}
-          bounds={activeRoomDims?.bounds ?? BOUNDS}
-          moveInputRef={moveInputRef}
-          hoveredRef={hoveredRef}
-          panelOpenRef={panelOpenRef}
-          draggedRef={draggedRef}
-          onProximityChange={setIsNearDirectory}
-          disabled={isIntroActive}
-        />
+        <Suspense fallback={null}>
+          <ThirdPersonControls
+            resetSignal={resetSignal}
+            targetPosition={targetPosition}
+            spawnPosition={spawnPosition}
+            bounds={activeRoomDims?.bounds ?? BOUNDS}
+            moveInputRef={moveInputRef}
+            hoveredRef={hoveredRef}
+            panelOpenRef={panelOpenRef}
+            draggedRef={draggedRef}
+            onProximityChange={setIsNearDirectory}
+            disabled={isIntroActive}
+          />
+        </Suspense>
       </Canvas>
 
 
