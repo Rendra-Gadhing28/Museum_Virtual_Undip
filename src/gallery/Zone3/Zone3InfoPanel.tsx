@@ -53,14 +53,14 @@ export function Zone3InfoPanel({ selectedItem, onClose }: Zone3InfoPanelProps) {
         <header className="gr-zone3-modal-header">
           <div className="gr-zone3-badge-wrap">
             <span className="gr-badge" style={{ borderColor: ZONE3_CONFIG.palette.gold }}>
-              {isInscription && '🏛️ KOLEKSI UTAMA: PRASASTI PERESMIAN'}
-              {isArtifact && '🎓 ARTEFAK AKADEMIK RESMI'}
-              {isMemorabilia && '🏅 MEMORABILIA TOKOH PENDIRI'}
-              {isPhoto && '📷 ARSIP FOTO SEJARAH (1956–1971)'}
-              {isDocument && '📜 DOKUMEN & PIAGAM PENEGERIAN'}
-              {isAudiovisual && '📽️ REKAMAN AUDIOVISUAL VINTAGE'}
-              {type === 'muladi-dome' && '🏛️ MAKET AKBAR: MULADI DOME UNDIP'}
-              {type === 'heritage-table' && '⚔️ PUSAKA KEHORMATAN DIPONEGORO'}
+              {isInscription && 'KOLEKSI UTAMA: PRASASTI PERESMIAN'}
+              {isArtifact && 'ARTEFAK AKADEMIK RESMI'}
+              {isMemorabilia && 'MEMORABILIA TOKOH PENDIRI'}
+              {isPhoto && 'ARSIP FOTO SEJARAH (1956–1971)'}
+              {isDocument && 'DOKUMEN & PIAGAM PENEGERIAN'}
+              {isAudiovisual && 'REKAMAN AUDIOVISUAL VINTAGE'}
+              {type === 'muladi-dome' && 'MAKET AKBAR: MULADI DOME UNDIP'}
+              {type === 'heritage-table' && 'PUSAKA KEHORMATAN DIPONEGORO'}
             </span>
             <span className="gr-zone3-era-tag">
               Era: {data.year || '1957'}
@@ -123,7 +123,7 @@ export function Zone3InfoPanel({ selectedItem, onClose }: Zone3InfoPanelProps) {
 
               {/* Audio Narasi Bar */}
               <div className="gr-audio-narration-bar">
-                <span className="gr-audio-icon">🎧</span>
+                <span className="gr-audio-icon"></span>
                 <div className="gr-audio-info">
                   <strong>Narasi Suara Sejarah Prasasti</strong>
                   <span>Kisah pembacaan prasasti & Dies Natalis Undip 1960</span>

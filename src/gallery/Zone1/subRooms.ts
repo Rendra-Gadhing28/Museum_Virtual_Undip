@@ -31,9 +31,10 @@ export interface Zone1PortalDoor {
 }
 
 /**
- * Penataan 5 pintu di Base Zone 1 dengan formasi | 3   2 |:
- * - Dinding Kiri (x = -HALL.halfWidth): 3 pintu
- * - Dinding Kanan (x = +HALL.halfWidth): 2 pintu
+ * Penataan 5 pintu di Base Zone 1 secara Simetris sesuai Bab 3.3 Dokumen Acuan:
+ * - Dinding Kiri (x = -HALL.halfWidth): Pintu 01 & Pintu 02
+ * - Dinding Kanan (x = +HALL.halfWidth): Pintu 03 & Pintu 04
+ * - Dinding Belakang (z = HALL.zBack, Sumbu Tengah x = 0): Pintu 05 membingkai Feature Wall UNDIP
  */
 export const ZONE1_PORTAL_DOORS: Zone1PortalDoor[] = [
   {
@@ -42,9 +43,9 @@ export const ZONE1_PORTAL_DOORS: Zone1PortalDoor[] = [
     title: 'Arsip Pendiri & Yayasan',
     subtitle: 'Pancamitra & Akta Pendirian 1956',
     wall: 'left',
-    position: [-(HALL.halfWidth - 0.04), 0, 4.5],
+    position: [-(HALL.halfWidth - 0.04), 0, 4.0],
     rotationY: Math.PI / 2,
-    returnPosition: [-(HALL.halfWidth - 2.6), EYE_HEIGHT, 4.5],
+    returnPosition: [-(HALL.halfWidth - 2.6), EYE_HEIGHT, 4.0],
     roofStyle: 'coffered-skylight',
     founderIds: UNDIP_FOUNDERS_5.map((f) => f.id),
     historyIds: [
@@ -60,9 +61,9 @@ export const ZONE1_PORTAL_DOORS: Zone1PortalDoor[] = [
     title: 'Penegerian & Pidato Soekarno',
     subtitle: 'Keppres 1960 & Peresmian Universitas',
     wall: 'left',
-    position: [-(HALL.halfWidth - 0.04), 0, -6.5],
+    position: [-(HALL.halfWidth - 0.04), 0, -4.0],
     rotationY: Math.PI / 2,
-    returnPosition: [-(HALL.halfWidth - 2.6), EYE_HEIGHT, -6.5],
+    returnPosition: [-(HALL.halfWidth - 2.6), EYE_HEIGHT, -4.0],
     roofStyle: 'labyrinth-pvc',
     founderIds: [],
     historyIds: [
@@ -78,10 +79,10 @@ export const ZONE1_PORTAL_DOORS: Zone1PortalDoor[] = [
     doorNumber: 'RUANG 03',
     title: 'Galeri Rektorat & Pimpinan',
     subtitle: '13 Rektor Undip dari Masa ke Masa',
-    wall: 'left',
-    position: [-(HALL.halfWidth - 0.04), 0, -17.5],
-    rotationY: Math.PI / 2,
-    returnPosition: [-(HALL.halfWidth - 2.6), EYE_HEIGHT, -17.5],
+    wall: 'right',
+    position: [HALL.halfWidth - 0.04, 0, 4.0],
+    rotationY: -Math.PI / 2,
+    returnPosition: [HALL.halfWidth - 2.6, EYE_HEIGHT, 4.0],
     roofStyle: 'octagon-dome',
     founderIds: UNDIP_LEADERSHIP_13.map((f) => f.id),
     historyIds: [],
@@ -92,9 +93,9 @@ export const ZONE1_PORTAL_DOORS: Zone1PortalDoor[] = [
     title: 'Transformasi Kampus Fisik',
     subtitle: 'Pleburan ke Tembalang (ADB / OECF)',
     wall: 'right',
-    position: [HALL.halfWidth - 0.04, 0, -1.0],
+    position: [HALL.halfWidth - 0.04, 0, -4.0],
     rotationY: -Math.PI / 2,
-    returnPosition: [HALL.halfWidth - 2.6, EYE_HEIGHT, -1.0],
+    returnPosition: [HALL.halfWidth - 2.6, EYE_HEIGHT, -4.0],
     roofStyle: 'coffered-pvc',
     founderIds: [],
     historyIds: [
@@ -112,9 +113,9 @@ export const ZONE1_PORTAL_DOORS: Zone1PortalDoor[] = [
     title: 'Cetak Biru Muladi Dome',
     subtitle: 'Linimasa Ikon & Transformasi Modern',
     wall: 'right',
-    position: [HALL.halfWidth - 0.04, 0, -12.0],
+    position: [HALL.halfWidth - 0.04, 4.8, -18.0],
     rotationY: -Math.PI / 2,
-    returnPosition: [HALL.halfWidth - 2.6, EYE_HEIGHT, -12.0],
+    returnPosition: [HALL.halfWidth - 2.6, 4.8 + EYE_HEIGHT, -18.0],
     roofStyle: 'radial-dome',
     founderIds: [],
     historyIds: [
@@ -141,10 +142,123 @@ export interface SubRoomDimensions {
 }
 
 /**
- * Menghitung dimensi ruangan sub-bab secara dinamis menyesuaikan jumlah konten/arsip.
- * Semakin banyak koleksi di dalam ruangan, panjang dan lebar ruang menyesuaikan secara proporsional.
+ * Menghitung dimensi ruangan sub-bab secara dinamis menyesuaikan ID ruang atau jumlah konten/arsip.
+ * Khusus Ruang 01 (yayasan-pendiri) memakai proporsi galeri arsip klasik terkurasi (14m x 18m x 5.4m).
  */
-export function computeSubRoomDimensions(totalItems: number): SubRoomDimensions {
+export function computeSubRoomDimensions(
+  totalItems: number,
+  roomId?: Zone1RoomId,
+): SubRoomDimensions {
+  if (roomId === 'yayasan-pendiri') {
+    const halfWidth = 7.0
+    const length = 18.0
+    const height = 5.4
+    const zFront = length / 2
+    const zBack = -length / 2
+    return {
+      halfWidth,
+      length,
+      height,
+      zFront,
+      zBack,
+      spawnPosition: [0, EYE_HEIGHT, zFront - 2.6],
+      bounds: {
+        minX: -(halfWidth - 1.1),
+        maxX: halfWidth - 1.1,
+        minZ: zBack + 1.6,
+        maxZ: zFront - 1.6,
+      },
+    }
+  }
+
+  if (roomId === 'penegerian-soekarno') {
+    const halfWidth = 7.5
+    const length = 18.0
+    const height = 5.8
+    const zFront = length / 2
+    const zBack = -length / 2
+    return {
+      halfWidth,
+      length,
+      height,
+      zFront,
+      zBack,
+      spawnPosition: [0, EYE_HEIGHT, zFront - 2.6],
+      bounds: {
+        minX: -(halfWidth - 1.1),
+        maxX: halfWidth - 1.1,
+        minZ: zBack + 1.6,
+        maxZ: zFront - 1.6,
+      },
+    }
+  }
+
+  if (roomId === 'rektorat-pimpinan') {
+    const halfWidth = 8.0
+    const length = 17.0
+    const height = 5.8
+    const zFront = length / 2
+    const zBack = -length / 2
+    return {
+      halfWidth,
+      length,
+      height,
+      zFront,
+      zBack,
+      spawnPosition: [0, EYE_HEIGHT, zFront - 2.6],
+      bounds: {
+        minX: -(halfWidth - 1.1),
+        maxX: halfWidth - 1.1,
+        minZ: zBack + 1.6,
+        maxZ: zFront - 1.6,
+      },
+    }
+  }
+
+  if (roomId === 'pembangunan-kampus') {
+    const halfWidth = 8.5
+    const length = 19.0
+    const height = 5.8
+    const zFront = length / 2
+    const zBack = -length / 2
+    return {
+      halfWidth,
+      length,
+      height,
+      zFront,
+      zBack,
+      spawnPosition: [0, EYE_HEIGHT, zFront - 2.6],
+      bounds: {
+        minX: -(halfWidth - 1.1),
+        maxX: halfWidth - 1.1,
+        minZ: zBack + 1.6,
+        maxZ: zFront - 1.6,
+      },
+    }
+  }
+
+  if (roomId === 'muladi-dome') {
+    const halfWidth = 7.5
+    const length = 18.0
+    const height = 5.8
+    const zFront = length / 2
+    const zBack = -length / 2
+    return {
+      halfWidth,
+      length,
+      height,
+      zFront,
+      zBack,
+      spawnPosition: [0, EYE_HEIGHT, zFront - 2.6],
+      bounds: {
+        minX: -(halfWidth - 1.1),
+        maxX: halfWidth - 1.1,
+        minZ: zBack + 1.6,
+        maxZ: zFront - 1.6,
+      },
+    }
+  }
+
   const perSideCount = Math.max(2, Math.ceil(totalItems / 2))
   const spacing = 3.2
   const length = Math.max(15, perSideCount * spacing + 7)

@@ -49,7 +49,7 @@ export function AudioToggleButton() {
         transition: 'all 0.2s ease',
       }}
     >
-      <span>{muted ? '🔇' : '🔊'}</span>
+      <span>{muted ? 'MUTE' : 'AUDIO'}</span>
       <span>{muted ? 'SUARA MATI' : 'SUARA AKTIF'}</span>
     </button>
   )

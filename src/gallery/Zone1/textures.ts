@@ -91,6 +91,160 @@ export function createFloorTexture(): THREE.CanvasTexture {
   })
 }
 
+/**
+ * Floor Medallion Batik Pesisir Jawa (Diameter 4-5m di tengah Base Zone)
+ * Kombinasi travertine, inlay kuningan (brass #B2935D), aksen Navy (#23364F),
+ * dan stilasi ornamen geometris flora/fauna batik pesisir khas Jawa Tengah / Semarang.
+ */
+export function createFloorMedallionTexture(): THREE.CanvasTexture {
+  return assetCache.getTexture('floor-medallion-texture', () => {
+    const [canvas, ctx] = makeCanvas(1024, 1024)
+    const cx = 512
+    const cy = 512
+
+    // 1. Lingkaran Dasar Travertine Luar
+    ctx.fillStyle = '#D8CDBB'
+    ctx.beginPath()
+    ctx.arc(cx, cy, 500, 0, Math.PI * 2)
+    ctx.fill()
+
+    // 2. Outer Brass Inlay Ring
+    ctx.strokeStyle = '#B2935D'
+    ctx.lineWidth = 12
+    ctx.beginPath()
+    ctx.arc(cx, cy, 486, 0, Math.PI * 2)
+    ctx.stroke()
+
+    // 3. Ring Muted Navy (#23364F)
+    ctx.fillStyle = '#23364F'
+    ctx.beginPath()
+    ctx.arc(cx, cy, 474, 0, Math.PI * 2)
+    ctx.fill()
+
+    // Ornamen Lingkaran Luar: Titik-titik mutiara emas (beaded border)
+    const outerBeadCount = 64
+    for (let i = 0; i < outerBeadCount; i++) {
+      const angle = (i / outerBeadCount) * Math.PI * 2
+      const bx = cx + Math.cos(angle) * 454
+      const by = cy + Math.sin(angle) * 454
+      ctx.fillStyle = '#B2935D'
+      ctx.beginPath()
+      ctx.arc(bx, by, 4.5, 0, Math.PI * 2)
+      ctx.fill()
+    }
+
+    // 4. Middle Travertine & Warm Ivory Ring
+    ctx.fillStyle = '#E9E1D3'
+    ctx.beginPath()
+    ctx.arc(cx, cy, 436, 0, Math.PI * 2)
+    ctx.fill()
+
+    ctx.strokeStyle = '#B2935D'
+    ctx.lineWidth = 6
+    ctx.beginPath()
+    ctx.arc(cx, cy, 436, 0, Math.PI * 2)
+    ctx.stroke()
+
+    // 5. Pola Stilasi Batik Pesisir Jawa (16 Daun/Kelopak Geometris)
+    const petals = 16
+    for (let i = 0; i < petals; i++) {
+      const angle = (i / petals) * Math.PI * 2
+      ctx.save()
+      ctx.translate(cx, cy)
+      ctx.rotate(angle)
+
+      // Kelopak utama navy & gold
+      ctx.fillStyle = i % 2 === 0 ? '#23364F' : '#655447'
+      ctx.beginPath()
+      ctx.moveTo(0, -220)
+      ctx.bezierCurveTo(60, -280, 50, -380, 0, -420)
+      ctx.bezierCurveTo(-50, -380, -60, -280, 0, -220)
+      ctx.fill()
+
+      // Tulang ornamen kuningan
+      ctx.strokeStyle = '#B2935D'
+      ctx.lineWidth = 4
+      ctx.beginPath()
+      ctx.moveTo(0, -230)
+      ctx.lineTo(0, -410)
+      ctx.stroke()
+
+      // Isen-isen batik (garis arsir halus)
+      ctx.strokeStyle = 'rgba(233, 225, 211, 0.45)'
+      ctx.lineWidth = 2
+      for (let k = 1; k <= 4; k++) {
+        const offset = k * 35
+        ctx.beginPath()
+        ctx.moveTo(0, -240 - offset)
+        ctx.lineTo(18, -255 - offset)
+        ctx.moveTo(0, -240 - offset)
+        ctx.lineTo(-18, -255 - offset)
+        ctx.stroke()
+      }
+
+      ctx.restore()
+    }
+
+    // 6. Cincin Tengah Brass & Travertine
+    ctx.fillStyle = '#D8CDBB'
+    ctx.beginPath()
+    ctx.arc(cx, cy, 210, 0, Math.PI * 2)
+    ctx.fill()
+
+    ctx.strokeStyle = '#B2935D'
+    ctx.lineWidth = 8
+    ctx.beginPath()
+    ctx.arc(cx, cy, 210, 0, Math.PI * 2)
+    ctx.stroke()
+
+    // 7. Bintang Surya 8 Arah (Compass Rose / Simbol Kemakmuran Nusantara)
+    for (let i = 0; i < 8; i++) {
+      const angle = (i / 8) * Math.PI * 2
+      ctx.save()
+      ctx.translate(cx, cy)
+      ctx.rotate(angle)
+
+      // Sisi terang emas
+      ctx.fillStyle = '#B2935D'
+      ctx.beginPath()
+      ctx.moveTo(0, 0)
+      ctx.lineTo(0, -190)
+      ctx.lineTo(24, -50)
+      ctx.closePath()
+      ctx.fill()
+
+      // Sisi gelap navy
+      ctx.fillStyle = '#23364F'
+      ctx.beginPath()
+      ctx.moveTo(0, 0)
+      ctx.lineTo(0, -190)
+      ctx.lineTo(-24, -50)
+      ctx.closePath()
+      ctx.fill()
+
+      ctx.restore()
+    }
+
+    // 8. Titik Pusat Inti Medallion
+    ctx.fillStyle = '#23364F'
+    ctx.beginPath()
+    ctx.arc(cx, cy, 45, 0, Math.PI * 2)
+    ctx.fill()
+
+    ctx.fillStyle = '#B2935D'
+    ctx.beginPath()
+    ctx.arc(cx, cy, 32, 0, Math.PI * 2)
+    ctx.fill()
+
+    ctx.fillStyle = '#fffaf2'
+    ctx.beginPath()
+    ctx.arc(cx, cy, 14, 0, Math.PI * 2)
+    ctx.fill()
+
+    return toTexture(canvas)
+  })
+}
+
 /** Ceremonial Carpet Runner: Deep Burgundy (#672C35) with Antique Gold (#B2935D) Border */
 export function createRedCarpetTexture(): THREE.CanvasTexture {
   return assetCache.getTexture('carpet-texture', () => {
@@ -1221,7 +1375,7 @@ export function createPrasastiTexture(): THREE.CanvasTexture {
     ctx.fill()
     ctx.fillStyle = '#ffd966'
     ctx.font = 'bold 36px Georgia, serif'
-    ctx.fillText('🏛️', 512, 172)
+    ctx.fillText('', 512, 172)
 
     // Sub-heading
     ctx.fillStyle = '#d4af37'
@@ -1540,7 +1694,7 @@ export function createStatueDataURL(): string {
 
   ctx.fillStyle = '#ffffff'
   ctx.font = '72px sans-serif'
-  ctx.fillText('🐎', 400, 445)
+  ctx.fillText('UNDIP', 400, 445)
 
   ctx.fillStyle = '#f3f4f6'
   ctx.font = '16px Georgia, serif'

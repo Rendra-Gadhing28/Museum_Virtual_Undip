@@ -14,30 +14,29 @@ export function GalleryLighting({ isMobile = false }: GalleryLightingProps) {
   return (
     <group>
       {/* Ambient & Hemisphere 3200-3400K Warm White */}
-      <ambientLight color="#fff8ee" intensity={1.1} />
-      <hemisphereLight args={['#fffaf2', museumPalette.floor, 0.78]} />
-      <directionalLight position={[4, 14, 6]} color="#fff7ea" intensity={0.62} />
+      <ambientLight color="#fff8ee" intensity={1.15} />
+      <hemisphereLight args={['#fffaf2', museumPalette.floor, 0.85]} />
+      <directionalLight position={[4, 16, 6]} color="#fff9ee" intensity={0.75} />
 
-      {/* Lampu Plafon Warm White di Sepanjang Aula Base Zone */}
+      {/* Lampu Plafon Warm White di Sepanjang Aula Base Zone & Pantulan Marmer */}
       {!isMobile && (
         <>
-          <pointLight position={[0, HALL.height - 0.8, 3.5]} color="#fff6e8" intensity={10.5} distance={24} decay={1.5} />
-          <pointLight position={[0, HALL.height - 0.8, -7.0]} color="#fff6e8" intensity={10.5} distance={24} decay={1.5} />
-          <pointLight position={[0, HALL.height - 0.8, -17.5]} color="#fff6e8" intensity={10.5} distance={24} decay={1.5} />
+          <pointLight position={[0, HALL.height - 1.2, 5.0]} color="#fff6e8" intensity={12.0} distance={26} decay={1.7} />
+          <pointLight position={[0, HALL.height - 1.2, -5.0]} color="#fff6e8" intensity={12.0} distance={26} decay={1.7} />
+          <pointLight position={[0, HALL.height - 1.2, -15.0]} color="#fff6e8" intensity={12.0} distance={26} decay={1.7} />
 
-          {/* Wall Spotlights (Warm White lembut untuk panel dinding kiri & kanan) */}
-          <pointLight position={[-4.8, 5.4, 2.0]} color="#fff7ec" intensity={3.2} distance={14} decay={1.7} />
-          <pointLight position={[-4.8, 5.4, -12.0]} color="#fff7ec" intensity={3.2} distance={14} decay={1.7} />
-          <pointLight position={[4.8, 5.4, 2.0]} color="#fff7ec" intensity={3.2} distance={14} decay={1.7} />
-          <pointLight position={[4.8, 5.4, -12.0]} color="#fff7ec" intensity={3.2} distance={14} decay={1.7} />
+          {/* Low Specular Reflection Lights yang menciptakan pendar kilap marmer mewah di lantai */}
+          <pointLight position={[-4.5, 0.8, -2.0]} color="#fff4dc" intensity={2.8} distance={8} decay={2.0} />
+          <pointLight position={[4.5, 0.8, -2.0]} color="#fff4dc" intensity={2.8} distance={8} decay={2.0} />
+          <pointLight position={[0, 0.8, 3.5]} color="#fff4dc" intensity={2.8} distance={8} decay={2.0} />
 
           {/* Soft Spotlight untuk Signage / Directory Board */}
           <pointLight
             position={[DIRECTORY_BOARD_POS[0] - 0.6, 3.1, DIRECTORY_BOARD_POS[2] + 0.6]}
             color="#fff7ea"
-            intensity={2.4}
-            distance={6}
-            decay={1.8}
+            intensity={2.2}
+            distance={5}
+            decay={2}
           />
         </>
       )}

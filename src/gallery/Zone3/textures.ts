@@ -64,7 +64,7 @@ export function createSteleInscriptionTexture(inscription: any): THREE.CanvasTex
     ctx.fillStyle = ZONE3_CONFIG.palette.goldBright
     ctx.font = 'bold 110px serif'
     ctx.textAlign = 'center'
-    ctx.fillText('🏛️', 768, 360)
+    ctx.fillText('', 768, 360)
 
     ctx.font = 'bold 36px "Times New Roman", serif'
     ctx.fillStyle = '#d4af37'
@@ -226,7 +226,7 @@ export function createHistoricalPhotoTexture(photo: any): THREE.CanvasTexture {
 
     ctx.fillStyle = '#e8dec8'
     ctx.font = 'bold 64px serif'
-    ctx.fillText('🏛️', 400, 220)
+    ctx.fillText('', 400, 220)
 
     ctx.fillStyle = '#f5efe0'
     ctx.font = 'bold 26px "Times New Roman", serif'
@@ -369,7 +369,7 @@ export function createRetroFilmTexture(): THREE.CanvasTexture {
     ctx.fillText('DOKUMENTASI DIES NATALIS 1960', 256, 170)
 
     ctx.font = 'bold 48px serif'
-    ctx.fillText('📽️', 256, 230)
+    ctx.fillText('', 256, 230)
 
     ctx.font = 'italic 16px Georgia, serif'
     ctx.fillText('"Undip Harus Menjadi Benteng Kebenaran Ilmiah"', 256, 280)

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import type { ThirdPersonControlsProps } from './types'
 import {
@@ -66,6 +67,8 @@ export function ThirdPersonControls({
   const drag = useRef<{ id: number; x: number; y: number } | null>(null)
   const isNearDirectoryRef = useRef(false)
   const disabledRef = useRef(disabled)
+  const onStairsRef = useRef(false)
+  const floorYRef = useRef(0)
 
   useEffect(() => {
     pos.current = [spawnPosition[0], 0, spawnPosition[2]]
@@ -112,7 +115,7 @@ export function ThirdPersonControls({
 
       if (event.code === 'Space') {
         event.preventDefault()
-        if (pos.current[1] <= 0.001 && !panelOpenRef.current) {
+        if (Math.abs(pos.current[1] - floorYRef.current) <= 0.12 && !panelOpenRef.current) {
           vy.current = JUMP_VELOCITY
         }
         return
@@ -239,6 +242,8 @@ export function ThirdPersonControls({
     pos.current = [START_POSITION[0], 0, START_POSITION[2]]
     charYaw.current = Math.PI
     vy.current = 0
+    onStairsRef.current = false
+    floorYRef.current = 0
     keys.current.clear()
     if (moveInputRef.current) {
       moveInputRef.current.forward = 0
@@ -253,6 +258,8 @@ export function ThirdPersonControls({
     if (!targetPosition) return
     pos.current = [targetPosition[0], 0, targetPosition[2]]
     vy.current = 0
+    onStairsRef.current = false
+    floorYRef.current = 0
     if (targetPosition[0] < -2) camYaw.current = -Math.PI / 2
     else if (targetPosition[0] > 2) camYaw.current = Math.PI / 2
     else camYaw.current = 0
@@ -312,14 +319,115 @@ export function ThirdPersonControls({
       animState.current = 'idle'
     }
 
-    // Jump & gravity physics
-    if (pos.current[1] > 0 || vy.current > 0) {
+    // 1. Tangga Imperial Melengkung & Dek Mezzanine Lantai 2 (Imperial Curved Stairs & Floor 2 Physics)
+    const px = pos.current[0]
+    const pz = pos.current[2]
+    const py = pos.current[1]
+
+    // Deteksi Masuk Tangga (Stair Entry Detection)
+    // A. Masuk dari Lantai 1 Dasar (Z: -6.05 s/d -6.9, mulut tangga |X|: 4.8 s/d 8.2)
+    if (!onStairsRef.current && pz <= -6.05 && pz >= -6.9 && Math.abs(Math.abs(px) - 6.5) <= 1.7) {
+      onStairsRef.current = true
+    }
+    // B. Masuk dari Lantai 2 Dek Mezzanine (Z: -14.25 s/d -13.7, mulut tangga |X|: 11.2 s/d 14.8, Y >= 3.6)
+    else if (!onStairsRef.current && pz >= -14.25 && pz <= -13.7 && Math.abs(Math.abs(px) - 13.0) <= 1.8 && py >= 3.6) {
+      onStairsRef.current = true
+    }
+    // C. Safety recovery: jika avatar sudah berada di ketinggian tangga (0.3 < Y < 4.8) di zona Z (-13.9 s/d -6.1)
+    else if (!onStairsRef.current && pz <= -6.1 && pz >= -13.95 && py > 0.35) {
+      const tCheck = Math.max(0, Math.min(1, (-6.16 - pz) / 7.74))
+      const sCheck = 0.5 - 0.5 * Math.cos(tCheck * Math.PI)
+      const centerCheck = 6.5 + 6.5 * sCheck
+      if (Math.abs(Math.abs(px) - centerCheck) <= 1.8) {
+        onStairsRef.current = true
+      }
+    }
+
+    let targetFloorY = 0
+
+    if (onStairsRef.current) {
+      // Keluar dari tangga ke lantai 1 di bawah (Z > -6.05)
+      if (pz > -6.05) {
+        onStairsRef.current = false
+        targetFloorY = 0
+      }
+      // Keluar dari tangga ke dek lantai 2 di atas (Z < -13.95)
+      else if (pz < -13.95) {
+        onStairsRef.current = false
+        targetFloorY = 4.94
+      } else {
+        // Berada di dalam tangga: hitung kurva S-Curve & ketinggian lereng
+        const t = Math.max(0, Math.min(1, (-6.16 - pz) / 7.74))
+        const s = 0.5 - 0.5 * Math.cos(t * Math.PI)
+        const curveCenter = 6.5 + 6.5 * s
+
+        // Pembatas Fisik Railing Tangga (Membimbing avatar mulus mengikuti lekukan kurva tanpa jatuh)
+        const halfUsable = 1.45
+        if (px >= 0) {
+          pos.current[0] = Math.max(curveCenter - halfUsable, Math.min(curveCenter + halfUsable, pos.current[0]))
+        } else {
+          pos.current[0] = Math.min(-curveCenter + halfUsable, Math.max(-curveCenter - halfUsable, pos.current[0]))
+        }
+
+        // Ketinggian tapak anak tangga yang presisi
+        targetFloorY = THREE.MathUtils.lerp(0.235, 4.94, t)
+        if (pz > -6.16) {
+          // Transisi mulus dari lantai dasar (0) ke anak tangga pertama (0.235)
+          targetFloorY = Math.max(0, ((-6.05 - pz) / 0.11) * 0.235)
+        }
+      }
+    }
+
+    // Jika berada di dek Mezzanine Lantai 2 (bukan di tangga)
+    if (!onStairsRef.current && pz <= -13.8 && py >= 2.8) {
+      targetFloorY = 4.94
+
+      // Pembatas Kaca Tempered Lantai 2 (Mencegah jatuh ke void lantai 1)
+      // Railing Tengah (X antara -11.3 s/d +11.3) dan Railing Ujung Luar (|X| > 14.7)
+      if (pos.current[2] > -14.1) {
+        if (Math.abs(pos.current[0]) <= 11.3 || Math.abs(pos.current[0]) >= 14.7) {
+          pos.current[2] = -14.1
+        }
+      }
+    }
+
+    // Jika berada di Lantai Dasar (Ground Floor)
+    if (!onStairsRef.current && targetFloorY === 0) {
+      // Mencegah pengunjung lantai dasar menembus dinding marmer samping tangga
+      if (pz <= -6.5 && pz >= -14.0) {
+        if (Math.abs(px) < 6.5 && Math.abs(px) > 4.75) {
+          pos.current[0] = Math.sign(px) * 4.75
+        }
+      }
+    }
+
+    floorYRef.current = targetFloorY
+
+    // Vertical Physics & Step Elevation (Bebas bug colision & jatuh)
+    if (onStairsRef.current) {
+      // Saat berjalan di tangga: kunci posisi vertikal langsung menempel rapat di atas permukaan anak tangga
+      if (vy.current <= 0) {
+        pos.current[1] = targetFloorY
+        vy.current = 0
+      } else {
+        vy.current -= GRAVITY * dt
+        pos.current[1] += vy.current * dt
+        if (pos.current[1] <= targetFloorY) {
+          pos.current[1] = targetFloorY
+          vy.current = 0
+        }
+      }
+    } else if (pos.current[1] > targetFloorY || vy.current > 0) {
+      // Saat melompat atau jatuh di lantai datar
       vy.current -= GRAVITY * dt
       pos.current[1] += vy.current * dt
-      if (pos.current[1] <= 0) {
-        pos.current[1] = 0
+      if (pos.current[1] <= targetFloorY) {
+        pos.current[1] = targetFloorY
         vy.current = 0
       }
+    } else {
+      // Mengikuti permukaan lantai dengan mulus
+      pos.current[1] = THREE.MathUtils.lerp(pos.current[1], targetFloorY, Math.min(1, dt * 20))
     }
 
     // Position third-person orbit camera behind character

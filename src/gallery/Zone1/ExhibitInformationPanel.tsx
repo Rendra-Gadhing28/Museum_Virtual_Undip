@@ -121,22 +121,22 @@ export function ExhibitInformationPanel({
             <span className="gr-badge">
               {isFounder &&
                 (founderData?.category === 'pendiri-utama'
-                  ? '🏛️ 5 Tokoh Pendiri Utama Undip'
-                  : '🎓 Direktorat & Rektorat Undip')}
-              {isHistory && `📜 ${historyData?.shortLabel || 'Arsip Sejarah'}`}
-              {isMap && '🗺️ Maket Arsitektural'}
-              {isPodium && '🎙️ Podium Kehormatan'}
-              {isPrasasti && '🏛️ Prasasti Bersejarah'}
+                  ? '5 Tokoh Pendiri Utama Undip'
+                  : 'Direktorat & Rektorat Undip')}
+              {isHistory && `${historyData?.shortLabel || 'Arsip Sejarah'}`}
+              {isMap && 'Maket Arsitektural'}
+              {isPodium && 'Podium Kehormatan'}
+              {isPrasasti && 'Prasasti Bersejarah'}
               {isZone2 &&
                 (selected.type === 'faculty'
-                  ? `🎓 ${zone2Data?.badge || 'Perkembangan Fakultas'}`
+                  ? `${zone2Data?.badge || 'Perkembangan Fakultas'}`
                   : selected.type === 'transformation'
-                  ? `🗺️ ${zone2Data?.badge || 'Transformasi Kampus'}`
+                  ? `${zone2Data?.badge || 'Transformasi Kampus'}`
                   : selected.type === 'research'
-                  ? `🔬 ${zone2Data?.badge || 'Pendidikan & Riset'}`
+                  ? `${zone2Data?.badge || 'Pendidikan & Riset'}`
                   : selected.type === 'achievement'
-                  ? `🏆 ${zone2Data?.badge || 'Prestasi & Kontribusi'}`
-                  : '🏛️ Monumen Kehormatan Zona 2')}
+                  ? `${zone2Data?.badge || 'Prestasi & Kontribusi'}`
+                  : 'Monumen Kehormatan Zona 2')}
             </span>
 
             <h2 className="gr-name">

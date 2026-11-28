@@ -46,7 +46,7 @@ export function Zone3OverlayUI({
             onClick={onToggleTour}
             title={isTouring ? 'Jeda Tur Kamera' : 'Jalankan Tur Sinematik Otomatis'}
           >
-            {isTouring ? '⏸️ Jeda Tur Sinematik' : '🎬 Mulai Tur Sinematik'}
+            {isTouring ? 'Jeda Tur Sinematik' : 'Mulai Tur Sinematik'}
           </button>
 
           {/* Tombol Reset Posisi */}
@@ -86,49 +86,49 @@ export function Zone3OverlayUI({
                 className="z3-wf-btn"
                 onClick={() => onTeleport('prasasti')}
               >
-                🏛️ Plaza Prasasti Monumental (Pusat Belakang)
+                Plaza Prasasti Monumental (Pusat Belakang)
               </button>
               <button
                 type="button"
                 className="z3-wf-btn"
                 onClick={() => onTeleport('photos')}
               >
-                📷 Galeri 28 Foto Sejarah (Dinding Belakang)
+                Galeri 28 Foto Sejarah (Dinding Belakang)
               </button>
               <button
                 type="button"
                 className="z3-wf-btn"
                 onClick={() => onTeleport('artifacts')}
               >
-                🎓 Sayap Artefak Akademik (Barat)
+                Sayap Artefak Akademik (Barat)
               </button>
               <button
                 type="button"
                 className="z3-wf-btn"
                 onClick={() => onTeleport('legacy')}
               >
-                🏅 Hall of Legacy: Tokoh Perintis (Barat)
+                Hall of Legacy: Tokoh Perintis (Barat)
               </button>
               <button
                 type="button"
                 className="z3-wf-btn"
                 onClick={() => onTeleport('documents')}
               >
-                📜 Sayap Dokumen Piagam (Timur)
+                Sayap Dokumen Piagam (Timur)
               </button>
               <button
                 type="button"
                 className="z3-wf-btn"
                 onClick={() => onTeleport('cinema')}
               >
-                📽️ Paviliun Audiovisual & Cinema (Timur)
+                Paviliun Audiovisual & Cinema (Timur)
               </button>
               <button
                 type="button"
                 className="z3-wf-btn z3-wf-btn-subtle"
                 onClick={() => onTeleport('entrance')}
               >
-                🚪 Pintu Masuk Zona 3
+                Pintu Masuk Zona 3
               </button>
             </div>
           </div>
@@ -140,22 +140,22 @@ export function Zone3OverlayUI({
         <div className="z3-subnav-bar">
           <div className="z3-nav-pills">
             <button type="button" className="z3-pill-btn" onClick={() => onTeleport('prasasti')}>
-              🏛️ Prasasti Peresmian
+              Prasasti Peresmian
             </button>
             <button type="button" className="z3-pill-btn" onClick={() => onTeleport('photos')}>
-              📷 28 Foto Sejarah
+              28 Foto Sejarah
             </button>
             <button type="button" className="z3-pill-btn" onClick={() => onTeleport('artifacts')}>
-              🎓 Artefak Akademik
+              Artefak Akademik
             </button>
             <button type="button" className="z3-pill-btn" onClick={() => onTeleport('legacy')}>
-              🏅 Tokoh Perintis
+              Tokoh Perintis
             </button>
             <button type="button" className="z3-pill-btn" onClick={() => onTeleport('documents')}>
-              📜 Dokumen Piagam
+              Dokumen Piagam
             </button>
             <button type="button" className="z3-pill-btn" onClick={() => onTeleport('cinema')}>
-              📽️ Paviliun Cinema
+              Paviliun Cinema
             </button>
           </div>
 

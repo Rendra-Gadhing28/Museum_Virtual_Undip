@@ -39,7 +39,7 @@ export function GraphicsDebugHUD() {
         onClick={() => setIsOpen(true)}
         title="Buka Graphics Diagnostic HUD (Shortcut 'G')"
       >
-        <span>⚡ GFX HUD</span>
+        <span>GFX HUD</span>
         <span className={`gfx-badge mode-${metrics.mode.toLowerCase()}`}>{metrics.mode}</span>
       </button>
     )
@@ -158,7 +158,7 @@ export function GraphicsDebugHUD() {
 
           <div className="gfx-hud-footer">
             <small>
-              💡 <em>Klik <strong>EXAGGERATE 3X</strong> untuk pembuktian visual seketika. Tekan <strong>'G'</strong> untuk sembunyikan.</em>
+              <em>Klik <strong>EXAGGERATE 3X</strong> untuk pembuktian visual seketika. Tekan <strong>'G'</strong> untuk sembunyikan.</em>
             </small>
           </div>
         </div>

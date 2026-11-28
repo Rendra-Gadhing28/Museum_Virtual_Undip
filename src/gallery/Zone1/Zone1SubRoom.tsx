@@ -7,7 +7,11 @@ import { FounderCard } from './FoundersWing'
 import { SalonItem } from './HistoryArchivesWing'
 import { PortalDoor } from './PortalDoor'
 import { CeilingRoof } from './CeilingRoof'
-import { DiponegoroStatue, UndipLogoMonument } from './DiponegoroStatue'
+import { GalleryRoom01 } from './GalleryRoom01'
+import { GalleryRoom02 } from './GalleryRoom02'
+import { GalleryRoom03 } from './GalleryRoom03'
+import { GalleryRoom04 } from './GalleryRoom04'
+import { GalleryRoom05 } from './GalleryRoom05'
 import {
   computeSubRoomDimensions,
   getRoomExhibits,
@@ -290,8 +294,85 @@ export function Zone1SubRoom({
   onExitRoom,
 }: Zone1SubRoomProps) {
   const { founders, histories } = useMemo(() => getRoomExhibits(portal), [portal])
+
+  if (portal.id === 'yayasan-pendiri') {
+    return (
+      <GalleryRoom01
+        founders={founders}
+        histories={histories}
+        selectedFounderId={selectedFounderId}
+        selectedHistoryId={selectedHistoryId}
+        hoveredId={hoveredId}
+        isMobile={isMobile}
+        onSelectFounder={onSelectFounder}
+        onSelectHistory={onSelectHistory}
+        onHover={onHover}
+        onExitRoom={onExitRoom}
+      />
+    )
+  }
+
+  if (portal.id === 'penegerian-soekarno') {
+    return (
+      <GalleryRoom02
+        histories={histories}
+        selectedHistoryId={selectedHistoryId}
+        hoveredId={hoveredId}
+        isMobile={isMobile}
+        onSelectHistory={onSelectHistory}
+        onHover={onHover}
+        onExitRoom={onExitRoom}
+      />
+    )
+  }
+
+  if (portal.id === 'rektorat-pimpinan') {
+    return (
+      <GalleryRoom03
+        founders={founders}
+        selectedFounderId={selectedFounderId}
+        hoveredId={hoveredId}
+        isMobile={isMobile}
+        onSelectFounder={onSelectFounder}
+        onHover={onHover}
+        onExitRoom={onExitRoom}
+      />
+    )
+  }
+
+  if (portal.id === 'pembangunan-kampus') {
+    return (
+      <GalleryRoom04
+        histories={histories}
+        selectedHistoryId={selectedHistoryId}
+        hoveredId={hoveredId}
+        isMobile={isMobile}
+        onSelectHistory={onSelectHistory}
+        onHover={onHover}
+        onExitRoom={onExitRoom}
+      />
+    )
+  }
+
+  if (portal.id === 'muladi-dome') {
+    return (
+      <GalleryRoom05
+        histories={histories}
+        selectedHistoryId={selectedHistoryId}
+        hoveredId={hoveredId}
+        isMobile={isMobile}
+        onSelectHistory={onSelectHistory}
+        onHover={onHover}
+        onExitRoom={onExitRoom}
+      />
+    )
+  }
+
   const totalItems = founders.length + histories.length
-  const dims = useMemo(() => computeSubRoomDimensions(totalItems), [totalItems])
+  const dims = useMemo(
+    () => computeSubRoomDimensions(totalItems, portal.id),
+    [totalItems, portal.id],
+  )
 
   const floorTexture = useMemo(() => {
     const tex = createFloorTexture()
@@ -582,45 +663,6 @@ export function Zone1SubRoom({
         )
       })}
 
-      {/* Monumen Pahlawan Nasional Pangeran Diponegoro sebagai Pusat Ruang 02 */}
-      {portal.id === 'penegerian-soekarno' && (
-        <group>
-          {!isMobile && (
-            <spotLight
-              position={[0, dims.height - 0.5, dims.zBack + 4.8]}
-              target-position={[0, 1.8, dims.zBack + 3.4]}
-              color="#fff6e0"
-              intensity={14}
-              angle={0.65}
-              penumbra={0.6}
-              decay={1.6}
-              distance={16}
-            />
-          )}
-          <DiponegoroStatue
-            position={[0, 0, dims.zBack + 3.4]}
-            rotationY={0}
-            scale={0.92}
-            isSelected={selectedHistoryId === 'artwork-diponegoro-center'}
-            isHovered={hoveredId === 'subroom-statue'}
-            onSelect={() => {
-              const dipo = histories.find((h) => h.id === 'artwork-diponegoro-center')
-              if (dipo) onSelectHistory(dipo)
-            }}
-            onHover={onHover}
-          />
-        </group>
-      )}
-
-      {/* Monumen Tipografi UNDIP Emas di Ruang 03 (Galeri Rektorat) */}
-      {portal.id === 'rektorat-pimpinan' && (
-        <group>
-          <UndipLogoMonument
-            position={[0, 0, dims.zBack + 2.8]}
-            rotationY={0}
-          />
-        </group>
-      )}
     </group>
   )
 }

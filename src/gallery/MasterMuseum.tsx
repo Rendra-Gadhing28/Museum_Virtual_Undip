@@ -8,9 +8,9 @@ const Zone2 = lazy(() => import('./Zone2/Zone2').then((m) => ({ default: m.Zone2
 const Zone3 = lazy(() => import('./Zone3/Zone3').then((m) => ({ default: m.Zone3 })))
 
 const ZONES_DATA: { id: ZoneId; title: string; subtitle: string; icon: string }[] = [
-  { id: 'zone1', title: 'Zona 1', subtitle: 'Sejarah & Rektorat', icon: '🏛️' },
-  { id: 'zone2', title: 'Zona 2', subtitle: 'Riset & Transformasi', icon: '🔬' },
-  { id: 'zone3', title: 'Zona 3', subtitle: 'Inovasi & Masa Depan', icon: '🚀' },
+  { id: 'zone1', title: 'Zona 1', subtitle: 'Sejarah & Rektorat', icon: '' },
+  { id: 'zone2', title: 'Zona 2', subtitle: 'Riset & Transformasi', icon: '' },
+  { id: 'zone3', title: 'Zona 3', subtitle: 'Inovasi & Masa Depan', icon: '' },
 ]
 
 /**

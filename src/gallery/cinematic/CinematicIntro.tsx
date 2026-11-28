@@ -69,13 +69,12 @@ export function CinematicIntro({
     }
   }, [active])
 
-  // Saat fase judul & narasi (belum dolly), posisikan kamera menghadap objek utama (Podium & Prasasti)
-  // sehingga latar belakang yang di-blur dan digelapkan membingkai objek utama museum.
+  // Saat fase judul & narasi (belum dolly), posisikan kamera menghadap tepat ke Papan Logo UNDIP di Lantai 2 Mezzanine (Y=9.90, Z=-21.88)
   useEffect(() => {
     if (!isIntroOpen || active) return
     const persp = camera as THREE.PerspectiveCamera
-    persp.position.set(0, 2.7, -11.5)
-    persp.lookAt(0, 1.9, -18.2)
+    persp.position.set(0, 9.6, -12.0)
+    persp.lookAt(0, 9.9, -21.88)
     persp.updateProjectionMatrix()
   }, [isIntroOpen, active, camera])
 

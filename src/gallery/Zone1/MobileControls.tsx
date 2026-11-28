@@ -63,16 +63,16 @@ export function MobileControls({
       {/* Quick Section Pills Bar */}
       <div className="gr-mobile-sections">
         <button type="button" onClick={() => onTeleport('founders')}>
-          👥 Pendiri & Rektorat
+          Pendiri & Rektorat
         </button>
         <button type="button" onClick={() => onTeleport('podium')}>
-          🎙️ Podium
+          Podium
         </button>
         <button type="button" onClick={() => onTeleport('history')}>
-          📜 Sejarah
+          Sejarah
         </button>
         <button type="button" onClick={() => onTeleport('prasasti')}>
-          🏛️ Prasasti
+          Prasasti
         </button>
       </div>
 

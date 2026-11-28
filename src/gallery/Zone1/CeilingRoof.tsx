@@ -114,7 +114,12 @@ export function CeilingRoof({
     }
   }, [])
 
-  const bayWidth = Math.min(halfW * 2 - 1.2, 7.2)
+  const dlGeoms = useMemo(() => ({
+    ring: new THREE.RingGeometry(0.1, 0.14, 12),
+    circle: new THREE.CircleGeometry(0.1, 12),
+  }), [])
+
+  const bayWidth = Math.min(halfW * 2 - 2.4, 14.0)
 
   // Dynamic coffer bays down the length of the hall
   const bays = useMemo(() => {
@@ -187,7 +192,6 @@ export function CeilingRoof({
               <mesh
                 key={`t1-side-${s}`}
                 position={[s * (bayWidth / 2 + 0.35), -0.16, 0]}
-                castShadow
               >
                 <boxGeometry args={[0.7, 0.32, bayLength + 1.4]} />
                 <primitive object={materials.pvcDropTier} attach="material" />
@@ -198,7 +202,6 @@ export function CeilingRoof({
               <mesh
                 key={`t1-end-${s}`}
                 position={[0, -0.16, s * (bayLength / 2 + 0.35)]}
-                castShadow
               >
                 <boxGeometry args={[bayWidth + 1.4, 0.32, 0.7]} />
                 <primitive object={materials.pvcDropTier} attach="material" />
@@ -277,13 +280,11 @@ export function CeilingRoof({
               [-bayLength / 3, 0, bayLength / 3].map((dz, zi) => (
                 <group key={`dl-${di}-${zi}`} position={[dx, -0.25, dz]}>
                   {/* Downlight Gold Bezel */}
-                  <mesh rotation={[Math.PI / 2, 0, 0]}>
-                    <ringGeometry args={[0.1, 0.14, 18]} />
+                  <mesh rotation={[Math.PI / 2, 0, 0]} geometry={dlGeoms.ring}>
                     <primitive object={materials.goldTrim} attach="material" />
                   </mesh>
                   {/* Downlight Bulb */}
-                  <mesh rotation={[Math.PI / 2, 0, 0]}>
-                    <circleGeometry args={[0.1, 18]} />
+                  <mesh rotation={[Math.PI / 2, 0, 0]} geometry={dlGeoms.circle}>
                     <primitive object={materials.downlightBulb} attach="material" />
                   </mesh>
                 </group>

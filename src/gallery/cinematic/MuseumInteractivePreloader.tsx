@@ -111,15 +111,17 @@ export function MuseumInteractivePreloader({
 
       <div className="heritage-status-step">{statusStep}</div>
 
-      {canEnter && (
-        <button
-          type="button"
-          className="heritage-enter-btn"
-          onClick={handleEnterMuseum}
-        >
-          Masuk Museum 🏛️
-        </button>
-      )}
+      <div className="heritage-enter-slot">
+        {canEnter && (
+          <button
+            type="button"
+            className="heritage-enter-btn"
+            onClick={handleEnterMuseum}
+          >
+            Masuk Museum
+          </button>
+        )}
+      </div>
     </div>
   )
 }

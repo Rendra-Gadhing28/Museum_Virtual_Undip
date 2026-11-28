@@ -150,31 +150,61 @@ export function FounderCard({
 
       {/* 7. Gallery Sconce Downlight above the Portrait (Lampu Sconce Menyala Terang) */}
       <group position={[0, frameHeight / 2 + 0.18, 0.1]}>
-        {/* Brass Mounting Arm */}
-        <mesh position={[0, 0, -0.06]} rotation={[0.4, 0, 0]}>
-          <cylinderGeometry args={[0.012, 0.012, 0.22, 12]} />
-          <meshStandardMaterial color="#c5a059" metalness={0.9} roughness={0.2} />
+        {/* Brass Mounting Base Plate onto Wall */}
+        <mesh position={[0, -0.04, -0.1]} rotation={[0, 0, 0]}>
+          <boxGeometry args={[0.1, 0.06, 0.02]} />
+          <meshStandardMaterial color="#c5a059" metalness={0.9} roughness={0.25} />
         </mesh>
-        {/* Lamp Fixture Hood (Brushed Brass & Dark Finish) */}
-        <mesh position={[0, -0.03, 0.05]} rotation={[-0.45, 0, 0]}>
-          <boxGeometry args={[0.38, 0.07, 0.12]} />
-          <meshStandardMaterial color="#2d2217" roughness={0.4} metalness={0.7} />
+        {/* Curved / Angled Brass Support Arms (Dual Rods) */}
+        {[-0.08, 0.08].map((armX, armIdx) => (
+          <mesh key={armIdx} position={[armX, 0.02, -0.04]} rotation={[0.45, 0, 0]}>
+            <cylinderGeometry args={[0.008, 0.008, 0.22, 12]} />
+            <meshStandardMaterial color="#d4af37" metalness={0.92} roughness={0.2} />
+          </mesh>
+        ))}
+        {/* Horizontal Brass Tubular / Hood Lamp Body */}
+        <mesh position={[0, 0.07, 0.05]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.038, 0.038, frameWidth * 0.58, 24]} />
+          <meshStandardMaterial color="#d4af37" metalness={0.92} roughness={0.2} />
         </mesh>
-        {/* Brass Trim Accent on Lamp Hood */}
-        <mesh position={[0, -0.01, 0.05]} rotation={[-0.45, 0, 0]}>
-          <boxGeometry args={[0.4, 0.015, 0.13]} />
-          <meshStandardMaterial color="#d4af37" metalness={0.9} roughness={0.2} />
-        </mesh>
-        {/* VISIBLY ON: Luminous Soft Warm Ivory LED Lens Facing Down & Front */}
-        <mesh position={[0, -0.058, 0.06]} rotation={[-0.45, 0, 0]}>
-          <boxGeometry args={[0.34, 0.035, 0.09]} />
+        {/* End Caps Kuningan Berkilau */}
+        {[-frameWidth * 0.29, frameWidth * 0.29].map((capX, capIdx) => (
+          <mesh key={capIdx} position={[capX, 0.07, 0.05]} rotation={[0, 0, Math.PI / 2]}>
+            <cylinderGeometry args={[0.042, 0.042, 0.02, 24]} />
+            <meshStandardMaterial color="#f0d57e" metalness={0.95} roughness={0.15} />
+          </mesh>
+        ))}
+        {/* VISIBLY ON: Luminous Soft Warm Gold / Ivory LED Emitter Facing Downward onto Painting */}
+        <mesh position={[0, 0.045, 0.05]} rotation={[-0.5, 0, 0]}>
+          <planeGeometry args={[frameWidth * 0.52, 0.04]} />
           <meshStandardMaterial
             color="#ffffff"
-            emissive="#fff7e8"
-            emissiveIntensity={5.0}
+            emissive="#fff7db"
+            emissiveIntensity={6.0}
             roughness={0.1}
           />
         </mesh>
+        {/* Soft Warm Wall-Grazing Downlight Sheen */}
+        <mesh position={[0, -0.05, 0.02]} rotation={[-0.8, 0, 0]}>
+          <planeGeometry args={[frameWidth * 0.65, 0.2]} />
+          <meshBasicMaterial
+            color="#ffecba"
+            transparent
+            opacity={0.35}
+            blending={THREE.AdditiveBlending}
+            depthWrite={false}
+          />
+        </mesh>
+        {/* Realtime Pointlight Spotlight Down onto Canvas */}
+        {!isMobile && (
+          <pointLight
+            position={[0, 0.02, 0.18]}
+            color="#ffecba"
+            intensity={isSelected ? 4.5 : isHovered ? 3.8 : 2.6}
+            distance={4.2}
+            decay={1.8}
+          />
+        )}
       </group>
 
       {/* 8. Hover Highlight Underneath */}

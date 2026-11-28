@@ -13,7 +13,6 @@ import {
 import { GalleryEnvironment } from './GalleryEnvironment'
 import { GalleryLighting } from './GalleryLighting'
 import { CeremonialPodium } from './CeremonialPodium'
-import { DiponegoroStatue, UndipLogoMonument } from './DiponegoroStatue'
 import { ThirdPersonControls } from './ThirdPersonControls'
 import { DesktopHints } from './DesktopHints'
 import { MobileControls } from './MobileControls'
@@ -232,6 +231,7 @@ export function Zone1({
       },
     })
   }, [])
+  void handleSelectStatue
 
   const handleHover = useCallback((id: string | null) => {
     if (id && id !== hoveredRef.current) {
@@ -298,7 +298,7 @@ export function Zone1({
   const activeRoomDims = useMemo(() => {
     if (!activePortal) return null
     const { founders, histories } = getRoomExhibits(activePortal)
-    return computeSubRoomDimensions(founders.length + histories.length)
+    return computeSubRoomDimensions(founders.length + histories.length, activePortal.id)
   }, [activePortal])
 
   const handleEnterRoom = useCallback((roomId: Zone1RoomId) => {
@@ -308,7 +308,7 @@ export function Zone1({
     museumAudio.unlock()
     museumAudio.playDoorTransition()
     const { founders, histories } = getRoomExhibits(portal)
-    const dims = computeSubRoomDimensions(founders.length + histories.length)
+    const dims = computeSubRoomDimensions(founders.length + histories.length, portal.id)
     setSelectedExhibit(null)
     setHoveredId(null)
     setActiveRoomId(roomId)
@@ -424,31 +424,15 @@ export function Zone1({
                 onHover={handleHover}
               />
 
-              {/* Center End: Ceremonial Dais & Podium with Inscription Plaque (Prasasti) */}
+              {/* Dinding Monumen Logo UNDIP dengan Lapisan Kayu Futuristik, Garis LED & Bendera */}
               <CeremonialPodium
                 position={PODIUM_POS}
                 isSelected={selectedExhibit?.type === 'podium'}
                 isHovered={hoveredId === 'podium'}
                 isMobile={isMobile}
-                onSelect={handleSelectPodium}
-                onSelectPrasasti={handleSelectPrasasti}
+                onSelect={() => {}}
+                onSelectPrasasti={() => {}}
                 onHover={handleHover}
-              />
-
-              {/* Monumental Diponegoro Statue on Grand Hall Left Plaza */}
-              <DiponegoroStatue
-                position={[-4.5, 0, -21.0]}
-                rotationY={Math.PI / 4}
-                isSelected={selectedExhibit?.type === 'monument'}
-                isHovered={hoveredId === 'statue-base'}
-                onSelect={() => handleSelectStatue('statue-base')}
-                onHover={handleHover}
-              />
-
-              {/* Monumental UNDIP Typography centered at Grand Hall Back */}
-              <UndipLogoMonument
-                position={[0, 0, -21.0]}
-                rotationY={0}
               />
 
               <CinematicIntro

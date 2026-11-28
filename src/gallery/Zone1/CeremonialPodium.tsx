@@ -10,7 +10,7 @@ import {
 } from './textures'
 import { HALL } from './layout'
 import { assetCache } from './cache'
-import { createProceduralNormalMap, MaterialLibrary, QUALITY } from '../graphics'
+import { MaterialLibrary } from '../graphics'
 
 /**
  * Modern Architectural LED Ring Pendant Chandelier
@@ -76,13 +76,13 @@ function LedRingPendantChandelier({
       {/* Outer Ring Torus (Diameter ~2.6m) */}
       <group position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]}>
         {/* Outer Brushed Brass Casing */}
-        <mesh castShadow>
-          <torusGeometry args={[1.3, 0.026, 16, 48]} />
+        <mesh>
+          <torusGeometry args={[1.3, 0.026, 12, 32]} />
           <meshStandardMaterial color="#c5a059" metalness={0.88} roughness={0.22} />
         </mesh>
         {/* Outer Warm Cream LED Diffuser Ring */}
         <mesh position={[0, 0, 0.012]}>
-          <torusGeometry args={[1.3, 0.016, 16, 48]} />
+          <torusGeometry args={[1.3, 0.016, 12, 32]} />
           <meshStandardMaterial
             color="#fffdf8"
             emissive="#fff6e8"
@@ -95,13 +95,13 @@ function LedRingPendantChandelier({
       {/* Inner Ring Torus (Diameter ~1.6m) */}
       <group position={[0, -0.12, 0]} rotation={[Math.PI / 2, 0, 0]}>
         {/* Inner Brushed Brass Casing */}
-        <mesh castShadow>
-          <torusGeometry args={[0.8, 0.022, 16, 40]} />
+        <mesh>
+          <torusGeometry args={[0.8, 0.022, 12, 28]} />
           <meshStandardMaterial color="#c5a059" metalness={0.88} roughness={0.22} />
         </mesh>
         {/* Inner Warm Cream LED Diffuser Ring */}
         <mesh position={[0, 0, 0.012]}>
-          <torusGeometry args={[0.8, 0.014, 16, 40]} />
+          <torusGeometry args={[0.8, 0.014, 12, 28]} />
           <meshStandardMaterial
             color="#fffdf8"
             emissive="#fff6e8"
@@ -149,23 +149,12 @@ function StaticCurvedFlag({
     return g
   }, [width, height])
 
-  const fabricNormal = useMemo(() => {
-    const n = createProceduralNormalMap('fabric', 512, 512)
-    n.repeat.set(3, 2)
-    return n
-  }, [])
-
   return (
-    <mesh position={position} geometry={geom} castShadow>
-      <meshPhysicalMaterial
+    <mesh position={position} geometry={geom}>
+      <meshStandardMaterial
         map={texture}
-        normalMap={QUALITY.current.physicalMaterials ? fabricNormal : null}
-        normalScale={new THREE.Vector2(0.4, 0.4)}
         roughness={0.72}
         metalness={0.04}
-        sheen={QUALITY.current.sheen ? 0.75 : 0}
-        sheenColor="#ffffff"
-        sheenRoughness={0.45}
         side={THREE.DoubleSide}
       />
     </mesh>
@@ -376,12 +365,12 @@ export function CeremonialPodium({
           <group key={`recessed-can-${ri}`} position={[rx, height / 2 - 0.14, 0.35]}>
             {/* Outer Canister Bezel Ring */}
             <mesh rotation={[Math.PI / 2, 0, 0]}>
-              <cylinderGeometry args={[0.18, 0.18, 0.06, 24]} />
+              <cylinderGeometry args={[0.18, 0.18, 0.06, 14]} />
               <primitive object={materials.goldTrim} attach="material" />
             </mesh>
             {/* Frosted Warm Cream LED Diode Lens */}
             <mesh position={[0, -0.015, 0]} rotation={[Math.PI / 2, 0, 0]}>
-              <cylinderGeometry args={[0.13, 0.13, 0.02, 24]} />
+              <cylinderGeometry args={[0.13, 0.13, 0.02, 14]} />
               <meshStandardMaterial
                 color="#fffcf5"
                 emissive="#ffedd0"
@@ -425,9 +414,9 @@ export function CeremonialPodium({
 
         {/* ============================================================
             LAYER 2: FUTURISTIC ARCHITECTURAL TIMBER & WOOD SLAT FEATURE
-            (Overlays Layer 1 in the Center, wide horizontal rectangle: 9.0m x 5.2m)
+            (Diposisikan di Mezzanine Lantai 2: Y = 2.8m di atas relasi dinding)
             ============================================================ */}
-        <group position={[0, 0.05, 0.07]}>
+        <group position={[0, 2.65, 0.07]}>
           {/* Main Architectural Wood Backing Frame (Rectangle: 9.0m x 5.2m) */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[9.0, 5.2, 0.06]} />
@@ -500,13 +489,43 @@ export function CeremonialPodium({
             <meshStandardMaterial color="#ffcc66" emissive="#ff8c1a" emissiveIntensity={5.2} roughness={0.2} />
           </mesh>
 
-          {/* Pendar Soft Light Warm di Tengah Papan & Cahaya Oren Fajar Emas */}
+          {/* ============================================================
+              LAMPU SOROT GALERI MENYALA TERANG DI ATAS PAPAN UNDIP
+              ============================================================ */}
+          {[-2.8, 0, 2.8].map((lx, li) => (
+            <group key={`board-spot-${li}`} position={[lx, 2.85, 0.25]}>
+              {/* Lengan Penyangga Lampu Sorot */}
+              <mesh position={[0, 0.05, -0.15]} rotation={[0.4, 0, 0]}>
+                <cylinderGeometry args={[0.02, 0.02, 0.35, 10]} />
+                <primitive object={materials.goldTrim} attach="material" />
+              </mesh>
+              {/* Rumah Lampu Sorot Emas */}
+              <mesh position={[0, 0, 0.05]} rotation={[0.6, 0, 0]}>
+                <cylinderGeometry args={[0.12, 0.16, 0.28, 16]} />
+                <primitive object={materials.goldBright} attach="material" />
+              </mesh>
+              {/* Lensa LED Terang Menyala */}
+              <mesh position={[0, -0.1, 0.14]} rotation={[0.6, 0, 0]}>
+                <circleGeometry args={[0.13, 16]} />
+                <meshStandardMaterial
+                  color="#ffffff"
+                  emissive="#fff2cf"
+                  emissiveIntensity={6.5}
+                />
+              </mesh>
+            </group>
+          ))}
+          {/* Sumber Cahaya Real-time Sorot Papan Undip */}
           {!isMobile && (
             <>
-              <pointLight position={[0, 0.35, 2.2]} color="#ffdfa8" intensity={9} distance={8.5} decay={1.7} />
-              <pointLight position={[-2.8, 0, 1.0]} color="#ff9429" intensity={6.5} distance={7.5} decay={1.7} />
-              <pointLight position={[2.8, 0, 1.0]} color="#ff9429" intensity={6.5} distance={7.5} decay={1.7} />
+              <pointLight position={[-2.2, 2.6, 1.6]} color="#ffefc8" intensity={6.5} distance={10} decay={1.6} />
+              <pointLight position={[2.2, 2.6, 1.6]} color="#ffefc8" intensity={6.5} distance={10} decay={1.6} />
             </>
+          )}
+
+          {/* Pendar Soft Light Warm di Tengah Papan & Cahaya Oren Fajar Emas */}
+          {!isMobile && (
+            <pointLight position={[0, 0.35, 1.8]} color="#ffdfa8" intensity={7.5} distance={8} decay={2} />
           )}
 
           {/* ============================================================

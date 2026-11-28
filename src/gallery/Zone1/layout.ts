@@ -10,19 +10,25 @@ import { UNDIP_FOUNDERS } from './data/exhibits'
  */
 
 export const HALL = {
-  halfWidth: 7.6, // 15.2m wide interior
-  height: 8.8,    // 8.8m elevated grand monumental ceiling height (as requested)
-  zFront: 12.0,   // Entrance wall
-  zBack: -26.0,   // Back wall
+  halfWidth: 18.0, // 36.0m ultra-wide grand palatial atrium
+  height: 14.5,    // 14.5m grand towering 2-story ceiling height
+  zFront: 16.0,    // Entrance wall
+  zBack: -22.0,    // Back monumental wall
 } as const
 
 export const HALL_LENGTH = HALL.zFront - HALL.zBack // 38.0m
-export const HALL_CENTER_Z = (HALL.zFront + HALL.zBack) / 2 // -7.0m
+export const HALL_CENTER_Z = (HALL.zFront + HALL.zBack) / 2 // -3.0m
 
 export const EYE_HEIGHT = 1.65
-export const START_POSITION: [number, number, number] = [0, EYE_HEIGHT, 9.5]
-export const WALK_SPEED = 3.6
-export const RUN_SPEED = 7.2 // 2x speed sprint with Shift key
+export const START_POSITION: [number, number, number] = [0, EYE_HEIGHT, 13.0]
+export const WALK_SPEED = 3.8
+export const RUN_SPEED = 7.6 // 2x speed sprint with Shift key
+
+/** Mezzanine & Grand Staircase Geometry */
+export const MEZZANINE_HEIGHT = 4.8
+export const MEZZANINE_Z_BRIDGE = -14.0
+export const MEZZANINE_Z_BACK = -21.8
+export const FEATURE_BOARD_POS: [number, number, number] = [0, 8.2, -21.6]
 
 /** Navigation Clamping Limits */
 export const BOUNDS = {
@@ -34,9 +40,9 @@ export const BOUNDS = {
 
 /** Red Carpet */
 export const RED_CARPET = {
-  width: 3.2,
+  width: 3.6,
   zStart: HALL.zFront,
-  zEnd: HALL.zBack,
+  zEnd: MEZZANINE_Z_BRIDGE + 1.0,
   y: 0.02,
 } as const
 
@@ -44,28 +50,28 @@ export const RED_CARPET = {
 export const FOUNDERS_WALL_X = -(HALL.halfWidth - 0.16)
 export const FOUNDERS_COUNT = UNDIP_FOUNDERS.length // 13
 export const FOUNDERS_START_Z = 8.5
-export const FOUNDERS_SPACING = 2.3
+export const FOUNDERS_SPACING = 2.4
 export const FOUNDERS_FRAME_Y = 2.8
 
 /** Right Side (Section 2: History & Archives Wing) */
 export const HISTORY_WALL_X = HALL.halfWidth - 0.16
 export const HISTORY_START_Z = 7.5
-export const HISTORY_SPACING = 5.0
+export const HISTORY_SPACING = 5.2
 export const HISTORY_PANEL_Y = 2.8
 
 /** Center Exhibits & Monuments */
-export const MINIATURE_MAP_POS: [number, number, number] = [0, 0, -3.5]
-export const PODIUM_POS: [number, number, number] = [0, 0, -18.2]
-export const DIRECTORY_BOARD_POS: [number, number, number] = [3.8, 0, 8.5]
-export const DIRECTORY_PROXIMITY_RADIUS = 3.2
+export const MINIATURE_MAP_POS: [number, number, number] = [0, 0, 0.5]
+export const PODIUM_POS: [number, number, number] = [0, 0, -8.0]
+export const DIRECTORY_BOARD_POS: [number, number, number] = [4.5, 0, 9.5]
+export const DIRECTORY_PROXIMITY_RADIUS = 3.5
 /** Section Teleport Targets for quick navigation */
 export const SECTION_TARGETS = {
   entrance: [0, EYE_HEIGHT, 9.0] as [number, number, number],
-  founders: [-4.5, EYE_HEIGHT, 0.0] as [number, number, number],
-  map: [0, EYE_HEIGHT, 0.5] as [number, number, number],
-  podium: [0, EYE_HEIGHT, -14.5] as [number, number, number],
-  history: [4.5, EYE_HEIGHT, 0.0] as [number, number, number],
-  prasasti: [-2.6, EYE_HEIGHT, -15.5] as [number, number, number],
+  founders: [-4.5, EYE_HEIGHT, 3.0] as [number, number, number],
+  map: [0, EYE_HEIGHT, -5.5] as [number, number, number],
+  podium: [0, EYE_HEIGHT, -20.0] as [number, number, number],
+  history: [4.5, EYE_HEIGHT, 3.0] as [number, number, number],
+  prasasti: [0, EYE_HEIGHT, -20.0] as [number, number, number],
 }
 
 /** Ceiling Alternating Gaps Configuration */

@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import * as THREE from 'three'
 import { Text } from '@react-three/drei'
+import { assetCache } from './cache'
 
 interface PortalDoorProps {
   id: string
@@ -23,124 +24,126 @@ interface PortalDoorProps {
 function createDirectionalSignTexture(
   doorNumber: string,
   title: string,
-  isHovered: boolean,
   arrowSide: 'left' | 'right',
 ): THREE.CanvasTexture {
-  const canvas = document.createElement('canvas')
-  canvas.width = 768
-  canvas.height = 240
-  const ctx = canvas.getContext('2d')!
+  const cacheKey = `portal-sign-${doorNumber}-${arrowSide}`
+  return assetCache.getTexture(cacheKey, () => {
+    const canvas = document.createElement('canvas')
+    canvas.width = 512
+    canvas.height = 160
+    const ctx = canvas.getContext('2d')!
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-  const w = canvas.width
-  const h = canvas.height
-  const radius = 36
-  const tabWidth = 175
-  const bottomLip = 16
+    const w = canvas.width
+    const h = canvas.height
+    const radius = 24
+    const tabWidth = 116
+    const bottomLip = 10
 
-  // 1. Latar dasar Dark Walnut (tab pangkal & lis bawah)
-  ctx.fillStyle = isHovered ? '#4A3B31' : '#392D25'
-  ctx.beginPath()
-  if (arrowSide === 'left') {
-    ctx.moveTo(0, 0)
-    ctx.lineTo(w - radius, 0)
-    ctx.quadraticCurveTo(w, 0, w, radius)
-    ctx.lineTo(w, h - radius)
-    ctx.quadraticCurveTo(w, h, w - radius, h)
-    ctx.lineTo(0, h)
-  } else {
-    ctx.moveTo(w, 0)
-    ctx.lineTo(radius, 0)
-    ctx.quadraticCurveTo(0, 0, 0, radius)
-    ctx.lineTo(0, h - radius)
-    ctx.quadraticCurveTo(0, h, radius, h)
-    ctx.lineTo(w, h)
-  }
-  ctx.closePath()
-  ctx.fill()
+    // 1. Latar dasar Dark Walnut (tab pangkal & lis bawah)
+    ctx.fillStyle = '#392D25'
+    ctx.beginPath()
+    if (arrowSide === 'left') {
+      ctx.moveTo(0, 0)
+      ctx.lineTo(w - radius, 0)
+      ctx.quadraticCurveTo(w, 0, w, radius)
+      ctx.lineTo(w, h - radius)
+      ctx.quadraticCurveTo(w, h, w - radius, h)
+      ctx.lineTo(0, h)
+    } else {
+      ctx.moveTo(w, 0)
+      ctx.lineTo(radius, 0)
+      ctx.quadraticCurveTo(0, 0, 0, radius)
+      ctx.lineTo(0, h - radius)
+      ctx.quadraticCurveTo(0, h, radius, h)
+      ctx.lineTo(w, h)
+    }
+    ctx.closePath()
+    ctx.fill()
 
-  // 2. Badan utama Muted Navy (#23364F) dengan sudut membulat di ujung luar
-  const grad = ctx.createLinearGradient(0, 0, w, h)
-  grad.addColorStop(0, isHovered ? '#2B4260' : '#23364F')
-  grad.addColorStop(1, isHovered ? '#23364F' : '#1C2B40')
+    // 2. Badan utama Muted Navy (#23364F)
+    const grad = ctx.createLinearGradient(0, 0, w, h)
+    grad.addColorStop(0, '#23364F')
+    grad.addColorStop(1, '#1C2B40')
 
-  ctx.fillStyle = grad
-  ctx.beginPath()
-  if (arrowSide === 'left') {
-    ctx.moveTo(tabWidth - 28, 0)
-    ctx.lineTo(w - radius, 0)
-    ctx.quadraticCurveTo(w, 0, w, radius)
-    ctx.lineTo(w, h - bottomLip - radius * 0.6)
-    ctx.quadraticCurveTo(w, h - bottomLip, w - radius * 0.8, h - bottomLip)
-    ctx.lineTo(tabWidth + 14, h - bottomLip)
-    ctx.quadraticCurveTo(tabWidth - 6, h - bottomLip, tabWidth - 14, h - bottomLip - 22)
-  } else {
-    const rightTabStart = w - tabWidth
-    ctx.moveTo(rightTabStart + 28, 0)
-    ctx.lineTo(radius, 0)
-    ctx.quadraticCurveTo(0, 0, 0, radius)
-    ctx.lineTo(0, h - bottomLip - radius * 0.6)
-    ctx.quadraticCurveTo(0, h - bottomLip, radius * 0.8, h - bottomLip)
-    ctx.lineTo(rightTabStart - 14, h - bottomLip)
-    ctx.quadraticCurveTo(rightTabStart + 6, h - bottomLip, rightTabStart + 14, h - bottomLip - 22)
-  }
-  ctx.closePath()
-  ctx.fill()
+    ctx.fillStyle = grad
+    ctx.beginPath()
+    if (arrowSide === 'left') {
+      ctx.moveTo(tabWidth - 18, 0)
+      ctx.lineTo(w - radius, 0)
+      ctx.quadraticCurveTo(w, 0, w, radius)
+      ctx.lineTo(w, h - bottomLip - radius * 0.6)
+      ctx.quadraticCurveTo(w, h - bottomLip, w - radius * 0.8, h - bottomLip)
+      ctx.lineTo(tabWidth + 10, h - bottomLip)
+      ctx.quadraticCurveTo(tabWidth - 4, h - bottomLip, tabWidth - 10, h - bottomLip - 14)
+    } else {
+      const rightTabStart = w - tabWidth
+      ctx.moveTo(rightTabStart + 18, 0)
+      ctx.lineTo(radius, 0)
+      ctx.quadraticCurveTo(0, 0, 0, radius)
+      ctx.lineTo(0, h - bottomLip - radius * 0.6)
+      ctx.quadraticCurveTo(0, h - bottomLip, radius * 0.8, h - bottomLip)
+      ctx.lineTo(rightTabStart - 10, h - bottomLip)
+      ctx.quadraticCurveTo(rightTabStart + 4, h - bottomLip, rightTabStart + 10, h - bottomLip - 14)
+    }
+    ctx.closePath()
+    ctx.fill()
 
-  // Antique Gold subtle border (#B2935D)
-  ctx.strokeStyle = '#B2935D'
-  ctx.lineWidth = 4
-  ctx.stroke()
+    // Antique Gold subtle border (#B2935D)
+    ctx.strokeStyle = '#B2935D'
+    ctx.lineWidth = 3
+    ctx.stroke()
 
-  // 3. Panah Warm Ivory (#E9E1D3) mengarah ke pangkal pintu/dinding
-  ctx.strokeStyle = '#E9E1D3'
-  ctx.lineWidth = 14
-  ctx.lineCap = 'round'
-  ctx.lineJoin = 'round'
+    // 3. Panah Warm Ivory (#E9E1D3) mengarah ke pangkal pintu/dinding
+    ctx.strokeStyle = '#E9E1D3'
+    ctx.lineWidth = 9
+    ctx.lineCap = 'round'
+    ctx.lineJoin = 'round'
 
-  const arrowCenterY = h / 2
-  ctx.beginPath()
-  if (arrowSide === 'left') {
-    const arrowLeftX = 48
-    const arrowRightX = 122
-    ctx.moveTo(arrowRightX, arrowCenterY)
-    ctx.lineTo(arrowLeftX, arrowCenterY)
-    ctx.moveTo(arrowLeftX + 28, arrowCenterY - 26)
-    ctx.lineTo(arrowLeftX, arrowCenterY)
-    ctx.lineTo(arrowLeftX + 28, arrowCenterY + 26)
-  } else {
-    const arrowLeftX = w - 122
-    const arrowRightX = w - 48
-    ctx.moveTo(arrowLeftX, arrowCenterY)
-    ctx.lineTo(arrowRightX, arrowCenterY)
-    ctx.moveTo(arrowRightX - 28, arrowCenterY - 26)
-    ctx.lineTo(arrowRightX, arrowCenterY)
-    ctx.lineTo(arrowRightX - 28, arrowCenterY + 26)
-  }
-  ctx.stroke()
+    const arrowCenterY = h / 2
+    ctx.beginPath()
+    if (arrowSide === 'left') {
+      const arrowLeftX = 32
+      const arrowRightX = 82
+      ctx.moveTo(arrowRightX, arrowCenterY)
+      ctx.lineTo(arrowLeftX, arrowCenterY)
+      ctx.moveTo(arrowLeftX + 18, arrowCenterY - 17)
+      ctx.lineTo(arrowLeftX, arrowCenterY)
+      ctx.lineTo(arrowLeftX + 18, arrowCenterY + 17)
+    } else {
+      const arrowLeftX = w - 82
+      const arrowRightX = w - 32
+      ctx.moveTo(arrowLeftX, arrowCenterY)
+      ctx.lineTo(arrowRightX, arrowCenterY)
+      ctx.moveTo(arrowRightX - 18, arrowCenterY - 17)
+      ctx.lineTo(arrowRightX, arrowCenterY)
+      ctx.lineTo(arrowRightX - 18, arrowCenterY + 17)
+    }
+    ctx.stroke()
 
-  // 4. Teks Warm Ivory (#E9E1D3) & Antique Gold (#B2935D)
-  ctx.textAlign = 'center'
-  ctx.textBaseline = 'middle'
+    // 4. Teks Warm Ivory (#E9E1D3) & Antique Gold (#B2935D)
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
 
-  const textCenterX =
-    arrowSide === 'left'
-      ? tabWidth + (w - tabWidth - 16) / 2
-      : (w - tabWidth - 16) / 2 + 16
+    const textCenterX =
+      arrowSide === 'left'
+        ? tabWidth + (w - tabWidth - 10) / 2
+        : (w - tabWidth - 10) / 2 + 10
 
-  ctx.fillStyle = '#B2935D'
-  ctx.font = '800 30px "Segoe UI", Arial, sans-serif'
-  ctx.fillText(doorNumber.toUpperCase(), textCenterX, h / 2 - 26, w - tabWidth - 48)
+    ctx.fillStyle = '#B2935D'
+    ctx.font = '800 20px "Segoe UI", Arial, sans-serif'
+    ctx.fillText(doorNumber.toUpperCase(), textCenterX, h / 2 - 17, w - tabWidth - 32)
 
-  ctx.fillStyle = '#E9E1D3'
-  ctx.font = '800 34px "Segoe UI", Arial, sans-serif'
-  ctx.fillText(title.toUpperCase(), textCenterX, h / 2 + 24, w - tabWidth - 48)
+    ctx.fillStyle = '#E9E1D3'
+    ctx.font = '800 23px "Segoe UI", Arial, sans-serif'
+    ctx.fillText(title.toUpperCase(), textCenterX, h / 2 + 16, w - tabWidth - 32)
 
-  const texture = new THREE.CanvasTexture(canvas)
-  texture.colorSpace = THREE.SRGBColorSpace
-  texture.anisotropy = 4
-  return texture
+    const texture = new THREE.CanvasTexture(canvas)
+    texture.colorSpace = THREE.SRGBColorSpace
+    texture.anisotropy = 4
+    return texture
+  })
 }
 
 /**
@@ -164,32 +167,34 @@ export function PortalDoor({
   const trimColor = isHovered ? '#C6A870' : '#B2935D'
 
   const signTextureFront = useMemo(
-    () => createDirectionalSignTexture(doorNumber, title, isHovered, 'left'),
-    [doorNumber, title, isHovered],
+    () => createDirectionalSignTexture(doorNumber, title, 'left'),
+    [doorNumber, title],
   )
   const signTextureBack = useMemo(
-    () => createDirectionalSignTexture(doorNumber, title, isHovered, 'right'),
-    [doorNumber, title, isHovered],
+    () => createDirectionalSignTexture(doorNumber, title, 'right'),
+    [doorNumber, title],
   )
 
-  // Geometri 3D palang melayang bersudut membulat di ujung luar (+X)
+  // Geometri 3D palang dicache di assetCache
   const signBodyGeo = useMemo(() => {
-    const w = 1.44
-    const h = 0.44
-    const r = 0.068
-    const shape = new THREE.Shape()
-    shape.moveTo(-w / 2, -h / 2)
-    shape.lineTo(w / 2 - r, -h / 2)
-    shape.quadraticCurveTo(w / 2, -h / 2, w / 2, -h / 2 + r)
-    shape.lineTo(w / 2, h / 2 - r)
-    shape.quadraticCurveTo(w / 2, h / 2, w / 2 - r, h / 2)
-    shape.lineTo(-w / 2, h / 2)
-    shape.closePath()
+    return assetCache.getGeometry('portal-sign-body-geo', () => {
+      const w = 1.44
+      const h = 0.44
+      const r = 0.068
+      const shape = new THREE.Shape()
+      shape.moveTo(-w / 2, -h / 2)
+      shape.lineTo(w / 2 - r, -h / 2)
+      shape.quadraticCurveTo(w / 2, -h / 2, w / 2, -h / 2 + r)
+      shape.lineTo(w / 2, h / 2 - r)
+      shape.quadraticCurveTo(w / 2, h / 2, w / 2 - r, h / 2)
+      shape.lineTo(-w / 2, h / 2)
+      shape.closePath()
 
-    return new THREE.ExtrudeGeometry(shape, {
-      depth: 0.04,
-      bevelEnabled: false,
-      curveSegments: 12,
+      return new THREE.ExtrudeGeometry(shape, {
+        depth: 0.04,
+        bevelEnabled: false,
+        curveSegments: 8,
+      })
     })
   }, [])
 

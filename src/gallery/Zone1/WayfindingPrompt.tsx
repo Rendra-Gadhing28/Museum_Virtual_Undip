@@ -36,7 +36,7 @@ export function WayfindingPrompt({
       <div className="gr-wayfind-card">
         <header className="gr-wayfind-head">
           <div className="gr-wayfind-tag">
-            <span>📍 Papan Petunjuk Arah</span>
+            <span>Papan Petunjuk Arah</span>
           </div>
           <button
             type="button"
@@ -63,7 +63,7 @@ export function WayfindingPrompt({
               className="gr-wayfind-btn gr-wayfind-gold"
               onClick={() => handleSelect('founders')}
             >
-              <span className="gr-btn-icon">👥</span>
+              <span className="gr-btn-icon">•</span>
               <div className="gr-btn-text">
                 <strong>5 Pendiri & 13 Rektorat</strong>
                 <small>Sayap Kiri • 5 Tokoh Utama & 13 Rektorat</small>
@@ -75,7 +75,7 @@ export function WayfindingPrompt({
               className="gr-wayfind-btn gr-wayfind-gold"
               onClick={() => handleSelect('podium')}
             >
-              <span className="gr-btn-icon">🎙️</span>
+              <span className="gr-btn-icon">•</span>
               <div className="gr-btn-text">
                 <strong>Podium Kehormatan Undip</strong>
                 <small>Ujung Karpet Merah • Panggung Seremonial</small>
@@ -87,7 +87,7 @@ export function WayfindingPrompt({
               className="gr-wayfind-btn gr-wayfind-gold"
               onClick={() => handleSelect('history')}
             >
-              <span className="gr-btn-icon">📜</span>
+              <span className="gr-btn-icon">•</span>
               <div className="gr-btn-text">
                 <strong>Sejarah & Arsip Resmi</strong>
                 <small>Sayap Kanan • SK 1961, Foto Awal, Pidato Bung Karno</small>
@@ -99,7 +99,7 @@ export function WayfindingPrompt({
               className="gr-wayfind-btn gr-wayfind-gold"
               onClick={() => handleSelect('prasasti')}
             >
-              <span className="gr-btn-icon">🏛️</span>
+              <span className="gr-btn-icon">•</span>
               <div className="gr-btn-text">
                 <strong>Prasasti Pendirian Undip</strong>
                 <small>Area Podium • Batu Marmer Hitam Obsidian</small>
@@ -111,7 +111,7 @@ export function WayfindingPrompt({
               className="gr-wayfind-btn gr-wayfind-subtle"
               onClick={() => handleSelect('entrance')}
             >
-              <span className="gr-btn-icon">🏛️</span>
+              <span className="gr-btn-icon">•</span>
               <div className="gr-btn-text">
                 <strong>Pintu Masuk Utama</strong>
                 <small>Kembali ke titik awal koridor</small>
@@ -122,7 +122,7 @@ export function WayfindingPrompt({
 
         <footer className="gr-wayfind-foot">
           <span className="gr-wayfind-hint">
-            💡 Panduan ini muncul otomatis saat Anda mendekati papan petunjuk arah.
+            Panduan ini muncul otomatis saat Anda mendekati papan petunjuk arah.
           </span>
         </footer>
       </div>

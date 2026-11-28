@@ -267,7 +267,7 @@ export function createResearchTexture(exhibit: Zone2Exhibit): THREE.CanvasTextur
     ctx.textAlign = 'center'
     if (exhibit.id.includes('kelautan')) {
       ctx.font = '70px system-ui, sans-serif'
-      ctx.fillText('🌊', 194, 380)
+      ctx.fillText('', 194, 380)
       ctx.font = 'bold 20px system-ui, sans-serif'
       ctx.fillText('BINA KELAUTAN', 194, 440)
       ctx.font = '15px system-ui, sans-serif'
@@ -275,7 +275,7 @@ export function createResearchTexture(exhibit: Zone2Exhibit): THREE.CanvasTextur
       ctx.fillText('Pola Ilmiah Pokok Undip', 194, 470)
     } else if (exhibit.id.includes('kkn')) {
       ctx.font = '70px system-ui, sans-serif'
-      ctx.fillText('🤝', 194, 380)
+      ctx.fillText('', 194, 380)
       ctx.font = 'bold 20px system-ui, sans-serif'
       ctx.fillText('KKN TEMATIK', 194, 440)
       ctx.font = '15px system-ui, sans-serif'
@@ -283,7 +283,7 @@ export function createResearchTexture(exhibit: Zone2Exhibit): THREE.CanvasTextur
       ctx.fillText('Pengabdian Nusantara', 194, 470)
     } else if (exhibit.id.includes('global')) {
       ctx.font = '70px system-ui, sans-serif'
-      ctx.fillText('🏆', 194, 380)
+      ctx.fillText('', 194, 380)
       ctx.font = 'bold 20px system-ui, sans-serif'
       ctx.fillText('WORLD CLASS', 194, 440)
       ctx.font = '15px system-ui, sans-serif'
@@ -291,7 +291,7 @@ export function createResearchTexture(exhibit: Zone2Exhibit): THREE.CanvasTextur
       ctx.fillText('Top Global Ranking', 194, 470)
     } else {
       ctx.font = '70px system-ui, sans-serif'
-      ctx.fillText('🔬', 194, 380)
+      ctx.fillText('', 194, 380)
       ctx.font = 'bold 20px system-ui, sans-serif'
       ctx.fillText('HILIRISASI RISET', 194, 440)
       ctx.font = '15px system-ui, sans-serif'

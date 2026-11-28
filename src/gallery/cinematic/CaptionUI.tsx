@@ -144,6 +144,7 @@ export function CaptionUI({
                 <span className="cinematic-hero-italic cin-line cin-line-3" style={{ fontSize: '3.4rem', color: '#fae19c' }}>
                   Undip
                 </span>
+                <span className="cinematic-hero-gold-underline cin-line cin-line-3" aria-hidden="true" />
               </h1>
               <p className="cinematic-hero-sub cin-line cin-line-4" style={{ letterSpacing: '3px', marginTop: '12px', opacity: 0.85 }}>
                 DIORAMA SEJARAH 3D INTERAKTIF BERBASIS WEB
