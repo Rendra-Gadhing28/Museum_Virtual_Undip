@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import * as THREE from 'three'
-import { createProceduralRoughnessMap, MaterialLibrary, QUALITY } from '../graphics'
+import { createProceduralRoughnessMap, QUALITY } from '../graphics'
 
 interface DirectoryBoardProps {
   position: [number, number, number]
@@ -14,40 +14,40 @@ function createDirectoryTexture(): THREE.CanvasTexture {
   canvas.height = 1000
   const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
 
-  // Dark Navy Blue board
-  ctx.fillStyle = '#0b1d3a'
+  // Muted Navy Blue board (#23364F)
+  ctx.fillStyle = '#23364F'
   ctx.fillRect(0, 0, 800, 1000)
 
-  // Gold Double Borders
-  ctx.strokeStyle = '#d4af37'
+  // Antique Gold Double Borders (#B2935D)
+  ctx.strokeStyle = '#B2935D'
   ctx.lineWidth = 6
   ctx.strokeRect(20, 20, 760, 960)
-  ctx.strokeStyle = 'rgba(212, 175, 55, 0.4)'
+  ctx.strokeStyle = 'rgba(178, 147, 93, 0.45)'
   ctx.lineWidth = 2
   ctx.strokeRect(32, 32, 736, 936)
 
   // Header Title
   ctx.textAlign = 'center'
-  ctx.fillStyle = '#d4af37'
+  ctx.fillStyle = '#B2935D'
   ctx.font = 'bold 26px sans-serif'
   ctx.fillText('PANDUAN & DIREKTORI MUSEUM', 400, 90)
 
-  ctx.fillStyle = '#ffffff'
+  ctx.fillStyle = '#E9E1D3'
   ctx.font = 'bold 36px Georgia, serif'
   ctx.fillText('UNIVERSITAS DIPONEGORO', 400, 145)
 
-  ctx.fillStyle = '#dcd6c8'
+  ctx.fillStyle = '#E9E1D3'
   ctx.font = 'italic 18px Georgia, serif'
   ctx.fillText('Denah Tata Letak Base Zone 1 (Formasi 3 — 2)', 400, 185)
 
-  // Gold separator
-  ctx.fillStyle = '#d4af37'
+  // Antique Gold separator
+  ctx.fillStyle = '#B2935D'
   ctx.fillRect(80, 215, 640, 3)
 
   // Illustrated Mini Floorplan of Base Zone 1 (5 Doors: 3 Left, 2 Right)
-  ctx.fillStyle = '#142744'
+  ctx.fillStyle = '#1B2B40'
   ctx.fillRect(100, 245, 600, 330)
-  ctx.strokeStyle = '#c5a059'
+  ctx.strokeStyle = '#B2935D'
   ctx.lineWidth = 2
   ctx.strokeRect(100, 245, 600, 330)
 
@@ -58,15 +58,15 @@ function createDirectoryTexture(): THREE.CanvasTexture {
     { label: 'RUANG 01', sub: 'Pendiri & Yayasan', y: 465 },
   ]
   leftRooms.forEach((r) => {
-    ctx.fillStyle = '#0d325e'
+    ctx.fillStyle = '#23364F'
     ctx.fillRect(118, r.y, 172, 82)
-    ctx.strokeStyle = '#d4af37'
+    ctx.strokeStyle = '#B2935D'
     ctx.lineWidth = 2
     ctx.strokeRect(118, r.y, 172, 82)
-    ctx.fillStyle = '#ffd966'
+    ctx.fillStyle = '#B2935D'
     ctx.font = 'bold 15px sans-serif'
     ctx.fillText(r.label, 204, r.y + 34)
-    ctx.fillStyle = '#f0ece1'
+    ctx.fillStyle = '#E9E1D3'
     ctx.font = '13px sans-serif'
     ctx.fillText(r.sub, 204, r.y + 58)
   })
@@ -77,47 +77,50 @@ function createDirectoryTexture(): THREE.CanvasTexture {
     { label: 'RUANG 04', sub: 'Kampus Fisik', y: 425 },
   ]
   rightRooms.forEach((r) => {
-    ctx.fillStyle = '#0d325e'
+    ctx.fillStyle = '#23364F'
     ctx.fillRect(510, r.y, 172, 92)
-    ctx.strokeStyle = '#d4af37'
+    ctx.strokeStyle = '#B2935D'
     ctx.lineWidth = 2
     ctx.strokeRect(510, r.y, 172, 92)
-    ctx.fillStyle = '#ffd966'
+    ctx.fillStyle = '#B2935D'
     ctx.font = 'bold 15px sans-serif'
     ctx.fillText(r.label, 596, r.y + 38)
-    ctx.fillStyle = '#f0ece1'
+    ctx.fillStyle = '#E9E1D3'
     ctx.font = '13px sans-serif'
     ctx.fillText(r.sub, 596, r.y + 64)
   })
 
-  // Floorplan Red Carpet & Center
-  ctx.fillStyle = '#8b0000'
+  // Floorplan Deep Burgundy Carpet (#672C35) & Center
+  ctx.fillStyle = '#672C35'
   ctx.fillRect(365, 265, 70, 290)
-  ctx.fillStyle = '#ffd966'
+  ctx.strokeStyle = '#B2935D'
+  ctx.lineWidth = 1.5
+  ctx.strokeRect(365, 265, 70, 290)
+  ctx.fillStyle = '#E9E1D3'
   ctx.font = 'bold 12px sans-serif'
   ctx.fillText('Karpet', 400, 445)
-  ctx.fillText('Merah', 400, 463)
+  ctx.fillText('Burgundy', 400, 463)
 
   // Podium & Prasasti box at back
-  ctx.fillStyle = '#d4af37'
+  ctx.fillStyle = '#B2935D'
   ctx.fillRect(352, 272, 96, 44)
-  ctx.fillStyle = '#0a192f'
+  ctx.fillStyle = '#23364F'
   ctx.font = 'bold 11px sans-serif'
   ctx.fillText('Podium &', 400, 290)
   ctx.fillText('Prasasti', 400, 305)
 
   // Visitor Spawn marker
-  ctx.fillStyle = '#ffd966'
+  ctx.fillStyle = '#B2935D'
   ctx.beginPath()
   ctx.arc(400, 528, 12, 0, Math.PI * 2)
   ctx.fill()
-  ctx.fillStyle = '#0a192f'
+  ctx.fillStyle = '#23364F'
   ctx.font = 'bold 10px sans-serif'
   ctx.fillText('ANDA', 400, 532)
 
   // Directory List
   ctx.textAlign = 'left'
-  ctx.fillStyle = '#d4af37'
+  ctx.fillStyle = '#B2935D'
   ctx.font = 'bold 21px Georgia, serif'
   ctx.fillText('Daftar Ruangan Pameran Zona 1:', 95, 615)
 
@@ -129,21 +132,21 @@ function createDirectoryTexture(): THREE.CanvasTexture {
     '✦ Ruang 05 (Kanan): Cetak Biru & Linimasa Gedung Muladi Dome',
   ]
 
-  ctx.fillStyle = '#f0ece1'
+  ctx.fillStyle = '#E9E1D3'
   ctx.font = '15.5px system-ui, sans-serif'
   items.forEach((item, idx) => {
     ctx.fillText(item, 95, 654 + idx * 38)
   })
 
   // Bottom prompt callout
-  ctx.fillStyle = 'rgba(212, 175, 55, 0.16)'
+  ctx.fillStyle = 'rgba(178, 147, 93, 0.14)'
   ctx.fillRect(80, 868, 640, 74)
-  ctx.strokeStyle = '#d4af37'
+  ctx.strokeStyle = '#B2935D'
   ctx.lineWidth = 1.5
   ctx.strokeRect(80, 868, 640, 74)
 
   ctx.textAlign = 'center'
-  ctx.fillStyle = '#ffe699'
+  ctx.fillStyle = '#E9E1D3'
   ctx.font = 'bold 18px sans-serif'
   ctx.fillText('Klik pintu ruangan di dinding kiri atau kanan untuk masuk', 400, 912)
 
@@ -166,25 +169,27 @@ export function DirectoryBoard({
   const materials = useMemo(() => {
     const boardRough = createProceduralRoughnessMap(0.45, 0.18)
     return {
-      heritageWood: MaterialLibrary.polishedTeakwood(),
-      goldTrim: isNear
-        ? new THREE.MeshStandardMaterial({
-            color: '#ffe07b',
-            emissive: '#d4af37',
-            emissiveIntensity: 0.35,
-            roughness: 0.28,
-            metalness: 0.85,
-            roughnessMap: QUALITY.current.physicalMaterials ? boardRough : null,
-          })
-        : MaterialLibrary.antiqueBrass(false),
+      heritageWood: new THREE.MeshStandardMaterial({
+        color: '#392D25',
+        roughness: 0.5,
+        metalness: 0.1,
+      }),
+      goldTrim: new THREE.MeshStandardMaterial({
+        color: isNear ? '#C6A870' : '#B2935D',
+        emissive: isNear ? '#B2935D' : '#000000',
+        emissiveIntensity: isNear ? 0.22 : 0,
+        roughness: 0.36,
+        metalness: 0.78,
+        roughnessMap: QUALITY.current.physicalMaterials ? boardRough : null,
+      }),
       navyBacking: new THREE.MeshStandardMaterial({
-        color: '#0b1d3a',
+        color: '#23364F',
         roughness: 0.5,
       }),
       lampWarm: new THREE.MeshStandardMaterial({
-        color: '#fff5e0',
-        emissive: '#ffd9a0',
-        emissiveIntensity: 2.0,
+        color: '#fffaf2',
+        emissive: '#fff6e8',
+        emissiveIntensity: 1.8,
       }),
     }
   }, [isNear])

@@ -53,90 +53,77 @@ function fitFont(
   return size
 }
 
-/** Polished museum floor: Warm Italian Crema Marfil / Ivory marble with subtle veins */
+/** Matte limestone museum floor: Base #CFC4B2, tile variation #D8CEBF, grout #B8AA96 */
 export function createFloorTexture(): THREE.CanvasTexture {
   return assetCache.getTexture('floor-texture', () => {
     const [canvas, ctx] = makeCanvas(1024, 1024)
 
-    // Base warm marble tone
-    ctx.fillStyle = '#f2ede4'
+    // Grout background (#B8AA96)
+    ctx.fillStyle = '#B8AA96'
     ctx.fillRect(0, 0, 1024, 1024)
 
-    // Large tiles 512x512
+    // Large limestone tiles 256x256 with subtle variation (#CFC4B2 & #D8CEBF)
     const tileSize = 256
     for (let x = 0; x < 1024; x += tileSize) {
       for (let y = 0; y < 1024; y += tileSize) {
-        const tileHue = ((x + y) % 512 === 0) ? '#ede6da' : '#f5f0e7'
-        ctx.fillStyle = tileHue
+        const isAlt = (x / tileSize + y / tileSize) % 2 === 0
+        ctx.fillStyle = isAlt ? '#CFC4B2' : '#D8CEBF'
         ctx.fillRect(x + 2, y + 2, tileSize - 4, tileSize - 4)
 
-        // Fine marble veins
-        ctx.strokeStyle = 'rgba(168, 148, 126, 0.22)'
-        ctx.lineWidth = 1.2
+        // Subtle limestone veins (taupe/greige, avoiding yellow or stark white)
+        ctx.strokeStyle = 'rgba(101, 84, 71, 0.14)'
+        ctx.lineWidth = 1.1
         ctx.beginPath()
-        ctx.moveTo(x + 10, y + 20)
-        ctx.bezierCurveTo(x + 60, y + 80, x + 180, y + 140, x + tileSize - 20, y + tileSize - 10)
+        ctx.moveTo(x + 14, y + 24)
+        ctx.bezierCurveTo(x + 64, y + 84, x + 176, y + 136, x + tileSize - 22, y + tileSize - 14)
         ctx.stroke()
 
-        // Subtle diagonal veins
-        ctx.strokeStyle = 'rgba(195, 178, 158, 0.15)'
+        ctx.strokeStyle = 'rgba(184, 170, 150, 0.22)'
         ctx.lineWidth = 0.8
         ctx.beginPath()
-        ctx.moveTo(x + tileSize - 30, y + 10)
-        ctx.bezierCurveTo(x + 180, y + 100, x + 90, y + 190, x + 15, y + tileSize - 30)
+        ctx.moveTo(x + tileSize - 28, y + 14)
+        ctx.bezierCurveTo(x + 178, y + 96, x + 88, y + 186, x + 18, y + tileSize - 28)
         ctx.stroke()
-
-        // Tile joint line
-        ctx.strokeStyle = 'rgba(120, 105, 90, 0.45)'
-        ctx.lineWidth = 2
-        ctx.strokeRect(x, y, tileSize, tileSize)
       }
     }
-
-    // Specular sheen
-    const sheen = ctx.createRadialGradient(512, 512, 100, 512, 512, 600)
-    sheen.addColorStop(0, 'rgba(255, 255, 255, 0.12)')
-    sheen.addColorStop(1, 'rgba(255, 255, 255, 0)')
-    ctx.fillStyle = sheen
-    ctx.fillRect(0, 0, 1024, 1024)
 
     return toTexture(canvas)
   })
 }
 
-/** Ceremonial Red Carpet Runner with Ornate Gold Geometric Border */
+/** Ceremonial Carpet Runner: Deep Burgundy (#672C35) with Antique Gold (#B2935D) Border */
 export function createRedCarpetTexture(): THREE.CanvasTexture {
   return assetCache.getTexture('carpet-texture', () => {
     const [canvas, ctx] = makeCanvas(512, 1024)
 
-    // Velvet deep crimson red
-    const redGrad = ctx.createLinearGradient(0, 0, 512, 0)
-    redGrad.addColorStop(0, '#580c14')
-    redGrad.addColorStop(0.12, '#821622')
-    redGrad.addColorStop(0.5, '#9e1b28')
-    redGrad.addColorStop(0.88, '#821622')
-    redGrad.addColorStop(1, '#580c14')
-    ctx.fillStyle = redGrad
+    // Deep Burgundy velvet gradient
+    const burgundyGrad = ctx.createLinearGradient(0, 0, 512, 0)
+    burgundyGrad.addColorStop(0, '#512028')
+    burgundyGrad.addColorStop(0.12, '#672C35')
+    burgundyGrad.addColorStop(0.5, '#72323C')
+    burgundyGrad.addColorStop(0.88, '#672C35')
+    burgundyGrad.addColorStop(1, '#512028')
+    ctx.fillStyle = burgundyGrad
     ctx.fillRect(0, 0, 512, 1024)
 
-    // Subtle velvet noise / fabric grain
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.08)'
+    // Subtle velvet weave grain
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.07)'
     for (let y = 0; y < 1024; y += 4) {
       ctx.fillRect(0, y, 512, 1.5)
     }
 
-    // Gold outer piping
-    ctx.fillStyle = '#d4af37'
+    // Antique Gold outer piping (#B2935D)
+    ctx.fillStyle = '#B2935D'
     ctx.fillRect(12, 0, 8, 1024)
     ctx.fillRect(512 - 20, 0, 8, 1024)
 
-    // Gold patterned inner borders
-    ctx.fillStyle = '#f3cf65'
+    // Antique Gold inner border line
+    ctx.fillStyle = '#C2A46E'
     ctx.fillRect(28, 0, 4, 1024)
     ctx.fillRect(512 - 32, 0, 4, 1024)
 
-    // Repeating geometric gold diamond motifs along borders
-    ctx.fillStyle = '#e6be44'
+    // Repeating geometric Antique Gold diamond motifs along borders
+    ctx.fillStyle = '#B2935D'
     for (let y = 16; y < 1024; y += 32) {
       // Left border motifs
       ctx.beginPath()

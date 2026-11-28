@@ -342,34 +342,34 @@ export function Zone1SubRoom({
 
   return (
     <group>
-      {/* Pencahayaan Low-Light Soft Warm Ambient */}
-      <ambientLight intensity={0.82} color="#ffe9c8" />
-      <hemisphereLight args={['#fff3db', '#bfa98a', 0.52]} />
-      <directionalLight position={[4, dims.height + 2, 6]} intensity={0.42} color="#ffefd4" />
+      {/* Pencahayaan 3000-3500K Warm White Netral */}
+      <ambientLight intensity={0.92} color="#fff8ee" />
+      <hemisphereLight args={['#fffaf2', '#CFC4B2', 0.6]} />
+      <directionalLight position={[4, dims.height + 2, 6]} intensity={0.48} color="#fff7ea" />
 
-      {/* Panel Lampu Plafon LED Lembut Hangat */}
+      {/* Panel Lampu Plafon LED Warm White */}
       {ceilingLightZs.map((lz, idx) => (
         <group key={`ceil-led-${idx}`} position={[0, dims.height - 0.04, lz]}>
           {/* Bingkai Gelap Tipis Panel Lampu */}
           <mesh>
             <boxGeometry args={[2.35, 0.06, 1.55]} />
-            <meshStandardMaterial color="#23272e" roughness={0.5} />
+            <meshStandardMaterial color="#392D25" roughness={0.52} />
           </mesh>
           {/* Panel LED Putih Hangat Lembut */}
           <mesh position={[0, -0.032, 0]} rotation={[Math.PI / 2, 0, 0]}>
             <planeGeometry args={[2.18, 1.38]} />
             <meshStandardMaterial
-              color="#fff6e3"
-              emissive="#ffe7ba"
-              emissiveIntensity={2.8}
-              roughness={0.2}
+              color="#fffaf2"
+              emissive="#fff6e8"
+              emissiveIntensity={2.6}
+              roughness={0.22}
             />
           </mesh>
           {!isMobile && (
             <pointLight
               position={[0, -0.65, 0]}
-              color="#ffe9c6"
-              intensity={6.5}
+              color="#fff6e8"
+              intensity={6.0}
               distance={20}
               decay={1.6}
             />
@@ -377,30 +377,30 @@ export function Zone1SubRoom({
         </group>
       ))}
 
-      {/* 1. Lantai Marmer Matte (Tidak Terlalu Terang / Anti-Silau) */}
+      {/* 1. Lantai Limestone Matte (#CFC4B2 base, #D8CEBF var, #B8AA96 grout) */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
         <planeGeometry args={[dims.halfWidth * 2, dims.length]} />
         <meshStandardMaterial
           map={floorTexture}
-          color="#b8b0a2"
-          roughness={0.94}
-          metalness={0}
+          color="#ffffff"
+          roughness={0.88}
+          metalness={0.02}
         />
       </mesh>
 
-      {/* Karpet Merah Tengah */}
+      {/* Karpet Deep Burgundy Tengah (#672C35) dengan Border Antique Gold (#B2935D) */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.015, 0]} receiveShadow>
         <planeGeometry args={[2.8, dims.length - 1.6]} />
-        <meshStandardMaterial color="#7c1a22" roughness={0.92} metalness={0} />
+        <meshStandardMaterial color="#672C35" roughness={0.92} metalness={0} />
       </mesh>
       {[-1.42, 1.42].map((rx, idx) => (
         <mesh key={idx} rotation={[-Math.PI / 2, 0, 0]} position={[rx, 0.018, 0]}>
           <planeGeometry args={[0.06, dims.length - 1.6]} />
-          <meshStandardMaterial color="#d4af37" roughness={0.4} metalness={0.7} />
+          <meshStandardMaterial color="#B2935D" roughness={0.38} metalness={0.78} />
         </mesh>
       ))}
 
-      {/* 2. Dinding Kiri & Kanan (Perpaduan Blue Navy Bawah & Putih Ivory Atas - Matte) */}
+      {/* 2. Dinding Kiri & Kanan (Heritage Taupe #655447 Bawah & Warm Ivory #E9E1D3 Atas) */}
       {[-1, 1].map((side) => (
         <group key={side}>
           <mesh
@@ -409,7 +409,7 @@ export function Zone1SubRoom({
             receiveShadow
           >
             <planeGeometry args={[dims.length, 4.24]} />
-            <meshStandardMaterial color="#142e56" roughness={1} metalness={0} />
+            <meshStandardMaterial color="#655447" roughness={0.96} metalness={0} />
           </mesh>
           <mesh
             position={[side * dims.halfWidth, 4.24 + (dims.height - 4.24) / 2, 0]}
@@ -417,40 +417,57 @@ export function Zone1SubRoom({
             receiveShadow
           >
             <planeGeometry args={[dims.length, dims.height - 4.24]} />
-            <meshStandardMaterial color="#dcd5c7" roughness={1} metalness={0} />
+            <meshStandardMaterial color="#E9E1D3" roughness={0.95} metalness={0} />
           </mesh>
           <mesh position={[side * (dims.halfWidth - 0.05), 0.1, 0]}>
             <boxGeometry args={[0.1, 0.2, dims.length]} />
-            <meshStandardMaterial color="#2c1a0e" roughness={0.85} metalness={0} />
+            <meshStandardMaterial color="#392D25" roughness={0.55} metalness={0} />
           </mesh>
           <mesh position={[side * (dims.halfWidth - 0.04), 0.55, 0]} receiveShadow>
             <boxGeometry args={[0.08, 0.7, dims.length]} />
-            <meshStandardMaterial color="#3d2516" roughness={0.85} metalness={0} />
+            <meshStandardMaterial color="#392D25" roughness={0.55} metalness={0} />
           </mesh>
           <mesh position={[side * (dims.halfWidth - 0.06), 0.92, 0]}>
             <boxGeometry args={[0.12, 0.06, dims.length]} />
-            <meshStandardMaterial color="#d4af37" roughness={0.4} metalness={0.75} />
+            <meshStandardMaterial color="#B2935D" roughness={0.36} metalness={0.78} />
           </mesh>
         </group>
       ))}
 
-      {/* 3. Dinding Depan (Pintu Keluar ke Base Zone - Matte Ivory) */}
-      <mesh position={[0, dims.height / 2, dims.zFront]} rotation={[0, Math.PI, 0]} receiveShadow>
-        <planeGeometry args={[dims.halfWidth * 2, dims.height]} />
-        <meshStandardMaterial color="#dcd5c7" roughness={1} metalness={0} />
+      {/* 3. Dinding Depan (Pintu Keluar ke Base Zone - Taupe Bawah & Warm Ivory Atas) */}
+      <mesh position={[0, 2.12, dims.zFront]} rotation={[0, Math.PI, 0]} receiveShadow>
+        <planeGeometry args={[dims.halfWidth * 2, 4.24]} />
+        <meshStandardMaterial color="#655447" roughness={0.96} metalness={0} />
+      </mesh>
+      <mesh position={[0, 4.24 + (dims.height - 4.24) / 2, dims.zFront]} rotation={[0, Math.PI, 0]} receiveShadow>
+        <planeGeometry args={[dims.halfWidth * 2, dims.height - 4.24]} />
+        <meshStandardMaterial color="#E9E1D3" roughness={0.95} metalness={0} />
       </mesh>
 
-      {/* 4. Dinding Belakang Fokus (Royal Navy Matte + Judul Ruangan) */}
-      <mesh position={[0, dims.height / 2, dims.zBack]} receiveShadow>
-        <planeGeometry args={[dims.halfWidth * 2, dims.height]} />
-        <meshStandardMaterial color="#142e56" roughness={1} metalness={0} />
+      {/* 4. Dinding Belakang (Taupe Bawah & Ivory Atas + Panel Aksen Muted Navy #23364F untuk Judul) */}
+      <mesh position={[0, 2.12, dims.zBack]} receiveShadow>
+        <planeGeometry args={[dims.halfWidth * 2, 4.24]} />
+        <meshStandardMaterial color="#655447" roughness={0.96} metalness={0} />
+      </mesh>
+      <mesh position={[0, 4.24 + (dims.height - 4.24) / 2, dims.zBack]} receiveShadow>
+        <planeGeometry args={[dims.halfWidth * 2, dims.height - 4.24]} />
+        <meshStandardMaterial color="#E9E1D3" roughness={0.95} metalness={0} />
+      </mesh>
+      {/* Panel Muted Navy Signage Fokus (#23364F) dengan Bingkai Antique Gold (#B2935D) */}
+      <mesh position={[0, 3.8, dims.zBack + 0.02]}>
+        <boxGeometry args={[Math.min(dims.halfWidth * 1.55, 7.6), 2.3, 0.03]} />
+        <meshStandardMaterial color="#B2935D" roughness={0.36} metalness={0.78} />
+      </mesh>
+      <mesh position={[0, 3.8, dims.zBack + 0.04]}>
+        <boxGeometry args={[Math.min(dims.halfWidth * 1.55, 7.6) - 0.16, 2.14, 0.03]} />
+        <meshStandardMaterial color="#23364F" roughness={0.5} metalness={0.1} />
       </mesh>
       <group position={[0, 3.8, dims.zBack + 0.08]}>
         <Text
           position={[0, 0.55, 0]}
           fontSize={0.22}
           letterSpacing={0.15}
-          color="#ffd700"
+          color="#B2935D"
           anchorX="center"
           anchorY="middle"
         >
@@ -460,10 +477,10 @@ export function Zone1SubRoom({
           position={[0, 0.05, 0]}
           fontSize={0.44}
           fontWeight={700}
-          color="#fdfbf7"
+          color="#E9E1D3"
           anchorX="center"
           anchorY="middle"
-          maxWidth={dims.halfWidth * 1.5}
+          maxWidth={dims.halfWidth * 1.4}
           textAlign="center"
         >
           {portal.title}
@@ -471,10 +488,10 @@ export function Zone1SubRoom({
         <Text
           position={[0, -0.48, 0]}
           fontSize={0.2}
-          color="#d9e2ec"
+          color="#E9E1D3"
           anchorX="center"
           anchorY="middle"
-          maxWidth={dims.halfWidth * 1.5}
+          maxWidth={dims.halfWidth * 1.4}
           textAlign="center"
         >
           {portal.subtitle}

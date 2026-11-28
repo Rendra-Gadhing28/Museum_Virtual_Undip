@@ -44,3 +44,22 @@ export const PALETTE = {
 } as const
 
 export type MuseumPalette = typeof PALETTE
+
+/**
+ * Zone 1 Heritage Palette (60-30-10 Theory: Dominant - Secondary - Accent)
+ * - Dominant (60%): ivory (#E9E1D3), floor (#CFC4B2)
+ * - Secondary (30%): taupe (#655447), walnut (#392D25), greige (#B8AA96)
+ * - Accent (10%): navy (#23364F), gold (#B2935D), burgundy (#672C35)
+ */
+export const museumPalette = {
+  ivory: '#E9E1D3',
+  greige: '#B8AA96',
+  taupe: '#655447',
+  walnut: '#392D25',
+  navy: '#23364F',
+  gold: '#B2935D',
+  burgundy: '#672C35',
+  floor: '#CFC4B2',
+  floorTileVar: '#D8CEBF',
+} as const
+

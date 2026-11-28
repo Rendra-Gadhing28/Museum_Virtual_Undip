@@ -51,64 +51,64 @@ export function CeilingRoof({
         'ceil-pvc-ivory-base',
         () =>
           new THREE.MeshStandardMaterial({
-            color: '#f8f5ee',
-            roughness: 0.65,
-            metalness: 0.05,
+            color: '#E9E1D3',
+            roughness: 0.68,
+            metalness: 0.04,
           }),
       ),
       pvcDropTier: assetCache.getMaterial(
         'ceil-pvc-drop-tier',
         () =>
           new THREE.MeshStandardMaterial({
-            color: '#f5f0e4',
-            roughness: 0.6,
-            metalness: 0.05,
+            color: '#E2D9C9',
+            roughness: 0.64,
+            metalness: 0.04,
           }),
       ),
       pvcLabyrinth: assetCache.getMaterial(
         'ceil-pvc-labyrinth',
         () =>
           new THREE.MeshStandardMaterial({
-            color: '#fcfaf5',
-            roughness: 0.55,
-            metalness: 0.08,
+            color: '#EFE8DC',
+            roughness: 0.58,
+            metalness: 0.06,
           }),
       ),
       goldTrim: assetCache.getMaterial(
         'ceil-gold-trim',
         () =>
           new THREE.MeshStandardMaterial({
-            color: '#d4af37',
-            roughness: 0.28,
-            metalness: 0.88,
+            color: '#B2935D',
+            roughness: 0.36,
+            metalness: 0.78,
           }),
       ),
       coveLedGlow: assetCache.getMaterial(
         'ceil-cove-glow',
         () =>
           new THREE.MeshStandardMaterial({
-            color: '#ffffff',
-            emissive: '#fffbf2',
-            emissiveIntensity: 4.5,
-            roughness: 0.2,
+            color: '#fffaf2',
+            emissive: '#fff6e8',
+            emissiveIntensity: 3.8,
+            roughness: 0.22,
           }),
       ),
       downlightBulb: assetCache.getMaterial(
         'ceil-downlight-bulb',
         () =>
           new THREE.MeshStandardMaterial({
-            color: '#ffffff',
-            emissive: '#ffffff',
-            emissiveIntensity: 4.8,
+            color: '#fffaf2',
+            emissive: '#fff8ee',
+            emissiveIntensity: 4.2,
           }),
       ),
       timberCrown: assetCache.getMaterial(
         'ceil-timber-crown',
         () =>
           new THREE.MeshStandardMaterial({
-            color: '#3d2516',
-            roughness: 0.5,
-            metalness: 0.12,
+            color: '#392D25',
+            roughness: 0.52,
+            metalness: 0.1,
           }),
       ),
     }

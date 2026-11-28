@@ -39,8 +39,8 @@ function createDirectionalSignTexture(
   const tabWidth = 175
   const bottomLip = 16
 
-  // 1. Latar dasar Heritage Brown (tab pangkal & lis bawah)
-  ctx.fillStyle = isHovered ? '#8b5e34' : '#734b28'
+  // 1. Latar dasar Dark Walnut (tab pangkal & lis bawah)
+  ctx.fillStyle = isHovered ? '#4A3B31' : '#392D25'
   ctx.beginPath()
   if (arrowSide === 'left') {
     ctx.moveTo(0, 0)
@@ -60,10 +60,10 @@ function createDirectionalSignTexture(
   ctx.closePath()
   ctx.fill()
 
-  // 2. Badan utama gelap (Dark Slate / Navy) dengan sudut membulat di ujung luar
+  // 2. Badan utama Muted Navy (#23364F) dengan sudut membulat di ujung luar
   const grad = ctx.createLinearGradient(0, 0, w, h)
-  grad.addColorStop(0, isHovered ? '#1e2c3d' : '#182230')
-  grad.addColorStop(1, isHovered ? '#2a384a' : '#252b34')
+  grad.addColorStop(0, isHovered ? '#2B4260' : '#23364F')
+  grad.addColorStop(1, isHovered ? '#23364F' : '#1C2B40')
 
   ctx.fillStyle = grad
   ctx.beginPath()
@@ -88,8 +88,13 @@ function createDirectionalSignTexture(
   ctx.closePath()
   ctx.fill()
 
-  // 3. Panah Putih Tebal mengarah ke pangkal pintu/dinding
-  ctx.strokeStyle = '#ffffff'
+  // Antique Gold subtle border (#B2935D)
+  ctx.strokeStyle = '#B2935D'
+  ctx.lineWidth = 4
+  ctx.stroke()
+
+  // 3. Panah Warm Ivory (#E9E1D3) mengarah ke pangkal pintu/dinding
+  ctx.strokeStyle = '#E9E1D3'
   ctx.lineWidth = 14
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
@@ -115,8 +120,7 @@ function createDirectionalSignTexture(
   }
   ctx.stroke()
 
-  // 4. Teks Putih Kapital Tebal (2 baris)
-  ctx.fillStyle = '#ffffff'
+  // 4. Teks Warm Ivory (#E9E1D3) & Antique Gold (#B2935D)
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
 
@@ -125,9 +129,11 @@ function createDirectionalSignTexture(
       ? tabWidth + (w - tabWidth - 16) / 2
       : (w - tabWidth - 16) / 2 + 16
 
-  ctx.font = '800 32px "Segoe UI", Arial, sans-serif'
+  ctx.fillStyle = '#B2935D'
+  ctx.font = '800 30px "Segoe UI", Arial, sans-serif'
   ctx.fillText(doorNumber.toUpperCase(), textCenterX, h / 2 - 26, w - tabWidth - 48)
 
+  ctx.fillStyle = '#E9E1D3'
   ctx.font = '800 34px "Segoe UI", Arial, sans-serif'
   ctx.fillText(title.toUpperCase(), textCenterX, h / 2 + 24, w - tabWidth - 48)
 
@@ -139,7 +145,7 @@ function createDirectionalSignTexture(
 
 /**
  * Pintu Portal Klasik Museum Virtual Undip:
- * Menggunakan palet seragam Base Zone (Dark Walnut Teak, Royal Navy, dan Undip Gold)
+ * Menggunakan palet Dark Walnut (#392D25), Muted Navy (#23364F), dan Antique Gold (#B2935D)
  * dengan papan judul di atas kusen serta palang penunjuk horizontal menonjol ke ruangan.
  */
 export function PortalDoor({
@@ -154,8 +160,8 @@ export function PortalDoor({
   onHover,
   variant = 'portal',
 }: PortalDoorProps) {
-  const headerBg = variant === 'exit' ? '#2c1a0e' : '#142e56'
-  const trimColor = isHovered ? '#ffd700' : '#d4af37'
+  const headerBg = variant === 'exit' ? '#392D25' : '#23364F'
+  const trimColor = isHovered ? '#C6A870' : '#B2935D'
 
   const signTextureFront = useMemo(
     () => createDirectionalSignTexture(doorNumber, title, isHovered, 'left'),
@@ -204,16 +210,16 @@ export function PortalDoor({
         onSelect()
       }}
     >
-      {/* Kusen Utama Pintu (Dark Teak) */}
+      {/* Kusen Utama Pintu (Dark Walnut #392D25) */}
       <mesh position={[0, 2.05, 0.04]} castShadow receiveShadow>
         <boxGeometry args={[3.1, 4.1, 0.14]} />
-        <meshStandardMaterial color="#2c1a0e" roughness={0.45} metalness={0.15} />
+        <meshStandardMaterial color="#392D25" roughness={0.48} metalness={0.12} />
       </mesh>
 
       {/* Palang Penunjuk Arah Horizontal Menonjol di Pojok Kanan Atas Kusen Pintu (2 Sisi) */}
       <group position={[1.55, 3.86, 0.08 + 1.44 / 2]} rotation={[0, -Math.PI / 2, 0]}>
         <mesh geometry={signBodyGeo} position={[0, 0, -0.02]} castShadow>
-          <meshStandardMaterial color="#5c3b1e" roughness={0.48} metalness={0.12} />
+          <meshStandardMaterial color="#392D25" roughness={0.5} metalness={0.1} />
         </mesh>
         {/* Sisi A */}
         <mesh position={[0, 0, 0.022]}>
@@ -241,22 +247,22 @@ export function PortalDoor({
 
       {/* Papan Judul / Architrave di Atas Pintu */}
       <group position={[0, 4.78, 0.12]}>
-        {/* Bingkai Emas Papan Judul */}
+        {/* Bingkai Antique Gold (#B2935D) Papan Judul */}
         <mesh castShadow>
           <boxGeometry args={[3.7, 1.08, 0.12]} />
           <meshStandardMaterial
             color={trimColor}
-            roughness={0.26}
-            metalness={0.86}
-            emissive={isHovered ? '#b8860b' : '#000000'}
-            emissiveIntensity={isHovered ? 0.3 : 0}
+            roughness={0.36}
+            metalness={0.78}
+            emissive={isHovered ? '#B2935D' : '#000000'}
+            emissiveIntensity={isHovered ? 0.22 : 0}
           />
         </mesh>
 
-        {/* Bidang Latar Royal Navy Papan Judul */}
+        {/* Bidang Latar Muted Navy (#23364F) Papan Judul */}
         <mesh position={[0, 0, 0.045]}>
           <boxGeometry args={[3.52, 0.92, 0.05]} />
-          <meshStandardMaterial color={headerBg} roughness={0.4} metalness={0.2} />
+          <meshStandardMaterial color={headerBg} roughness={0.44} metalness={0.16} />
         </mesh>
 
         {/* Nomor / Label Ruang */}
@@ -264,7 +270,7 @@ export function PortalDoor({
           position={[0, 0.28, 0.08]}
           fontSize={0.13}
           letterSpacing={0.14}
-          color="#ffd700"
+          color="#B2935D"
           anchorX="center"
           anchorY="middle"
           maxWidth={3.2}
@@ -277,7 +283,7 @@ export function PortalDoor({
           position={[0, 0.01, 0.08]}
           fontSize={0.21}
           fontWeight={700}
-          color="#fdfbf7"
+          color="#E9E1D3"
           anchorX="center"
           anchorY="middle"
           maxWidth={3.25}
@@ -291,7 +297,7 @@ export function PortalDoor({
           <Text
             position={[0, -0.27, 0.08]}
             fontSize={0.125}
-            color="#d9e2ec"
+            color="#E9E1D3"
             anchorX="center"
             anchorY="middle"
             maxWidth={3.25}
@@ -302,64 +308,64 @@ export function PortalDoor({
         )}
       </group>
 
-      {/* Garis Lis Emas Pemisah Kusen & Papan Judul */}
+      {/* Garis Lis Antique Gold Pemisah Kusen & Papan Judul */}
       <mesh position={[0, 4.12, 0.1]}>
         <boxGeometry args={[3.3, 0.06, 0.18]} />
-        <meshStandardMaterial color={trimColor} roughness={0.25} metalness={0.88} />
+        <meshStandardMaterial color={trimColor} roughness={0.36} metalness={0.78} />
       </mesh>
 
       {/* Dua Daun Pintu Simetris */}
       {[-0.72, 0.72].map((dx, di) => (
         <group key={di} position={[dx, 1.98, 0.08]}>
-          {/* Badan Daun Pintu */}
+          {/* Badan Daun Pintu (Dark Walnut #392D25) */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[1.38, 3.82, 0.08]} />
-            <meshStandardMaterial color="#24150b" roughness={0.5} metalness={0.12} />
+            <meshStandardMaterial color="#392D25" roughness={0.5} metalness={0.1} />
           </mesh>
 
-          {/* Lis Emas Sekeliling Daun Pintu */}
+          {/* Lis Antique Gold Sekeliling Daun Pintu */}
           <mesh position={[0, 0, 0.042]}>
             <boxGeometry args={[1.22, 3.62, 0.01]} />
             <meshStandardMaterial
               color={trimColor}
-              roughness={0.28}
-              metalness={0.85}
-              emissive={isHovered ? '#b8860b' : '#000000'}
-              emissiveIntensity={isHovered ? 0.25 : 0}
+              roughness={0.36}
+              metalness={0.78}
+              emissive={isHovered ? '#B2935D' : '#000000'}
+              emissiveIntensity={isHovered ? 0.2 : 0}
             />
           </mesh>
 
-          {/* Panel Atas Royal Navy */}
+          {/* Panel Atas Muted Navy (#23364F) */}
           <mesh position={[0, 0.65, 0.048]}>
             <boxGeometry args={[1.08, 1.85, 0.015]} />
-            <meshStandardMaterial color="#142e56" roughness={0.4} metalness={0.2} />
+            <meshStandardMaterial color="#23364F" roughness={0.44} metalness={0.16} />
           </mesh>
 
-          {/* Panel Bawah Royal Navy */}
+          {/* Panel Bawah Muted Navy (#23364F) */}
           <mesh position={[0, -0.88, 0.048]}>
             <boxGeometry args={[1.08, 1.3, 0.015]} />
-            <meshStandardMaterial color="#142e56" roughness={0.4} metalness={0.2} />
+            <meshStandardMaterial color="#23364F" roughness={0.44} metalness={0.16} />
           </mesh>
 
-          {/* Gagang Pintu Kuningan */}
+          {/* Gagang Pintu Antique Gold (#B2935D) */}
           <group position={[di === 0 ? 0.52 : -0.52, 0, 0.08]}>
             <mesh castShadow>
               <cylinderGeometry args={[0.02, 0.02, 0.6, 16]} />
-              <meshStandardMaterial color="#ffd700" roughness={0.2} metalness={0.92} />
+              <meshStandardMaterial color="#B2935D" roughness={0.32} metalness={0.82} />
             </mesh>
             {[-0.24, 0.24].map((hy, hi) => (
               <mesh key={hi} position={[0, hy, -0.03]} rotation={[Math.PI / 2, 0, 0]}>
                 <cylinderGeometry args={[0.014, 0.014, 0.06, 12]} />
-                <meshStandardMaterial color={trimColor} roughness={0.25} metalness={0.88} />
+                <meshStandardMaterial color={trimColor} roughness={0.36} metalness={0.78} />
               </mesh>
             ))}
           </group>
         </group>
       ))}
 
-      {/* Lampu Sorot Emas di Atas Pintu Saat Hover */}
+      {/* Lampu Sorot Warm White di Atas Pintu Saat Hover */}
       {isHovered && (
-        <pointLight position={[0, 4.3, 1.2]} color="#ffd999" intensity={2.2} distance={5} />
+        <pointLight position={[0, 4.3, 1.2]} color="#fff6e8" intensity={2.0} distance={5} />
       )}
     </group>
   )

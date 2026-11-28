@@ -1,4 +1,4 @@
-﻿import { useMemo } from 'react'
+import { useMemo } from 'react'
 import * as THREE from 'three'
 import { assetCache } from './cache'
 
@@ -20,9 +20,9 @@ export function Chandelier({ position, scale = 1, isMobile = false }: Chandelier
         'chand-gold-brass',
         () =>
           new THREE.MeshStandardMaterial({
-            color: '#d4af37',
-            roughness: 0.22,
-            metalness: 0.9,
+            color: '#B2935D',
+            roughness: 0.36,
+            metalness: 0.78,
           }),
       ),
       crystalPrism: assetCache.getMaterial(
@@ -40,9 +40,9 @@ export function Chandelier({ position, scale = 1, isMobile = false }: Chandelier
         'chand-light-glow',
         () =>
           new THREE.MeshStandardMaterial({
-            color: '#fff3db',
-            emissive: '#ffd899',
-            emissiveIntensity: 2.2,
+            color: '#fffaf2',
+            emissive: '#fff6e8',
+            emissiveIntensity: 2.0,
           }),
       ),
     }
